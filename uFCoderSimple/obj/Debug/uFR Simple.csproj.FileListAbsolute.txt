@@ -1,0 +1,11 @@
+E:\download section ufr\za sajt\SDK examples\V1.6\Windows\C_Sharp_1.6_Win\C_Sharp_1.6\C_Sharp_Simple_1.6\bin\Debug\uFRSimple.exe
+E:\download section ufr\za sajt\SDK examples\V1.6\Windows\C_Sharp_1.6_Win\C_Sharp_1.6\C_Sharp_Simple_1.6\bin\Debug\uFRSimple.pdb
+E:\download section ufr\za sajt\SDK examples\V1.6\Windows\C_Sharp_1.6_Win\C_Sharp_1.6\C_Sharp_Simple_1.6\obj\Debug\ResolveAssemblyReference.cache
+E:\download section ufr\za sajt\SDK examples\V1.6\Windows\C_Sharp_1.6_Win\C_Sharp_1.6\C_Sharp_Simple_1.6\obj\Debug\uFRSimple.frmuFRSimpleImplementation.resources
+E:\download section ufr\za sajt\SDK examples\V1.6\Windows\C_Sharp_1.6_Win\C_Sharp_1.6\C_Sharp_Simple_1.6\obj\Debug\uFRSimple.Properties.Resources.resources
+E:\download section ufr\za sajt\SDK examples\V1.6\Windows\C_Sharp_1.6_Win\C_Sharp_1.6\C_Sharp_Simple_1.6\obj\Debug\GenerateResource.read.1.tlog
+E:\download section ufr\za sajt\SDK examples\V1.6\Windows\C_Sharp_1.6_Win\C_Sharp_1.6\C_Sharp_Simple_1.6\obj\Debug\GenerateResource.write.1.tlog
+E:\download section ufr\za sajt\SDK examples\V1.6\Windows\C_Sharp_1.6_Win\C_Sharp_1.6\C_Sharp_Simple_1.6\obj\Debug\uFRSimple.exe
+E:\download section ufr\za sajt\SDK examples\V1.6\Windows\C_Sharp_1.6_Win\C_Sharp_1.6\C_Sharp_Simple_1.6\obj\Debug\uFRSimple.pdb
+E:\download section ufr\za sajt\SDK examples\V1.6\Windows\C_Sharp_1.6_Win\C_Sharp_1.6\C_Sharp_Simple_1.6\bin\x86\Debug\uFRSimple.exe
+E:\download section ufr\za sajt\SDK examples\V1.6\Windows\C_Sharp_1.6_Win\C_Sharp_1.6\C_Sharp_Simple_1.6\bin\x86\Debug\uFRSimple.pdb

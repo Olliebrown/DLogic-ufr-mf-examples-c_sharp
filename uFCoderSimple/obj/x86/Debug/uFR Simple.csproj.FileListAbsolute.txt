@@ -1,0 +1,8 @@
+H:\uFRSimple1.6\C#\uFRSimple\bin\x86\Debug\uFRSimple.exe
+H:\uFRSimple1.6\C#\uFRSimple\bin\x86\Debug\uFRSimple.pdb
+H:\uFRSimple1.6\C#\uFRSimple\obj\x86\Debug\uFR Simple.csprojResolveAssemblyReference.cache
+H:\uFRSimple1.6\C#\uFRSimple\obj\x86\Debug\uFRSimple.frmuFRSimpleImplementation.resources
+H:\uFRSimple1.6\C#\uFRSimple\obj\x86\Debug\uFRSimple.Properties.Resources.resources
+H:\uFRSimple1.6\C#\uFRSimple\obj\x86\Debug\uFR Simple.csproj.GenerateResource.Cache
+H:\uFRSimple1.6\C#\uFRSimple\obj\x86\Debug\uFRSimple.exe
+H:\uFRSimple1.6\C#\uFRSimple\obj\x86\Debug\uFRSimple.pdb
