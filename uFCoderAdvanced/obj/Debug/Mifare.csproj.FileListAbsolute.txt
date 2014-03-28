@@ -1,0 +1,17 @@
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\bin\Debug\Mifare.exe
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\bin\Debug\Mifare.pdb
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\Debug\Mifare.frmBlockReadWrite.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\Debug\Mifare.frmBlockInSectorReadWrite.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\Debug\Mifare.frmLinearFormatCard.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\Debug\Mifare.frmMifare.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\Debug\Mifare.frmSectorTrailerWrite.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\Debug\Mifare.frmValueBlockIncrDecr.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\Debug\Mifare.frmValueBlockInSectorIncremDecrem.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\Debug\Mifare.frmValueBlockInSectorReadWrite.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\Debug\Mifare.frmValueBlockReadWrite.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\Debug\Mifare.frmViewAll.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\Debug\Mifare.frmLinearReadWrite.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\Debug\Mifare.Properties.Resources.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\Debug\Mifare.csproj.GenerateResource.Cache
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\Debug\Mifare.exe
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\Debug\Mifare.pdb

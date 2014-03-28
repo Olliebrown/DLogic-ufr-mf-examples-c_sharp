@@ -1,0 +1,128 @@
+D:\Moji Programi\C#\MifareProject\Mifare\bin\x86\Release\Mifare.exe
+D:\Moji Programi\C#\MifareProject\Mifare\bin\x86\Release\Mifare.pdb
+D:\Moji Programi\C#\MifareProject\Mifare\obj\x86\Release\ResolveAssemblyReference.cache
+D:\Moji Programi\C#\MifareProject\Mifare\obj\x86\Release\Mifare.frmBlockReadWrite.resources
+D:\Moji Programi\C#\MifareProject\Mifare\obj\x86\Release\Mifare.frmBlockInSectorReadWrite.resources
+D:\Moji Programi\C#\MifareProject\Mifare\obj\x86\Release\Mifare.frmLinearFormatCard.resources
+D:\Moji Programi\C#\MifareProject\Mifare\obj\x86\Release\Mifare.frmMifare.resources
+D:\Moji Programi\C#\MifareProject\Mifare\obj\x86\Release\Mifare.frmSectorTrailerWrite.resources
+D:\Moji Programi\C#\MifareProject\Mifare\obj\x86\Release\Mifare.frmValueBlockIncrDecr.resources
+D:\Moji Programi\C#\MifareProject\Mifare\obj\x86\Release\Mifare.frmValueBlockInSectorIncremDecrem.resources
+D:\Moji Programi\C#\MifareProject\Mifare\obj\x86\Release\Mifare.frmValueBlockInSectorReadWrite.resources
+D:\Moji Programi\C#\MifareProject\Mifare\obj\x86\Release\Mifare.frmValueBlockReadWrite.resources
+D:\Moji Programi\C#\MifareProject\Mifare\obj\x86\Release\Mifare.frmViewAll.resources
+D:\Moji Programi\C#\MifareProject\Mifare\obj\x86\Release\Mifare.frmLinearReadWrite.resources
+D:\Moji Programi\C#\MifareProject\Mifare\obj\x86\Release\Mifare.Properties.Resources.resources
+D:\Moji Programi\C#\MifareProject\Mifare\obj\x86\Release\Mifare.csproj.GenerateResource.Cache
+D:\Moji Programi\C#\MifareProject\Mifare\obj\x86\Release\Mifare.exe
+D:\Moji Programi\C#\MifareProject\Mifare\obj\x86\Release\Mifare.pdb
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.exe
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.pdb
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\bin\x86\Release\Mifare.exe
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\bin\x86\Release\Mifare.pdb
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\obj\x86\Release\ResolveAssemblyReference.cache
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmBlockReadWrite.resources
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmBlockInSectorReadWrite.resources
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmLinearFormatCard.resources
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmMifare.resources
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmSectorTrailerWrite.resources
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmValueBlockIncrDecr.resources
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmValueBlockInSectorIncremDecrem.resources
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmValueBlockInSectorReadWrite.resources
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmValueBlockReadWrite.resources
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmViewAll.resources
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmLinearReadWrite.resources
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.Properties.Resources.resources
+D:\Moji Programi\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.csproj.GenerateResource.Cache
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.exe
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.pdb
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\obj\x86\Release\ResolveAssemblyReference.cache
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmBlockReadWrite.resources
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmBlockInSectorReadWrite.resources
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmLinearFormatCard.resources
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmMifare.resources
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmSectorTrailerWrite.resources
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmValueBlockIncrDecr.resources
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmValueBlockInSectorIncremDecrem.resources
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmValueBlockInSectorReadWrite.resources
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmValueBlockReadWrite.resources
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmViewAll.resources
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmLinearReadWrite.resources
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.Properties.Resources.resources
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\obj\x86\Release\GenerateResource.read.1.tlog
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\obj\x86\Release\GenerateResource.write.1.tlog
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\bin\x86\Release\Mifare.exe
+F:\RADNI FOLDER\C#\MifareProject\uFRCoder Advance\bin\x86\Release\Mifare.pdb
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.exe
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.pdb
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\bin\x86\Release\Mifare.exe
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\bin\x86\Release\Mifare.pdb
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\obj\x86\Release\ResolveAssemblyReference.cache
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmBlockReadWrite.resources
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmBlockInSectorReadWrite.resources
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmLinearFormatCard.resources
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmMifare.resources
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmSectorTrailerWrite.resources
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmValueBlockIncrDecr.resources
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmValueBlockInSectorIncremDecrem.resources
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmValueBlockInSectorReadWrite.resources
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmValueBlockReadWrite.resources
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmViewAll.resources
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.frmLinearReadWrite.resources
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\obj\x86\Release\Mifare.Properties.Resources.resources
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\obj\x86\Release\GenerateResource.read.1.tlog
+F:\uFRNewRadniFolder\C#\MifareProject\uFRCoder Advance\obj\x86\Release\GenerateResource.write.1.tlog
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\obj\x86\Release\Mifare.exe
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\obj\x86\Release\Mifare.pdb
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\bin\x86\Release\Mifare.exe
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\bin\x86\Release\Mifare.pdb
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\obj\x86\Release\Mifare.csprojResolveAssemblyReference.cache
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\obj\x86\Release\Mifare.frmBlockReadWrite.resources
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\obj\x86\Release\Mifare.frmBlockInSectorReadWrite.resources
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\obj\x86\Release\Mifare.frmLinearFormatCard.resources
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\obj\x86\Release\Mifare.frmMifare.resources
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\obj\x86\Release\Mifare.frmSectorTrailerWrite.resources
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\obj\x86\Release\Mifare.frmValueBlockIncrDecr.resources
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\obj\x86\Release\Mifare.frmValueBlockInSectorIncremDecrem.resources
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\obj\x86\Release\Mifare.frmValueBlockInSectorReadWrite.resources
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\obj\x86\Release\Mifare.frmValueBlockReadWrite.resources
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\obj\x86\Release\Mifare.frmViewAll.resources
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\obj\x86\Release\Mifare.frmLinearReadWrite.resources
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\obj\x86\Release\Mifare.Properties.Resources.resources
+H:\uFRVers1.0.1\C#\MifareProject\uFRCoder Advance1.0\obj\x86\Release\Mifare.csproj.GenerateResource.Cache
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.exe
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.pdb
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\bin\x86\Release\Mifare.exe
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\bin\x86\Release\Mifare.pdb
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.csprojResolveAssemblyReference.cache
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmBlockReadWrite.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmBlockInSectorReadWrite.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmLinearFormatCard.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmMifare.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmSectorTrailerWrite.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmValueBlockIncrDecr.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmValueBlockInSectorIncremDecrem.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmValueBlockInSectorReadWrite.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmValueBlockReadWrite.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmViewAll.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmLinearReadWrite.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.Properties.Resources.resources
+H:\uFRVers1.0.1\C#\uFRCoder1.0.1\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.csproj.GenerateResource.Cache
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.exe
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.pdb
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\bin\x86\Release\Mifare.exe
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\bin\x86\Release\Mifare.pdb
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.csprojResolveAssemblyReference.cache
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmBlockReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmBlockInSectorReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmLinearFormatCard.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmMifare.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmSectorTrailerWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmValueBlockIncrDecr.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmValueBlockInSectorIncremDecrem.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmValueBlockInSectorReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmValueBlockReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmViewAll.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmLinearReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.Properties.Resources.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.csproj.GenerateResource.Cache
