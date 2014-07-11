@@ -1,0 +1,198 @@
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\bin\x86\Release\uFrAdvance.exe
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\bin\x86\Release\uFrAdvance.pdb
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmBlockReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmBlockInSectorReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmLinearFormatCard.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmSectorTrailerWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmValueBlockIncrDecr.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmValueBlockInSectorIncremDecrem.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmValueBlockInSectorReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmValueBlockReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmViewAll.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmLinearReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\uFrAdvance.Properties.Resources.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\uFrAdvance.csproj.GenerateResource.Cache
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\uFrAdvance.exe
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\uFrAdvance.pdb
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\Mifare.frmuFrAdvance.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.0.1\obj\x86\Release\uFrAdvance.csprojResolveAssemblyReference.cache
+H:\uFRAdvance1.5\C#\uFRCoder Advance\obj\x86\Release\uFrAdvance.exe
+H:\uFRAdvance1.5\C#\uFRCoder Advance\obj\x86\Release\uFrAdvance.pdb
+H:\uFRAdvance1.5\C#\uFRCoder Advance\bin\x86\Release\uFrAdvance.exe
+H:\uFRAdvance1.5\C#\uFRCoder Advance\bin\x86\Release\uFrAdvance.pdb
+H:\uFRAdvance1.5\C#\uFRCoder Advance\obj\x86\Release\uFrAdvance.csprojResolveAssemblyReference.cache
+H:\uFRAdvance1.5\C#\uFRCoder Advance\obj\x86\Release\Mifare.frmBlockReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance\obj\x86\Release\Mifare.frmBlockInSectorReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance\obj\x86\Release\Mifare.frmLinearFormatCard.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance\obj\x86\Release\Mifare.frmuFrAdvance.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance\obj\x86\Release\Mifare.frmSectorTrailerWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance\obj\x86\Release\Mifare.frmValueBlockIncrDecr.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance\obj\x86\Release\Mifare.frmValueBlockInSectorIncremDecrem.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance\obj\x86\Release\Mifare.frmValueBlockInSectorReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance\obj\x86\Release\Mifare.frmValueBlockReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance\obj\x86\Release\Mifare.frmViewAll.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance\obj\x86\Release\Mifare.frmLinearReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance\obj\x86\Release\uFrAdvance.Properties.Resources.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance\obj\x86\Release\uFrAdvance.csproj.GenerateResource.Cache
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\bin\x86\Release\uFrAdvance.exe
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\bin\x86\Release\uFrAdvance.pdb
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\obj\x86\Release\uFrAdvance.csprojResolveAssemblyReference.cache
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\obj\x86\Release\Mifare.frmBlockReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\obj\x86\Release\Mifare.frmBlockInSectorReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\obj\x86\Release\Mifare.frmLinearFormatCard.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\obj\x86\Release\Mifare.frmuFrAdvance.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\obj\x86\Release\Mifare.frmSectorTrailerWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\obj\x86\Release\Mifare.frmValueBlockIncrDecr.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\obj\x86\Release\Mifare.frmValueBlockInSectorIncremDecrem.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\obj\x86\Release\Mifare.frmValueBlockInSectorReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\obj\x86\Release\Mifare.frmValueBlockReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\obj\x86\Release\Mifare.frmViewAll.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\obj\x86\Release\Mifare.frmLinearReadWrite.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\obj\x86\Release\uFrAdvance.Properties.Resources.resources
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\obj\x86\Release\uFrAdvance.csproj.GenerateResource.Cache
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\obj\x86\Release\uFrAdvance.exe
+H:\uFRAdvance1.5\C#\uFRCoder Advance1.5\obj\x86\Release\uFrAdvance.pdb
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\obj\x86\Release\uFrAdvance.exe
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\obj\x86\Release\uFrAdvance.pdb
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\bin\x86\Release\uFrAdvance.exe
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\bin\x86\Release\uFrAdvance.pdb
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\obj\x86\Release\uFrAdvance.csprojResolveAssemblyReference.cache
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmBlockReadWrite.resources
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmBlockInSectorReadWrite.resources
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmLinearFormatCard.resources
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmuFrAdvance.resources
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmSectorTrailerWrite.resources
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmValueBlockIncrDecr.resources
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmValueBlockInSectorIncremDecrem.resources
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmValueBlockInSectorReadWrite.resources
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmValueBlockReadWrite.resources
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmViewAll.resources
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmLinearReadWrite.resources
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\obj\x86\Release\uFrAdvance.Properties.Resources.resources
+H:\uFRAdvance1.5\C#\uFR Advance 1.5\obj\x86\Release\uFrAdvance.csproj.GenerateResource.Cache
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\obj\x86\Release\uFrAdvance.exe
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\obj\x86\Release\uFrAdvance.pdb
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\obj\x86\Release\uFrAdvance.csprojResolveAssemblyReference.cache
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmBlockReadWrite.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmBlockInSectorReadWrite.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmLinearFormatCard.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmuFrAdvance.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmSectorTrailerWrite.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmValueBlockIncrDecr.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmValueBlockInSectorIncremDecrem.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmValueBlockInSectorReadWrite.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmValueBlockReadWrite.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmViewAll.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\obj\x86\Release\Mifare.frmLinearReadWrite.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\obj\x86\Release\uFrAdvance.Properties.Resources.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\obj\x86\Release\uFrAdvance.csproj.GenerateResource.Cache
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\bin\x86\Release\uFrAdvance.exe
+H:\uFrAdvance1.6\C#\uFR Advance 1.5\bin\x86\Release\uFrAdvance.pdb
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\bin\x86\Release\uFrAdvance.exe
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\bin\x86\Release\uFrAdvance.pdb
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\obj\x86\Release\Mifare.frmBlockReadWrite.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\obj\x86\Release\Mifare.frmBlockInSectorReadWrite.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\obj\x86\Release\Mifare.frmLinearFormatCard.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\obj\x86\Release\Mifare.frmuFrAdvance.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\obj\x86\Release\Mifare.frmSectorTrailerWrite.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\obj\x86\Release\Mifare.frmValueBlockIncrDecr.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\obj\x86\Release\Mifare.frmValueBlockInSectorIncremDecrem.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\obj\x86\Release\Mifare.frmValueBlockInSectorReadWrite.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\obj\x86\Release\Mifare.frmValueBlockReadWrite.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\obj\x86\Release\Mifare.frmViewAll.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\obj\x86\Release\Mifare.frmLinearReadWrite.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\obj\x86\Release\uFrAdvance.Properties.Resources.resources
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\obj\x86\Release\uFrAdvance.csproj.GenerateResource.Cache
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\obj\x86\Release\uFrAdvance.exe
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\obj\x86\Release\uFrAdvance.pdb
+H:\uFrAdvance1.6\C#\uFR Advance 1.6\obj\x86\Release\uFrAdvance.csprojResolveAssemblyReference.cache
+H:\uFrVer2.0\C#\uFr Advance\bin\x86\Release\uFr Advance.exe
+H:\uFrVer2.0\C#\uFr Advance\bin\x86\Release\uFr Advance.pdb
+H:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.csprojResolveAssemblyReference.cache
+H:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.Properties.Resources.resources
+H:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.csproj.GenerateResource.Cache
+H:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFr Advance.exe
+H:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFr Advance.pdb
+H:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmBlockReadWrite.resources
+H:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmBlockInSectorReadWrite.resources
+H:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmLinearFormatCard.resources
+H:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmuFrAdvance.resources
+H:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmSectorTrailerWrite.resources
+H:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockIncrDecr.resources
+H:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockInSectorIncremDecrem.resources
+H:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockInSectorReadWrite.resources
+H:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockReadWrite.resources
+H:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmViewAll.resources
+H:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmLinearReadWrite.resources
+G:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFr Advance.exe
+G:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFr Advance.pdb
+G:\uFrVer2.0\C#\uFr Advance\bin\x86\Release\uFr Advance.exe
+G:\uFrVer2.0\C#\uFr Advance\bin\x86\Release\uFr Advance.pdb
+G:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.csprojResolveAssemblyReference.cache
+G:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmBlockReadWrite.resources
+G:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmBlockInSectorReadWrite.resources
+G:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmLinearFormatCard.resources
+G:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmuFrAdvance.resources
+G:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmSectorTrailerWrite.resources
+G:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockIncrDecr.resources
+G:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockInSectorIncremDecrem.resources
+G:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockInSectorReadWrite.resources
+G:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockReadWrite.resources
+G:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmViewAll.resources
+G:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmLinearReadWrite.resources
+G:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.Properties.Resources.resources
+G:\uFrVer2.0\C#\uFr Advance\obj\x86\Release\uFrAdvance.csproj.GenerateResource.Cache
+G:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFr Advance.exe
+G:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFr Advance.pdb
+G:\uFrVer2.1\C#\uFr Advance\bin\x86\Release\uFr Advance.exe
+G:\uFrVer2.1\C#\uFr Advance\bin\x86\Release\uFr Advance.pdb
+G:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.csprojResolveAssemblyReference.cache
+G:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmBlockReadWrite.resources
+G:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmBlockInSectorReadWrite.resources
+G:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmLinearFormatCard.resources
+G:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmuFrAdvance.resources
+G:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmSectorTrailerWrite.resources
+G:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockIncrDecr.resources
+G:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockInSectorIncremDecrem.resources
+G:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockInSectorReadWrite.resources
+G:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockReadWrite.resources
+G:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmViewAll.resources
+G:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmLinearReadWrite.resources
+G:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.Properties.Resources.resources
+G:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.csproj.GenerateResource.Cache
+F:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFr Advance.exe
+F:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFr Advance.pdb
+F:\uFrVer2.1\C#\uFr Advance\bin\x86\Release\uFr Advance.exe
+F:\uFrVer2.1\C#\uFr Advance\bin\x86\Release\uFr Advance.pdb
+F:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.csprojResolveAssemblyReference.cache
+F:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmBlockReadWrite.resources
+F:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmBlockInSectorReadWrite.resources
+F:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmLinearFormatCard.resources
+F:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmuFrAdvance.resources
+F:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmSectorTrailerWrite.resources
+F:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockIncrDecr.resources
+F:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockInSectorIncremDecrem.resources
+F:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockInSectorReadWrite.resources
+F:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockReadWrite.resources
+F:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmViewAll.resources
+F:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmLinearReadWrite.resources
+F:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.Properties.Resources.resources
+F:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.csproj.GenerateResource.Cache
+E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFr Advance.exe
+E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFr Advance.pdb
+E:\uFrVer2.1\C#\uFr Advance\bin\x86\Release\uFr Advance.exe
+E:\uFrVer2.1\C#\uFr Advance\bin\x86\Release\uFr Advance.pdb
+E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.csprojResolveAssemblyReference.cache
+E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmBlockReadWrite.resources
+E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmBlockInSectorReadWrite.resources
+E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmLinearFormatCard.resources
+E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmuFrAdvance.resources
+E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmSectorTrailerWrite.resources
+E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockIncrDecr.resources
+E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockInSectorIncremDecrem.resources
+E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockInSectorReadWrite.resources
+E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmValueBlockReadWrite.resources
+E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmViewAll.resources
+E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmLinearReadWrite.resources
+E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.Properties.Resources.resources
+E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.csproj.GenerateResource.Cache
