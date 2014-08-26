@@ -1,0 +1,9 @@
+D:\ws\Visual Studio 2013\Projects\uFR_multiDLL_tester\uFR_multiDLL_tester\bin\Debug\uFR_multiDLL_tester.exe.config
+D:\ws\Visual Studio 2013\Projects\uFR_multiDLL_tester\uFR_multiDLL_tester\bin\Debug\uFR_multiDLL_tester.exe
+D:\ws\Visual Studio 2013\Projects\uFR_multiDLL_tester\uFR_multiDLL_tester\bin\Debug\uFR_multiDLL_tester.pdb
+D:\ws\Visual Studio 2013\Projects\uFR_multiDLL_tester\uFR_multiDLL_tester\obj\Debug\uFR_multiDLL_tester.csprojResolveAssemblyReference.cache
+D:\ws\Visual Studio 2013\Projects\uFR_multiDLL_tester\uFR_multiDLL_tester\obj\Debug\uFR_multiDLL_tester.Properties.Resources.resources
+D:\ws\Visual Studio 2013\Projects\uFR_multiDLL_tester\uFR_multiDLL_tester\obj\Debug\uFR_multiDLL_tester.csproj.GenerateResource.Cache
+D:\ws\Visual Studio 2013\Projects\uFR_multiDLL_tester\uFR_multiDLL_tester\obj\Debug\uFR_multiDLL_tester.exe
+D:\ws\Visual Studio 2013\Projects\uFR_multiDLL_tester\uFR_multiDLL_tester\obj\Debug\uFR_multiDLL_tester.pdb
+D:\ws\Visual Studio 2013\Projects\uFR_multiDLL_tester\uFR_multiDLL_tester\obj\Debug\uFR_multiDLL_tester.frmMultiuFRTester.resources
