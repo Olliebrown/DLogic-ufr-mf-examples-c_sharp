@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Windows Desktop
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uFR Simple", "uFR Simple.csproj", "{49B3E5BB-D97F-45FE-9B76-0EA93E44A17C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uFr Simple", "uFr Simple.csproj", "{49B3E5BB-D97F-45FE-9B76-0EA93E44A17C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

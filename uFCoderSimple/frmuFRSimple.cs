@@ -1,15 +1,4 @@
-﻿/************************************************************************************
-  
-   Program                :  uFr Simple
-   File                   :  frmuFRSimple.cs
-   Description            :  Functions to work with the keys card and reader key
-   Author                 :  VladanS
-   Manufacturer           :  D-Logic
-   Development enviroment :  Microsoft Visual C# 2012 Express
-   Revisions			  :  
-   Version                :  1.6
-   
-************************************************************************************/
+﻿
 
 using System;
 using System.Collections.Generic;
@@ -23,106 +12,86 @@ using System.Windows.Forms;
 
 namespace uFRSimple
 {
-    public partial class frmuFRSimpleImplementation : Form
+    using  DL_STATUS = System.UInt32;
+    public partial class frmuFrSimple : Form
     {
-        public frmuFRSimpleImplementation()
+        
+        public frmuFrSimple()
         {
             InitializeComponent();
             cboSoundMode.SelectedItem = cboSoundMode.Items[0];
             cboLightMode.SelectedItem = cboLightMode.Items[0];
         }
 
+        //DLOGIC CARD TYPE
+        public enum DLCARDTYPE
+        {
+            DL_MIFARE_ULTRALIGHT        = 0x01,
+            DL_MIFARE_ULTRALIGHT_EV1_11 = 0x02,
+            DL_MIFARE_ULTRALIGHT_EV1_21 = 0x03,
+            DL_MIFARE_ULTRALIGHT_C      = 0x04,
+            DL_NTAG_203                 = 0x05,
+            DL_NTAG_210                 = 0x06,
+            DL_NTAG_212                 = 0x07,
+            DL_NTAG_213                 = 0x08,
+            DL_NTAG_215                 = 0x09,
+            DL_NTAG_216                 = 0x0A,
+            DL_MIFARE_MINI              = 0x20,
+            DL_MIFARE_CLASSIC_1K        = 0x21,
+            DL_MIFARE_CLASSIC_4K        = 0x22,
+            DL_MIFARE_PLUS_S_2K         = 0x23,
+            DL_MIFARE_PLUS_S_4K         = 0x24,
+            DL_MIFARE_PLUS_X_2K         = 0x25,
+            DL_MIFARE_PLUS_X_4K         = 0x26,
+            DL_MIFARE_DESFIRE           = 0x27,
+            DL_MIFARE_DESFIRE_EV1_2K    = 0x28,
+            DL_MIFARE_DESFIRE_EV1_4K    = 0x29,
+            DL_MIFARE_DESFIRE_EV1_8K    = 0x2A
+        }
+        //card type     
+        const byte MIFARE_CLASSIC_1k = 0x08,
+                   MIFARE_CLASSIC_4k = 0x18;
 
+        //authenticate
+        const byte MIFARE_AUTHENT1A  = 0x60,
+                   MIFARE_AUTHENT1B  = 0x61;
 
-        private UInt32 iResult = 0;
-        private bool boCONN = false,
-                     boReaderStop = false,
-                     boThreadStart = false,
-                     boFunctionOn = false;
-        private byte bKeyIndex = 0;
-        private string[] ERR_CODE = new string[180];
+        const byte DL_OK             = 0x00,
+                   KEY_INDEX         = 0x00;
 
-        const byte AUTH1A = 96,
-                   AUTH1B = 97,
-                   DL_OK = 0,
-                   RES_OK_LIGHT = 4,
-                   RES_OK_SOUND = 0,//4
-                   ERR_LIGHT = 2,
-                   ERR_SOUND = 0;//4
+        //for error                    
+        const byte FRES_OK_LIGHT     = 0x04,
+                   FRES_OK_SOUND     = 0x00,
+                   FERR_LIGHT        = 0x02,
+                   FERR_SOUND        = 0x00;
 
-        const ushort LINEAR_MAX_BYTES = 752;
-
+        // sectors and blocks
+        const byte MAX_SECTORS_1k    = 0x10,
+                   MAX_SECTORS_4k    = 0x28,
+                   MAX_BLOCK         = 0x0F;
+                         
         const string
-                    CONVERT_ERROR = "You may enter only whole decimal number !",
+                    CONVERT_ERROR      = "You may enter only whole decimal number !",
                     APPROPRIATE_FORMAT = "You must enter the appropriate format !\nEnter a number between 0 and 255 or 0 and FF hexadecimal !";
 
         const string NEW_CARD_KEY_A = "txtNewCardKeyA",
                      NEW_CARD_KEY_B = "txtNewCardKeyB",
                      NEW_READER_KEY = "txtNewReaderKey";
 
+        private Boolean boCONN        = false,
+                        boThreadStart = false,
+                        boFunctionOn  = false;
+                        
 
-        private void ReaderOff()
-        {
-            boReaderStop = true;
-        }
-        private void ReaderOn()
-        {
-            boReaderStop = false;
-        }
-        void ERRORS_CODE(uint result, System.Windows.Forms.StatusStrip Status_bar)
-        {
-            ERR_CODE[0] = " DL_OK ";
-            ERR_CODE[1] = "COMMUNICATION_ERROR";
-            ERR_CODE[2] = "CHKSUM_ERROR";
-            ERR_CODE[3] = "READING_ERROR";
-            ERR_CODE[4] = "WRITING_ERROR";
-            ERR_CODE[5] = "BUFFER_OVERFLOW";
-            ERR_CODE[6] = "MAX_ADDRESS_EXCEEDED";
-            ERR_CODE[7] = "MAX_KEY_INDEX_EXCEEDED";
-            ERR_CODE[8] = "NO_CARD";
-            ERR_CODE[9] = "COMMAND_NOT_SUPPORTED";
-            ERR_CODE[10] = " FORBIDEN_DIRECT_WRITE_IN_SECTOR_TRAILER";
-            ERR_CODE[11] = " ADDRESSED_BLOCK_IS_NOT_SECTOR_TRAILER  ";
-            ERR_CODE[12] = " WRONG_ADDRESS_MODE  ";
-            ERR_CODE[13] = " WRONG_ACCESS_BITS_VALUES  ";
-            ERR_CODE[14] = " AUTH_ERROR  ";
-            ERR_CODE[15] = " PARAMETERS_ERROR  ";
-            ERR_CODE[16] = " MAX_SIZE_EXCEEDED  ";
-
-            ERR_CODE[80] = " COMMUNICATION_BREAK  ";
-            ERR_CODE[81] = " NO_MEMORY_ERROR  ";
-            ERR_CODE[82] = " CAN_NOT_OPEN_READER  ";
-            ERR_CODE[83] = " READER_NOT_SUPPORTED  ";
-            ERR_CODE[84] = " READER_OPENING_ERROR  ";
-            ERR_CODE[85] = " READER_PORT_NOT_OPENED  ";
-            ERR_CODE[86] = " CANT_CLOSE_READER_PORT  ";
-
-            ERR_CODE[112] = " WRITE_VERIFICATION_ERROR  ";
-            ERR_CODE[113] = "  BUFFER_SIZE_EXCEEDED  ";
-            ERR_CODE[114] = " VALUE_BLOCK_INVALID  ";
-            ERR_CODE[115] = " VALUE_BLOCK_ADDR_INVALID  ";
-            ERR_CODE[116] = " VALUE_BLOCK_MANIPULATION_ERROR  ";
-            ERR_CODE[117] = " WRONG_UI_MODE ";
-            ERR_CODE[118] = " KEYS_LOCKED ";
-            ERR_CODE[119] = " KEYS_UNLOCKED ";
-            ERR_CODE[120] = " WRONG_PASSWORD ";
-            ERR_CODE[121] = " CAN_NOT_LOCK_DEVICE ";
-            ERR_CODE[122] = " CAN_NOT_UNLOCK_DEVICE ";
-            ERR_CODE[123] = " DEVICE_EEPROM_BUSY ";
-            ERR_CODE[124] = " RTC_SET_ERROR ";
-
-            ERR_CODE[160] = " FT_STATUS_ERROR_1 ";
-            ERR_CODE[161] = " FT_STATUS_ERROR_2 ";
-            ERR_CODE[162] = " FT_STATUS_ERROR_3 ";
-            ERR_CODE[163] = " FT_STATUS_ERROR_4 ";
-            ERR_CODE[164] = " FT_STATUS_ERROR_5 ";
-            ERR_CODE[165] = " FT_STATUS_ERROR_6 ";
-            ERR_CODE[166] = " FT_STATUS_ERROR_7 ";
-            ERR_CODE[167] = " FT_STATUS_ERROR_8 ";
-
+        private byte bKeyIndex   = 0;
+        private byte bTypeOfCard = 0;
+        private string[] ERROR_CODES;
+        
+       
+        void SetStatusBar(DL_STATUS result, System.Windows.Forms.StatusStrip Status_bar)
+        {            
             Status_bar.Items[1].Text = "0x" + result.ToString("X2");
-            Status_bar.Items[2].Text = ERR_CODE[result];
-
+            Status_bar.Items[2].Text = ERROR_CODES[result];
         }
 
         void CreateKey(byte bKeyWidth, byte bKeyHeight, byte bKeyX, byte bKeyY, string bKeyName, System.Windows.Forms.Panel pnlContainer)
@@ -134,7 +103,7 @@ namespace uFRSimple
                 TB.Height = bKeyHeight;
                 TB.Font = new Font("Verdana", 8, FontStyle.Bold);
                 TB.Name = bKeyName;
-                TB.Text = "";
+                TB.Text = "255";
                 TB.MaxLength = 3;
                 TB.KeyPress += new KeyPressEventHandler(TB_KeyPress);
                 TB.Leave += TB_Leave;
@@ -194,92 +163,156 @@ namespace uFRSimple
             Application.Exit();
         }
 
-        private void MainThread()
-        {
-            ulong ulReaderType = 0;
-            ulong ulReaderSerialNumber = 0;
-            ulong ulCardSerial = 0;
-            byte bCardType = 0;
+       
 
-            boThreadStart = true;
+        
+
+        private Boolean FunctionOn
+        {
+            get
+            {
+                return boFunctionOn;
+            }
+            set
+            {
+                boFunctionOn = value;
+            }
+        }
+
+        private Boolean LoopStatus
+        {
+            get
+            {
+                return boThreadStart ;
+            }
+            set
+            {
+                boThreadStart  = value;
+            }
+        }
+       
+ private void MainThread()
+        {            
+           
+            ulong ulReaderType   = 0,
+                  ulReaderSerial = 0,
+                  ulCardSerial   = 0;
+
+            byte  bUidSize       = 0,
+                  bDLCardType    = 0,
+                  bCardType      = 0;
+                  
+            byte[] baCardUID     = new byte[9];
+            String sBuffer = "";
+            DL_STATUS iRResult,
+                      iCResult;
+
+            LoopStatus =true;                                                         
             if (!boCONN)
             {
-                if ((iResult = uFRCoder1x.ReaderOpen()) == DL_OK)
+                if ((iRResult = uFrCoder1x.ReaderOpen()) == DL_OK)
                 {
                     boCONN = true;
                     stbReader.Items[0].Text = "CONNECTED";
-                    ERRORS_CODE(iResult, stbReader);
+                    SetStatusBar(iRResult, stbReader);
                 }
                 else
-                {
+                {                    
+                    txtReaderType  .Clear();
+                    txtReaderSerial.Clear();
+                    txtCardType    .Clear();
+                    txtCardSerial  .Clear();                    
+                    txtCardSerial  .Clear();
                     stbReader.Items[0].Text = "NOT CONNECTED";
-                    txtReaderType.Text = "";
-                    txtReaderSerial.Text = "";
-                    txtCardType.Text = "";
-                    txtCardSerial.Text = "";
-                    ERRORS_CODE(iResult, stbReader);
-
+                    SetStatusBar(iRResult, stbReader);
                 }
             }
             unsafe
             {
+                fixed (byte* pCardUID = baCardUID) 
                 if (boCONN)
                 {
-                    if ((iResult = uFRCoder1x.GetReaderType(&ulReaderType)) == DL_OK)
+                    iRResult = uFrCoder1x.GetReaderType(&ulReaderType);
+                    if ( iRResult == DL_OK)
                     {
                         txtReaderType.Text = "0x" + ulReaderType.ToString("X");
-                        if ((iResult = uFRCoder1x.GetReaderSerialNumber(&ulReaderSerialNumber)) == DL_OK)
+                        iRResult = uFrCoder1x.GetReaderSerialNumber(&ulReaderSerial);
+                        if (iRResult == DL_OK)
                         {
-                            txtReaderSerial.Text = "0x" + ulReaderSerialNumber.ToString("X");
-                        }
-                        if ((iResult = uFRCoder1x.GetCardId(&bCardType, &ulCardSerial)) == DL_OK)
-                        {
-                            txtCardSerial.Text = "0x" + ulCardSerial.ToString("X");
-                            txtCardType.Text = "0x" + bCardType.ToString("X2");
-                            ERRORS_CODE(iResult, stbCardStatus);
-                        }
-                        else
-                        {
-                            txtCardType.Text = "";
-                            txtCardSerial.Text = "";
-                            ERRORS_CODE(iResult, stbCardStatus);
+                            txtReaderSerial.Text = "0x" + ulReaderSerial.ToString("X");  
+                            
+                            iCResult = uFrCoder1x.GetDlogicCardType(&bDLCardType);
+                            
+                            if (iCResult == DL_OK)
+                            {
+                                if (bDLCardType == (byte)DLCARDTYPE.DL_NTAG_203 ||
+                                    bDLCardType == (byte)DLCARDTYPE.DL_MIFARE_ULTRALIGHT ||
+                                    bDLCardType == (byte)DLCARDTYPE.DL_MIFARE_ULTRALIGHT_C)
+                                {
+                                    btnFormatCard.Enabled = false;
+                                }
+                                else
+                                {
+                                    btnFormatCard.Enabled = true;
+                                }
+
+                                uFrCoder1x.GetCardIdEx(&bCardType, pCardUID, &bUidSize);
+                                for (byte bBr = 0; bBr < bUidSize; bBr++)
+                                {
+                                    sBuffer += baCardUID[bBr].ToString("X");
+                                }
+                                txtCardType.Text   = "0x" + bDLCardType.ToString("X2");
+                                txtUIDSize.Text    = "0x" + bUidSize.ToString("X2");                                
+                                txtCardSerial.Text = "0x" + sBuffer;
+                                bTypeOfCard        = bDLCardType;
+                                SetStatusBar(iCResult, stbCardStatus);
+                            }
+                            else
+                            {
+                                btnFormatCard.Enabled = true;
+                                txtCardType    .Clear();
+                                txtUIDSize     .Clear();                                
+                                txtCardSerial  .Clear();
+                                SetStatusBar(iCResult, stbCardStatus);
+                            }
                         }
                     }
                     else
                     {
-                        uFRCoder1x.ReaderClose();
+                        txtReaderType  .Clear();
+                        txtReaderSerial.Clear();
+                        txtCardType    .Clear();                      
+                        txtCardSerial  .Clear();
+                        uFrCoder1x.ReaderClose();
                         boCONN = false;
-                        ERRORS_CODE(iResult, stbCardStatus);
+                        SetStatusBar(iRResult, stbReader);
                     }
 
                 }
             }
-            boThreadStart = false;
+            LoopStatus = false;
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (!boReaderStop)
+            if (!FunctionOn )
                 MainThread();
         }
 
         private void btnReaderUISignal_Click(object sender, EventArgs e)
         {
-            if (boFunctionOn) return;
-            boFunctionOn = true;
-            ReaderOff();
-            if (!boThreadStart)
-                uFRCoder1x.ReaderUISignal(cboLightMode.SelectedIndex, cboSoundMode.SelectedIndex);
-            ReaderOn();
-            boFunctionOn = false;
+           if (FunctionOn || LoopStatus ) return;
+           try
+           {
+               FunctionOn =true ;
+                uFrCoder1x.ReaderUISignal(cboLightMode.SelectedIndex, cboSoundMode.SelectedIndex);
+           }
+           finally
+           {
+              FunctionOn=false;
+            }
         }
 
-        private void frmuFRCoderSimpleImplementation_Load(object sender, EventArgs e)
-        {
-            CreateKey(32, 21, 3, 10, NEW_CARD_KEY_A, pnlCardKeys);
-            CreateKey(32, 21, 3, 33, NEW_CARD_KEY_B, pnlCardKeys);
-            CreateKey(32, 21, 53, 10, NEW_READER_KEY, pnlReaderKey);
-            bKeyIndex = System.Convert.ToByte(txtReaderKeyIndex.Text);
-        }
+      
         private void DecHexConversion(String sTextBoxName, Boolean CheckBoxChecked, System.Windows.Forms.Panel Container)
         {
 
@@ -303,59 +336,48 @@ namespace uFRSimple
 
         private void btnLinearRead_Click(object sender, EventArgs e)
         {
-            if (boFunctionOn) return;
-            boFunctionOn = true;
-            ReaderOff();
-            if (boThreadStart)
-            {
-                ReaderOn();
-                boFunctionOn = false;
-                return;
-            }
+            if (FunctionOn || LoopStatus) return;
             try
             {
+                FunctionOn = true;
                 if (txtReadLinearAddress.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtReadLinearAddress.Focus();
-                    ReaderOn();
-                    boFunctionOn = false;
+                    MessageBox.Show("You must enter the LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtReadLinearAddress.Focus();                                       
                     return;
                 }
                 if (txtReadDataLength.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtReadDataLength.Focus();
-                    ReaderOn();
-                    boFunctionOn = false;
+                    MessageBox.Show("You must enter the DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtReadDataLength.Focus();                                        
                     return;
                 }
-                ushort linear_address = System.Convert.ToUInt16(txtReadLinearAddress.Text);
-                ushort data_length = System.Convert.ToUInt16(txtReadDataLength.Text);
-                byte[] read_data = new byte[LINEAR_MAX_BYTES];
-                ushort bytes_ret = 0;
-                byte auth_mode = 0;
-
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
+                
+                ushort ushLinearAddress = System.Convert.ToUInt16(txtReadLinearAddress.Text);
+                ushort ushDataLength    = System.Convert.ToUInt16(txtReadDataLength.Text);
+                byte[] baReadData       = new byte[ushDataLength];
+                ushort ushBytesRet      = 0;
+                byte bAuthMode          = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+                DL_STATUS iFResult;
+               
                 unsafe
-                {
-                    fixed (byte* PData = read_data)
-                        iResult = uFRCoder1x.LinearRead(PData, linear_address, data_length, &bytes_ret, auth_mode, bKeyIndex);
+                {                    
+                    fixed (byte* PData = baReadData)
+                        iFResult = uFrCoder1x.LinearRead(PData, ushLinearAddress, ushDataLength, &ushBytesRet, bAuthMode, bKeyIndex);
                 }
-                if (iResult == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    uFRCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    ERRORS_CODE(iResult, stbFunction_error);
-                    txtReadData.Text = System.Text.Encoding.ASCII.GetString(read_data);
-                    txtReadBytes.Text = bytes_ret.ToString();
+                    txtReadData.Text  = System.Text.Encoding.ASCII.GetString(baReadData);
+                    txtReadBytes.Text = ushBytesRet.ToString();                    
+                    SetStatusBar(iFResult, stbFunction);
+                    uFrCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                 }
                 else
-                {
-                    read_data[bytes_ret] = 0;
-                    txtReadData.Text = System.Text.Encoding.ASCII.GetString(read_data);
-                    txtReadBytes.Text = bytes_ret.ToString();
-                    uFRCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    ERRORS_CODE(iResult, stbFunction_error);
+                {                    
+                    txtReadData.Text  = System.Text.Encoding.ASCII.GetString(baReadData);
+                    txtReadBytes.Text = ushBytesRet.ToString();
+                    SetStatusBar(iFResult, stbFunction);
+                    uFrCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);                    
                 }
 
             }
@@ -369,75 +391,61 @@ namespace uFRSimple
             }
             finally
             {
-                ReaderOn();
-                boFunctionOn = false;
+                FunctionOn =false;
             }
         }
 
         private void btnWriteData_Click(object sender, EventArgs e)
         {
-            if (boFunctionOn) return;
-            boFunctionOn = true;
-            ReaderOff();
-            if (boThreadStart)
-            {
-                ReaderOn();
-                boFunctionOn = false;
-                return;
-            }
+            if (FunctionOn || LoopStatus) return;
             try
             {
+                FunctionOn = true;
                 if (txtWriteData.Text.Trim() == String.Empty)
                 {
                     MessageBox.Show("You must enter any data !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtWriteData.Focus();
-                    ReaderOn();
-                    boFunctionOn = false;
+                    txtWriteData.Focus();                                        
                     return;
                 }
                 if (txtWriteLinearAddress.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtWriteLinearAddress.Focus();
-                    ReaderOn();
-                    boFunctionOn = false;
+                    MessageBox.Show("You must enter the LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtWriteLinearAddress.Focus();                                        
                     return;
                 }
                 if (txtWriteDataLength.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtWriteDataLength.Focus();
-                    ReaderOn();
-                    boFunctionOn = false;
+                    MessageBox.Show("You must enter the DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtWriteDataLength.Focus();                    
                     return;
                 }
 
-                ushort linear_address = System.Convert.ToUInt16(txtWriteLinearAddress.Text);
-                ushort data_length = System.Convert.ToUInt16(txtWriteDataLength.Text);
-                byte auth_mode = 0;
-                ushort bytes_ret;
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
-                byte[] write_data = new byte[LINEAR_MAX_BYTES];
+                
+                ushort ushLinearAddress = System.Convert.ToUInt16(txtWriteLinearAddress.Text);
+                ushort ushDataLength    = System.Convert.ToUInt16(txtWriteDataLength.Text);
+                byte bAuthMode          = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+                ushort ushBytesRet;                
+                byte[] baWriteData      = new byte[ushDataLength];
+                baWriteData = System.Text.Encoding.ASCII.GetBytes(txtWriteData.Text);
+                DL_STATUS iFResult;
 
-
-
-                write_data = System.Text.Encoding.ASCII.GetBytes(txtWriteData.Text);
                 unsafe
                 {
-                    fixed (byte* PData = WriteArray(write_data, data_length, LINEAR_MAX_BYTES))
-                        iResult = uFRCoder1x.LinearWrite(PData, linear_address, data_length, &bytes_ret, auth_mode, bKeyIndex);
+                    fixed (byte* PData = baWriteData)
+                        iFResult = uFrCoder1x.LinearWrite(PData, ushLinearAddress, ushDataLength, &ushBytesRet, bAuthMode, bKeyIndex);
                 }
-                if (iResult == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    txtBytesWritten.Text = bytes_ret.ToString();
-                    uFRCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    ERRORS_CODE(iResult, stbFunction_error);
+                    txtBytesWritten.Text = ushBytesRet.ToString();
+                    SetStatusBar(iFResult, stbFunction);
+                    uFrCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    
                 }
                 else
                 {
-                    txtBytesWritten.Text = bytes_ret.ToString();
-                    uFRCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    ERRORS_CODE(iResult, stbFunction_error);
+                    txtBytesWritten.Text = ushBytesRet.ToString();
+                    SetStatusBar(iFResult, stbFunction);
+                    uFrCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);                    
                 }
 
             }
@@ -451,8 +459,7 @@ namespace uFRSimple
             }
             finally
             {
-                ReaderOn();
-                boFunctionOn = false;
+                FunctionOn=false;
             }
         }
 
@@ -469,15 +476,10 @@ namespace uFRSimple
 
         }
 
-
-
-
-
         private void chkCardKeysHex_Click(object sender, EventArgs e)
         {
             DecHexConversion(NEW_CARD_KEY_A, chkCardKeysHex.Checked, pnlCardKeys);
             DecHexConversion(NEW_CARD_KEY_B, chkCardKeysHex.Checked, pnlCardKeys);
-
         }
 
         private void chkReaderKeyHex_Click(object sender, EventArgs e)
@@ -487,21 +489,14 @@ namespace uFRSimple
 
         private void btnEnterReaderKey_Click(object sender, EventArgs e)
         {
-            if (boFunctionOn) return;
-            boFunctionOn = true;
-            ReaderOff();
-            if (boThreadStart)
-            {
-                ReaderOn();
-                boFunctionOn = false;
-                return;
-            }
-
-            byte[] baReaderKey = new byte[6];
-            byte bCounter = 0;
-
-            try
-            {
+           if (FunctionOn || LoopStatus ) return;
+           try
+           {
+               FunctionOn         = true ; 
+               byte[] baReaderKey = new byte[6];
+               byte bCounter      = 0;
+               DL_STATUS iFResult;
+            
                 foreach (Control CtrlKey in pnlReaderKey.Controls)
                 {
                     if (CtrlKey.Name == NEW_READER_KEY)
@@ -515,20 +510,20 @@ namespace uFRSimple
                 {
                     fixed (byte* PReaderKey = baReaderKey)
                     {
-                        iResult = uFRCoder1x.ReaderKeyWrite(PReaderKey, bKeyIndex);
+                        iFResult = uFrCoder1x.ReaderKeyWrite(PReaderKey, bKeyIndex);
 
                     }
                 }
-                if (iResult == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    uFRCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    ERRORS_CODE(iResult, stbFunction_error);
+                    uFrCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    SetStatusBar(iFResult, stbFunction);
                     MessageBox.Show("Reader key is formatted successfully !", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    uFRCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    ERRORS_CODE(iResult, stbFunction_error);
+                    uFrCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    SetStatusBar(iFResult, stbFunction);
                     MessageBox.Show("Reader key is not formatted successfully !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -542,35 +537,29 @@ namespace uFRSimple
             }
             finally
             {
-                ReaderOn();
-                boFunctionOn = false;
+                FunctionOn = false;
             }
         }
 
         private void btnFormatCard_Click(object sender, EventArgs e)
         {
-            if (boFunctionOn) return;
-            boFunctionOn = true;
-            ReaderOff();
-            if (boThreadStart)
-            {
-                ReaderOn();
-                boFunctionOn = false;
-                return;
-            }
+           if (FunctionOn || LoopStatus ) return;
+           try
+           {
+               FunctionOn =true ;           
+               
+               byte bBlockAccessBits           = 0,
+                    bSectorTrailersAccess_bits = 1,
+                    bSectorTrailersByte9       = 45,
+                    bCounter                   = 0,
+                    bSectorsFormatted          = 0;
+               byte bAuthMode = rbAUTH1A.Checked ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+               byte[] baKeyA  = new byte[6];
+               byte[] baKeyB  = new byte[6];
+              
+               txtSectorFormatted.Clear();                          
+               DL_STATUS iFResult;
 
-            byte bBlockAccessBits = 0;
-            byte bSectorTrailersAccess_bits = 1;
-            byte bSectorTrailersByte9 = 45;
-            byte[] baKeyA = new byte[6];
-            byte[] baKeyB = new byte[6];
-            byte bCounter = 0;
-            byte bSectorsFormatted = 0;
-            txtSectorFormatted.Text = "";
-
-            byte bAuthMode = rbAUTH1A.Checked ? AUTH1A : AUTH1B;
-            try
-            {
                 foreach (Control ctrlkey in pnlCardKeys.Controls)
                 {
                     if (ctrlkey.Name == NEW_CARD_KEY_A)
@@ -592,20 +581,20 @@ namespace uFRSimple
                 unsafe
                 {
                     fixed (byte* PKEY_A = baKeyA, PKEY_B = baKeyB)
-                        iResult = uFRCoder1x.LinearFormatCard(PKEY_A, bBlockAccessBits, bSectorTrailersAccess_bits, bSectorTrailersByte9, PKEY_B, &bSectorsFormatted, bAuthMode, bKeyIndex);
+                        iFResult = uFrCoder1x.LinearFormatCard(PKEY_A, bBlockAccessBits, bSectorTrailersAccess_bits, bSectorTrailersByte9, PKEY_B, &bSectorsFormatted, bAuthMode, bKeyIndex);
                 }
-                if (iResult == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    uFRCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
+                    uFrCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     txtSectorFormatted.Text = bSectorsFormatted.ToString();
-                    ERRORS_CODE(iResult, stbFunction_error);
+                    SetStatusBar(iFResult, stbFunction);
                     MessageBox.Show("Card keys are formatted successfully !", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    uFRCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
+                    uFrCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     txtSectorFormatted.Text = bSectorsFormatted.ToString();
-                    ERRORS_CODE(iResult, stbFunction_error);
+                    SetStatusBar(iFResult, stbFunction);
                     MessageBox.Show("Card keys are not formatted successfully !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -619,10 +608,29 @@ namespace uFRSimple
             }
             finally
             {
-
-                ReaderOn();
-                boFunctionOn = false;
+             FunctionOn =false;
             }
+        }
+
+        private void frmuFrSimple_Load(object sender, EventArgs e)
+        {
+            CreateKey(32, 21, 3, 10, NEW_CARD_KEY_A, pnlCardKeys);
+            CreateKey(32, 21, 3, 33, NEW_CARD_KEY_B, pnlCardKeys);
+            CreateKey(32, 21, 53, 10, NEW_READER_KEY, pnlReaderKey);
+            bKeyIndex = System.Convert.ToByte(txtReaderKeyIndex.Text);
+
+            int[] iErrorValues = (int[])Enum.GetValues(typeof(ERRORCODES));
+            string[] sErrorNames = Enum.GetNames(typeof(ERRORCODES));
+            
+            ERROR_CODES=new string[iErrorValues.Max()+1];
+            
+            for (int i = 0; i < iErrorValues.Length; i++)
+                ERROR_CODES[iErrorValues[i]] = sErrorNames[i];
+        }
+
+        private void txtWriteData_TextChanged(object sender, EventArgs e)
+        {
+            txtWriteDataLength.Text=txtWriteData.Text.Length.ToString();
         }
 
 

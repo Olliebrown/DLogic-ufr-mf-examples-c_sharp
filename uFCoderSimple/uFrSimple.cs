@@ -15,7 +15,7 @@ namespace uFRSimple
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmuFRSimpleImplementation());
+            Application.Run(new frmuFrSimple());
         }
     }
 }
