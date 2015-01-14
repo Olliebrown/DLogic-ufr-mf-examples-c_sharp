@@ -1,4 +1,4 @@
-﻿namespace Mifare
+﻿namespace uFrAdvance
 {
     partial class frmViewAll
     {
@@ -33,13 +33,20 @@
             this.pnlFunct_error = new System.Windows.Forms.ToolStripStatusLabel();
             this.pnlErr_code = new System.Windows.Forms.ToolStripStatusLabel();
             this.pnlErr_expl = new System.Windows.Forms.ToolStripStatusLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlReadCard = new System.Windows.Forms.Panel();
+            this.lblKeyIndex = new System.Windows.Forms.Label();
+            this.cboKeyIndex = new System.Windows.Forms.ComboBox();
+            this.pnlAUTH = new System.Windows.Forms.Panel();
+            this.rbAUTH1B = new System.Windows.Forms.RadioButton();
+            this.rbAUTH1A = new System.Windows.Forms.RadioButton();
+            this.rbAscii = new System.Windows.Forms.RadioButton();
+            this.rbHex = new System.Windows.Forms.RadioButton();
             this.btnReadCard = new System.Windows.Forms.Button();
             this.lvViewAll = new System.Windows.Forms.ListView();
-            this.rbHex = new System.Windows.Forms.RadioButton();
-            this.rbAscii = new System.Windows.Forms.RadioButton();
+            this.pBar = new System.Windows.Forms.ProgressBar();
             this.stbFunctionError.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.pnlReadCard.SuspendLayout();
+            this.pnlAUTH.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblHeader
@@ -92,24 +99,137 @@
             this.pnlErr_expl.Spring = true;
             this.pnlErr_expl.Text = " ";
             // 
-            // panel1
+            // pnlReadCard
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.rbAscii);
-            this.panel1.Controls.Add(this.rbHex);
-            this.panel1.Controls.Add(this.btnReadCard);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 310);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(533, 44);
-            this.panel1.TabIndex = 25;
+            this.pnlReadCard.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlReadCard.Controls.Add(this.pBar);
+            this.pnlReadCard.Controls.Add(this.lblKeyIndex);
+            this.pnlReadCard.Controls.Add(this.cboKeyIndex);
+            this.pnlReadCard.Controls.Add(this.pnlAUTH);
+            this.pnlReadCard.Controls.Add(this.rbAscii);
+            this.pnlReadCard.Controls.Add(this.rbHex);
+            this.pnlReadCard.Controls.Add(this.btnReadCard);
+            this.pnlReadCard.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlReadCard.Location = new System.Drawing.Point(0, 292);
+            this.pnlReadCard.Name = "pnlReadCard";
+            this.pnlReadCard.Size = new System.Drawing.Size(533, 62);
+            this.pnlReadCard.TabIndex = 25;
+            // 
+            // lblKeyIndex
+            // 
+            this.lblKeyIndex.AutoSize = true;
+            this.lblKeyIndex.Location = new System.Drawing.Point(196, 10);
+            this.lblKeyIndex.Name = "lblKeyIndex";
+            this.lblKeyIndex.Size = new System.Drawing.Size(66, 13);
+            this.lblKeyIndex.TabIndex = 35;
+            this.lblKeyIndex.Text = "Key Index";
+            // 
+            // cboKeyIndex
+            // 
+            this.cboKeyIndex.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cboKeyIndex.FormattingEnabled = true;
+            this.cboKeyIndex.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31"});
+            this.cboKeyIndex.Location = new System.Drawing.Point(208, 30);
+            this.cboKeyIndex.MaxDropDownItems = 15;
+            this.cboKeyIndex.Name = "cboKeyIndex";
+            this.cboKeyIndex.Size = new System.Drawing.Size(38, 21);
+            this.cboKeyIndex.TabIndex = 33;
+            this.cboKeyIndex.Text = "0";
+            // 
+            // pnlAUTH
+            // 
+            this.pnlAUTH.Controls.Add(this.rbAUTH1B);
+            this.pnlAUTH.Controls.Add(this.rbAUTH1A);
+            this.pnlAUTH.Location = new System.Drawing.Point(11, 5);
+            this.pnlAUTH.Name = "pnlAUTH";
+            this.pnlAUTH.Size = new System.Drawing.Size(142, 47);
+            this.pnlAUTH.TabIndex = 5;
+            // 
+            // rbAUTH1B
+            // 
+            this.rbAUTH1B.AutoSize = true;
+            this.rbAUTH1B.Location = new System.Drawing.Point(34, 26);
+            this.rbAUTH1B.Name = "rbAUTH1B";
+            this.rbAUTH1B.Size = new System.Drawing.Size(75, 17);
+            this.rbAUTH1B.TabIndex = 6;
+            this.rbAUTH1B.Text = "AUTH 1B";
+            this.rbAUTH1B.UseVisualStyleBackColor = true;
+            // 
+            // rbAUTH1A
+            // 
+            this.rbAUTH1A.AutoSize = true;
+            this.rbAUTH1A.Checked = true;
+            this.rbAUTH1A.Location = new System.Drawing.Point(34, 3);
+            this.rbAUTH1A.Name = "rbAUTH1A";
+            this.rbAUTH1A.Size = new System.Drawing.Size(75, 17);
+            this.rbAUTH1A.TabIndex = 5;
+            this.rbAUTH1A.TabStop = true;
+            this.rbAUTH1A.Text = "AUTH 1A";
+            this.rbAUTH1A.UseVisualStyleBackColor = true;
+            // 
+            // rbAscii
+            // 
+            this.rbAscii.AutoSize = true;
+            this.rbAscii.Checked = true;
+            this.rbAscii.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rbAscii.Location = new System.Drawing.Point(298, 8);
+            this.rbAscii.Name = "rbAscii";
+            this.rbAscii.Size = new System.Drawing.Size(51, 17);
+            this.rbAscii.TabIndex = 2;
+            this.rbAscii.TabStop = true;
+            this.rbAscii.Text = "Ascii";
+            this.rbAscii.UseVisualStyleBackColor = true;
+            // 
+            // rbHex
+            // 
+            this.rbHex.AutoSize = true;
+            this.rbHex.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rbHex.Location = new System.Drawing.Point(298, 31);
+            this.rbHex.Name = "rbHex";
+            this.rbHex.Size = new System.Drawing.Size(47, 17);
+            this.rbHex.TabIndex = 1;
+            this.rbHex.Text = "Hex";
+            this.rbHex.UseVisualStyleBackColor = true;
             // 
             // btnReadCard
             // 
             this.btnReadCard.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReadCard.Location = new System.Drawing.Point(378, 5);
+            this.btnReadCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReadCard.Location = new System.Drawing.Point(376, 8);
             this.btnReadCard.Name = "btnReadCard";
-            this.btnReadCard.Size = new System.Drawing.Size(144, 31);
+            this.btnReadCard.Size = new System.Drawing.Size(144, 35);
             this.btnReadCard.TabIndex = 0;
             this.btnReadCard.Text = "READ CARD";
             this.btnReadCard.UseVisualStyleBackColor = true;
@@ -123,38 +243,21 @@
             this.lvViewAll.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvViewAll.FullRowSelect = true;
             this.lvViewAll.GridLines = true;
-            this.lvViewAll.HoverSelection = true;
             this.lvViewAll.Location = new System.Drawing.Point(0, 27);
             this.lvViewAll.MultiSelect = false;
             this.lvViewAll.Name = "lvViewAll";
-            this.lvViewAll.Size = new System.Drawing.Size(533, 283);
+            this.lvViewAll.Size = new System.Drawing.Size(533, 265);
             this.lvViewAll.TabIndex = 26;
             this.lvViewAll.UseCompatibleStateImageBehavior = false;
             this.lvViewAll.View = System.Windows.Forms.View.Details;
             // 
-            // rbHex
+            // pBar
             // 
-            this.rbHex.AutoSize = true;
-            this.rbHex.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbHex.Location = new System.Drawing.Point(123, 12);
-            this.rbHex.Name = "rbHex";
-            this.rbHex.Size = new System.Drawing.Size(47, 17);
-            this.rbHex.TabIndex = 1;
-            this.rbHex.Text = "Hex";
-            this.rbHex.UseVisualStyleBackColor = true;
-            // 
-            // rbAscii
-            // 
-            this.rbAscii.AutoSize = true;
-            this.rbAscii.Checked = true;
-            this.rbAscii.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbAscii.Location = new System.Drawing.Point(242, 12);
-            this.rbAscii.Name = "rbAscii";
-            this.rbAscii.Size = new System.Drawing.Size(51, 17);
-            this.rbAscii.TabIndex = 2;
-            this.rbAscii.TabStop = true;
-            this.rbAscii.Text = "Ascii";
-            this.rbAscii.UseVisualStyleBackColor = true;
+            this.pBar.Location = new System.Drawing.Point(376, 46);
+            this.pBar.Name = "pBar";
+            this.pBar.Size = new System.Drawing.Size(144, 11);
+            this.pBar.TabIndex = 36;
+            this.pBar.Visible = false;
             // 
             // frmViewAll
             // 
@@ -162,7 +265,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(533, 376);
             this.Controls.Add(this.lvViewAll);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlReadCard);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.stbFunctionError);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -172,8 +275,10 @@
             this.Load += new System.EventHandler(this.frmViewAll_Load);
             this.stbFunctionError.ResumeLayout(false);
             this.stbFunctionError.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnlReadCard.ResumeLayout(false);
+            this.pnlReadCard.PerformLayout();
+            this.pnlAUTH.ResumeLayout(false);
+            this.pnlAUTH.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,10 +291,16 @@
         private System.Windows.Forms.ToolStripStatusLabel pnlFunct_error;
         private System.Windows.Forms.ToolStripStatusLabel pnlErr_code;
         private System.Windows.Forms.ToolStripStatusLabel pnlErr_expl;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlReadCard;
         private System.Windows.Forms.Button btnReadCard;
         private System.Windows.Forms.ListView lvViewAll;
         private System.Windows.Forms.RadioButton rbAscii;
         private System.Windows.Forms.RadioButton rbHex;
+        private System.Windows.Forms.Panel pnlAUTH;
+        private System.Windows.Forms.RadioButton rbAUTH1B;
+        private System.Windows.Forms.RadioButton rbAUTH1A;
+        private System.Windows.Forms.ComboBox cboKeyIndex;
+        private System.Windows.Forms.Label lblKeyIndex;
+        private System.Windows.Forms.ProgressBar pBar;
     }
 }

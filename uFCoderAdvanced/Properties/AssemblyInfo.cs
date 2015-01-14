@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("uFrAdvance with hex conversion")]
 [assembly: AssemblyDescription("With Hex Conversion")]
 [assembly: AssemblyConfiguration( "" )]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("uFrAdvance")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCompany("D-Logic")]
+[assembly: AssemblyProduct("uFr Advance")]
+[assembly: AssemblyCopyright("D-Logic")]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.6.0.0")]
-[assembly: AssemblyFileVersion("1.6.0.0")]
+[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]

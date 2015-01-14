@@ -1,4 +1,4 @@
-﻿namespace Mifare
+﻿namespace uFrAdvance
 {
     partial class frmValueBlockIncrDecr
     {
@@ -305,6 +305,7 @@
             // btnIncrementPK
             // 
             this.btnIncrementPK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnIncrementPK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIncrementPK.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIncrementPK.Location = new System.Drawing.Point(15, 75);
             this.btnIncrementPK.Name = "btnIncrementPK";
@@ -379,6 +380,7 @@
             // btnIncrementAKM2
             // 
             this.btnIncrementAKM2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnIncrementAKM2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIncrementAKM2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIncrementAKM2.Location = new System.Drawing.Point(15, 75);
             this.btnIncrementAKM2.Name = "btnIncrementAKM2";
@@ -453,6 +455,7 @@
             // btnIncrementAKM1
             // 
             this.btnIncrementAKM1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnIncrementAKM1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIncrementAKM1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIncrementAKM1.Location = new System.Drawing.Point(15, 75);
             this.btnIncrementAKM1.Name = "btnIncrementAKM1";
@@ -527,6 +530,7 @@
             // btnIncrement
             // 
             this.btnIncrement.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnIncrement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIncrement.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIncrement.Location = new System.Drawing.Point(15, 75);
             this.btnIncrement.Name = "btnIncrement";
@@ -616,6 +620,7 @@
             // btnDecrementPK
             // 
             this.btnDecrementPK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDecrementPK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDecrementPK.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDecrementPK.Location = new System.Drawing.Point(15, 75);
             this.btnDecrementPK.Name = "btnDecrementPK";
@@ -690,6 +695,7 @@
             // btnDecrementAKM2
             // 
             this.btnDecrementAKM2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDecrementAKM2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDecrementAKM2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDecrementAKM2.Location = new System.Drawing.Point(15, 75);
             this.btnDecrementAKM2.Name = "btnDecrementAKM2";
@@ -764,6 +770,7 @@
             // btnDecrementAKM1
             // 
             this.btnDecrementAKM1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDecrementAKM1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDecrementAKM1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDecrementAKM1.Location = new System.Drawing.Point(15, 75);
             this.btnDecrementAKM1.Name = "btnDecrementAKM1";
@@ -838,6 +845,7 @@
             // btnDecrement
             // 
             this.btnDecrement.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDecrement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDecrement.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDecrement.Location = new System.Drawing.Point(15, 75);
             this.btnDecrement.Name = "btnDecrement";

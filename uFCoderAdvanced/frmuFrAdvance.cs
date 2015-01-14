@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,159 +13,188 @@ using System.IO;
 
 using System.Text.RegularExpressions;
 
-
-namespace Mifare
+namespace uFrAdvance
 {
     using DL_STATUS = System.UInt32;
     
     public partial class frmuFrAdvance : Form
     {
-
-        const byte       DL_OK = 0,
-                         RES_OK_LIGHT = 4,
-                         RES_OK_SOUND = 4,
-                         ERR_LIGHT = 2,
-                         ERR_SOUND = 2;
-        const int        MAX_BYTES = 752;
-        
-        private DL_STATUS result;
-        private Boolean CONN = false;
-
-      /*
-        public bool reader_stop = false,
-                     thread_start = false,
-                     functionOn = false;
-
-        public void ReaderOff()
-        {
-            reader_stop = true;
-        }
-        public void ReaderOn()
-        {
-            reader_stop = false;
-        }
-
-     */
-
-        Globals GL = new Globals();
+        private
+               Globals GL;
         public frmuFrAdvance()
         {
             InitializeComponent();
-
+            GL = new Globals();
         }
+        
+        //card type     
+        const byte MIFARE_CLASSIC_1k = 0x08,
+                   MIFARE_CLASSIC_4k = 0x18;
+
+        // sectors and blocks
+        const byte MAX_SECTORS_1k    = 0x10,
+                   MAX_SECTORS_4k    = 0x28,
+                   MAX_BLOCK         = 0x0F;
+
+        const byte DL_OK             = 0x00,
+                   KEY_INDEX         = 0x00;
+
+        //for error                    
+        const byte FRES_OK_LIGHT     = 0x04,
+                   FRES_OK_SOUND     = 0x00,
+                   FERR_LIGHT        = 0x02,
+                   FERR_SOUND        = 0x00;
+
+        //authenticate
+        const byte MIFARE_AUTHENT1A  = 0x60,
+                   MIFARE_AUTHENT1B  = 0x61;
+
+      
+        private static Boolean boCONN = false;                        
+        
+        
         void ShowForm(System.Windows.Forms.Form my_form)
         {
-            //my_form = new Form();
+           
             my_form.TopLevel = false;
             my_form.Dock = DockStyle.Fill;
             my_form.Show();
             pnlConteiner.Controls.Add(my_form);
             my_form.BringToFront();
         }
-        
+
+        private void MenuItemsEnabled(Boolean isEnabled)
+        {
+            mnuValueBlockReadWriteItem.Enabled        = isEnabled;
+            mnuBlockInSectorReadWriteItem.Enabled     = isEnabled;
+            mnuValueBlockInSectorReadWrite.Enabled    = isEnabled;
+            mnuValueBlockIncrDecrItems.Enabled        = isEnabled;
+            mnuValueBlockInSectorIncrDecrItem.Enabled = isEnabled;
+            mnuLinearFormatCardItem.Enabled           = isEnabled;
+            mnuSectorTrailerWriteItems.Enabled        = isEnabled;
+        }
+
+       
+
         private void MainThread()
         {
-            new Globals().ReaderStart = true;
-            ulong reader_type = 0;
-            ulong reader_serial = 0;
-            byte card_type = 0;
-            ulong card_serial = 0;
-            byte[] user_data = new byte[16];
-            if (!CONN)
+            
+            
+            ulong ulReaderType         = 0,
+                  ulReaderSerial       = 0,            
+                  ulCardSerial         = 0;
+           
+            String sBuffer="";
+            byte bUidSize              = 0;
+            byte [] baCardUID  = new byte[9];
+            byte [] baUserData = new byte[15];
+
+            DL_STATUS iRResult,
+                      iCResult,
+                      iFResult;
+
+            GL.LoopStatus = true;
+            
+            if (!boCONN)
             {
-                result = ufCoder1x.ReaderOpen();
-                if (result == DL_OK)
+                iRResult = uFCoder1x.ReaderOpen();
+                if (iRResult == DL_OK)
                 {
-                    pnlConn.Text = "CONNECTED";
-                    CONN = true;
-                    GL.ERRORS_CODE(result, this.stbReader);
+                    boCONN       = true;
+                    pnlConn.Text = "CONNECTED";                                        
+                    GL.SetStatusBar(iRResult,stbReader);
                 }
                 else
                 {
-                    pnlConn.Text = "NOT CONNECTED";
-                    txtReaderType.Text = "";
-                    txtReaderSerial.Text = "";
-                    txtCardType.Text = "";
-                    txtCardSerial.Text = "";
-                    GL.ERRORS_CODE(result, this.stbReader);
+                    pnlConn.Text         = "NOT CONNECTED";
+                    txtReaderType  .Clear();
+                    txtReaderSerial.Clear();
+                    txtCardType    .Clear();
+                    txtCardSerial  .Clear();
+                    txtUIDSize     .Clear();
+                    txtCardSerial     .Clear();
+                    GL.SetStatusBar(iRResult, stbReader);
                 }
 
             }
-            if (CONN)
+            if (boCONN)
             {
+               byte bCardType   = 0,
+                    bDLCardType = 0;
                 unsafe
                 {
-                    if ((result = ufCoder1x.GetReaderType(&reader_type)) == DL_OK)
+                    fixed (byte *pCardUID = baCardUID)
+                                        
+                    if ((iRResult = uFCoder1x.GetReaderType(&ulReaderType)) == DL_OK)
                     {
-                        txtReaderType.Text = "0x" + reader_type.ToString("X");
-                        if ((result = ufCoder1x.GetReaderSerialNumber(&reader_serial)) == DL_OK)
+                        txtReaderType.Text = "0x" + ulReaderType.ToString("X");
+                        if ((iRResult = uFCoder1x.GetReaderSerialNumber(&ulReaderSerial)) == DL_OK)
                         {
-                            txtReaderSerial.Text = "0x" + reader_serial.ToString("X");
+                            txtReaderSerial.Text = "0x" + ulReaderSerial.ToString("X");
                         }
 
-                        if ((result = ufCoder1x.GetCardId(&card_type, &card_serial)) == DL_OK)
+                        iCResult = uFCoder1x.GetDlogicCardType(&bDLCardType);
+
+                        if (iCResult == DL_OK)
                         {
-                            txtCardType.Text = "0x" + card_type.ToString("X2");
-                            txtCardSerial.Text = "0x" + card_serial.ToString("X");
-                            GL.ERRORS_CODE(result, this.stbCard);
+                             if (bDLCardType <= (byte)uFrAdvance.Globals.DLCARDTYPE.DL_NTAG_216 )
+                            {
+                                MenuItemsEnabled(false);
+                            }
+                           
+                            uFCoder1x.GetCardIdEx(&bCardType, pCardUID, &bUidSize);
+                            for (byte bBr = 0; bBr < bUidSize; bBr++)
+                            {
+                                sBuffer += baCardUID[bBr].ToString("X");
+                            }
+                            txtCardType.Text   = "0x" + bDLCardType.ToString("X2");
+                            txtCardSerial.Text = "0x" + ulCardSerial.ToString("X");
+                            txtUIDSize.Text    = "0x" + bUidSize.ToString("X");
+                            txtCardSerial.Text = "0x" + sBuffer;
+                            GL.TypeOfCard = bDLCardType;
+                            GL.SetStatusBar(iCResult, stbCard);
                         }
                         else
                         {
-                            txtCardSerial.Text = "";
-                            txtCardType.Text = "";
-                            GL.ERRORS_CODE(result, this.stbCard);
+                            MenuItemsEnabled(true);
+                            txtCardType    .Clear();
+                            txtCardSerial  .Clear();
+                            txtUIDSize     .Clear();                            
+                            GL.TypeOfCard = bCardType;
+                            GL.SetStatusBar(iCResult, stbCard);                        
                         }
 
-                        fixed (byte* PData = user_data)
+                        fixed (byte* PData = baUserData)
                         {
-                            result = ufCoder1x.ReadUserData(PData);
+                            iFResult = uFCoder1x.ReadUserData(PData);
                         }
-                        if (result == DL_OK)
-                            txtUserData.Text = System.Text.Encoding.ASCII.GetString(user_data);
+                        if (iFResult == DL_OK)
+                            txtUserData.Text = System.Text.Encoding.ASCII.GetString(baUserData);
                         else
                             txtUserData.Text = "";
 
                     }
                     else
                     {
-                        CONN = false;
-                        ufCoder1x.ReaderClose();
+                        boCONN = false;
+                        uFCoder1x.ReaderClose();
+                        txtReaderType  .Clear();
+                        txtReaderSerial.Clear();
+                        txtCardType    .Clear();
+                        txtCardSerial  .Clear();
+                        txtUIDSize     .Clear();                        
                     }
                 }
             }
-            new Globals().ReaderStart = true;
- }
-        
+            GL.LoopStatus=false;
+        }
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (!new Globals().FunctionStart)
+            if (!GL.FunctionOn)
                 MainThread();
         }
 
-        private void frmMifare_Load(object sender, EventArgs e)
-        {
-            cboLightMode.SelectedItem = cboLightMode.Items[0];
-            cboSoundMode.SelectedItem = cboSoundMode.Items[0];
-            cboKeyIndex.SelectedItem = cboKeyIndex.Items[0];
-            frmLinearReadWrite LinearReadWrite = new frmLinearReadWrite();
-            ShowForm(LinearReadWrite);
-
-            for (int br = 0; br < 6; br++)
-            {
-                System.Windows.Forms.TextBox RB = new TextBox();
-                RB.Width = 31;
-                RB.Height = 21;
-                RB.Location = new Point(21 + (RB.Width * br + 2), 17);
-                RB.Name = "txtReaderKey";
-                RB.Text = "255";
-                RB.MaxLength = 3;
-                RB.Font = new Font("Verdana", 8, FontStyle.Bold);
-                RB.KeyPress += new KeyPressEventHandler(RB_KeyPress);
-                RB.Leave += new EventHandler(RB_Leave);
-                RB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-                pnlReaderKey.Controls.Add(RB);
-            }
-        }
+       
 
         void Check_values(object sender)
         {
@@ -213,105 +245,112 @@ namespace Mifare
 
         private void btnReaderUISignal_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
-            GL.FunctionStart = true;
-                ufCoder1x.ReaderUISignal(cboLightMode.SelectedIndex, cboSoundMode.SelectedIndex);
-            GL.FunctionStart = false;
-            GL = null;
+           if (GL.FunctionOn || GL.LoopStatus) return;
+           try
+           {
+               GL.FunctionOn=true;
+               uFCoder1x.ReaderUISignal(cboLightMode.SelectedIndex, cboSoundMode.SelectedIndex); 
+           }finally{
+               GL.FunctionOn = false;
+            }
         }
 
         private void btnWriteUserData_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
-            try
-            {
-                GL.FunctionStart = true;
+          
+           if (GL.FunctionOn || GL.LoopStatus) return;
+           
+           try
+           {
+                GL.FunctionOn=true;
                 if (txtNewUserData.Text == String.Empty)
                 {
                     MessageBox.Show("You must enter any data !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtNewUserData.Focus();
                     return;
                 }
-
-                byte[] new_user_data = new byte[16];
-                string str = txtNewUserData.Text;
-                new_user_data = System.Text.Encoding.ASCII.GetBytes(str);
+                DL_STATUS iFResult;                
+                byte[] baNewUserData = new byte[16];               
+                baNewUserData = System.Text.Encoding.ASCII.GetBytes(txtNewUserData.Text);
                 unsafe
                 {
-                    fixed (byte* PData = new_user_data)
+                    fixed (byte* PData = baNewUserData)
                     {
-                        result = ufCoder1x.WriteUserData(PData);
+                        iFResult = uFCoder1x.WriteUserData(PData);
                     }
                 }
-                if (result == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    GL.ERRORS_CODE(result, this.stbReader);
-
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult,stbReader);
+                    
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_SOUND, ERR_SOUND);
-                    GL.ERRORS_CODE(result, this.stbReader);
+                    uFCoder1x.ReaderUISignal(FERR_SOUND, FERR_SOUND);
+                    GL.SetStatusBar(iFResult,stbReader);
                 }
-
-            }
-            finally
-            {
-                GL.FunctionStart = false;
-                GL = null;
+            }finally{
+              
+              GL.FunctionOn=false;
             }
         }
 
         private void btnReaderReset_Click(object sender, EventArgs e)
         {
             
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+            if (GL.FunctionOn || GL.LoopStatus) return;
+
             try
             {
-                GL.FunctionStart = true;
-                result = ufCoder1x.ReaderReset();
-                if (result == DL_OK)
+                GL.FunctionOn = true;
+                DL_STATUS iFResult;
+                iFResult = uFCoder1x.ReaderReset();
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);                   
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbReader);
+
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_SOUND, ERR_SOUND);                  
+                    uFCoder1x.ReaderUISignal(FERR_SOUND, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbReader);
                 }
-            }
-            finally
-            {
-                GL.FunctionStart = false;
-                GL = null;
-            }
+           }
+           finally
+           {               
+               GL.FunctionOn=false;
+           }
+                        
         }
 
         private void btnSoftRestart_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+           
+            if (GL.FunctionOn || GL.LoopStatus) return;
+
             try
             {
-                GL.FunctionStart = true;
-                result = ufCoder1x.ReaderSoftRestart();
-                if (result == DL_OK)
+                GL.FunctionOn = true;
+                DL_STATUS iFResult;
+                iFResult = uFCoder1x.ReaderSoftRestart();
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);                    
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbReader);
+
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_SOUND, ERR_SOUND);                    
-                }            
+                    uFCoder1x.ReaderUISignal(FERR_SOUND, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbReader);
+                }
            }
-            finally
-            {
-                GL.FunctionStart = false;
-                GL = null;
-            }
+           finally
+           {               
+               GL.FunctionOn=false;
+           }
         }
 
 
@@ -347,51 +386,53 @@ namespace Mifare
 
         private void btnReaderKeyWrite_Click(object sender, EventArgs e)
         {
-             Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+           
+            if (GL.FunctionOn || GL.LoopStatus) return;
+
             try
             {
-                GL.FunctionStart = true;
-
-            byte key_index = System.Convert.ToByte(cboKeyIndex.Text);
-            byte[] reader_key = new byte[6];
-            byte count = 0;
+                GL.FunctionOn      = true;
+                byte bKeyIndex     = System.Convert.ToByte(cboKeyIndex.Text);
+                byte[] baReaderKey = new byte[6];
+                byte bCount        = 0;
+                DL_STATUS iFResult;
+                
 
             foreach (Control ctrl in pnlReaderKey.Controls)
             {
                 if (ctrl.Name == "txtReaderKey")
                 {
                     if (!chkHex.Checked)
-                        reader_key[count] = Convert.ToByte(ctrl.Text);
+                        baReaderKey[bCount] = Convert.ToByte(ctrl.Text);
                     else
-                        reader_key[count] = Convert.ToByte(int.Parse(ctrl.Text, System.Globalization.NumberStyles.HexNumber).ToString());
-                    count++;
+                        baReaderKey[bCount] = Convert.ToByte(int.Parse(ctrl.Text, System.Globalization.NumberStyles.HexNumber).ToString());
+                       bCount++;
                 }
             }
             unsafe
             {
-                fixed (byte* PData = reader_key)
+                fixed (byte* PData = baReaderKey)
                 {
-                    result = ufCoder1x.ReaderKeyWrite(PData, key_index);
+                    iFResult = uFCoder1x.ReaderKeyWrite(PData, bKeyIndex);
                 }
             }
-            if (result == DL_OK)
+            if (iFResult == DL_OK)
             {
-                ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);                
-                GL.ERRORS_CODE(result, this.stbReader);                
+                uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                GL.SetStatusBar(iFResult, stbReader);
+
             }
             else
             {
-                ufCoder1x.ReaderUISignal(ERR_SOUND, ERR_SOUND);                
-                GL.ERRORS_CODE(result, this.stbReader);                
+                uFCoder1x.ReaderUISignal(FERR_SOUND, FERR_SOUND);
+                GL.SetStatusBar(iFResult, stbReader);
             }
-            }
-            finally
-            {
-                GL.FunctionStart = false;
-                GL = null;
-            }
-    }
+           }
+           finally
+           {
+               GL.FunctionOn=false;
+           }
+        }
 
 
         private void mnuExitItem_Click(object sender, EventArgs e)
@@ -461,6 +502,52 @@ namespace Mifare
         {
             frmViewAll ViewAll = new frmViewAll();
             ShowForm(ViewAll);
+        }
+
+        private void frmuFrAdvance_Load(object sender, EventArgs e)
+        {
+            
+            cboLightMode.SelectedItem = cboLightMode.Items[0];
+            cboSoundMode.SelectedItem = cboSoundMode.Items[0];
+            cboKeyIndex.SelectedItem  = cboKeyIndex.Items[0];            
+            for (int br = 0; br < 6; br++)
+            {
+                System.Windows.Forms.TextBox RB = new TextBox();
+                RB.Width = 31;
+                RB.Height = 21;
+                RB.Location = new Point(21 + (RB.Width * br + 2), 17);
+                RB.Name = "txtReaderKey";
+                RB.Text = "255";
+                RB.MaxLength = 3;
+                RB.Font = new Font("Verdana", 8, FontStyle.Bold);
+                RB.KeyPress += new KeyPressEventHandler(RB_KeyPress);
+                RB.Leave += new EventHandler(RB_Leave);
+                RB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+                pnlReaderKey.Controls.Add(RB);
+            }
+
+            frmLinearReadWrite LinearReadWrite = new frmLinearReadWrite();
+            ShowForm(LinearReadWrite);            
+            GL.FullRangeERROR_CODES();            
+        }
+
+        private void mnuHardwareFirmwareVersionItem_Click(object sender, EventArgs e)
+        {
+            byte bRHardwareMajor,
+                 bRHardwareMinor,
+                 bRFirmwareMajor,
+                 bRFirmwareMinor;                       
+            unsafe
+            {
+               uFCoder1x.GetReaderHardwareVersion(&bRHardwareMajor,&bRHardwareMinor);
+               uFCoder1x.GetReaderFirmwareVersion(&bRFirmwareMajor, &bRFirmwareMinor);
+
+               MessageBox.Show("Hardware version : " + bRHardwareMajor.ToString() + "." + bRHardwareMajor.ToString() + 
+                               "\nFirmware  version : " + bRFirmwareMajor.ToString() + "." + bRFirmwareMinor.ToString(), 
+                               "Hardware and Firmware version", MessageBoxButtons.OK,MessageBoxIcon.Information); 
+                               
+            }
+             
         }
 
        

@@ -1,4 +1,4 @@
-﻿namespace Mifare
+﻿namespace uFrAdvance
 {
     partial class frmBlockInSectorReadWrite
     {
@@ -42,7 +42,6 @@
             this.pgBlockInSectorReadWrite = new System.Windows.Forms.TabControl();
             this.tabBlockInSectorRead = new System.Windows.Forms.TabPage();
             this.pnlBISReadPK = new System.Windows.Forms.Panel();
-            this.chkBISRAsciiPK = new System.Windows.Forms.CheckBox();
             this.txtBISReadDataPK = new System.Windows.Forms.TextBox();
             this.lblBISRReadDataPK = new System.Windows.Forms.Label();
             this.btnBISReadDataPK = new System.Windows.Forms.Button();
@@ -52,7 +51,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.lblBISReadPK = new System.Windows.Forms.Label();
             this.pnlBISReadAKM1 = new System.Windows.Forms.Panel();
-            this.chkBISRAsciiAKM1 = new System.Windows.Forms.CheckBox();
             this.txtBISReadDataAKM1 = new System.Windows.Forms.TextBox();
             this.lblBISRReadDataAKM1 = new System.Windows.Forms.Label();
             this.btnBISReadDataAKM1 = new System.Windows.Forms.Button();
@@ -62,7 +60,6 @@
             this.lblBISRSectorAddressAKM1 = new System.Windows.Forms.Label();
             this.lblBISReadAKM1 = new System.Windows.Forms.Label();
             this.pnlBISReadAKM2 = new System.Windows.Forms.Panel();
-            this.chkBISRAsciiAKM2 = new System.Windows.Forms.CheckBox();
             this.txtBISReadDataAKM2 = new System.Windows.Forms.TextBox();
             this.lblBISRReadDataAKM2 = new System.Windows.Forms.Label();
             this.btnBISReadDataAKM2 = new System.Windows.Forms.Button();
@@ -72,7 +69,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lblBISReadAKM2 = new System.Windows.Forms.Label();
             this.pnlBISRead = new System.Windows.Forms.Panel();
-            this.chkBISRAscii = new System.Windows.Forms.CheckBox();
             this.txtBISReadData = new System.Windows.Forms.TextBox();
             this.lblBISRReadData = new System.Windows.Forms.Label();
             this.btnBISReadData = new System.Windows.Forms.Button();
@@ -355,7 +351,6 @@
             // pnlBISReadPK
             // 
             this.pnlBISReadPK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlBISReadPK.Controls.Add(this.chkBISRAsciiPK);
             this.pnlBISReadPK.Controls.Add(this.txtBISReadDataPK);
             this.pnlBISReadPK.Controls.Add(this.lblBISRReadDataPK);
             this.pnlBISReadPK.Controls.Add(this.btnBISReadDataPK);
@@ -368,17 +363,6 @@
             this.pnlBISReadPK.Name = "pnlBISReadPK";
             this.pnlBISReadPK.Size = new System.Drawing.Size(246, 125);
             this.pnlBISReadPK.TabIndex = 3;
-            // 
-            // chkBISRAsciiPK
-            // 
-            this.chkBISRAsciiPK.AutoSize = true;
-            this.chkBISRAsciiPK.Location = new System.Drawing.Point(183, 83);
-            this.chkBISRAsciiPK.Name = "chkBISRAsciiPK";
-            this.chkBISRAsciiPK.Size = new System.Drawing.Size(52, 17);
-            this.chkBISRAsciiPK.TabIndex = 8;
-            this.chkBISRAsciiPK.Text = "Ascii";
-            this.chkBISRAsciiPK.UseVisualStyleBackColor = true;
-            this.chkBISRAsciiPK.Visible = false;
             // 
             // txtBISReadDataPK
             // 
@@ -402,6 +386,7 @@
             // btnBISReadDataPK
             // 
             this.btnBISReadDataPK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBISReadDataPK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBISReadDataPK.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBISReadDataPK.Location = new System.Drawing.Point(172, 28);
             this.btnBISReadDataPK.Name = "btnBISReadDataPK";
@@ -465,7 +450,6 @@
             // pnlBISReadAKM1
             // 
             this.pnlBISReadAKM1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlBISReadAKM1.Controls.Add(this.chkBISRAsciiAKM1);
             this.pnlBISReadAKM1.Controls.Add(this.txtBISReadDataAKM1);
             this.pnlBISReadAKM1.Controls.Add(this.lblBISRReadDataAKM1);
             this.pnlBISReadAKM1.Controls.Add(this.btnBISReadDataAKM1);
@@ -478,17 +462,6 @@
             this.pnlBISReadAKM1.Name = "pnlBISReadAKM1";
             this.pnlBISReadAKM1.Size = new System.Drawing.Size(246, 125);
             this.pnlBISReadAKM1.TabIndex = 2;
-            // 
-            // chkBISRAsciiAKM1
-            // 
-            this.chkBISRAsciiAKM1.AutoSize = true;
-            this.chkBISRAsciiAKM1.Location = new System.Drawing.Point(183, 83);
-            this.chkBISRAsciiAKM1.Name = "chkBISRAsciiAKM1";
-            this.chkBISRAsciiAKM1.Size = new System.Drawing.Size(52, 17);
-            this.chkBISRAsciiAKM1.TabIndex = 8;
-            this.chkBISRAsciiAKM1.Text = "Ascii";
-            this.chkBISRAsciiAKM1.UseVisualStyleBackColor = true;
-            this.chkBISRAsciiAKM1.Visible = false;
             // 
             // txtBISReadDataAKM1
             // 
@@ -512,6 +485,7 @@
             // btnBISReadDataAKM1
             // 
             this.btnBISReadDataAKM1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBISReadDataAKM1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBISReadDataAKM1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBISReadDataAKM1.Location = new System.Drawing.Point(172, 28);
             this.btnBISReadDataAKM1.Name = "btnBISReadDataAKM1";
@@ -575,7 +549,6 @@
             // pnlBISReadAKM2
             // 
             this.pnlBISReadAKM2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlBISReadAKM2.Controls.Add(this.chkBISRAsciiAKM2);
             this.pnlBISReadAKM2.Controls.Add(this.txtBISReadDataAKM2);
             this.pnlBISReadAKM2.Controls.Add(this.lblBISRReadDataAKM2);
             this.pnlBISReadAKM2.Controls.Add(this.btnBISReadDataAKM2);
@@ -588,17 +561,6 @@
             this.pnlBISReadAKM2.Name = "pnlBISReadAKM2";
             this.pnlBISReadAKM2.Size = new System.Drawing.Size(246, 125);
             this.pnlBISReadAKM2.TabIndex = 1;
-            // 
-            // chkBISRAsciiAKM2
-            // 
-            this.chkBISRAsciiAKM2.AutoSize = true;
-            this.chkBISRAsciiAKM2.Location = new System.Drawing.Point(183, 83);
-            this.chkBISRAsciiAKM2.Name = "chkBISRAsciiAKM2";
-            this.chkBISRAsciiAKM2.Size = new System.Drawing.Size(52, 17);
-            this.chkBISRAsciiAKM2.TabIndex = 8;
-            this.chkBISRAsciiAKM2.Text = "Ascii";
-            this.chkBISRAsciiAKM2.UseVisualStyleBackColor = true;
-            this.chkBISRAsciiAKM2.Visible = false;
             // 
             // txtBISReadDataAKM2
             // 
@@ -622,6 +584,7 @@
             // btnBISReadDataAKM2
             // 
             this.btnBISReadDataAKM2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBISReadDataAKM2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBISReadDataAKM2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBISReadDataAKM2.Location = new System.Drawing.Point(172, 28);
             this.btnBISReadDataAKM2.Name = "btnBISReadDataAKM2";
@@ -685,7 +648,6 @@
             // pnlBISRead
             // 
             this.pnlBISRead.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlBISRead.Controls.Add(this.chkBISRAscii);
             this.pnlBISRead.Controls.Add(this.txtBISReadData);
             this.pnlBISRead.Controls.Add(this.lblBISRReadData);
             this.pnlBISRead.Controls.Add(this.btnBISReadData);
@@ -698,17 +660,6 @@
             this.pnlBISRead.Name = "pnlBISRead";
             this.pnlBISRead.Size = new System.Drawing.Size(246, 125);
             this.pnlBISRead.TabIndex = 0;
-            // 
-            // chkBISRAscii
-            // 
-            this.chkBISRAscii.AutoSize = true;
-            this.chkBISRAscii.Location = new System.Drawing.Point(183, 83);
-            this.chkBISRAscii.Name = "chkBISRAscii";
-            this.chkBISRAscii.Size = new System.Drawing.Size(52, 17);
-            this.chkBISRAscii.TabIndex = 8;
-            this.chkBISRAscii.Text = "Ascii";
-            this.chkBISRAscii.UseVisualStyleBackColor = true;
-            this.chkBISRAscii.Visible = false;
             // 
             // txtBISReadData
             // 
@@ -732,6 +683,7 @@
             // btnBISReadData
             // 
             this.btnBISReadData.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBISReadData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBISReadData.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBISReadData.Location = new System.Drawing.Point(172, 28);
             this.btnBISReadData.Name = "btnBISReadData";
@@ -828,7 +780,7 @@
             this.txtBISWWriteDataPK.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBISWWriteDataPK.Location = new System.Drawing.Point(20, 38);
             this.txtBISWWriteDataPK.Name = "txtBISWWriteDataPK";
-            this.txtBISWWriteDataPK.Size = new System.Drawing.Size(210, 21);
+            this.txtBISWWriteDataPK.Size = new System.Drawing.Size(211, 21);
             this.txtBISWWriteDataPK.TabIndex = 1;
             // 
             // blBISWWriteDataPK
@@ -843,10 +795,11 @@
             // btnBISWritePK
             // 
             this.btnBISWritePK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBISWritePK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBISWritePK.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBISWritePK.Location = new System.Drawing.Point(172, 65);
             this.btnBISWritePK.Name = "btnBISWritePK";
-            this.btnBISWritePK.Size = new System.Drawing.Size(58, 48);
+            this.btnBISWritePK.Size = new System.Drawing.Size(59, 48);
             this.btnBISWritePK.TabIndex = 4;
             this.btnBISWritePK.Text = "WRITE";
             this.btnBISWritePK.UseVisualStyleBackColor = true;
@@ -924,7 +877,7 @@
             this.txtBISWWriteDataAKM1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBISWWriteDataAKM1.Location = new System.Drawing.Point(20, 40);
             this.txtBISWWriteDataAKM1.Name = "txtBISWWriteDataAKM1";
-            this.txtBISWWriteDataAKM1.Size = new System.Drawing.Size(210, 21);
+            this.txtBISWWriteDataAKM1.Size = new System.Drawing.Size(211, 21);
             this.txtBISWWriteDataAKM1.TabIndex = 1;
             // 
             // blBISWWriteDataAKM1
@@ -939,10 +892,11 @@
             // btnBISWriteAKM1
             // 
             this.btnBISWriteAKM1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBISWriteAKM1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBISWriteAKM1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBISWriteAKM1.Location = new System.Drawing.Point(172, 68);
             this.btnBISWriteAKM1.Name = "btnBISWriteAKM1";
-            this.btnBISWriteAKM1.Size = new System.Drawing.Size(58, 48);
+            this.btnBISWriteAKM1.Size = new System.Drawing.Size(59, 48);
             this.btnBISWriteAKM1.TabIndex = 4;
             this.btnBISWriteAKM1.Text = "WRITE";
             this.btnBISWriteAKM1.UseVisualStyleBackColor = true;
@@ -1020,7 +974,7 @@
             this.txtBISWWriteDataAKM2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBISWWriteDataAKM2.Location = new System.Drawing.Point(19, 38);
             this.txtBISWWriteDataAKM2.Name = "txtBISWWriteDataAKM2";
-            this.txtBISWWriteDataAKM2.Size = new System.Drawing.Size(210, 21);
+            this.txtBISWWriteDataAKM2.Size = new System.Drawing.Size(211, 21);
             this.txtBISWWriteDataAKM2.TabIndex = 1;
             // 
             // blBISWWriteDataAKM2
@@ -1035,10 +989,11 @@
             // btnBISWriteAKM2
             // 
             this.btnBISWriteAKM2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBISWriteAKM2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBISWriteAKM2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBISWriteAKM2.Location = new System.Drawing.Point(173, 65);
             this.btnBISWriteAKM2.Name = "btnBISWriteAKM2";
-            this.btnBISWriteAKM2.Size = new System.Drawing.Size(58, 49);
+            this.btnBISWriteAKM2.Size = new System.Drawing.Size(59, 49);
             this.btnBISWriteAKM2.TabIndex = 4;
             this.btnBISWriteAKM2.Text = "WRITE";
             this.btnBISWriteAKM2.UseVisualStyleBackColor = true;
@@ -1116,7 +1071,7 @@
             this.txtBISWWriteData.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBISWWriteData.Location = new System.Drawing.Point(19, 40);
             this.txtBISWWriteData.Name = "txtBISWWriteData";
-            this.txtBISWWriteData.Size = new System.Drawing.Size(210, 21);
+            this.txtBISWWriteData.Size = new System.Drawing.Size(211, 21);
             this.txtBISWWriteData.TabIndex = 1;
             // 
             // lblBISWWriteData
@@ -1131,10 +1086,11 @@
             // btnBISWrite
             // 
             this.btnBISWrite.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBISWrite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBISWrite.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBISWrite.Location = new System.Drawing.Point(173, 68);
             this.btnBISWrite.Name = "btnBISWrite";
-            this.btnBISWrite.Size = new System.Drawing.Size(58, 48);
+            this.btnBISWrite.Size = new System.Drawing.Size(59, 48);
             this.btnBISWrite.TabIndex = 4;
             this.btnBISWrite.Text = "WRITE";
             this.btnBISWrite.UseVisualStyleBackColor = true;
@@ -1695,12 +1651,10 @@
         private System.Windows.Forms.TextBox txtBISRSectorAddress;
         private System.Windows.Forms.Label lblBISRSectorAddress;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox chkBISRAscii;
         private System.Windows.Forms.TextBox txtBISReadData;
         private System.Windows.Forms.Label lblBISRReadData;
         private System.Windows.Forms.Button btnBISReadData;
         private System.Windows.Forms.Panel pnlBISReadPK;
-        private System.Windows.Forms.CheckBox chkBISRAsciiPK;
         private System.Windows.Forms.TextBox txtBISReadDataPK;
         private System.Windows.Forms.Label lblBISRReadDataPK;
         private System.Windows.Forms.Button btnBISReadDataPK;
@@ -1710,7 +1664,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lblBISReadPK;
         private System.Windows.Forms.Panel pnlBISReadAKM1;
-        private System.Windows.Forms.CheckBox chkBISRAsciiAKM1;
         private System.Windows.Forms.TextBox txtBISReadDataAKM1;
         private System.Windows.Forms.Label lblBISRReadDataAKM1;
         private System.Windows.Forms.Button btnBISReadDataAKM1;
@@ -1720,7 +1673,6 @@
         private System.Windows.Forms.Label lblBISRSectorAddressAKM1;
         private System.Windows.Forms.Label lblBISReadAKM1;
         private System.Windows.Forms.Panel pnlBISReadAKM2;
-        private System.Windows.Forms.CheckBox chkBISRAsciiAKM2;
         private System.Windows.Forms.TextBox txtBISReadDataAKM2;
         private System.Windows.Forms.Label lblBISRReadDataAKM2;
         private System.Windows.Forms.Button btnBISReadDataAKM2;

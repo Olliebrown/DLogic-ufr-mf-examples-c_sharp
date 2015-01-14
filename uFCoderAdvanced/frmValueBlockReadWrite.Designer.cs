@@ -1,4 +1,4 @@
-﻿namespace Mifare
+﻿namespace uFrAdvance
 {
     partial class frmValueBlockReadWrite
     {
@@ -375,6 +375,7 @@
             // btnValueBlockReadPK
             // 
             this.btnValueBlockReadPK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnValueBlockReadPK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnValueBlockReadPK.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnValueBlockReadPK.Location = new System.Drawing.Point(156, 23);
             this.btnValueBlockReadPK.Name = "btnValueBlockReadPK";
@@ -474,6 +475,7 @@
             // btnValueBlockReadAKM2
             // 
             this.btnValueBlockReadAKM2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnValueBlockReadAKM2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnValueBlockReadAKM2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnValueBlockReadAKM2.Location = new System.Drawing.Point(156, 23);
             this.btnValueBlockReadAKM2.Name = "btnValueBlockReadAKM2";
@@ -573,6 +575,7 @@
             // btnValueBlockReadAKM1
             // 
             this.btnValueBlockReadAKM1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnValueBlockReadAKM1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnValueBlockReadAKM1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnValueBlockReadAKM1.Location = new System.Drawing.Point(156, 23);
             this.btnValueBlockReadAKM1.Name = "btnValueBlockReadAKM1";
@@ -671,6 +674,7 @@
             // btnValueBlockRead
             // 
             this.btnValueBlockRead.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnValueBlockRead.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnValueBlockRead.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnValueBlockRead.Location = new System.Drawing.Point(156, 23);
             this.btnValueBlockRead.Name = "btnValueBlockRead";
@@ -782,6 +786,7 @@
             // btnVBWritePK
             // 
             this.btnVBWritePK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBWritePK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVBWritePK.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVBWritePK.Location = new System.Drawing.Point(149, 65);
             this.btnVBWritePK.Name = "btnVBWritePK";
@@ -878,6 +883,7 @@
             // btnVBWriteAKM2
             // 
             this.btnVBWriteAKM2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBWriteAKM2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVBWriteAKM2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVBWriteAKM2.Location = new System.Drawing.Point(149, 65);
             this.btnVBWriteAKM2.Name = "btnVBWriteAKM2";
@@ -974,6 +980,7 @@
             // btnVBWriteAKM1
             // 
             this.btnVBWriteAKM1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBWriteAKM1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVBWriteAKM1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVBWriteAKM1.Location = new System.Drawing.Point(150, 65);
             this.btnVBWriteAKM1.Name = "btnVBWriteAKM1";
@@ -1070,6 +1077,7 @@
             // btnVBWrite
             // 
             this.btnVBWrite.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBWrite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVBWrite.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVBWrite.Location = new System.Drawing.Point(149, 65);
             this.btnVBWrite.Name = "btnVBWrite";

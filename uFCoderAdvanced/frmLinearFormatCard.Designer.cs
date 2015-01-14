@@ -1,4 +1,4 @@
-﻿namespace Mifare
+﻿namespace uFrAdvance
 {
     partial class frmLinearFormatCard
     {
@@ -387,6 +387,7 @@
             // btnFormat
             // 
             this.btnFormat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFormat.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFormat.Location = new System.Drawing.Point(299, 39);
             this.btnFormat.Name = "btnFormat";
@@ -514,6 +515,7 @@
             // btnFormatAKM1
             // 
             this.btnFormatAKM1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFormatAKM1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFormatAKM1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFormatAKM1.Location = new System.Drawing.Point(299, 39);
             this.btnFormatAKM1.Name = "btnFormatAKM1";
@@ -641,6 +643,7 @@
             // btnFormatAKM2
             // 
             this.btnFormatAKM2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFormatAKM2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFormatAKM2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFormatAKM2.Location = new System.Drawing.Point(299, 38);
             this.btnFormatAKM2.Name = "btnFormatAKM2";
@@ -768,6 +771,7 @@
             // btnFormatPK
             // 
             this.btnFormatPK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFormatPK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFormatPK.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFormatPK.Location = new System.Drawing.Point(299, 37);
             this.btnFormatPK.Name = "btnFormatPK";

@@ -1,4 +1,4 @@
-﻿namespace Mifare
+﻿namespace uFrAdvance
 {
     partial class frmLinearReadWrite
     {
@@ -48,7 +48,6 @@
             this.lblDataLength = new System.Windows.Forms.Label();
             this.txtLinearAddress = new System.Windows.Forms.TextBox();
             this.lblLinearAddress = new System.Windows.Forms.Label();
-            this.chkAscii = new System.Windows.Forms.CheckBox();
             this.txtLinearRead = new System.Windows.Forms.TextBox();
             this.lblReadData = new System.Windows.Forms.Label();
             this.tabLinearReadAKM12 = new System.Windows.Forms.TabPage();
@@ -61,7 +60,6 @@
             this.lblDataLengthAKM1 = new System.Windows.Forms.Label();
             this.txtLinearAddressAKM1 = new System.Windows.Forms.TextBox();
             this.lblLinearAddressAKM1 = new System.Windows.Forms.Label();
-            this.chkAsciiAKM1 = new System.Windows.Forms.CheckBox();
             this.txtLinearReadAKM1 = new System.Windows.Forms.TextBox();
             this.lblReadDataAKM1 = new System.Windows.Forms.Label();
             this.tabLinearReadAKM2 = new System.Windows.Forms.TabPage();
@@ -72,7 +70,6 @@
             this.lblDataLengthAKM2 = new System.Windows.Forms.Label();
             this.txtLinearAddressAKM2 = new System.Windows.Forms.TextBox();
             this.lblLinearAddressAKM2 = new System.Windows.Forms.Label();
-            this.chkAsciiAKM2 = new System.Windows.Forms.CheckBox();
             this.txtLinearReadAKM2 = new System.Windows.Forms.TextBox();
             this.lblReadDataAKM2 = new System.Windows.Forms.Label();
             this.tabLinearReadPK = new System.Windows.Forms.TabPage();
@@ -83,7 +80,6 @@
             this.lblDataLengthPK = new System.Windows.Forms.Label();
             this.txtLinearAddressPK = new System.Windows.Forms.TextBox();
             this.lblLinearAddressPK = new System.Windows.Forms.Label();
-            this.chkAsciiPK = new System.Windows.Forms.CheckBox();
             this.txtLinearReadPK = new System.Windows.Forms.TextBox();
             this.lblReadDataPK = new System.Windows.Forms.Label();
             this.tabLinearWrite = new System.Windows.Forms.TabPage();
@@ -334,7 +330,6 @@
             this.tabLinearRead.Controls.Add(this.lblDataLength);
             this.tabLinearRead.Controls.Add(this.txtLinearAddress);
             this.tabLinearRead.Controls.Add(this.lblLinearAddress);
-            this.tabLinearRead.Controls.Add(this.chkAscii);
             this.tabLinearRead.Controls.Add(this.txtLinearRead);
             this.tabLinearRead.Controls.Add(this.lblReadData);
             this.tabLinearRead.Location = new System.Drawing.Point(4, 22);
@@ -351,10 +346,10 @@
             this.txtReadBytes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtReadBytes.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReadBytes.Location = new System.Drawing.Point(258, 211);
-            this.txtReadBytes.MaxLength = 3;
+            this.txtReadBytes.MaxLength = 6;
             this.txtReadBytes.Name = "txtReadBytes";
             this.txtReadBytes.ReadOnly = true;
-            this.txtReadBytes.Size = new System.Drawing.Size(43, 24);
+            this.txtReadBytes.Size = new System.Drawing.Size(46, 24);
             this.txtReadBytes.TabIndex = 9;
             this.txtReadBytes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtReadBytes.WordWrap = false;
@@ -371,10 +366,11 @@
             // btnLinearRead
             // 
             this.btnLinearRead.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLinearRead.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLinearRead.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLinearRead.Location = new System.Drawing.Point(343, 198);
+            this.btnLinearRead.Location = new System.Drawing.Point(329, 197);
             this.btnLinearRead.Name = "btnLinearRead";
-            this.btnLinearRead.Size = new System.Drawing.Size(168, 48);
+            this.btnLinearRead.Size = new System.Drawing.Size(178, 48);
             this.btnLinearRead.TabIndex = 7;
             this.btnLinearRead.Text = "READ";
             this.btnLinearRead.UseVisualStyleBackColor = true;
@@ -384,9 +380,9 @@
             // 
             this.txtDataLength.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDataLength.Location = new System.Drawing.Point(120, 226);
-            this.txtDataLength.MaxLength = 3;
+            this.txtDataLength.MaxLength = 6;
             this.txtDataLength.Name = "txtDataLength";
-            this.txtDataLength.Size = new System.Drawing.Size(43, 24);
+            this.txtDataLength.Size = new System.Drawing.Size(46, 24);
             this.txtDataLength.TabIndex = 6;
             this.txtDataLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDataLength.WordWrap = false;
@@ -404,9 +400,9 @@
             // 
             this.txtLinearAddress.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLinearAddress.Location = new System.Drawing.Point(120, 198);
-            this.txtLinearAddress.MaxLength = 3;
+            this.txtLinearAddress.MaxLength = 6;
             this.txtLinearAddress.Name = "txtLinearAddress";
-            this.txtLinearAddress.Size = new System.Drawing.Size(43, 24);
+            this.txtLinearAddress.Size = new System.Drawing.Size(46, 24);
             this.txtLinearAddress.TabIndex = 4;
             this.txtLinearAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtLinearAddress.WordWrap = false;
@@ -419,17 +415,6 @@
             this.lblLinearAddress.Size = new System.Drawing.Size(92, 13);
             this.lblLinearAddress.TabIndex = 3;
             this.lblLinearAddress.Text = "Linear Address";
-            // 
-            // chkAscii
-            // 
-            this.chkAscii.AutoSize = true;
-            this.chkAscii.Location = new System.Drawing.Point(459, 11);
-            this.chkAscii.Name = "chkAscii";
-            this.chkAscii.Size = new System.Drawing.Size(52, 17);
-            this.chkAscii.TabIndex = 2;
-            this.chkAscii.Text = "Ascii";
-            this.chkAscii.UseVisualStyleBackColor = true;
-            this.chkAscii.Visible = false;
             // 
             // txtLinearRead
             // 
@@ -482,7 +467,6 @@
             this.tabLinearReadAKM1.Controls.Add(this.lblDataLengthAKM1);
             this.tabLinearReadAKM1.Controls.Add(this.txtLinearAddressAKM1);
             this.tabLinearReadAKM1.Controls.Add(this.lblLinearAddressAKM1);
-            this.tabLinearReadAKM1.Controls.Add(this.chkAsciiAKM1);
             this.tabLinearReadAKM1.Controls.Add(this.txtLinearReadAKM1);
             this.tabLinearReadAKM1.Controls.Add(this.lblReadDataAKM1);
             this.tabLinearReadAKM1.Location = new System.Drawing.Point(4, 22);
@@ -499,10 +483,10 @@
             this.txtReadBytesAKM1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtReadBytesAKM1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReadBytesAKM1.Location = new System.Drawing.Point(251, 178);
-            this.txtReadBytesAKM1.MaxLength = 3;
+            this.txtReadBytesAKM1.MaxLength = 6;
             this.txtReadBytesAKM1.Name = "txtReadBytesAKM1";
             this.txtReadBytesAKM1.ReadOnly = true;
-            this.txtReadBytesAKM1.Size = new System.Drawing.Size(43, 24);
+            this.txtReadBytesAKM1.Size = new System.Drawing.Size(46, 24);
             this.txtReadBytesAKM1.TabIndex = 15;
             this.txtReadBytesAKM1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtReadBytesAKM1.WordWrap = false;
@@ -519,6 +503,7 @@
             // btnLinearReadAKM1
             // 
             this.btnLinearReadAKM1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLinearReadAKM1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLinearReadAKM1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLinearReadAKM1.Location = new System.Drawing.Point(316, 164);
             this.btnLinearReadAKM1.Name = "btnLinearReadAKM1";
@@ -532,9 +517,9 @@
             // 
             this.txtDataLengthAKM1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDataLengthAKM1.Location = new System.Drawing.Point(111, 189);
-            this.txtDataLengthAKM1.MaxLength = 3;
+            this.txtDataLengthAKM1.MaxLength = 6;
             this.txtDataLengthAKM1.Name = "txtDataLengthAKM1";
-            this.txtDataLengthAKM1.Size = new System.Drawing.Size(43, 24);
+            this.txtDataLengthAKM1.Size = new System.Drawing.Size(46, 24);
             this.txtDataLengthAKM1.TabIndex = 12;
             this.txtDataLengthAKM1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDataLengthAKM1.WordWrap = false;
@@ -552,9 +537,9 @@
             // 
             this.txtLinearAddressAKM1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLinearAddressAKM1.Location = new System.Drawing.Point(111, 164);
-            this.txtLinearAddressAKM1.MaxLength = 3;
+            this.txtLinearAddressAKM1.MaxLength = 6;
             this.txtLinearAddressAKM1.Name = "txtLinearAddressAKM1";
-            this.txtLinearAddressAKM1.Size = new System.Drawing.Size(43, 24);
+            this.txtLinearAddressAKM1.Size = new System.Drawing.Size(46, 24);
             this.txtLinearAddressAKM1.TabIndex = 10;
             this.txtLinearAddressAKM1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtLinearAddressAKM1.WordWrap = false;
@@ -567,17 +552,6 @@
             this.lblLinearAddressAKM1.Size = new System.Drawing.Size(92, 13);
             this.lblLinearAddressAKM1.TabIndex = 9;
             this.lblLinearAddressAKM1.Text = "Linear Address";
-            // 
-            // chkAsciiAKM1
-            // 
-            this.chkAsciiAKM1.AutoSize = true;
-            this.chkAsciiAKM1.Location = new System.Drawing.Point(443, 9);
-            this.chkAsciiAKM1.Name = "chkAsciiAKM1";
-            this.chkAsciiAKM1.Size = new System.Drawing.Size(52, 17);
-            this.chkAsciiAKM1.TabIndex = 8;
-            this.chkAsciiAKM1.Text = "Ascii";
-            this.chkAsciiAKM1.UseVisualStyleBackColor = true;
-            this.chkAsciiAKM1.Visible = false;
             // 
             // txtLinearReadAKM1
             // 
@@ -608,7 +582,6 @@
             this.tabLinearReadAKM2.Controls.Add(this.lblDataLengthAKM2);
             this.tabLinearReadAKM2.Controls.Add(this.txtLinearAddressAKM2);
             this.tabLinearReadAKM2.Controls.Add(this.lblLinearAddressAKM2);
-            this.tabLinearReadAKM2.Controls.Add(this.chkAsciiAKM2);
             this.tabLinearReadAKM2.Controls.Add(this.txtLinearReadAKM2);
             this.tabLinearReadAKM2.Controls.Add(this.lblReadDataAKM2);
             this.tabLinearReadAKM2.Location = new System.Drawing.Point(4, 22);
@@ -625,10 +598,10 @@
             this.txtReadBytesAKM2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtReadBytesAKM2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReadBytesAKM2.Location = new System.Drawing.Point(251, 180);
-            this.txtReadBytesAKM2.MaxLength = 3;
+            this.txtReadBytesAKM2.MaxLength = 6;
             this.txtReadBytesAKM2.Name = "txtReadBytesAKM2";
             this.txtReadBytesAKM2.ReadOnly = true;
-            this.txtReadBytesAKM2.Size = new System.Drawing.Size(43, 24);
+            this.txtReadBytesAKM2.Size = new System.Drawing.Size(46, 24);
             this.txtReadBytesAKM2.TabIndex = 23;
             this.txtReadBytesAKM2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtReadBytesAKM2.WordWrap = false;
@@ -645,6 +618,7 @@
             // btnLinearReadAKM2
             // 
             this.btnLinearReadAKM2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLinearReadAKM2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLinearReadAKM2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLinearReadAKM2.Location = new System.Drawing.Point(314, 166);
             this.btnLinearReadAKM2.Name = "btnLinearReadAKM2";
@@ -658,9 +632,9 @@
             // 
             this.txtDataLengthAKM2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDataLengthAKM2.Location = new System.Drawing.Point(109, 191);
-            this.txtDataLengthAKM2.MaxLength = 3;
+            this.txtDataLengthAKM2.MaxLength = 6;
             this.txtDataLengthAKM2.Name = "txtDataLengthAKM2";
-            this.txtDataLengthAKM2.Size = new System.Drawing.Size(43, 24);
+            this.txtDataLengthAKM2.Size = new System.Drawing.Size(46, 24);
             this.txtDataLengthAKM2.TabIndex = 20;
             this.txtDataLengthAKM2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDataLengthAKM2.WordWrap = false;
@@ -678,9 +652,9 @@
             // 
             this.txtLinearAddressAKM2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLinearAddressAKM2.Location = new System.Drawing.Point(109, 166);
-            this.txtLinearAddressAKM2.MaxLength = 3;
+            this.txtLinearAddressAKM2.MaxLength = 6;
             this.txtLinearAddressAKM2.Name = "txtLinearAddressAKM2";
-            this.txtLinearAddressAKM2.Size = new System.Drawing.Size(43, 24);
+            this.txtLinearAddressAKM2.Size = new System.Drawing.Size(46, 24);
             this.txtLinearAddressAKM2.TabIndex = 18;
             this.txtLinearAddressAKM2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtLinearAddressAKM2.WordWrap = false;
@@ -693,17 +667,6 @@
             this.lblLinearAddressAKM2.Size = new System.Drawing.Size(92, 13);
             this.lblLinearAddressAKM2.TabIndex = 17;
             this.lblLinearAddressAKM2.Text = "Linear Address";
-            // 
-            // chkAsciiAKM2
-            // 
-            this.chkAsciiAKM2.AutoSize = true;
-            this.chkAsciiAKM2.Location = new System.Drawing.Point(441, 11);
-            this.chkAsciiAKM2.Name = "chkAsciiAKM2";
-            this.chkAsciiAKM2.Size = new System.Drawing.Size(52, 17);
-            this.chkAsciiAKM2.TabIndex = 16;
-            this.chkAsciiAKM2.Text = "Ascii";
-            this.chkAsciiAKM2.UseVisualStyleBackColor = true;
-            this.chkAsciiAKM2.Visible = false;
             // 
             // txtLinearReadAKM2
             // 
@@ -734,7 +697,6 @@
             this.tabLinearReadPK.Controls.Add(this.lblDataLengthPK);
             this.tabLinearReadPK.Controls.Add(this.txtLinearAddressPK);
             this.tabLinearReadPK.Controls.Add(this.lblLinearAddressPK);
-            this.tabLinearReadPK.Controls.Add(this.chkAsciiPK);
             this.tabLinearReadPK.Controls.Add(this.txtLinearReadPK);
             this.tabLinearReadPK.Controls.Add(this.lblReadDataPK);
             this.tabLinearReadPK.Location = new System.Drawing.Point(4, 22);
@@ -751,10 +713,10 @@
             this.txtReadBytesPK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtReadBytesPK.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReadBytesPK.Location = new System.Drawing.Point(258, 212);
-            this.txtReadBytesPK.MaxLength = 3;
+            this.txtReadBytesPK.MaxLength = 6;
             this.txtReadBytesPK.Name = "txtReadBytesPK";
             this.txtReadBytesPK.ReadOnly = true;
-            this.txtReadBytesPK.Size = new System.Drawing.Size(43, 24);
+            this.txtReadBytesPK.Size = new System.Drawing.Size(46, 24);
             this.txtReadBytesPK.TabIndex = 17;
             this.txtReadBytesPK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtReadBytesPK.WordWrap = false;
@@ -771,6 +733,7 @@
             // btnLinearReadPK
             // 
             this.btnLinearReadPK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLinearReadPK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLinearReadPK.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLinearReadPK.Location = new System.Drawing.Point(330, 198);
             this.btnLinearReadPK.Name = "btnLinearReadPK";
@@ -784,9 +747,9 @@
             // 
             this.txtDataLengthPK.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDataLengthPK.Location = new System.Drawing.Point(120, 225);
-            this.txtDataLengthPK.MaxLength = 3;
+            this.txtDataLengthPK.MaxLength = 6;
             this.txtDataLengthPK.Name = "txtDataLengthPK";
-            this.txtDataLengthPK.Size = new System.Drawing.Size(43, 24);
+            this.txtDataLengthPK.Size = new System.Drawing.Size(46, 24);
             this.txtDataLengthPK.TabIndex = 14;
             this.txtDataLengthPK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDataLengthPK.WordWrap = false;
@@ -804,9 +767,9 @@
             // 
             this.txtLinearAddressPK.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLinearAddressPK.Location = new System.Drawing.Point(120, 198);
-            this.txtLinearAddressPK.MaxLength = 3;
+            this.txtLinearAddressPK.MaxLength = 6;
             this.txtLinearAddressPK.Name = "txtLinearAddressPK";
-            this.txtLinearAddressPK.Size = new System.Drawing.Size(43, 24);
+            this.txtLinearAddressPK.Size = new System.Drawing.Size(46, 24);
             this.txtLinearAddressPK.TabIndex = 12;
             this.txtLinearAddressPK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtLinearAddressPK.WordWrap = false;
@@ -819,17 +782,6 @@
             this.lblLinearAddressPK.Size = new System.Drawing.Size(92, 13);
             this.lblLinearAddressPK.TabIndex = 11;
             this.lblLinearAddressPK.Text = "Linear Address";
-            // 
-            // chkAsciiPK
-            // 
-            this.chkAsciiPK.AutoSize = true;
-            this.chkAsciiPK.Location = new System.Drawing.Point(456, 11);
-            this.chkAsciiPK.Name = "chkAsciiPK";
-            this.chkAsciiPK.Size = new System.Drawing.Size(52, 17);
-            this.chkAsciiPK.TabIndex = 10;
-            this.chkAsciiPK.Text = "Ascii";
-            this.chkAsciiPK.UseVisualStyleBackColor = true;
-            this.chkAsciiPK.Visible = false;
             // 
             // txtLinearReadPK
             // 
@@ -876,10 +828,10 @@
             this.txtBytesWritten.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBytesWritten.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBytesWritten.Location = new System.Drawing.Point(263, 210);
-            this.txtBytesWritten.MaxLength = 3;
+            this.txtBytesWritten.MaxLength = 6;
             this.txtBytesWritten.Name = "txtBytesWritten";
             this.txtBytesWritten.ReadOnly = true;
-            this.txtBytesWritten.Size = new System.Drawing.Size(43, 24);
+            this.txtBytesWritten.Size = new System.Drawing.Size(46, 24);
             this.txtBytesWritten.TabIndex = 16;
             this.txtBytesWritten.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBytesWritten.WordWrap = false;
@@ -896,6 +848,7 @@
             // btnLinearWrite
             // 
             this.btnLinearWrite.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLinearWrite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLinearWrite.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLinearWrite.Location = new System.Drawing.Point(325, 196);
             this.btnLinearWrite.Name = "btnLinearWrite";
@@ -909,9 +862,9 @@
             // 
             this.txtDataLengthWrite.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDataLengthWrite.Location = new System.Drawing.Point(115, 224);
-            this.txtDataLengthWrite.MaxLength = 3;
+            this.txtDataLengthWrite.MaxLength = 6;
             this.txtDataLengthWrite.Name = "txtDataLengthWrite";
-            this.txtDataLengthWrite.Size = new System.Drawing.Size(43, 24);
+            this.txtDataLengthWrite.Size = new System.Drawing.Size(46, 24);
             this.txtDataLengthWrite.TabIndex = 13;
             this.txtDataLengthWrite.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDataLengthWrite.WordWrap = false;
@@ -929,9 +882,9 @@
             // 
             this.txtLinearAddressWrite.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLinearAddressWrite.Location = new System.Drawing.Point(115, 196);
-            this.txtLinearAddressWrite.MaxLength = 3;
+            this.txtLinearAddressWrite.MaxLength = 6;
             this.txtLinearAddressWrite.Name = "txtLinearAddressWrite";
-            this.txtLinearAddressWrite.Size = new System.Drawing.Size(43, 24);
+            this.txtLinearAddressWrite.Size = new System.Drawing.Size(46, 24);
             this.txtLinearAddressWrite.TabIndex = 11;
             this.txtLinearAddressWrite.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtLinearAddressWrite.WordWrap = false;
@@ -954,6 +907,7 @@
             this.txtLinearWrite.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtLinearWrite.Size = new System.Drawing.Size(504, 164);
             this.txtLinearWrite.TabIndex = 9;
+            this.txtLinearWrite.TextChanged += new System.EventHandler(this.txtLinearWrite_TextChanged);
             // 
             // lblWriteData
             // 
@@ -1011,10 +965,10 @@
             this.txtBytesWrittenAKM1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBytesWrittenAKM1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBytesWrittenAKM1.Location = new System.Drawing.Point(251, 178);
-            this.txtBytesWrittenAKM1.MaxLength = 3;
+            this.txtBytesWrittenAKM1.MaxLength = 6;
             this.txtBytesWrittenAKM1.Name = "txtBytesWrittenAKM1";
             this.txtBytesWrittenAKM1.ReadOnly = true;
-            this.txtBytesWrittenAKM1.Size = new System.Drawing.Size(43, 24);
+            this.txtBytesWrittenAKM1.Size = new System.Drawing.Size(46, 24);
             this.txtBytesWrittenAKM1.TabIndex = 18;
             this.txtBytesWrittenAKM1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBytesWrittenAKM1.WordWrap = false;
@@ -1031,6 +985,7 @@
             // btnLinearWriteAKM1
             // 
             this.btnLinearWriteAKM1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLinearWriteAKM1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLinearWriteAKM1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLinearWriteAKM1.Location = new System.Drawing.Point(316, 164);
             this.btnLinearWriteAKM1.Name = "btnLinearWriteAKM1";
@@ -1044,9 +999,9 @@
             // 
             this.txtDataLengthWriteAKM1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDataLengthWriteAKM1.Location = new System.Drawing.Point(111, 189);
-            this.txtDataLengthWriteAKM1.MaxLength = 3;
+            this.txtDataLengthWriteAKM1.MaxLength = 6;
             this.txtDataLengthWriteAKM1.Name = "txtDataLengthWriteAKM1";
-            this.txtDataLengthWriteAKM1.Size = new System.Drawing.Size(43, 24);
+            this.txtDataLengthWriteAKM1.Size = new System.Drawing.Size(46, 24);
             this.txtDataLengthWriteAKM1.TabIndex = 12;
             this.txtDataLengthWriteAKM1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDataLengthWriteAKM1.WordWrap = false;
@@ -1064,9 +1019,9 @@
             // 
             this.txtLinearAddressWriteAKM1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLinearAddressWriteAKM1.Location = new System.Drawing.Point(111, 164);
-            this.txtLinearAddressWriteAKM1.MaxLength = 3;
+            this.txtLinearAddressWriteAKM1.MaxLength = 6;
             this.txtLinearAddressWriteAKM1.Name = "txtLinearAddressWriteAKM1";
-            this.txtLinearAddressWriteAKM1.Size = new System.Drawing.Size(43, 24);
+            this.txtLinearAddressWriteAKM1.Size = new System.Drawing.Size(46, 24);
             this.txtLinearAddressWriteAKM1.TabIndex = 10;
             this.txtLinearAddressWriteAKM1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtLinearAddressWriteAKM1.WordWrap = false;
@@ -1089,6 +1044,7 @@
             this.txtLinearWriteAKM1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtLinearWriteAKM1.Size = new System.Drawing.Size(504, 132);
             this.txtLinearWriteAKM1.TabIndex = 2;
+            this.txtLinearWriteAKM1.TextChanged += new System.EventHandler(this.txtLinearWriteAKM1_TextChanged);
             // 
             // lblWriteDataAKM1
             // 
@@ -1124,10 +1080,10 @@
             this.txtBytesWrittenAKM2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBytesWrittenAKM2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBytesWrittenAKM2.Location = new System.Drawing.Point(251, 180);
-            this.txtBytesWrittenAKM2.MaxLength = 3;
+            this.txtBytesWrittenAKM2.MaxLength = 6;
             this.txtBytesWrittenAKM2.Name = "txtBytesWrittenAKM2";
             this.txtBytesWrittenAKM2.ReadOnly = true;
-            this.txtBytesWrittenAKM2.Size = new System.Drawing.Size(43, 24);
+            this.txtBytesWrittenAKM2.Size = new System.Drawing.Size(46, 24);
             this.txtBytesWrittenAKM2.TabIndex = 23;
             this.txtBytesWrittenAKM2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBytesWrittenAKM2.WordWrap = false;
@@ -1144,6 +1100,7 @@
             // btnLinearWriteAKM2
             // 
             this.btnLinearWriteAKM2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLinearWriteAKM2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLinearWriteAKM2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLinearWriteAKM2.Location = new System.Drawing.Point(314, 166);
             this.btnLinearWriteAKM2.Name = "btnLinearWriteAKM2";
@@ -1157,9 +1114,9 @@
             // 
             this.txtDataLengthWriteAKM2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDataLengthWriteAKM2.Location = new System.Drawing.Point(109, 191);
-            this.txtDataLengthWriteAKM2.MaxLength = 3;
+            this.txtDataLengthWriteAKM2.MaxLength = 6;
             this.txtDataLengthWriteAKM2.Name = "txtDataLengthWriteAKM2";
-            this.txtDataLengthWriteAKM2.Size = new System.Drawing.Size(43, 24);
+            this.txtDataLengthWriteAKM2.Size = new System.Drawing.Size(46, 24);
             this.txtDataLengthWriteAKM2.TabIndex = 20;
             this.txtDataLengthWriteAKM2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDataLengthWriteAKM2.WordWrap = false;
@@ -1177,9 +1134,9 @@
             // 
             this.txtLinearAddressWriteAKM2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLinearAddressWriteAKM2.Location = new System.Drawing.Point(109, 166);
-            this.txtLinearAddressWriteAKM2.MaxLength = 3;
+            this.txtLinearAddressWriteAKM2.MaxLength = 6;
             this.txtLinearAddressWriteAKM2.Name = "txtLinearAddressWriteAKM2";
-            this.txtLinearAddressWriteAKM2.Size = new System.Drawing.Size(43, 24);
+            this.txtLinearAddressWriteAKM2.Size = new System.Drawing.Size(46, 24);
             this.txtLinearAddressWriteAKM2.TabIndex = 18;
             this.txtLinearAddressWriteAKM2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtLinearAddressWriteAKM2.WordWrap = false;
@@ -1202,6 +1159,7 @@
             this.txtLinearWriteAKM2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtLinearWriteAKM2.Size = new System.Drawing.Size(504, 132);
             this.txtLinearWriteAKM2.TabIndex = 15;
+            this.txtLinearWriteAKM2.TextChanged += new System.EventHandler(this.txtLinearWriteAKM2_TextChanged);
             // 
             // lblWriteDataAKM2
             // 
@@ -1237,10 +1195,10 @@
             this.txtBytesWrittenPK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBytesWrittenPK.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBytesWrittenPK.Location = new System.Drawing.Point(258, 210);
-            this.txtBytesWrittenPK.MaxLength = 3;
+            this.txtBytesWrittenPK.MaxLength = 6;
             this.txtBytesWrittenPK.Name = "txtBytesWrittenPK";
             this.txtBytesWrittenPK.ReadOnly = true;
-            this.txtBytesWrittenPK.Size = new System.Drawing.Size(43, 24);
+            this.txtBytesWrittenPK.Size = new System.Drawing.Size(46, 24);
             this.txtBytesWrittenPK.TabIndex = 23;
             this.txtBytesWrittenPK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBytesWrittenPK.WordWrap = false;
@@ -1257,6 +1215,7 @@
             // btnLinearWritePK
             // 
             this.btnLinearWritePK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLinearWritePK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLinearWritePK.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLinearWritePK.Location = new System.Drawing.Point(325, 196);
             this.btnLinearWritePK.Name = "btnLinearWritePK";
@@ -1270,9 +1229,9 @@
             // 
             this.txtDataLengthWritePK.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDataLengthWritePK.Location = new System.Drawing.Point(115, 224);
-            this.txtDataLengthWritePK.MaxLength = 3;
+            this.txtDataLengthWritePK.MaxLength = 6;
             this.txtDataLengthWritePK.Name = "txtDataLengthWritePK";
-            this.txtDataLengthWritePK.Size = new System.Drawing.Size(43, 24);
+            this.txtDataLengthWritePK.Size = new System.Drawing.Size(46, 24);
             this.txtDataLengthWritePK.TabIndex = 20;
             this.txtDataLengthWritePK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDataLengthWritePK.WordWrap = false;
@@ -1290,9 +1249,9 @@
             // 
             this.txtLinearAddressWritePK.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLinearAddressWritePK.Location = new System.Drawing.Point(115, 196);
-            this.txtLinearAddressWritePK.MaxLength = 3;
+            this.txtLinearAddressWritePK.MaxLength = 6;
             this.txtLinearAddressWritePK.Name = "txtLinearAddressWritePK";
-            this.txtLinearAddressWritePK.Size = new System.Drawing.Size(43, 24);
+            this.txtLinearAddressWritePK.Size = new System.Drawing.Size(46, 24);
             this.txtLinearAddressWritePK.TabIndex = 18;
             this.txtLinearAddressWritePK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtLinearAddressWritePK.WordWrap = false;
@@ -1315,6 +1274,7 @@
             this.txtLinearWritePK.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtLinearWritePK.Size = new System.Drawing.Size(504, 164);
             this.txtLinearWritePK.TabIndex = 16;
+            this.txtLinearWritePK.TextChanged += new System.EventHandler(this.txtLinearWritePK_TextChanged);
             // 
             // lblWriteDataPK
             // 
@@ -1553,7 +1513,6 @@
         private System.Windows.Forms.Label lblReadData;
         private System.Windows.Forms.TextBox txtLinearAddress;
         private System.Windows.Forms.Label lblLinearAddress;
-        private System.Windows.Forms.CheckBox chkAscii;
         private System.Windows.Forms.Button btnLinearRead;
         private System.Windows.Forms.TextBox txtDataLength;
         private System.Windows.Forms.Label lblDataLength;
@@ -1574,14 +1533,12 @@
         private System.Windows.Forms.Label lblDataLengthAKM1;
         private System.Windows.Forms.TextBox txtLinearAddressAKM1;
         private System.Windows.Forms.Label lblLinearAddressAKM1;
-        private System.Windows.Forms.CheckBox chkAsciiAKM1;
         private System.Windows.Forms.TabPage tabLinearReadPK;
         private System.Windows.Forms.Button btnLinearReadPK;
         private System.Windows.Forms.TextBox txtDataLengthPK;
         private System.Windows.Forms.Label lblDataLengthPK;
         private System.Windows.Forms.TextBox txtLinearAddressPK;
         private System.Windows.Forms.Label lblLinearAddressPK;
-        private System.Windows.Forms.CheckBox chkAsciiPK;
         private System.Windows.Forms.TextBox txtLinearReadPK;
         private System.Windows.Forms.Label lblReadDataPK;
         private System.Windows.Forms.TabPage tabLinearReadAKM2;
@@ -1590,7 +1547,6 @@
         private System.Windows.Forms.Label lblDataLengthAKM2;
         private System.Windows.Forms.TextBox txtLinearAddressAKM2;
         private System.Windows.Forms.Label lblLinearAddressAKM2;
-        private System.Windows.Forms.CheckBox chkAsciiAKM2;
         private System.Windows.Forms.TextBox txtLinearReadAKM2;
         private System.Windows.Forms.Label lblReadDataAKM2;
         private System.Windows.Forms.TabPage tabLinearWrite;

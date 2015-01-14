@@ -7,45 +7,56 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Mifare
+namespace uFrAdvance
 {
+    using DL_STATUS = System.UInt32;
     public partial class frmValueBlockIncrDecr : Form
     {
+        private
+               Globals GL = new Globals();
         public frmValueBlockIncrDecr()
         {
             InitializeComponent();
         }
-        private UInt32 result;
-        const byte AUTH1A = 96,
-                   AUTH1B = 97,
-                   DL_OK = 0,
-                   RES_OK_LIGHT = 4,
-                   RES_OK_SOUND = 4,
-                   ERR_LIGHT = 2,
-                   ERR_SOUND = 2;
-        const string
-                    CONVERT_ERROR = "You may enter only whole decimal number !",
-                    APPROPRIATE_FORMAT = "You must enter the appropriate format !";
+         //authenticate
+        const byte MIFARE_AUTHENT1A = 0x60,
+                   MIFARE_AUTHENT1B = 0x61;
+
+        const byte DL_OK            = 0x00;
+                   
+
+        //for error                    
+        const byte FRES_OK_LIGHT    = 0x04,
+                   FRES_OK_SOUND    = 0x00,
+                   FERR_LIGHT       = 0x02,
+                   FERR_SOUND       = 0x00;
+
+        const string CONVERT_ERROR      = "You may enter only whole decimal number !",
+                     APPROPRIATE_FORMAT = "You must enter the appropriate format !";
+
         private void frmValueBlockIncrDecr_Load(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
+             
             cboKeyIndex.SelectedItem = cboKeyIndex.Items[0];
             GL.CreatePKKey(21, 31, 4, 350, "txtPKKey", 6, false, pnlAuth);
-            GL = null;
+             
         }
 
         private void btnIncrement_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            Int32 value_increment = 0;
-            byte block_address = 0;
-            byte key_index = 0;
-            byte auth_mode = 0;
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn              = true;
+
+                DL_STATUS iFResult;
+                Int32 iValueIncrement      = 0;
+                UInt16 uiBlockAddress      = 0;
+                byte bKeyIndex             = 0;                
+                byte bAuthMode             = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+            
                 if (txtVBIncrementValue.Text.Trim() == String.Empty)
                 {
                     MessageBox.Show("You must enter increment value !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -58,21 +69,23 @@ namespace Mifare
                     txtBlockAddressIncr.Focus();
                     return;
                 }
-                value_increment = System.Convert.ToInt32(txtVBIncrementValue.Text);
-                block_address = System.Convert.ToByte(txtBlockAddressIncr.Text);
-                key_index = System.Convert.ToByte(cboKeyIndex.Text);
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
-                result = ufCoder1x.ValueBlockIncrement(value_increment, block_address, auth_mode, key_index);
-                if (result == DL_OK)
+
+                iValueIncrement      = System.Convert.ToInt32(txtVBIncrementValue.Text);
+                uiBlockAddress       = System.Convert.ToUInt16(txtBlockAddressIncr.Text);
+                bKeyIndex            = System.Convert.ToByte(cboKeyIndex.Text);
+                
+                iFResult = uFCoder1x.ValueBlockIncrement(iValueIncrement, uiBlockAddress, bAuthMode, bKeyIndex);
+
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                } 
             }
             catch (System.FormatException ex)
             {
@@ -84,22 +97,25 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }          
         }
 
         private void btnIncrementAKM1_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            Int32 value_increment = 0;
-            byte block_address = 0;
-            byte auth_mode = 0;
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn              = true;
+
+                DL_STATUS iFResult;
+                Int32 iValueIncrement      = 0;
+                UInt16 uiBlockAddress      = 0;                                
+                byte bAuthMode             = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+
                 if (txtVBIncrementValueAKM1.Text.Trim() == String.Empty)
                 {
                     MessageBox.Show("You must enter increment value !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -108,24 +124,24 @@ namespace Mifare
                 }
                 if (txtBlockAddressIncrAKM1.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBlockAddressIncrAKM1.Focus();
                     return;
                 }
-                value_increment = System.Convert.ToInt32(txtVBIncrementValueAKM1.Text);
-                block_address = System.Convert.ToByte(txtBlockAddressIncrAKM1.Text);
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
-                result = ufCoder1x.ValueBlockIncrement_AKM1(value_increment, block_address, auth_mode);
-                if (result == DL_OK)
+                iValueIncrement      = System.Convert.ToInt32(txtVBIncrementValueAKM1.Text);
+                uiBlockAddress       = System.Convert.ToUInt16(txtBlockAddressIncrAKM1.Text);
+
+                iFResult = uFCoder1x.ValueBlockIncrement_AKM1(iValueIncrement, uiBlockAddress, bAuthMode);
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                } 
             }
             catch (System.FormatException ex)
             {
@@ -137,22 +153,25 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }          
         }
 
         private void btnIncrementAKM2_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            Int32 value_increment = 0;
-            byte block_address = 0;
-            byte auth_mode = 0;
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn              = true;
+
+                DL_STATUS iFResult;
+                Int32 iValueIncrement      = 0;
+                UInt16 uiBlockAddress      = 0;                                
+                byte bAuthMode             = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+
                 if (txtVBIncrementValueAKM2.Text.Trim() == String.Empty)
                 {
                     MessageBox.Show("You must enter increment value !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -161,24 +180,24 @@ namespace Mifare
                 }
                 if (txtBlockAddressIncrAKM2.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBlockAddressIncrAKM2.Focus();
                     return;
                 }
-                value_increment = System.Convert.ToInt32(txtVBIncrementValueAKM2.Text);
-                block_address = System.Convert.ToByte(txtBlockAddressIncrAKM2.Text);
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
-                result = ufCoder1x.ValueBlockIncrement_AKM2(value_increment, block_address, auth_mode);
-                if (result == DL_OK)
+                iValueIncrement      = System.Convert.ToInt32(txtVBIncrementValueAKM2.Text);
+                uiBlockAddress       = System.Convert.ToUInt16(txtBlockAddressIncrAKM2.Text);
+
+                iFResult = uFCoder1x.ValueBlockIncrement_AKM2(iValueIncrement, uiBlockAddress, bAuthMode);
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                } 
             }
             catch (System.FormatException ex)
             {
@@ -190,23 +209,27 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }          
         }
 
         private void btnIncrementPK_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            Int32 value_increment = 0;
-            byte block_address = 0;
-            byte auth_mode = 0;
-            byte[] pk_key = new byte[6];
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn              = true;
+
+                DL_STATUS iFResult;
+                Int32 iValueIncrement      = 0;
+                UInt16 uiBlockAddress      = 0;
+                byte bCounter              = 0;                               
+                byte bAuthMode             = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+                byte[] baKeyPK             = new byte[6];
+
                 if (txtVBIncrementValuePK.Text.Trim() == String.Empty)
                 {
                     MessageBox.Show("You must enter increment value !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -215,37 +238,37 @@ namespace Mifare
                 }
                 if (txtBlockAddressIncrPK.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBlockAddressIncrPK.Focus();
                     return;
                 }
-                value_increment = System.Convert.ToInt32(txtVBIncrementValuePK.Text);
-                block_address = System.Convert.ToByte(txtBlockAddressIncrPK.Text);
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
-                byte count = 0;
-                foreach (Control ctrl in pnlAuth.Controls)
+                iValueIncrement = System.Convert.ToInt32(txtVBIncrementValuePK.Text);
+                uiBlockAddress = System.Convert.ToUInt16(txtBlockAddressIncrPK.Text);
+                                               
+                foreach (Control cControl in pnlAuth.Controls)
                 {
-                    if (ctrl.Name == "txtPKKey")
+                    if (cControl.Name == "txtPKKey")
                     {
-                        pk_key[count] = System.Convert.ToByte(ctrl.Text);
-                        count++;
+                        baKeyPK[bCounter] = System.Convert.ToByte(cControl.Text);
+                        bCounter++;
                     }
                 }
+
                 unsafe
                 {
-                    fixed (byte* PK_KEY = pk_key)
-                        result = ufCoder1x.ValueBlockIncrement_PK(value_increment, block_address, auth_mode, PK_KEY);
+                    fixed (byte* PKEY_PK = baKeyPK)
+                    iFResult = uFCoder1x.ValueBlockIncrement_PK(iValueIncrement, uiBlockAddress, bAuthMode, PKEY_PK);
                 }
-                if (result == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                } 
             }
             catch (System.FormatException ex)
             {
@@ -257,23 +280,26 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }         
         }
 
         private void btnDecrement_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            Int32 value_decrement = 0;
-            byte block_address = 0;
-            byte key_index = 0;
-            byte auth_mode = 0;
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn              = true;
+
+                DL_STATUS iFResult;
+                Int32 iValueDecrement      = 0;
+                UInt16 uiBlockAddress      = 0;                                
+                byte bKeyIndex             = 0;
+                byte bAuthMode             = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+
                 if (txtVBDecrement.Text.Trim() == String.Empty)
                 {
                     MessageBox.Show("You must enter decrement value !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -282,25 +308,27 @@ namespace Mifare
                 }
                 if (txtVBDecrBlockAddress.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter the  BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtVBDecrBlockAddress.Focus();
                     return;
                 }
-                value_decrement = System.Convert.ToInt32(txtVBDecrement.Text);
-                block_address = System.Convert.ToByte(txtVBDecrBlockAddress.Text);
-                key_index = System.Convert.ToByte(cboKeyIndex.Text);
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
-                result = ufCoder1x.ValueBlockDecrement(value_decrement, block_address, auth_mode, key_index);
-                if (result == DL_OK)
+
+                iValueDecrement      = System.Convert.ToInt32(txtVBDecrement.Text);
+                uiBlockAddress       = System.Convert.ToByte(txtVBDecrBlockAddress.Text);
+                bKeyIndex            = System.Convert.ToByte(cboKeyIndex.Text);
+                
+                iFResult = uFCoder1x.ValueBlockDecrement(iValueDecrement, uiBlockAddress, bAuthMode, bKeyIndex);
+
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                } 
             }
             catch (System.FormatException ex)
             {
@@ -312,22 +340,25 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }        
         }
 
         private void btnDecrementAKM1_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            Int32 value_decrement = 0;
-            byte block_address = 0;
-            byte auth_mode = 0;
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn              = true;
+
+                DL_STATUS iFResult;
+                Int32 iValueDecrement      = 0;
+                UInt16 uiBlockAddress      = 0;                                                
+                byte bAuthMode             = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+
                 if (txtVBDecrementAKM1.Text.Trim() == String.Empty)
                 {
                     MessageBox.Show("You must enter decrement value !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -336,24 +367,27 @@ namespace Mifare
                 }
                 if (txtVBDecrBlockAddressAKM1.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the  BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtVBDecrBlockAddressAKM1.Focus();
                     return;
                 }
-                value_decrement = System.Convert.ToInt32(txtVBDecrementAKM1.Text);
-                block_address = System.Convert.ToByte(txtVBDecrBlockAddressAKM1.Text);
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
-                result = ufCoder1x.ValueBlockDecrement_AKM1(value_decrement, block_address, auth_mode);
-                if (result == DL_OK)
+
+                iValueDecrement      = System.Convert.ToInt32(txtVBDecrementAKM1.Text);
+                uiBlockAddress       = System.Convert.ToByte(txtVBDecrBlockAddressAKM1.Text);
+                
+                
+                iFResult = uFCoder1x.ValueBlockDecrement_AKM1(iValueDecrement, uiBlockAddress, bAuthMode);
+
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                } 
             }
             catch (System.FormatException ex)
             {
@@ -365,22 +399,25 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }       
         }
 
         private void btnDecrementAKM2_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            Int32 value_decrement = 0;
-            byte block_address = 0;
-            byte auth_mode = 0;
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn              = true;
+
+                DL_STATUS iFResult;
+                Int32 iValueDecrement      = 0;
+                UInt16 uiBlockAddress      = 0;                                                
+                byte bAuthMode             = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+
                 if (txtVBDecrementAKM2.Text.Trim() == String.Empty)
                 {
                     MessageBox.Show("You must enter decrement value !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -389,24 +426,26 @@ namespace Mifare
                 }
                 if (txtVBDecrBlockAddressAKM2.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtVBDecrBlockAddressAKM2.Focus();
                     return;
                 }
-                value_decrement = System.Convert.ToInt32(txtVBDecrementAKM2.Text);
-                block_address = System.Convert.ToByte(txtVBDecrBlockAddressAKM2.Text);
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
-                result = ufCoder1x.ValueBlockDecrement_AKM2(value_decrement, block_address, auth_mode);
-                if (result == DL_OK)
+
+                iValueDecrement      = System.Convert.ToInt32(txtVBDecrementAKM2.Text);
+                uiBlockAddress       = System.Convert.ToByte(txtVBDecrBlockAddressAKM2.Text);
+                                
+                iFResult = uFCoder1x.ValueBlockDecrement_AKM2(iValueDecrement, uiBlockAddress, bAuthMode);
+
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                } 
             }
             catch (System.FormatException ex)
             {
@@ -418,22 +457,27 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }       
         }
 
         private void btnDecrementPK_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
-            Int32 value_decrement = 0;
-            byte block_address = 0;
-            byte auth_mode = 0;
-            byte[] pk_key = new byte[6];
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
+
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn              = true;
+
+                DL_STATUS iFResult;
+                Int32 iValueDecrement      = 0;
+                UInt16 uiBlockAddress      = 0;
+                byte bCounter              = 0;                                                
+                byte bAuthMode             = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+                byte [] baKeyPK            = new byte[6];
+
                 if (txtVBDecrementPK.Text.Trim() == String.Empty)
                 {
                     MessageBox.Show("You must enter decrement value !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -442,37 +486,39 @@ namespace Mifare
                 }
                 if (txtVBDecrBlockAddressPK.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtVBDecrBlockAddressPK.Focus();
                     return;
                 }
-                value_decrement = System.Convert.ToInt32(txtVBDecrementPK.Text);
-                block_address = System.Convert.ToByte(txtVBDecrBlockAddressPK.Text);
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
-                byte count = 0;
-                foreach (Control ctrl in pnlAuth.Controls)
+
+                iValueDecrement      = System.Convert.ToInt32(txtVBDecrementPK.Text);
+                uiBlockAddress       = System.Convert.ToByte(txtVBDecrBlockAddressPK.Text);
+                
+                foreach (Control cControl in pnlAuth.Controls)
                 {
-                    if (ctrl.Name == "txtPKKey")
+                    if (cControl.Name == "txtPKKey")
                     {
-                        pk_key[count] = System.Convert.ToByte(ctrl.Text);
-                        count++;
+                        baKeyPK[bCounter] = System.Convert.ToByte(cControl.Text);
+                        bCounter++;
                     }
                 }
+
                 unsafe
                 {
-                    fixed (byte* PK_KEY = pk_key)
-                        result = ufCoder1x.ValueBlockDecrement_PK(value_decrement, block_address, auth_mode, PK_KEY);
+                    fixed (byte* PKEY_PK = baKeyPK)
+                    iFResult = uFCoder1x.ValueBlockDecrement_PK(iValueDecrement, uiBlockAddress, bAuthMode, PKEY_PK);
                 }
-                if (result == DL_OK)
+
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                } 
             }
             catch (System.FormatException ex)
             {
@@ -484,8 +530,8 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }      
         }
     }

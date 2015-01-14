@@ -3,20 +3,80 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 
-namespace Mifare
+namespace uFrAdvance
 {
-    
+    using DL_STATUS = System.UInt32;
     
     class Globals
     {
+        //DLOGIC CARD TYPE
+        public enum DLCARDTYPE
+        {
+                   DL_MIFARE_ULTRALIGHT           = 0x01,
+                   DL_MIFARE_ULTRALIGHT_EV1_11    = 0x02,
+                   DL_MIFARE_ULTRALIGHT_EV1_21    = 0x03,
+                   DL_MIFARE_ULTRALIGHT_C         = 0x04,
+                   DL_NTAG_203                    = 0x05,
+                   DL_NTAG_210                    = 0x06,
+                   DL_NTAG_212                    = 0x07,
+                   DL_NTAG_213                    = 0x08,
+                   DL_NTAG_215                    = 0x09,
+                   DL_NTAG_216                    = 0x0A,
+                   DL_MIFARE_MINI                 = 0x20,
+                   DL_MIFARE_CLASSIC_1K           = 0x21,
+                   DL_MIFARE_CLASSIC_4K           = 0x22,
+                   DL_MIFARE_PLUS_S_2K            = 0x23,
+                   DL_MIFARE_PLUS_S_4K            = 0x24,
+                   DL_MIFARE_PLUS_X_2K            = 0x25,
+                   DL_MIFARE_PLUS_X_4K            = 0x26,
+                   DL_MIFARE_DESFIRE              = 0x27,
+                   DL_MIFARE_DESFIRE_EV1_2K       = 0x28,
+                   DL_MIFARE_DESFIRE_EV1_4K       = 0x29,
+                   DL_MIFARE_DESFIRE_EV1_8K       = 0x2A
+        }
 
-        private Boolean boReaderStart,
-                        boFunctionStart;
+        //max bytes of card type     
+        const byte 
+                   MAX_BYTES_NTAG_203     = 144,
+                   MAX_BYTES_ULTRALIGHT   =  48,
+                   MAX_BYTES_ULTRALIGHT_C = 144;
+        const short
+                   MAX_BYTES_CLASSIC_1K   = 752,
+                   MAX_BYTES_CLASSIC_4k   = 3440;
 
-        public Boolean FunctionStart
+        // sectors and blocks
+        const byte MAX_SECTORS_1k         = 0x10,
+                   MAX_SECTORS_4k         = 0x28;
+                   //MAX_BLOCK              = 0x10;
+       
+        //max page for NTAG203 and ULTRALIGHT 
+        const byte MAX_PAGE_NTAG203       = 39,
+                   MAX_PAGE_ULTRALIGHT    = 15,
+                   MAX_PAGE_ULTRALIGHT_C  = 39;
+
+       
+
+       
+        //property for card type of current card 
+        private static byte btypeofcard;
+        public byte TypeOfCard
+        {
+            get
+            {
+                return btypeofcard;
+            }
+            set
+            {
+                btypeofcard = value;
+            }
+
+        }
+
+        //property for function start/stop status
+        private Boolean boFunctionStart;
+        public Boolean FunctionOn
         {
             get
             {
@@ -28,52 +88,86 @@ namespace Mifare
             }
         }
 
-        public Boolean ReaderStart
+        //property for main loop start/stop status
+        private Boolean boLoopStart;
+        public Boolean LoopStatus
         {
             get
             {
-                return boReaderStart;
+                return boLoopStart;
             }
             set
             {
-                boReaderStart = value;
+                boLoopStart = value;
             }
         }
 
+                    
+        private  static string[] ERROR_CODES = new string[180]; 
 
-        private string[] ERR_CODE = new string[180];
-        public void ERRORS_CODE(uint result, System.Windows.Forms.StatusStrip status_bar)
+        public void FullRangeERROR_CODES()
         {
-            ERR_CODE[0] = "DL_OK ";
-            ERR_CODE[1] = "COMMUNICATION_ERROR ";
-            ERR_CODE[3] = "READING_ERROR ";
-            ERR_CODE[4] = "WRITING_ERROR ";
-            ERR_CODE[6] = "MAX_ADDRESS_EXCEEDED ";
-            ERR_CODE[7] = "MAX_KEY_INDEX_EXCEEDED ";
-            ERR_CODE[8] = "NO_CARD ";
-            ERR_CODE[10] = "FORBIDEN_DIRECT_WRITE_IN_SECTOR_TRAILER ";
-            ERR_CODE[11] = "ADDRESSED_BLOCK_IS_NOT_SECTOR_TRAILER ";
-            ERR_CODE[12] = "WRONG_ADDRESS_MODE ";
-            ERR_CODE[13] = "WRONG_ACCESS_BITS_VALUES ";
-            ERR_CODE[14] = "AUTH_ERROR ";
-            ERR_CODE[15] = "PARAMETERS_ERROR ";
-            ERR_CODE[80] = "COMMUNICATION_BREAK ";
-            ERR_CODE[82] = "CAN_NOT_OPEN_READER ";
-            ERR_CODE[84] = "READER_OPENING_ERROR ";
-            ERR_CODE[85] = "READER_PORT_NOT_OPENED ";
-            ERR_CODE[114] = "VALUE_BLOCK_INVALID ";
-            ERR_CODE[113] = "BUFFER_SIZE_EXCEEDED ";
-            ERR_CODE[115] = "VALUE_BLOCK_ADDR_INVALID ";
-            ERR_CODE[116] = "VALUE_BLOCK_MANIPULATION_ERROR ";
-            ERR_CODE[117] = "WRONG_UI_MODE";
-            ERR_CODE[121] = "CAN_NOT_LOCK_DEVICE";
-            ERR_CODE[122] = "CAN_NOT_UNLOCK_DEVICE";
-            ERR_CODE[123] = "DEVICE_EEPROM_BUSY";
-            ERR_CODE[160] = "HARDWARE_ERROR";
-            ERR_CODE[161] = "HARDWARE_ERROR";
+            int[] iErrorValues   = (int[])Enum.GetValues(typeof(ERRORCODES));            
+            string[] sErrorNames = Enum.GetNames(typeof(ERRORCODES));
+            
+            //ERROR_CODES=new string[iErrorValues.Max()];
+            
+            for (int i = 0; i < iErrorValues.Length; i++)
+                ERROR_CODES[iErrorValues[i]] = sErrorNames[i];
+            
+        }
 
-            status_bar.Items[1].Text = "0x" + result.ToString("X2");
-            status_bar.Items[2].Text = ERR_CODE[result];
+        //max card blocks
+        public int MaxBlock(byte bTypeCard)
+        {
+            int iResult = 0;
+
+            switch (bTypeCard)
+            {
+                
+                case  (byte) DLCARDTYPE.DL_MIFARE_CLASSIC_1K  :iResult  = MAX_SECTORS_1k * 4;
+                break;
+                case  (byte) DLCARDTYPE.DL_MIFARE_CLASSIC_4K  :iResult  = ((MAX_SECTORS_1k * 2) * 4) + ((MAX_SECTORS_1k - 8) * 16);
+                break;
+                case  (byte) DLCARDTYPE.DL_MIFARE_ULTRALIGHT  : iResult = MAX_PAGE_ULTRALIGHT;
+                break;
+                case  (byte) DLCARDTYPE.DL_MIFARE_ULTRALIGHT_C: iResult = MAX_PAGE_ULTRALIGHT_C;
+                break;
+                case (byte) DLCARDTYPE.DL_NTAG_203           : iResult = MAX_PAGE_NTAG203;
+                break;
+            }
+                           
+            return iResult;
+        }
+
+        //max card bytes 
+        public int MaxBytes(byte bCardType)
+        {
+            short usMaxBytes = 0;
+            switch (bCardType)
+            {
+                case (byte) DLCARDTYPE.DL_NTAG_203: usMaxBytes = MAX_BYTES_NTAG_203;
+                    break;
+                case (byte) DLCARDTYPE.DL_MIFARE_ULTRALIGHT: usMaxBytes = MAX_BYTES_ULTRALIGHT;
+                    break;
+                case (byte) DLCARDTYPE.DL_MIFARE_ULTRALIGHT_C: usMaxBytes = MAX_BYTES_ULTRALIGHT_C;
+                    break;
+                case (byte) DLCARDTYPE.DL_MIFARE_CLASSIC_1K: usMaxBytes = MAX_BYTES_CLASSIC_1K;
+                    break;
+                case (byte) DLCARDTYPE.DL_MIFARE_CLASSIC_4K:
+                case (byte) DLCARDTYPE.DL_MIFARE_PLUS_S_4K: usMaxBytes = MAX_BYTES_CLASSIC_4k;
+                    break;
+            }
+            return usMaxBytes;
+        }
+
+    
+
+
+        public void SetStatusBar(DL_STATUS iResult, System.Windows.Forms.StatusStrip stbStatusBar)
+        {           
+            stbStatusBar.Items[1].Text = "0x" + iResult.ToString("X2");
+            stbStatusBar.Items[2].Text = ERROR_CODES[iResult];
         }
 
         public void CreatePKKey(byte key_height, byte key_width, int key_top, int key_left, string key_name, byte number_key, Boolean key_readonly, Panel pnlContainer)
@@ -165,9 +259,8 @@ namespace Mifare
 
         }
 
+     }   
         
-
-    }
 }
 
 

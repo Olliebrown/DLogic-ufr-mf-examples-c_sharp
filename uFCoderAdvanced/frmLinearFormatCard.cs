@@ -8,28 +8,39 @@ using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 
-namespace Mifare
+namespace uFrAdvance
 {
+    using DL_STATUS = System.UInt32;
     public partial class frmLinearFormatCard : Form
     {
+        private
+             Globals GL = new Globals();
         public frmLinearFormatCard()
         {
             InitializeComponent();
            
         }
-        private UInt32 result;
-        private CheckBox HEX_BOX_CHECKED = new CheckBox();
-        byte[] key_a = new byte[6];
-        byte[] key_b = new byte[6];
-        const byte AUTH1A = 96,
-                   AUTH1B = 97,
-                   DL_OK = 0,
-                   RES_OK_LIGHT = 4,
-                   RES_OK_SOUND = 4,
-                   ERR_LIGHT = 2,
-                   ERR_SOUND = 2;
+
+         //authenticate
+        const byte MIFARE_AUTHENT1A = 0x60,
+                   MIFARE_AUTHENT1B = 0x61;
+
+        const byte DL_OK            = 0x00;
+                   
+
+        //for error                    
+        const byte FRES_OK_LIGHT    = 0x04,
+                   FRES_OK_SOUND    = 0x00,
+                   FERR_LIGHT       = 0x02,
+                   FERR_SOUND       = 0x00;
+
         const string
-                    CONVERT_ERROR = "You may enter only whole decimal number !";
+                     CONVERT_ERROR = "You may enter only whole decimal number !";
+
+        
+        private CheckBox HEX_BOX_CHECKED = new CheckBox();
+                
+        
 
         void HexKey_clicked(CheckBox hex_checkbox, string name_of_key, Panel panel_container)
         {
@@ -148,43 +159,32 @@ namespace Mifare
             }
         }
 
-        void WriteKeyAB()
+        private byte[] WriteKeyAB(Panel pnlKey, CheckBox chkKey, string sKeyName)
         {
-           
-            byte count = 0;
-            foreach (Control ctrl in pnlKeyA.Controls)
+            byte bCounter = 0;
+            byte[] baKey = new byte[6];
+            foreach (Control cControl in pnlKey.Controls)
             {
-                if (ctrl.Name == "txtKeyA")
+                if (cControl.Name == sKeyName)
                 {
-                    if (!chkHexKeyA.Checked)
-                        key_a[count] = System.Convert.ToByte(ctrl.Text);
+                    if (!chkKey.Checked)
+                        baKey[bCounter] = System.Convert.ToByte(cControl.Text);
                     else
-                        key_a[count] = System.Convert.ToByte(int.Parse(ctrl.Text, System.Globalization.NumberStyles.HexNumber));
-                    count++;
+                        baKey[bCounter] = System.Convert.ToByte(int.Parse(cControl.Text, System.Globalization.NumberStyles.HexNumber));
+                    bCounter++;
                 }
             }
-            count = 0;
-            foreach (Control ctrl in pnlKeyB.Controls)
-            {
-                if (ctrl.Name == "txtKeyB")
-                {
-                    if (!chkHexKeyB.Checked)
-                        key_b[count] = System.Convert.ToByte(ctrl.Text);
-                    else
-                        key_b[count] = System.Convert.ToByte(int.Parse(ctrl.Text, System.Globalization.NumberStyles.HexNumber));
-                    count++;
-                }
-            }
+            return baKey;
         }
 
         private void frmLinearFormatCard_Load(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
+             
             cboKeyIndex.SelectedItem = cboKeyIndex.Items[0];
-            GL.CreatePKKey(21, 31, 4, 350, "txtPKKey", 6, false, pnlAuth);
-            GL = null;
+            GL.CreatePKKey(21, 31, 4, 350, "txtPKKey", 6, false, pnlAuth);            
             CreateKey(21, 31, 29, 30, "txtKeyA", 6, false, pnlKeyA);
             CreateKey(21, 31, 29, 32, "txtKeyB", 6, false, pnlKeyB);
+             
         }
       
         private void chkHexKeyB_Click_1(object sender, EventArgs e)
@@ -199,64 +199,69 @@ namespace Mifare
 
         private void btnFormat_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            byte block_access_bits = 0;
-            byte sector_trailer_access_bits = 0;
-            byte trailer_byte_9 = 0;
-            byte sectors_formatted = 0;
-            byte auth_mode = 0;
-            byte key_index = 0;
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn                 = true;
+                DL_STATUS iFResult;        
+                byte bBlockAccessBits         = 0;
+                byte bSectorTrailerAccessBits = 0;
+                byte bTrailerByte9            = 0;
+                byte bSectorsFormatted        = 0;
+                byte bKeyIndex                = 0;
+                byte bAuthMode                = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+                byte[] baKeyA                 = new byte[6];
+                byte[] baKeyB                 = new byte[6];
+            
                 if (cboBlockAccessBits.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ACCESS BITS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the BLOCK ACCESS BITS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     cboBlockAccessBits.Focus();
                     return;
 
                 }
                 if (cboSectorTrailerAccessBits.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter SECTOR TRAILER ACCESS BITS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the SECTOR TRAILER ACCESS BITS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     cboSectorTrailerAccessBits.Focus();
                     return;
 
                 }
                 if (txtSectorTrailerByte9.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter SECTOR TRAILER BYTE 9 !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the SECTOR TRAILER BYTE 9 !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtSectorTrailerByte9.Focus();
                     return;
                 }
-                key_index = System.Convert.ToByte(cboKeyIndex.Text);
+
+                 bKeyIndex                = System.Convert.ToByte(cboKeyIndex.Text);                               
+                 bBlockAccessBits         = System.Convert.ToByte(cboBlockAccessBits.Text);
+                 bSectorTrailerAccessBits = System.Convert.ToByte (cboSectorTrailerAccessBits.Text) ;
+                 bTrailerByte9            = System.Convert.ToByte(txtSectorTrailerByte9.Text);
                
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
-                block_access_bits = System.Convert.ToByte(cboBlockAccessBits.Text);
-                 sector_trailer_access_bits = System.Convert.ToByte (cboSectorTrailerAccessBits.Text) ;
-                 trailer_byte_9 = System.Convert.ToByte(txtSectorTrailerByte9.Text);
-               
-                WriteKeyAB();
+                 baKeyA = WriteKeyAB(pnlKeyA, chkHexKeyA, "txtKeyA");
+                 baKeyB = WriteKeyAB(pnlKeyB, chkHexKeyB, "txtKeyB");
                 unsafe
                 {
-                    fixed (byte* KEY_A = key_a, KEY_B = key_b)
-                        result = ufCoder1x.LinearFormatCard(KEY_A, block_access_bits, sector_trailer_access_bits, trailer_byte_9, KEY_B,&sectors_formatted, auth_mode, key_index);
+                    fixed (byte* PKEY_A = baKeyA, 
+                                 PKEY_B = baKeyB)
+                        iFResult = uFCoder1x.LinearFormatCard(PKEY_A, bBlockAccessBits, bSectorTrailerAccessBits, bTrailerByte9, PKEY_B,&bSectorsFormatted, 
+                                                              bAuthMode, bKeyIndex);
                 }
-                if (result == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    txtSectorsFormatted.Text = System.Convert.ToString(sectors_formatted);                
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                    
+                    txtSectorsFormatted.Text = System.Convert.ToString(bSectorsFormatted);
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    txtSectorsFormatted.Text = System.Convert.ToString(sectors_formatted);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }
+                    txtSectorsFormatted.Text = System.Convert.ToString(bSectorsFormatted);
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                } 
             }
             catch (System.FormatException)
             {
@@ -264,65 +269,76 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }        
             
         }
 
         private void btnFormatAKM1_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn                 = true;
+                DL_STATUS iFResult;        
+                byte bBlockAccessBits         = 0;
+                byte bSectorTrailerAccessBits = 0;
+                byte bTrailerByte9            = 0;
+                byte bSectorsFormatted        = 0;                
+                byte bAuthMode                = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+                byte[] baKeyA                 = new byte[6];
+                byte[] baKeyB                 = new byte[6];
+
                 if (cboBlockAccessBitsAKM1.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ACCESS BITS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the BLOCK ACCESS BITS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     cboBlockAccessBitsAKM1.Focus();
                     return;
 
                 }
                 if (cboSectorTrailerAccessBitsAKM1.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter SECTOR TRAILER ACCESS BITS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the SECTOR TRAILER ACCESS BITS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     cboSectorTrailerAccessBitsAKM1.Focus();
                     return;
 
                 }
                 if (txtSectorTrailerByte9AKM1.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter SECTOR TRAILER BYTE 9 !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the SECTOR TRAILER BYTE 9 !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtSectorTrailerByte9AKM1.Focus();
                     return;
                 }
                 
-                byte auth_mode = 0;
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
-                byte block_access_bits = System.Convert.ToByte(cboBlockAccessBitsAKM1.Text);
-                byte sector_trailer_access_bits = System.Convert.ToByte(cboSectorTrailerAccessBitsAKM1.Text);
-                byte trailer_byte_9 = System.Convert.ToByte(txtSectorTrailerByte9AKM1.Text);
-                byte sectors_formatted = 0;
-                WriteKeyAB();
+               
+                 bBlockAccessBits         = System.Convert.ToByte(cboBlockAccessBitsAKM1.Text);
+                 bSectorTrailerAccessBits = System.Convert.ToByte(cboSectorTrailerAccessBitsAKM1.Text);
+                 bTrailerByte9            = System.Convert.ToByte(txtSectorTrailerByte9AKM1.Text);
+                 bSectorsFormatted        = 0;
+
+                 baKeyA = WriteKeyAB(pnlKeyA, chkHexKeyA, "txtKeyA");
+                 baKeyB = WriteKeyAB(pnlKeyB, chkHexKeyB, "txtKeyB");
                 unsafe
                 {
-                    fixed (byte* KEY_A = key_a, KEY_B = key_b)
-                        result = ufCoder1x.LinearFormatCard_AKM1(KEY_A, block_access_bits, sector_trailer_access_bits, trailer_byte_9, KEY_B, &sectors_formatted, auth_mode);
+                    fixed (byte* PKEY_A = baKeyA, 
+                                 PKEY_B = baKeyB)
+                    iFResult = uFCoder1x.LinearFormatCard_AKM1(PKEY_A, bBlockAccessBits, bSectorTrailerAccessBits, bTrailerByte9, PKEY_B, &bSectorsFormatted, bAuthMode);
                 }
-                if (result == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    txtSectorsFormattedAKM1.Text = System.Convert.ToString(sectors_formatted);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    txtSectorsFormattedAKM1.Text = System.Convert.ToString(bSectorsFormatted);
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    txtSectorsFormattedAKM1.Text = System.Convert.ToString(sectors_formatted);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }
+                    txtSectorsFormattedAKM1.Text = System.Convert.ToString(bSectorsFormatted);
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                } 
             }
             catch (System.FormatException)
             {
@@ -330,64 +346,74 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }        
         }
 
         private void btnFormatAKM2_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn                 = true;
+                DL_STATUS iFResult;
+                byte bBlockAccessBits         = 0;
+                byte bSectorTrailerAccessBits = 0;
+                byte bTrailerByte9            = 0;
+                byte bSectorsFormatted        = 0;                
+                byte bAuthMode                = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+                byte[] baKeyA                 = new byte[6];
+                byte[] baKeyB                 = new byte[6];
+
                 if (cboBlockAccessBitsAKM2.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ACCESS BITS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the BLOCK ACCESS BITS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     cboBlockAccessBitsAKM2.Focus();
                     return;
 
                 }
                 if (cboSectorTrailerAccessBitsAKM2.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter SECTOR TRAILER ACCESS BITS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the SECTOR TRAILER ACCESS BITS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     cboSectorTrailerAccessBitsAKM2.Focus();
                     return;
 
                 }
                 if (txtSectorTrailerByte9AKM2.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter SECTOR TRAILER BYTE 9 !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the SECTOR TRAILER BYTE 9 !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtSectorTrailerByte9AKM2.Focus();
                     return;
                 }
+               
+                bBlockAccessBits         = System.Convert.ToByte(cboBlockAccessBitsAKM2.Text);
+                bSectorTrailerAccessBits = System.Convert.ToByte(cboSectorTrailerAccessBitsAKM2.Text);
+                bTrailerByte9            = System.Convert.ToByte(txtSectorTrailerByte9AKM2.Text);
+                bSectorsFormatted        = 0;
 
-                byte auth_mode = 0;
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
-                byte block_access_bits = System.Convert.ToByte(cboBlockAccessBitsAKM2.Text);
-                byte sector_trailer_access_bits = System.Convert.ToByte(cboSectorTrailerAccessBitsAKM2.Text);
-                byte trailer_byte_9 = System.Convert.ToByte(txtSectorTrailerByte9AKM2.Text);
-                byte sectors_formatted = 0;
-                WriteKeyAB();
+                baKeyA = WriteKeyAB(pnlKeyA, chkHexKeyA, "txtKeyA");
+                baKeyB = WriteKeyAB(pnlKeyB, chkHexKeyB, "txtKeyB");
                 unsafe
                 {
-                    fixed (byte* KEY_A = key_a, KEY_B = key_b)
-                        result = ufCoder1x.LinearFormatCard_AKM2(KEY_A, block_access_bits, sector_trailer_access_bits, trailer_byte_9, KEY_B, &sectors_formatted, auth_mode);
+                    fixed (byte* PKEY_A = baKeyA, 
+                                 PKEY_B = baKeyB)
+                    iFResult = uFCoder1x.LinearFormatCard_AKM2(PKEY_A, bBlockAccessBits, bSectorTrailerAccessBits, bTrailerByte9, PKEY_B, &bSectorsFormatted, bAuthMode);
                 }
-                if (result == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    txtSectorsFormattedAKM2.Text = System.Convert.ToString(sectors_formatted);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    txtSectorsFormattedAKM2.Text = System.Convert.ToString(bSectorsFormatted);
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    txtSectorsFormattedAKM2.Text = System.Convert.ToString(sectors_formatted);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }
+                    txtSectorsFormattedAKM2.Text = System.Convert.ToString(bSectorsFormatted);
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                } 
             }
             catch (System.FormatException)
             {
@@ -395,73 +421,88 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }          
         }
 
         private void btnFormatPK_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn                 = true;
+                DL_STATUS iFResult;
+                byte bBlockAccessBits         = 0;
+                byte bSectorTrailerAccessBits = 0;
+                byte bTrailerByte9            = 0;
+                byte bSectorsFormatted        = 0;
+                byte[] baPKKey                = new byte[6];
+                byte bCounter                 = 0;
+                byte bAuthMode                = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+                byte[] baKeyA                 = new byte[6];
+                byte[] baKeyB                 = new byte[6];
+
                 if (cboBlockAccessBitsPK.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ACCESS BITS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the BLOCK ACCESS BITS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     cboBlockAccessBitsPK.Focus();
                     return;
 
                 }
                 if (cboSectorTrailerAccessBitsPK.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter SECTOR TRAILER ACCESS BITS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the SECTOR TRAILER ACCESS BITS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     cboSectorTrailerAccessBitsPK.Focus();
                     return;
 
                 }
                 if (txtSectorTrailerByte9PK.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter SECTOR TRAILER BYTE 9 !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the SECTOR TRAILER BYTE 9 !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtSectorTrailerByte9PK.Focus();
                     return;
                 }
-                byte[] pk_key = new byte[6];
-                byte count = 0;
+                
                 foreach (Control ctrl in pnlAuth.Controls)
                 {
                     if (ctrl.Name == "txtPKKey")
                     {
-                        pk_key[count] = System.Convert.ToByte(ctrl.Text);
-                        count++;
+                        baPKKey[bCounter] = System.Convert.ToByte(ctrl.Text);
+                        bCounter++;
                     }
                 }
-                byte auth_mode = 0;
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
-                byte block_access_bits = System.Convert.ToByte(cboBlockAccessBitsPK.Text);
-                byte sector_trailer_access_bits = System.Convert.ToByte(cboSectorTrailerAccessBitsPK.Text);
-                byte trailer_byte_9 = System.Convert.ToByte(txtSectorTrailerByte9PK.Text);
-                byte sectors_formatted = 0;
-                WriteKeyAB();
+                
+                bBlockAccessBits         = System.Convert.ToByte(cboBlockAccessBitsPK.Text);
+                bSectorTrailerAccessBits = System.Convert.ToByte(cboSectorTrailerAccessBitsPK.Text);
+                bTrailerByte9            = System.Convert.ToByte(txtSectorTrailerByte9PK.Text);
+                bSectorsFormatted        = 0;
+
+                baKeyA = WriteKeyAB(pnlKeyA, chkHexKeyA, "txtKeyA");
+                baKeyB = WriteKeyAB(pnlKeyB, chkHexKeyB, "txtKeyB");
+                
                 unsafe
                 {
-                    fixed (byte* KEY_A = key_a, KEY_B = key_b,PK_KEY=pk_key)
-                        result = ufCoder1x.LinearFormatCard_PK(KEY_A, block_access_bits, sector_trailer_access_bits, trailer_byte_9, KEY_B, &sectors_formatted, auth_mode,PK_KEY);
+                    fixed (byte* PKEY_A  = baKeyA, 
+                                 PKEY_B  = baKeyB,
+                                 PPKEY   = baPKKey)
+                    iFResult = uFCoder1x.LinearFormatCard_PK(PKEY_A, bBlockAccessBits, bSectorTrailerAccessBits, bTrailerByte9, PKEY_B, &bSectorsFormatted,
+                                                             bAuthMode,PPKEY);
                 }
-                if (result == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    txtSectorsFormattedPK.Text = System.Convert.ToString(sectors_formatted);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    txtSectorsFormattedPK.Text = System.Convert.ToString(bSectorsFormatted);
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    txtSectorsFormattedPK.Text = System.Convert.ToString(sectors_formatted);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }
+                    txtSectorsFormattedPK.Text = System.Convert.ToString(bSectorsFormatted);
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                } 
             }
             catch (System.FormatException)
             {
@@ -469,8 +510,8 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }          
         }
 

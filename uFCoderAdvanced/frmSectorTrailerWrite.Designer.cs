@@ -1,4 +1,4 @@
-﻿namespace Mifare
+﻿namespace uFrAdvance
 {
     partial class frmSectorTrailerWrite
     {
@@ -405,6 +405,7 @@
             // btnSTWWrite
             // 
             this.btnSTWWrite.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSTWWrite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSTWWrite.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSTWWrite.Location = new System.Drawing.Point(283, 87);
             this.btnSTWWrite.Name = "btnSTWWrite";
@@ -614,6 +615,7 @@
             // btnSTWWriteAKM1
             // 
             this.btnSTWWriteAKM1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSTWWriteAKM1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSTWWriteAKM1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSTWWriteAKM1.Location = new System.Drawing.Point(285, 85);
             this.btnSTWWriteAKM1.Name = "btnSTWWriteAKM1";
@@ -823,6 +825,7 @@
             // btnSTWWriteAKM2
             // 
             this.btnSTWWriteAKM2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSTWWriteAKM2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSTWWriteAKM2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSTWWriteAKM2.Location = new System.Drawing.Point(285, 85);
             this.btnSTWWriteAKM2.Name = "btnSTWWriteAKM2";
@@ -1032,6 +1035,7 @@
             // btnSTWWritePK
             // 
             this.btnSTWWritePK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSTWWritePK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSTWWritePK.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSTWWritePK.Location = new System.Drawing.Point(285, 85);
             this.btnSTWWritePK.Name = "btnSTWWritePK";

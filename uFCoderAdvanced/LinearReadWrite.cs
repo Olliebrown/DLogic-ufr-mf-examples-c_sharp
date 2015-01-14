@@ -6,106 +6,103 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Mifare;
+using uFrAdvance;
 
-namespace Mifare
+namespace uFrAdvance
 {
+    using DL_STATUS = System.UInt32;
+    
+
     public partial class frmLinearReadWrite : Form
     {
+        private
+              Globals GL = new Globals();
         public frmLinearReadWrite()
         {
             InitializeComponent();
         }
 
-        private UInt32 result;
-        const byte AUTH1A = 96,
-                   AUTH1B = 97,
-                   DL_OK = 0,
-                   RES_OK_LIGHT = 4,
-                   RES_OK_SOUND = 4,
-                   ERR_LIGHT = 2,
-                   ERR_SOUND = 2;
+        //authenticate
+        const byte MIFARE_AUTHENT1A = 0x60,
+                   MIFARE_AUTHENT1B = 0x61;
 
-        const int  MAX_LINEAR_BYTE=752;                  
+        const byte DL_OK            = 0x00;
+                   
+
+        //for error                    
+        const byte FRES_OK_LIGHT    = 0x04,
+                   FRES_OK_SOUND    = 0x00,
+                   FERR_LIGHT       = 0x02,
+                   FERR_SOUND       = 0x00;
+                                     
         const string
-                   CONVERT_ERROR = "You may enter only whole decimal number !",
+                   CONVERT_ERROR      = "You may enter only whole decimal number !",
                    APPROPRIATE_FORMAT = "You must enter the appropriate format !";
 
         private void frmLinearReadWrite_Load(object sender, EventArgs e)
         {
 
-            Globals GL = new Globals();
+             
             cboKeyIndex.SelectedItem = cboKeyIndex.Items[0];
             GL.CreatePKKey(21, 31, 4, 350, "txtPKKey", 6, false, pnlAuth);
-            GL = null;
+             
         }
 
         private void btnLinearRead_Click(object sender, EventArgs e)
         {
-            //frmuFrAdvance RC = new frmuFrAdvance();
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return; 
-           
-            byte[] read_data = new byte[800];
-            ushort linear_address = 0;
-            ushort data_length = 0;
-            ushort bytes_ret = 0;
-            byte auth_mode = 0;
-            byte key_index = 0;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
+
             try
             {
-                GL.FunctionStart = true;
-                if (rbAUTH1A.Checked) { auth_mode = AUTH1A; } else { auth_mode = AUTH1B; };
-
+                GL.FunctionOn = true;
+               
+                DL_STATUS iFResult;
+                
+                               
+                ushort usBytesRet          = 0;
+                
+                byte bAuthMode              = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+                byte bKeyIndex              = Convert.ToByte(cboKeyIndex.Text);
+                            
                 if (txtLinearAddress.Text == String.Empty)
                 {
-                    MessageBox.Show("You must enter LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("You must enter  the LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtLinearAddress.Focus();
                     return;
                 }
                 if (txtDataLength.Text == String.Empty)
                 {
-                    MessageBox.Show("You must enter DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("You must enter  the DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtDataLength.Focus();
                     return;
                 }
-                linear_address = Convert.ToUInt16(txtLinearAddress.Text);
-                data_length = Convert.ToUInt16(txtDataLength.Text);
-                key_index = System.Convert.ToByte(cboKeyIndex.Text);
-             
+
+                ushort usLinearAddress = Convert.ToUInt16(txtLinearAddress.Text);
+                ushort usDataLength    = Convert.ToUInt16(txtDataLength.Text);
+                byte[] baReadData      = new byte[usDataLength];
+                                    
                 unsafe
                 {
-                    fixed (byte* PData = read_data)
+                    fixed (byte* PData = baReadData)
                     {
-                        result = ufCoder1x.LinearRead(PData, linear_address, data_length, &bytes_ret, auth_mode, key_index);
+                        iFResult = uFCoder1x.LinearRead(PData, usLinearAddress, usDataLength, &usBytesRet, bAuthMode, bKeyIndex);
                     }
                 }
-                if (result == DL_OK)
-                {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    if (chkAscii.Checked)
-                    {
-                        for (int br = 0; br < data_length; br++)
-                        {
-                            if ((char)read_data[br] < 32)
-                            {
-                                read_data[br] = 127;
-                            }
-                        }
-                    }                    
-                    txtLinearRead.Text = System.Text.ASCIIEncoding.ASCII.GetString(read_data);
-                    txtReadBytes.Text = bytes_ret.ToString();
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                if (iFResult == DL_OK)
+                {                                                       
+                    txtLinearRead.Text = System.Text.ASCIIEncoding.ASCII.GetString(baReadData);
+                    txtReadBytes.Text  = usBytesRet.ToString();
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
-                {
-                    read_data[bytes_ret] = 0;
-                    txtLinearRead.Text = System.Text.ASCIIEncoding.ASCII.GetString(read_data);
-                    txtReadBytes.Text = bytes_ret.ToString();
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }                
-                
+                {                    
+                    txtLinearRead.Text = System.Text.ASCIIEncoding.ASCII.GetString(baReadData);
+                    txtReadBytes.Text  = usBytesRet.ToString();
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                }                                
             }
             catch (System.FormatException ex)
             {
@@ -113,79 +110,69 @@ namespace Mifare
             }
             catch (System.Exception exc)
             {
+             
                 MessageBox.Show(APPROPRIATE_FORMAT, "Error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;              
             }       
 
         }
 
         private void btnLinearReadAKM1_Click(object sender, EventArgs e)
         {
-           
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
-           
-            byte[] read_data = new byte[800];
-            ushort linear_address = 0;
-            ushort data_length = 0;
-            ushort bytes_ret = 0;
-            byte auth_mode = 0;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
+
             try
             {
-                GL.FunctionStart = true;
-                if (rbAUTH1A.Checked) { auth_mode = AUTH1A; } else { auth_mode = AUTH1B; };
+                GL.FunctionOn = true;
+                
+                
+                DL_STATUS iFResult;
+                
 
                 if (txtLinearAddressAKM1.Text == String.Empty)
                 {
-                    MessageBox.Show("You must enter LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("You must enter  the LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtLinearAddressAKM1.Focus();
                     return;
                 }
                 if (txtDataLengthAKM1.Text == String.Empty)
                 {
-                    MessageBox.Show("You must enter DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("You must enter  the DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtDataLengthAKM1.Focus();
                     return;
                 }
-                linear_address = Convert.ToUInt16(txtLinearAddressAKM1.Text);
-                data_length = Convert.ToUInt16(txtDataLengthAKM1.Text);
 
+                ushort usLinearAddress = Convert.ToUInt16(txtLinearAddressAKM1.Text);
+                ushort usDataLength = Convert.ToUInt16(txtDataLengthAKM1.Text);
+                ushort usBytesRet = 0;
+                byte[] baReadData = new byte[usDataLength];
+                byte bAuthMode = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+                             
                 unsafe
                 {
-                    fixed (byte* PData = read_data)
+                    fixed (byte* PData = baReadData)
                     {
-                        result = ufCoder1x.LinearRead_AKM1(PData, linear_address, data_length, &bytes_ret, auth_mode);
+                        iFResult = uFCoder1x.LinearRead_AKM1(PData, usLinearAddress, usDataLength, &usBytesRet, bAuthMode);
                     }
                 }
-                if (result == DL_OK)
-                {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    if (chkAsciiAKM1.Checked)
-                    {
-                        for (int br = 0; br < data_length; br++)
-                        {
-                            if ((char)read_data[br] < 32)
-                            {
-                                read_data[br] = 127;
-                            }
-                        }
-                    }    
-                    txtLinearReadAKM1.Text = System.Text.ASCIIEncoding.ASCII.GetString(read_data);
-                    txtReadBytesAKM1.Text = bytes_ret.ToString();
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                if (iFResult == DL_OK)
+                {                                                       
+                    txtLinearReadAKM1.Text = System.Text.ASCIIEncoding.ASCII.GetString(baReadData);
+                    txtReadBytesAKM1.Text  = usBytesRet.ToString();
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
-                {
-                    read_data[bytes_ret] = 0;
-                    txtLinearReadAKM1.Text = System.Text.ASCIIEncoding.ASCII.GetString(read_data);
-                    txtReadBytesAKM1.Text = bytes_ret.ToString();
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }
+                {                    
+                    txtLinearReadAKM1.Text = System.Text.ASCIIEncoding.ASCII.GetString(baReadData);
+                    txtReadBytesAKM1.Text  = usBytesRet.ToString();
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                }                                
                 
             }
             catch (System.FormatException ex)
@@ -198,76 +185,64 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }      
 
         }
 
         private void btnLinearReadAKM2_Click(object sender, EventArgs e)
         {
-            
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            byte[] read_data = new byte[800];
-            ushort linear_address = 0;
-            ushort data_length = 0;
-            ushort bytes_ret = 0;
-            byte auth_mode = 0;
             try
             {
-                GL.FunctionStart = true;
-                if (rbAUTH1A.Checked) { auth_mode = AUTH1A; } else { auth_mode = AUTH1B; };
+                GL.FunctionOn = true;
+
+                DL_STATUS iFResult;
 
                 if (txtLinearAddressAKM2.Text == String.Empty)
                 {
-                    MessageBox.Show("You must enter LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("You must enter  the LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtLinearAddressAKM2.Focus();
                     return;
                 }
                 if (txtDataLengthAKM2.Text == String.Empty)
                 {
-                    MessageBox.Show("You must enter DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("You must enter  the DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtDataLengthAKM2.Focus();
                     return;
                 }
-                linear_address = Convert.ToUInt16(txtLinearAddressAKM2.Text);
-                data_length = Convert.ToUInt16(txtDataLengthAKM2.Text);
 
+
+                ushort usLinearAddress = Convert.ToUInt16(txtLinearAddressAKM2.Text);
+                ushort usDataLength = Convert.ToUInt16(txtDataLengthAKM2.Text);
+                ushort usBytesRet = 0;
+                byte[] baReadData = new byte[usDataLength];
+                byte bAuthMode = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+                             
                 unsafe
                 {
-                    fixed (byte* PData = read_data)
+                    fixed (byte* PData = baReadData)
                     {
-                        result = ufCoder1x.LinearRead_AKM2(PData, linear_address, data_length, &bytes_ret, auth_mode);
+                        iFResult = uFCoder1x.LinearRead_AKM2(PData, usLinearAddress, usDataLength, &usBytesRet, bAuthMode);
                     }
                 }
-                if (result == DL_OK)
-                {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    if (chkAsciiAKM2.Checked)
-                    {
-                        for (int br = 0; br < data_length; br++)
-                        {
-                            if ((char)read_data[br] < 32)
-                            {
-                                read_data[br] = 127;
-                            }
-                        }
-                    }
-                    
-                    txtLinearReadAKM2.Text = System.Text.ASCIIEncoding.ASCII.GetString(read_data);
-                    txtReadBytesAKM2.Text = bytes_ret.ToString();
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                if (iFResult == DL_OK)
+                {                                                       
+                    txtLinearReadAKM2.Text = System.Text.ASCIIEncoding.ASCII.GetString(baReadData);
+                    txtReadBytesAKM2.Text  = usBytesRet.ToString();
+                     uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
-                {
-                    read_data[bytes_ret] = 0;
-                    txtLinearReadAKM2.Text = System.Text.ASCIIEncoding.ASCII.GetString(read_data);
-                    txtReadBytesAKM2.Text = bytes_ret.ToString();
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }
+                {                    
+                    txtLinearReadAKM2.Text = System.Text.ASCIIEncoding.ASCII.GetString(baReadData);
+                    txtReadBytesAKM2.Text  = usBytesRet.ToString();
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                }  
                 
             }
             catch (System.FormatException ex)
@@ -280,88 +255,76 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }       
 
         }
 
         private void btnLinearReadPK_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            byte[] read_data = new byte[800];
-            byte[] pk_key = new byte[6];
-            ushort linear_address = 0;
-            ushort data_length = 0;
-            ushort bytes_ret = 0;
-            byte auth_mode = 0;
             try
             {
-                GL.FunctionStart = true;
-                if (rbAUTH1A.Checked) { auth_mode = AUTH1A; } else { auth_mode = AUTH1B; };
+                GL.FunctionOn          = true;
+
+                
+                byte[] baKeyPK         = new byte[6];
+                byte bCounter          = 0;
+                DL_STATUS iFResult;
+                
 
                 if (txtLinearAddressPK.Text == String.Empty)
                 {
-                    MessageBox.Show("You must enter LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("You must enter  the LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtLinearAddressPK.Focus();
                     return;
                 }
                 if (txtDataLengthPK.Text == String.Empty)
                 {
-                    MessageBox.Show("You must enter DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("You must enter  the DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtDataLengthPK.Focus();
                     return;
                 }
-                linear_address = Convert.ToUInt16(txtLinearAddressPK.Text);
-                data_length = Convert.ToUInt16(txtDataLengthPK.Text);
-                byte count = 0;
+
+                ushort usLinearAddress = Convert.ToUInt16(txtLinearAddressPK.Text);
+                ushort usDataLength = Convert.ToUInt16(txtDataLengthPK.Text);
+                ushort usBytesRet = 0;
+                byte[] baReadData = new byte[usDataLength];
+                byte bAuthMode = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;    
+                
                 for (int i = 0; i < pnlAuth.Controls.Count; ++i)
                 {
                     if (pnlAuth.Controls[i].Name == "txtPKKey")
                     {
-                        pk_key[count] = Convert.ToByte(pnlAuth.Controls[i].Text.ToString());
-                        count++;
+                        baKeyPK[bCounter] = Convert.ToByte(pnlAuth.Controls[i].Text.ToString());
+                        bCounter++;
                     }
                 }
                 unsafe
                 {
-                    fixed (byte* PData = read_data)
-                    {
-                        fixed (byte* PKKey = pk_key)
-                        {
-                            result = ufCoder1x.LinearRead_PK(PData, linear_address, data_length, &bytes_ret, auth_mode, PKKey);
-                        }
+                    fixed (byte* PData   = baReadData,
+                                 PKEY_PK = baKeyPK )
+                    {                        
+                            iFResult = uFCoder1x.LinearRead_PK(PData, usLinearAddress, usDataLength, &usBytesRet, bAuthMode, PKEY_PK);                        
                     }
                 }
-                if (result == DL_OK)
-                {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    if (chkAsciiPK.Checked)
-                    {
-                        for (int br = 0; br < data_length; br++)
-                        {
-                            if ((char)read_data[br] < 32)
-                            {
-                                read_data[br] = 127;
-                            }
-                        }
-                    }
-                    read_data[data_length] = 0;
-                    txtLinearReadPK.Text = System.Text.ASCIIEncoding.ASCII.GetString(read_data);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                    txtReadBytesPK.Text = bytes_ret.ToString();
+                if (iFResult == DL_OK)
+                {                                                       
+                    txtLinearReadPK.Text = System.Text.ASCIIEncoding.ASCII.GetString(baReadData);
+                    txtReadBytesPK.Text  = usBytesRet.ToString();
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
-                {
-                    read_data[bytes_ret] = 0;
-                    txtLinearReadPK.Text = System.Text.ASCIIEncoding.ASCII.GetString(read_data);
-                    txtReadBytesPK.Text = bytes_ret.ToString();
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                    
-                }
+                {                    
+                    txtLinearReadPK.Text = System.Text.ASCIIEncoding.ASCII.GetString(baReadData);
+                    txtReadBytesPK.Text  = usBytesRet.ToString();
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                } 
                 
             }
             catch (System.FormatException ex)
@@ -374,25 +337,22 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }        
         }
 
         private void btnLinearWrite_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
-            
-            byte key_index = 0;
-            byte auth_mode = 0;
-            ushort linear_address = 0;
-            ushort data_length = 0;
-            ushort bytes_ret = 0;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn = true;
+                                                               
+                DL_STATUS iFResult;
+
                 if (txtLinearWrite.Text.Trim() == String.Empty)
                 {
                     MessageBox.Show("You must enter any data!", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -402,55 +362,44 @@ namespace Mifare
                 
                 if (txtLinearAddressWrite.Text == String.Empty)
                 {
-                    MessageBox.Show("You must enter LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtLinearAddressWrite.Focus();
                     return;
                 }
                 if (txtDataLengthWrite.Text == String.Empty)
                 {
-                    MessageBox.Show("You must enter DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtDataLengthWrite.Focus();
                     return;
                 }
-               
-                key_index = System.Convert.ToByte(cboKeyIndex.Text);
-                if (rbAUTH1A.Checked)
-                   { auth_mode = AUTH1A; } 
-                else 
-                   { auth_mode = AUTH1B; };
-                
-                linear_address = Convert.ToUInt16(txtLinearAddressWrite.Text);
-                data_length = Convert.ToUInt16(txtDataLengthWrite.Text);
-              
-               
-
-                byte[] write_data = new byte[MAX_LINEAR_BYTE];
-                             
-                write_data = System.Text.Encoding.ASCII.GetBytes(txtLinearWrite.Text); 
-               
-                             
+                ushort usLinearAddress = Convert.ToUInt16(txtLinearAddressWrite.Text);
+                ushort usDataLength = Convert.ToUInt16(txtDataLengthWrite.Text);
+                byte[] baWriteData = new byte[usDataLength];
+                byte bAuthMode = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+                ushort usBytesRet = 0;
+                byte bKeyIndex = Convert.ToByte(cboKeyIndex.Text);
+                baWriteData     =  System.Text.Encoding.ASCII.GetBytes(txtLinearWrite.Text);
+                                                                                                                                                                                                    
                 unsafe
                 {
-                    fixed (byte* PData = GL.WriteArray(write_data,data_length,MAX_LINEAR_BYTE))
+                    fixed (byte* PData =baWriteData)
                     {
-                        result = ufCoder1x.LinearWrite(PData, linear_address, data_length, &bytes_ret, auth_mode, key_index);
+                        iFResult = uFCoder1x.LinearWrite(PData, usLinearAddress, usDataLength, &usBytesRet, bAuthMode, bKeyIndex);
                     }
                 }
 
-                if (result == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    txtBytesWritten.Text = bytes_ret.ToString();
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    txtBytesWritten.Text = usBytesRet.ToString();
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    txtBytesWritten.Text = bytes_ret.ToString();
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }
-                
-
+                    txtBytesWritten.Text = usBytesRet.ToString();
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                }                
             }
             catch (System.FormatException ex)
             {
@@ -458,25 +407,23 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }      
         }
 
         private void btnLinearWriteAKM1_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            byte[] write_data = new byte[MAX_LINEAR_BYTE];
-            byte auth_mode = 0;
-            ushort linear_address = 0;
-            ushort data_length = 0;
-            ushort bytes_ret = 0;
-           
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn = true;
+
+                              
+                DL_STATUS iFResult;
+
                 if (txtLinearWriteAKM1.Text.Trim() == String.Empty)
                 {
                     MessageBox.Show("You must enter any data !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -485,44 +432,44 @@ namespace Mifare
                 }
                 if (txtLinearAddressWriteAKM1.Text == String.Empty)
                 {
-                    MessageBox.Show("You must enter LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtLinearAddressWriteAKM1.Focus();
                     return;
                 }
                 if (txtDataLengthWriteAKM1.Text == String.Empty)
                 {
-                    MessageBox.Show("You must enter DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtDataLengthWriteAKM1.Focus();
                     return;
                 }
-               
-                if (rbAUTH1A.Checked) { auth_mode = AUTH1A; } else { auth_mode = AUTH1B; };
+                ushort usLinearAddress = Convert.ToUInt16(txtLinearAddressWriteAKM1.Text);
+                ushort usDataLength = Convert.ToUInt16(txtDataLengthWriteAKM1.Text);
+                byte[] baWriteData = new byte[usDataLength];
+                byte bAuthMode = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+                ushort usBytesRet = 0;                              
+                baWriteData     =  System.Text.Encoding.ASCII.GetBytes(txtLinearWriteAKM1.Text);
               
-                linear_address = Convert.ToUInt16(txtLinearAddressWriteAKM1.Text);
-                data_length = Convert.ToUInt16(txtDataLengthWriteAKM1.Text);
-              
-                write_data = System.Text.Encoding.ASCII.GetBytes(txtLinearWriteAKM1.Text);
 
                 unsafe
                 {
-                    fixed (byte* PData = GL.WriteArray(write_data, data_length, MAX_LINEAR_BYTE))
+                    fixed (byte* PData = baWriteData)
                     {
-                        result = ufCoder1x.LinearWrite_AKM1(PData, linear_address, data_length, &bytes_ret, auth_mode);
+                        iFResult = uFCoder1x.LinearWrite_AKM1(PData, usLinearAddress, usDataLength, &usBytesRet, bAuthMode);
                     }
                 }
 
-                if (result == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    txtBytesWrittenAKM1.Text = bytes_ret.ToString();
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    txtBytesWrittenAKM1.Text = usBytesRet.ToString();
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    txtBytesWrittenAKM1.Text = bytes_ret.ToString();
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }
+                    txtBytesWrittenAKM1.Text = usBytesRet.ToString();
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                } 
                 
 
             }
@@ -536,24 +483,22 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }      
         }
 
         private void btnLinearWriteAKM2_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            byte[] write_data = new byte[MAX_LINEAR_BYTE];
-            byte auth_mode = 0;
-            ushort linear_address = 0;
-            ushort data_length = 0;
-            ushort bytes_ret = 0;
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn = true;
+
+                DL_STATUS iFResult;
+
                 if (txtLinearWriteAKM2.Text.Trim() == String.Empty)
                 {
                     MessageBox.Show("You must enter any data !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -562,43 +507,45 @@ namespace Mifare
                 }
                 if (txtLinearAddressWriteAKM2.Text == String.Empty)
                 {
-                    MessageBox.Show("You must enter LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtLinearAddressWriteAKM2.Focus();
                     return;
                 }
                 if (txtDataLengthWriteAKM2.Text == String.Empty)
                 {
-                    MessageBox.Show("You must enter DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtDataLengthWriteAKM2.Focus();
                     return;
                 }
+
+                ushort usLinearAddress = Convert.ToUInt16(txtLinearAddressWriteAKM2.Text);
+                ushort usDataLength = Convert.ToUInt16(txtDataLengthWriteAKM2.Text);
+                byte[] baWriteData = new byte[usDataLength];
+                byte bAuthMode = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+                ushort usBytesRet = 0;
+                baWriteData     =  System.Text.Encoding.ASCII.GetBytes(txtLinearWriteAKM2.Text);
                 
-                if (rbAUTH1A.Checked) { auth_mode = AUTH1A; } else { auth_mode = AUTH1B; };
-                linear_address = Convert.ToUInt16(txtLinearAddressWriteAKM2.Text);
-                data_length = Convert.ToUInt16(txtDataLengthWriteAKM2.Text);
-               
-                write_data = System.Text.Encoding.ASCII.GetBytes(txtLinearWriteAKM2.Text);
 
                 unsafe
                 {
-                    fixed (byte* PData = GL.WriteArray(write_data, data_length, MAX_LINEAR_BYTE))
+                    fixed (byte* PData = baWriteData)
                     {
-                        result = ufCoder1x.LinearWrite_AKM2(PData, linear_address, data_length, &bytes_ret, auth_mode);
+                        iFResult = uFCoder1x.LinearWrite_AKM2(PData, usLinearAddress, usDataLength, &usBytesRet, bAuthMode);
                     }
                 }
 
-                if (result == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    txtBytesWrittenAKM2.Text = bytes_ret.ToString();
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    txtBytesWrittenAKM2.Text = usBytesRet.ToString();
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    txtBytesWrittenAKM2.Text = bytes_ret.ToString();
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }                
+                    txtBytesWrittenAKM2.Text = usBytesRet.ToString();
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                }               
             }
             catch (System.FormatException ex)
             {
@@ -610,25 +557,25 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }      
         }
 
         private void btnLinearWritePK_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            byte[] write_data = new byte[MAX_LINEAR_BYTE];
-            byte[] pk_key = new byte[6];
-            byte auth_mode = 0;
-            ushort linear_address = 0;
-            ushort data_length = 0;
-            ushort bytes_ret = 0;
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn = true;
+
+                byte[] baKeyPK = new byte[6];
+                byte bCounter = 0;
+                DL_STATUS iFResult;
+                
+
                 if (txtLinearWritePK.Text.Trim() == String.Empty)
                 {
                     MessageBox.Show("You must enter any data !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -637,54 +584,53 @@ namespace Mifare
                 }
                 if (txtLinearAddressWritePK.Text == String.Empty)
                 {
-                    MessageBox.Show("You must enter LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the LINEAR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtLinearAddressWritePK.Focus();
                     return;
                 }
                 if (txtDataLengthWritePK.Text == String.Empty)
                 {
-                    MessageBox.Show("You must enter DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the DATA LENGTH !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtDataLengthWritePK.Focus();
                     return;
                 }
                 
-                if (rbAUTH1A.Checked) { auth_mode = AUTH1A; } else { auth_mode = AUTH1B; };
-                linear_address = Convert.ToUInt16(txtLinearAddressWritePK.Text);
-                data_length = Convert.ToUInt16(txtDataLengthWritePK.Text);
-               
-                write_data = System.Text.Encoding.ASCII.GetBytes(txtLinearWritePK.Text);
-                byte count = 0;
+                                                              
                 for (int i = 0; i < pnlAuth.Controls.Count; ++i)
                 {
                     if (pnlAuth.Controls[i].Name == "txtPKKey")
                     {
-                        pk_key[count] = Convert.ToByte(pnlAuth.Controls[i].Text.ToString());
-                        count++;
+                        baKeyPK[bCounter] = Convert.ToByte(pnlAuth.Controls[i].Text.ToString());
+                        bCounter++;
                     }
                 }
+               
+                ushort usLinearAddress = Convert.ToUInt16(txtLinearAddressWritePK.Text);
+                ushort usDataLength = Convert.ToUInt16(txtDataLengthWritePK.Text);
+                byte[] baWriteData = new byte[usDataLength];
+                byte bAuthMode = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+                ushort usBytesRet = 0;
+                baWriteData = System.Text.Encoding.ASCII.GetBytes(txtLinearWritePK.Text);
                 unsafe
                 {
-                    fixed (byte* PData = GL.WriteArray(write_data, data_length, MAX_LINEAR_BYTE))
-                    {
-                        fixed(byte* PKKey=pk_key)
-                        {
-                        result = ufCoder1x.LinearWrite_PK(PData, linear_address, data_length, &bytes_ret, auth_mode,PKKey);                
-                        }
-                    }
+                    fixed (byte* PData = baWriteData, PKEY_PK = baKeyPK)
+                    {                        
+                        iFResult = uFCoder1x.LinearWrite_PK(PData, usLinearAddress, usDataLength, &usBytesRet, bAuthMode,PKEY_PK);               
+                    }                   
                 }
 
-                if (result == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    txtBytesWrittenPK.Text = bytes_ret.ToString();
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    txtBytesWrittenPK.Text = usBytesRet.ToString();
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    txtBytesWrittenPK.Text = bytes_ret.ToString();
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
-                }
+                    txtBytesWrittenPK.Text = usBytesRet.ToString();
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
+                } 
                
 
             }
@@ -698,11 +644,33 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;
+                 
             }          
         }
+
+        private void txtLinearWrite_TextChanged(object sender, EventArgs e)
+        {
+            txtDataLengthWrite.Text = txtLinearWrite.TextLength.ToString();
         }
+
+        private void txtLinearWriteAKM1_TextChanged(object sender, EventArgs e)
+        {
+            txtDataLengthWriteAKM1.Text = txtLinearWriteAKM1.TextLength.ToString();
+        }
+
+        private void txtLinearWriteAKM2_TextChanged(object sender, EventArgs e)
+        {
+            txtDataLengthWriteAKM2.Text = txtLinearWriteAKM2.TextLength.ToString();
+        }
+
+        private void txtLinearWritePK_TextChanged(object sender, EventArgs e)
+        {
+            txtDataLengthWritePK.Text = txtLinearWritePK.TextLength.ToString();
+        }
+
+        
+      }
 
     }
 

@@ -1,4 +1,4 @@
-﻿namespace Mifare
+﻿namespace uFrAdvance
 {
     partial class frmuFrAdvance
     {
@@ -50,9 +50,27 @@
             this.mnuSectorTrailerWriteItems = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuLinearFormatCardItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SEP3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuHardwareFirmwareVersionItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuExitItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuViewAllItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlReader = new System.Windows.Forms.Panel();
+            this.txtCardSerial = new System.Windows.Forms.TextBox();
+            this.lblUID = new System.Windows.Forms.Label();
+            this.txtUIDSize = new System.Windows.Forms.TextBox();
+            this.lblUIDSize = new System.Windows.Forms.Label();
+            this.pgReaderUserData = new System.Windows.Forms.TabControl();
+            this.pnlReaderKey = new System.Windows.Forms.TabPage();
+            this.lblKeyIndex = new System.Windows.Forms.Label();
+            this.btnReaderKeyWrite = new System.Windows.Forms.Button();
+            this.cboKeyIndex = new System.Windows.Forms.ComboBox();
+            this.chkHex = new System.Windows.Forms.CheckBox();
+            this.tabUserData = new System.Windows.Forms.TabPage();
+            this.btnWriteUserData = new System.Windows.Forms.Button();
+            this.txtNewUserData = new System.Windows.Forms.TextBox();
+            this.lblNewUserData = new System.Windows.Forms.Label();
+            this.txtUserData = new System.Windows.Forms.TextBox();
+            this.lblUserData = new System.Windows.Forms.Label();
             this.stbReader = new System.Windows.Forms.StatusStrip();
             this.pnlConn = new System.Windows.Forms.ToolStripStatusLabel();
             this.pnlErr_code = new System.Windows.Forms.ToolStripStatusLabel();
@@ -65,8 +83,6 @@
             this.lblLightMode = new System.Windows.Forms.Label();
             this.cboLightMode = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtCardSerial = new System.Windows.Forms.TextBox();
-            this.lblCardSerial = new System.Windows.Forms.Label();
             this.txtCardType = new System.Windows.Forms.TextBox();
             this.lblCardType = new System.Windows.Forms.Label();
             this.txtReaderSerial = new System.Windows.Forms.TextBox();
@@ -74,30 +90,19 @@
             this.txtReaderType = new System.Windows.Forms.TextBox();
             this.lblReaderType = new System.Windows.Forms.Label();
             this.pnlConteiner = new System.Windows.Forms.Panel();
-            this.pgReaderUserData = new System.Windows.Forms.TabControl();
-            this.pnlReaderKey = new System.Windows.Forms.TabPage();
-            this.tabUserData = new System.Windows.Forms.TabPage();
-            this.lblKeyIndex = new System.Windows.Forms.Label();
-            this.btnReaderKeyWrite = new System.Windows.Forms.Button();
-            this.cboKeyIndex = new System.Windows.Forms.ComboBox();
-            this.chkHex = new System.Windows.Forms.CheckBox();
-            this.btnWriteUserData = new System.Windows.Forms.Button();
-            this.txtNewUserData = new System.Windows.Forms.TextBox();
-            this.lblNewUserData = new System.Windows.Forms.Label();
-            this.txtUserData = new System.Windows.Forms.TextBox();
-            this.lblUserData = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.stbCard.SuspendLayout();
             this.mnuMeni.SuspendLayout();
             this.pnlReader.SuspendLayout();
-            this.stbReader.SuspendLayout();
             this.pgReaderUserData.SuspendLayout();
             this.pnlReaderKey.SuspendLayout();
             this.tabUserData.SuspendLayout();
+            this.stbReader.SuspendLayout();
             this.SuspendLayout();
             // 
             // stbCard
             // 
-            this.stbCard.BackColor = System.Drawing.Color.Silver;
+            this.stbCard.BackColor = System.Drawing.SystemColors.Control;
             this.stbCard.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pnlCardStatus,
             this.stbErrCode,
@@ -129,7 +134,8 @@
             // 
             // stbErr_explain
             // 
-            this.stbErr_explain.BackColor = System.Drawing.Color.Silver;
+            this.stbErr_explain.BackColor = System.Drawing.SystemColors.Control;
+            this.stbErr_explain.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedOuter;
             this.stbErr_explain.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stbErr_explain.Name = "stbErr_explain";
             this.stbErr_explain.Size = new System.Drawing.Size(358, 17);
@@ -170,6 +176,8 @@
             this.mnuSectorTrailerWriteItems,
             this.mnuLinearFormatCardItem,
             this.SEP3,
+            this.mnuHardwareFirmwareVersionItem,
+            this.toolStripSeparator1,
             this.mnuExitItem});
             this.mnuFunctionsItem.Name = "mnuFunctionsItem";
             this.mnuFunctionsItem.Size = new System.Drawing.Size(72, 20);
@@ -263,6 +271,18 @@
             this.SEP3.Name = "SEP3";
             this.SEP3.Size = new System.Drawing.Size(314, 6);
             // 
+            // mnuHardwareFirmwareVersionItem
+            // 
+            this.mnuHardwareFirmwareVersionItem.Name = "mnuHardwareFirmwareVersionItem";
+            this.mnuHardwareFirmwareVersionItem.Size = new System.Drawing.Size(317, 22);
+            this.mnuHardwareFirmwareVersionItem.Text = "Reader Hardware/Firmware Version";
+            this.mnuHardwareFirmwareVersionItem.Click += new System.EventHandler(this.mnuHardwareFirmwareVersionItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(314, 6);
+            // 
             // mnuExitItem
             // 
             this.mnuExitItem.Name = "mnuExitItem";
@@ -281,6 +301,10 @@
             // pnlReader
             // 
             this.pnlReader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlReader.Controls.Add(this.txtCardSerial);
+            this.pnlReader.Controls.Add(this.lblUID);
+            this.pnlReader.Controls.Add(this.txtUIDSize);
+            this.pnlReader.Controls.Add(this.lblUIDSize);
             this.pnlReader.Controls.Add(this.pgReaderUserData);
             this.pnlReader.Controls.Add(this.stbReader);
             this.pnlReader.Controls.Add(this.btnSoftRestart);
@@ -291,8 +315,6 @@
             this.pnlReader.Controls.Add(this.lblLightMode);
             this.pnlReader.Controls.Add(this.cboLightMode);
             this.pnlReader.Controls.Add(this.panel1);
-            this.pnlReader.Controls.Add(this.txtCardSerial);
-            this.pnlReader.Controls.Add(this.lblCardSerial);
             this.pnlReader.Controls.Add(this.txtCardType);
             this.pnlReader.Controls.Add(this.lblCardType);
             this.pnlReader.Controls.Add(this.txtReaderSerial);
@@ -305,9 +327,217 @@
             this.pnlReader.Size = new System.Drawing.Size(545, 277);
             this.pnlReader.TabIndex = 4;
             // 
+            // txtCardSerial
+            // 
+            this.txtCardSerial.BackColor = System.Drawing.Color.White;
+            this.txtCardSerial.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCardSerial.Location = new System.Drawing.Point(357, 41);
+            this.txtCardSerial.Name = "txtCardSerial";
+            this.txtCardSerial.ReadOnly = true;
+            this.txtCardSerial.Size = new System.Drawing.Size(152, 21);
+            this.txtCardSerial.TabIndex = 21;
+            this.txtCardSerial.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblUID
+            // 
+            this.lblUID.AutoSize = true;
+            this.lblUID.Location = new System.Drawing.Point(284, 44);
+            this.lblUID.Name = "lblUID";
+            this.lblUID.Size = new System.Drawing.Size(72, 13);
+            this.lblUID.TabIndex = 20;
+            this.lblUID.Text = "Card Serial";
+            // 
+            // txtUIDSize
+            // 
+            this.txtUIDSize.BackColor = System.Drawing.Color.White;
+            this.txtUIDSize.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUIDSize.Location = new System.Drawing.Point(471, 14);
+            this.txtUIDSize.Name = "txtUIDSize";
+            this.txtUIDSize.ReadOnly = true;
+            this.txtUIDSize.Size = new System.Drawing.Size(38, 21);
+            this.txtUIDSize.TabIndex = 19;
+            this.txtUIDSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip.SetToolTip(this.txtUIDSize, "Card UID Size");
+            // 
+            // lblUIDSize
+            // 
+            this.lblUIDSize.AutoSize = true;
+            this.lblUIDSize.Location = new System.Drawing.Point(408, 18);
+            this.lblUIDSize.Name = "lblUIDSize";
+            this.lblUIDSize.Size = new System.Drawing.Size(57, 13);
+            this.lblUIDSize.TabIndex = 18;
+            this.lblUIDSize.Text = "UID Size";
+            // 
+            // pgReaderUserData
+            // 
+            this.pgReaderUserData.Controls.Add(this.pnlReaderKey);
+            this.pgReaderUserData.Controls.Add(this.tabUserData);
+            this.pgReaderUserData.Location = new System.Drawing.Point(12, 152);
+            this.pgReaderUserData.Name = "pgReaderUserData";
+            this.pgReaderUserData.SelectedIndex = 0;
+            this.pgReaderUserData.Size = new System.Drawing.Size(509, 96);
+            this.pgReaderUserData.TabIndex = 0;
+            // 
+            // pnlReaderKey
+            // 
+            this.pnlReaderKey.Controls.Add(this.lblKeyIndex);
+            this.pnlReaderKey.Controls.Add(this.btnReaderKeyWrite);
+            this.pnlReaderKey.Controls.Add(this.cboKeyIndex);
+            this.pnlReaderKey.Controls.Add(this.chkHex);
+            this.pnlReaderKey.Location = new System.Drawing.Point(4, 22);
+            this.pnlReaderKey.Name = "pnlReaderKey";
+            this.pnlReaderKey.Padding = new System.Windows.Forms.Padding(3);
+            this.pnlReaderKey.Size = new System.Drawing.Size(501, 70);
+            this.pnlReaderKey.TabIndex = 0;
+            this.pnlReaderKey.Text = "Reader Key";
+            this.pnlReaderKey.UseVisualStyleBackColor = true;
+            // 
+            // lblKeyIndex
+            // 
+            this.lblKeyIndex.AutoSize = true;
+            this.lblKeyIndex.Location = new System.Drawing.Point(269, 9);
+            this.lblKeyIndex.Name = "lblKeyIndex";
+            this.lblKeyIndex.Size = new System.Drawing.Size(66, 13);
+            this.lblKeyIndex.TabIndex = 34;
+            this.lblKeyIndex.Text = "Key Index";
+            // 
+            // btnReaderKeyWrite
+            // 
+            this.btnReaderKeyWrite.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReaderKeyWrite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReaderKeyWrite.Location = new System.Drawing.Point(355, 9);
+            this.btnReaderKeyWrite.Name = "btnReaderKeyWrite";
+            this.btnReaderKeyWrite.Size = new System.Drawing.Size(138, 50);
+            this.btnReaderKeyWrite.TabIndex = 33;
+            this.btnReaderKeyWrite.Text = "Reader Key Write";
+            this.btnReaderKeyWrite.UseVisualStyleBackColor = true;
+            this.btnReaderKeyWrite.Click += new System.EventHandler(this.btnReaderKeyWrite_Click);
+            // 
+            // cboKeyIndex
+            // 
+            this.cboKeyIndex.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cboKeyIndex.FormattingEnabled = true;
+            this.cboKeyIndex.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31"});
+            this.cboKeyIndex.Location = new System.Drawing.Point(285, 38);
+            this.cboKeyIndex.MaxDropDownItems = 15;
+            this.cboKeyIndex.Name = "cboKeyIndex";
+            this.cboKeyIndex.Size = new System.Drawing.Size(38, 21);
+            this.cboKeyIndex.TabIndex = 32;
+            // 
+            // chkHex
+            // 
+            this.chkHex.AutoSize = true;
+            this.chkHex.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkHex.Location = new System.Drawing.Point(30, 42);
+            this.chkHex.Name = "chkHex";
+            this.chkHex.Size = new System.Drawing.Size(48, 17);
+            this.chkHex.TabIndex = 31;
+            this.chkHex.Text = "Hex";
+            this.chkHex.UseVisualStyleBackColor = true;
+            this.chkHex.CheckedChanged += new System.EventHandler(this.chkHex_CheckedChanged);
+            // 
+            // tabUserData
+            // 
+            this.tabUserData.Controls.Add(this.btnWriteUserData);
+            this.tabUserData.Controls.Add(this.txtNewUserData);
+            this.tabUserData.Controls.Add(this.lblNewUserData);
+            this.tabUserData.Controls.Add(this.txtUserData);
+            this.tabUserData.Controls.Add(this.lblUserData);
+            this.tabUserData.Location = new System.Drawing.Point(4, 22);
+            this.tabUserData.Name = "tabUserData";
+            this.tabUserData.Padding = new System.Windows.Forms.Padding(3);
+            this.tabUserData.Size = new System.Drawing.Size(501, 70);
+            this.tabUserData.TabIndex = 1;
+            this.tabUserData.Text = "Write User Data";
+            this.tabUserData.UseVisualStyleBackColor = true;
+            // 
+            // btnWriteUserData
+            // 
+            this.btnWriteUserData.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnWriteUserData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnWriteUserData.Location = new System.Drawing.Point(342, 17);
+            this.btnWriteUserData.Name = "btnWriteUserData";
+            this.btnWriteUserData.Size = new System.Drawing.Size(153, 34);
+            this.btnWriteUserData.TabIndex = 27;
+            this.btnWriteUserData.Text = "Write User Data";
+            this.btnWriteUserData.UseVisualStyleBackColor = true;
+            this.btnWriteUserData.Click += new System.EventHandler(this.btnWriteUserData_Click);
+            // 
+            // txtNewUserData
+            // 
+            this.txtNewUserData.BackColor = System.Drawing.Color.White;
+            this.txtNewUserData.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewUserData.Location = new System.Drawing.Point(177, 30);
+            this.txtNewUserData.MaxLength = 16;
+            this.txtNewUserData.Name = "txtNewUserData";
+            this.txtNewUserData.Size = new System.Drawing.Size(143, 21);
+            this.txtNewUserData.TabIndex = 26;
+            this.txtNewUserData.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblNewUserData
+            // 
+            this.lblNewUserData.AutoSize = true;
+            this.lblNewUserData.Location = new System.Drawing.Point(174, 14);
+            this.lblNewUserData.Name = "lblNewUserData";
+            this.lblNewUserData.Size = new System.Drawing.Size(92, 13);
+            this.lblNewUserData.TabIndex = 25;
+            this.lblNewUserData.Text = "New User Data";
+            // 
+            // txtUserData
+            // 
+            this.txtUserData.BackColor = System.Drawing.Color.LightGray;
+            this.txtUserData.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUserData.Location = new System.Drawing.Point(27, 30);
+            this.txtUserData.Name = "txtUserData";
+            this.txtUserData.ReadOnly = true;
+            this.txtUserData.Size = new System.Drawing.Size(144, 21);
+            this.txtUserData.TabIndex = 24;
+            this.txtUserData.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblUserData
+            // 
+            this.lblUserData.AutoSize = true;
+            this.lblUserData.Location = new System.Drawing.Point(24, 14);
+            this.lblUserData.Name = "lblUserData";
+            this.lblUserData.Size = new System.Drawing.Size(64, 13);
+            this.lblUserData.TabIndex = 23;
+            this.lblUserData.Text = "User Data";
+            // 
             // stbReader
             // 
-            this.stbReader.BackColor = System.Drawing.Color.Silver;
+            this.stbReader.BackColor = System.Drawing.SystemColors.Control;
             this.stbReader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pnlConn,
             this.pnlErr_code,
@@ -322,6 +552,7 @@
             // pnlConn
             // 
             this.pnlConn.AutoSize = false;
+            this.pnlConn.BackColor = System.Drawing.SystemColors.Control;
             this.pnlConn.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.pnlConn.Font = new System.Drawing.Font("Verdana", 8.25F);
             this.pnlConn.Name = "pnlConn";
@@ -348,6 +579,7 @@
             // btnSoftRestart
             // 
             this.btnSoftRestart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSoftRestart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSoftRestart.Location = new System.Drawing.Point(370, 117);
             this.btnSoftRestart.Name = "btnSoftRestart";
             this.btnSoftRestart.Size = new System.Drawing.Size(151, 29);
@@ -359,6 +591,7 @@
             // btnReaderReset
             // 
             this.btnReaderReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReaderReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReaderReset.Location = new System.Drawing.Point(370, 85);
             this.btnReaderReset.Name = "btnReaderReset";
             this.btnReaderReset.Size = new System.Drawing.Size(151, 31);
@@ -370,6 +603,7 @@
             // btnReaderUISignal
             // 
             this.btnReaderUISignal.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReaderUISignal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReaderUISignal.Location = new System.Drawing.Point(236, 88);
             this.btnReaderUISignal.Name = "btnReaderUISignal";
             this.btnReaderUISignal.Size = new System.Drawing.Size(126, 48);
@@ -434,44 +668,24 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Location = new System.Drawing.Point(21, 71);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(499, 4);
+            this.panel1.Size = new System.Drawing.Size(502, 4);
             this.panel1.TabIndex = 8;
-            // 
-            // txtCardSerial
-            // 
-            this.txtCardSerial.BackColor = System.Drawing.Color.White;
-            this.txtCardSerial.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCardSerial.Location = new System.Drawing.Point(395, 42);
-            this.txtCardSerial.Name = "txtCardSerial";
-            this.txtCardSerial.ReadOnly = true;
-            this.txtCardSerial.Size = new System.Drawing.Size(126, 22);
-            this.txtCardSerial.TabIndex = 7;
-            this.txtCardSerial.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lblCardSerial
-            // 
-            this.lblCardSerial.AutoSize = true;
-            this.lblCardSerial.Location = new System.Drawing.Point(309, 44);
-            this.lblCardSerial.Name = "lblCardSerial";
-            this.lblCardSerial.Size = new System.Drawing.Size(72, 13);
-            this.lblCardSerial.TabIndex = 6;
-            this.lblCardSerial.Text = "Card Serial";
             // 
             // txtCardType
             // 
             this.txtCardType.BackColor = System.Drawing.Color.White;
-            this.txtCardType.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCardType.Location = new System.Drawing.Point(395, 14);
+            this.txtCardType.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCardType.Location = new System.Drawing.Point(357, 13);
             this.txtCardType.Name = "txtCardType";
             this.txtCardType.ReadOnly = true;
-            this.txtCardType.Size = new System.Drawing.Size(126, 22);
+            this.txtCardType.Size = new System.Drawing.Size(38, 21);
             this.txtCardType.TabIndex = 5;
             this.txtCardType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblCardType
             // 
             this.lblCardType.AutoSize = true;
-            this.lblCardType.Location = new System.Drawing.Point(309, 18);
+            this.lblCardType.Location = new System.Drawing.Point(284, 17);
             this.lblCardType.Name = "lblCardType";
             this.lblCardType.Size = new System.Drawing.Size(67, 13);
             this.lblCardType.TabIndex = 4;
@@ -480,18 +694,18 @@
             // txtReaderSerial
             // 
             this.txtReaderSerial.BackColor = System.Drawing.Color.White;
-            this.txtReaderSerial.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReaderSerial.Location = new System.Drawing.Point(104, 42);
+            this.txtReaderSerial.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReaderSerial.Location = new System.Drawing.Point(105, 42);
             this.txtReaderSerial.Name = "txtReaderSerial";
             this.txtReaderSerial.ReadOnly = true;
-            this.txtReaderSerial.Size = new System.Drawing.Size(126, 22);
+            this.txtReaderSerial.Size = new System.Drawing.Size(126, 21);
             this.txtReaderSerial.TabIndex = 3;
             this.txtReaderSerial.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblReaderSerial
             // 
             this.lblReaderSerial.AutoSize = true;
-            this.lblReaderSerial.Location = new System.Drawing.Point(18, 44);
+            this.lblReaderSerial.Location = new System.Drawing.Point(19, 44);
             this.lblReaderSerial.Name = "lblReaderSerial";
             this.lblReaderSerial.Size = new System.Drawing.Size(85, 13);
             this.lblReaderSerial.TabIndex = 2;
@@ -500,18 +714,18 @@
             // txtReaderType
             // 
             this.txtReaderType.BackColor = System.Drawing.Color.White;
-            this.txtReaderType.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReaderType.Location = new System.Drawing.Point(104, 14);
+            this.txtReaderType.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReaderType.Location = new System.Drawing.Point(105, 14);
             this.txtReaderType.Name = "txtReaderType";
             this.txtReaderType.ReadOnly = true;
-            this.txtReaderType.Size = new System.Drawing.Size(126, 22);
+            this.txtReaderType.Size = new System.Drawing.Size(126, 21);
             this.txtReaderType.TabIndex = 1;
             this.txtReaderType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblReaderType
             // 
             this.lblReaderType.AutoSize = true;
-            this.lblReaderType.Location = new System.Drawing.Point(18, 18);
+            this.lblReaderType.Location = new System.Drawing.Point(19, 18);
             this.lblReaderType.Name = "lblReaderType";
             this.lblReaderType.Size = new System.Drawing.Size(80, 13);
             this.lblReaderType.TabIndex = 0;
@@ -524,171 +738,6 @@
             this.pnlConteiner.Name = "pnlConteiner";
             this.pnlConteiner.Size = new System.Drawing.Size(545, 374);
             this.pnlConteiner.TabIndex = 5;
-            // 
-            // pgReaderUserData
-            // 
-            this.pgReaderUserData.Controls.Add(this.pnlReaderKey);
-            this.pgReaderUserData.Controls.Add(this.tabUserData);
-            this.pgReaderUserData.Location = new System.Drawing.Point(12, 152);
-            this.pgReaderUserData.Name = "pgReaderUserData";
-            this.pgReaderUserData.SelectedIndex = 0;
-            this.pgReaderUserData.Size = new System.Drawing.Size(509, 96);
-            this.pgReaderUserData.TabIndex = 0;
-            // 
-            // pnlReaderKey
-            // 
-            this.pnlReaderKey.Controls.Add(this.lblKeyIndex);
-            this.pnlReaderKey.Controls.Add(this.btnReaderKeyWrite);
-            this.pnlReaderKey.Controls.Add(this.cboKeyIndex);
-            this.pnlReaderKey.Controls.Add(this.chkHex);
-            this.pnlReaderKey.Location = new System.Drawing.Point(4, 22);
-            this.pnlReaderKey.Name = "pnlReaderKey";
-            this.pnlReaderKey.Padding = new System.Windows.Forms.Padding(3);
-            this.pnlReaderKey.Size = new System.Drawing.Size(501, 70);
-            this.pnlReaderKey.TabIndex = 0;
-            this.pnlReaderKey.Text = "Reader Key";
-            this.pnlReaderKey.UseVisualStyleBackColor = true;
-            // 
-            // tabUserData
-            // 
-            this.tabUserData.Controls.Add(this.btnWriteUserData);
-            this.tabUserData.Controls.Add(this.txtNewUserData);
-            this.tabUserData.Controls.Add(this.lblNewUserData);
-            this.tabUserData.Controls.Add(this.txtUserData);
-            this.tabUserData.Controls.Add(this.lblUserData);
-            this.tabUserData.Location = new System.Drawing.Point(4, 22);
-            this.tabUserData.Name = "tabUserData";
-            this.tabUserData.Padding = new System.Windows.Forms.Padding(3);
-            this.tabUserData.Size = new System.Drawing.Size(501, 70);
-            this.tabUserData.TabIndex = 1;
-            this.tabUserData.Text = "Write User Data";
-            this.tabUserData.UseVisualStyleBackColor = true;
-            // 
-            // lblKeyIndex
-            // 
-            this.lblKeyIndex.AutoSize = true;
-            this.lblKeyIndex.Location = new System.Drawing.Point(269, 9);
-            this.lblKeyIndex.Name = "lblKeyIndex";
-            this.lblKeyIndex.Size = new System.Drawing.Size(66, 13);
-            this.lblKeyIndex.TabIndex = 34;
-            this.lblKeyIndex.Text = "Key Index";
-            // 
-            // btnReaderKeyWrite
-            // 
-            this.btnReaderKeyWrite.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReaderKeyWrite.Location = new System.Drawing.Point(355, 9);
-            this.btnReaderKeyWrite.Name = "btnReaderKeyWrite";
-            this.btnReaderKeyWrite.Size = new System.Drawing.Size(138, 50);
-            this.btnReaderKeyWrite.TabIndex = 33;
-            this.btnReaderKeyWrite.Text = "Reader Key Write";
-            this.btnReaderKeyWrite.UseVisualStyleBackColor = true;
-            this.btnReaderKeyWrite.Click += new System.EventHandler(this.btnReaderKeyWrite_Click);
-            // 
-            // cboKeyIndex
-            // 
-            this.cboKeyIndex.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cboKeyIndex.FormattingEnabled = true;
-            this.cboKeyIndex.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31"});
-            this.cboKeyIndex.Location = new System.Drawing.Point(285, 38);
-            this.cboKeyIndex.MaxDropDownItems = 15;
-            this.cboKeyIndex.Name = "cboKeyIndex";
-            this.cboKeyIndex.Size = new System.Drawing.Size(38, 21);
-            this.cboKeyIndex.TabIndex = 32;
-            // 
-            // chkHex
-            // 
-            this.chkHex.AutoSize = true;
-            this.chkHex.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chkHex.Location = new System.Drawing.Point(30, 42);
-            this.chkHex.Name = "chkHex";
-            this.chkHex.Size = new System.Drawing.Size(48, 17);
-            this.chkHex.TabIndex = 31;
-            this.chkHex.Text = "Hex";
-            this.chkHex.UseVisualStyleBackColor = true;
-            this.chkHex.CheckedChanged += new System.EventHandler(this.chkHex_CheckedChanged);
-            // 
-            // btnWriteUserData
-            // 
-            this.btnWriteUserData.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnWriteUserData.Location = new System.Drawing.Point(342, 17);
-            this.btnWriteUserData.Name = "btnWriteUserData";
-            this.btnWriteUserData.Size = new System.Drawing.Size(153, 34);
-            this.btnWriteUserData.TabIndex = 27;
-            this.btnWriteUserData.Text = "Write User Data";
-            this.btnWriteUserData.UseVisualStyleBackColor = true;
-            this.btnWriteUserData.Click += new System.EventHandler(this.btnWriteUserData_Click);
-            // 
-            // txtNewUserData
-            // 
-            this.txtNewUserData.BackColor = System.Drawing.Color.White;
-            this.txtNewUserData.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNewUserData.Location = new System.Drawing.Point(177, 30);
-            this.txtNewUserData.MaxLength = 16;
-            this.txtNewUserData.Name = "txtNewUserData";
-            this.txtNewUserData.Size = new System.Drawing.Size(143, 21);
-            this.txtNewUserData.TabIndex = 26;
-            this.txtNewUserData.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lblNewUserData
-            // 
-            this.lblNewUserData.AutoSize = true;
-            this.lblNewUserData.Location = new System.Drawing.Point(174, 14);
-            this.lblNewUserData.Name = "lblNewUserData";
-            this.lblNewUserData.Size = new System.Drawing.Size(92, 13);
-            this.lblNewUserData.TabIndex = 25;
-            this.lblNewUserData.Text = "New User Data";
-            // 
-            // txtUserData
-            // 
-            this.txtUserData.BackColor = System.Drawing.Color.LightGray;
-            this.txtUserData.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUserData.Location = new System.Drawing.Point(27, 30);
-            this.txtUserData.Name = "txtUserData";
-            this.txtUserData.ReadOnly = true;
-            this.txtUserData.Size = new System.Drawing.Size(144, 21);
-            this.txtUserData.TabIndex = 24;
-            this.txtUserData.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lblUserData
-            // 
-            this.lblUserData.AutoSize = true;
-            this.lblUserData.Location = new System.Drawing.Point(24, 14);
-            this.lblUserData.Name = "lblUserData";
-            this.lblUserData.Size = new System.Drawing.Size(64, 13);
-            this.lblUserData.TabIndex = 23;
-            this.lblUserData.Text = "User Data";
             // 
             // frmuFrAdvance
             // 
@@ -707,21 +756,21 @@
             this.Name = "frmuFrAdvance";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MIFARE Card Reader";
-            this.Load += new System.EventHandler(this.frmMifare_Load);
+            this.Text = "uFr Advanced";
+            this.Load += new System.EventHandler(this.frmuFrAdvance_Load);
             this.stbCard.ResumeLayout(false);
             this.stbCard.PerformLayout();
             this.mnuMeni.ResumeLayout(false);
             this.mnuMeni.PerformLayout();
             this.pnlReader.ResumeLayout(false);
             this.pnlReader.PerformLayout();
-            this.stbReader.ResumeLayout(false);
-            this.stbReader.PerformLayout();
             this.pgReaderUserData.ResumeLayout(false);
             this.pnlReaderKey.ResumeLayout(false);
             this.pnlReaderKey.PerformLayout();
             this.tabUserData.ResumeLayout(false);
             this.tabUserData.PerformLayout();
+            this.stbReader.ResumeLayout(false);
+            this.stbReader.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -742,8 +791,6 @@
         private System.Windows.Forms.Label lblReaderSerial;
         private System.Windows.Forms.ToolStripStatusLabel stbErrCode;
         private System.Windows.Forms.ToolStripStatusLabel stbErr_explain;
-        private System.Windows.Forms.TextBox txtCardSerial;
-        private System.Windows.Forms.Label lblCardSerial;
         private System.Windows.Forms.TextBox txtCardType;
         private System.Windows.Forms.Label lblCardType;
         private System.Windows.Forms.Panel panel1;
@@ -786,6 +833,13 @@
         private System.Windows.Forms.Label lblNewUserData;
         private System.Windows.Forms.TextBox txtUserData;
         private System.Windows.Forms.Label lblUserData;
+        private System.Windows.Forms.TextBox txtUIDSize;
+        private System.Windows.Forms.Label lblUIDSize;
+        private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.TextBox txtCardSerial;
+        private System.Windows.Forms.Label lblUID;
+        private System.Windows.Forms.ToolStripMenuItem mnuHardwareFirmwareVersionItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 
 
     }

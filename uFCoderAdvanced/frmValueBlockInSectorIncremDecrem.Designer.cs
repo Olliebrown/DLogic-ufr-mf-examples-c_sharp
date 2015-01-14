@@ -1,4 +1,4 @@
-﻿namespace Mifare
+﻿namespace uFrAdvance
 {
     partial class frmValueBlockInSectorIncremDecrem
     {
@@ -323,6 +323,7 @@
             // btnVBISIncrementPK
             // 
             this.btnVBISIncrementPK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBISIncrementPK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVBISIncrementPK.Location = new System.Drawing.Point(155, 67);
             this.btnVBISIncrementPK.Name = "btnVBISIncrementPK";
             this.btnVBISIncrementPK.Size = new System.Drawing.Size(86, 44);
@@ -417,6 +418,7 @@
             // btnVBISIncrementAKM2
             // 
             this.btnVBISIncrementAKM2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBISIncrementAKM2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVBISIncrementAKM2.Location = new System.Drawing.Point(155, 67);
             this.btnVBISIncrementAKM2.Name = "btnVBISIncrementAKM2";
             this.btnVBISIncrementAKM2.Size = new System.Drawing.Size(86, 44);
@@ -511,6 +513,7 @@
             // btnVBISIncrementAKM1
             // 
             this.btnVBISIncrementAKM1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBISIncrementAKM1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVBISIncrementAKM1.Location = new System.Drawing.Point(155, 67);
             this.btnVBISIncrementAKM1.Name = "btnVBISIncrementAKM1";
             this.btnVBISIncrementAKM1.Size = new System.Drawing.Size(86, 44);
@@ -605,6 +608,7 @@
             // btnVBISIncrement
             // 
             this.btnVBISIncrement.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBISIncrement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVBISIncrement.Location = new System.Drawing.Point(155, 67);
             this.btnVBISIncrement.Name = "btnVBISIncrement";
             this.btnVBISIncrement.Size = new System.Drawing.Size(86, 44);
@@ -714,6 +718,8 @@
             // btnVBISDecrementPK
             // 
             this.btnVBISDecrementPK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBISDecrementPK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVBISDecrementPK.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVBISDecrementPK.Location = new System.Drawing.Point(155, 67);
             this.btnVBISDecrementPK.Name = "btnVBISDecrementPK";
             this.btnVBISDecrementPK.Size = new System.Drawing.Size(86, 44);
@@ -808,6 +814,8 @@
             // btnVBISDecrementAKM2
             // 
             this.btnVBISDecrementAKM2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBISDecrementAKM2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVBISDecrementAKM2.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVBISDecrementAKM2.Location = new System.Drawing.Point(155, 67);
             this.btnVBISDecrementAKM2.Name = "btnVBISDecrementAKM2";
             this.btnVBISDecrementAKM2.Size = new System.Drawing.Size(86, 44);
@@ -902,6 +910,8 @@
             // btnVBISDecrementAKM1
             // 
             this.btnVBISDecrementAKM1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBISDecrementAKM1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVBISDecrementAKM1.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVBISDecrementAKM1.Location = new System.Drawing.Point(155, 67);
             this.btnVBISDecrementAKM1.Name = "btnVBISDecrementAKM1";
             this.btnVBISDecrementAKM1.Size = new System.Drawing.Size(86, 44);
@@ -996,6 +1006,8 @@
             // btnVBISDecrement
             // 
             this.btnVBISDecrement.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBISDecrement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVBISDecrement.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVBISDecrement.Location = new System.Drawing.Point(155, 67);
             this.btnVBISDecrement.Name = "btnVBISDecrement";
             this.btnVBISDecrement.Size = new System.Drawing.Size(86, 44);

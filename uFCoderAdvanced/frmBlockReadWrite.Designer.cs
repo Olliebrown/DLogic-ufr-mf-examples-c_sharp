@@ -1,4 +1,4 @@
-﻿namespace Mifare
+﻿namespace uFrAdvance
 {
     partial class frmBlockReadWrite
     {
@@ -321,11 +321,11 @@
             this.chkBRHexPK.TabIndex = 6;
             this.chkBRHexPK.Text = "Hex";
             this.chkBRHexPK.UseVisualStyleBackColor = true;
-            this.chkBRHexPK.CheckedChanged += new System.EventHandler(this.chkBRHexPK_CheckedChanged);
             // 
             // btnBlockAddressPK
             // 
             this.btnBlockAddressPK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBlockAddressPK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBlockAddressPK.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBlockAddressPK.Location = new System.Drawing.Point(165, 26);
             this.btnBlockAddressPK.Name = "btnBlockAddressPK";
@@ -410,11 +410,11 @@
             this.chkBRHexAKM1.TabIndex = 6;
             this.chkBRHexAKM1.Text = "Hex";
             this.chkBRHexAKM1.UseVisualStyleBackColor = true;
-            this.chkBRHexAKM1.CheckedChanged += new System.EventHandler(this.chkBRHexAKM1_CheckedChanged);
             // 
             // btnBlockReadAKM1
             // 
             this.btnBlockReadAKM1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBlockReadAKM1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBlockReadAKM1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBlockReadAKM1.Location = new System.Drawing.Point(165, 26);
             this.btnBlockReadAKM1.Name = "btnBlockReadAKM1";
@@ -499,11 +499,11 @@
             this.chkBRHexAKM2.TabIndex = 6;
             this.chkBRHexAKM2.Text = "Hex";
             this.chkBRHexAKM2.UseVisualStyleBackColor = true;
-            this.chkBRHexAKM2.CheckedChanged += new System.EventHandler(this.chkBRHexAKM2_CheckedChanged);
             // 
             // btnBlockReadAKM2
             // 
             this.btnBlockReadAKM2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBlockReadAKM2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBlockReadAKM2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBlockReadAKM2.Location = new System.Drawing.Point(165, 26);
             this.btnBlockReadAKM2.Name = "btnBlockReadAKM2";
@@ -588,12 +588,11 @@
             this.chkBRHex.TabIndex = 5;
             this.chkBRHex.Text = "Hex";
             this.chkBRHex.UseVisualStyleBackColor = true;
-            this.chkBRHex.CheckedChanged += new System.EventHandler(this.chkBRHex_CheckedChanged);
-           
             // 
             // btnBlockRead
             // 
             this.btnBlockRead.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBlockRead.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBlockRead.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBlockRead.Location = new System.Drawing.Point(165, 26);
             this.btnBlockRead.Name = "btnBlockRead";
@@ -714,6 +713,7 @@
             // btnBlockWritePK
             // 
             this.btnBlockWritePK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBlockWritePK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBlockWritePK.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBlockWritePK.Location = new System.Drawing.Point(166, 72);
             this.btnBlockWritePK.Name = "btnBlockWritePK";
@@ -800,6 +800,7 @@
             // btnBlockWriteAKM1
             // 
             this.btnBlockWriteAKM1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBlockWriteAKM1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBlockWriteAKM1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBlockWriteAKM1.Location = new System.Drawing.Point(166, 72);
             this.btnBlockWriteAKM1.Name = "btnBlockWriteAKM1";
@@ -886,6 +887,7 @@
             // btnBlockWriteAKM2
             // 
             this.btnBlockWriteAKM2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBlockWriteAKM2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBlockWriteAKM2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBlockWriteAKM2.Location = new System.Drawing.Point(165, 71);
             this.btnBlockWriteAKM2.Name = "btnBlockWriteAKM2";
@@ -955,6 +957,7 @@
             // btnBlockWrite
             // 
             this.btnBlockWrite.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBlockWrite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBlockWrite.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBlockWrite.Location = new System.Drawing.Point(165, 72);
             this.btnBlockWrite.Name = "btnBlockWrite";

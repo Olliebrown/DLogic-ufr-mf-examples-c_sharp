@@ -1,4 +1,4 @@
-﻿namespace Mifare
+﻿namespace uFrAdvance
 {
     partial class frmValueBlockInSectorReadWrite
     {
@@ -351,6 +351,7 @@
             // btnVBISReadPK
             // 
             this.btnVBISReadPK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBISReadPK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVBISReadPK.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVBISReadPK.Location = new System.Drawing.Point(156, 25);
             this.btnVBISReadPK.Name = "btnVBISReadPK";
@@ -468,6 +469,7 @@
             // btnVBISReadAKM2
             // 
             this.btnVBISReadAKM2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBISReadAKM2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVBISReadAKM2.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVBISReadAKM2.Location = new System.Drawing.Point(156, 25);
             this.btnVBISReadAKM2.Name = "btnVBISReadAKM2";
@@ -585,6 +587,7 @@
             // btnVBISReadAKM1
             // 
             this.btnVBISReadAKM1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBISReadAKM1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVBISReadAKM1.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVBISReadAKM1.Location = new System.Drawing.Point(156, 25);
             this.btnVBISReadAKM1.Name = "btnVBISReadAKM1";
@@ -702,6 +705,7 @@
             // btnVBISRead
             // 
             this.btnVBISRead.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBISRead.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVBISRead.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVBISRead.Location = new System.Drawing.Point(156, 25);
             this.btnVBISRead.Name = "btnVBISRead";
@@ -851,6 +855,7 @@
             // btnVBISWritePK
             // 
             this.btnVBISWritePK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBISWritePK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVBISWritePK.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVBISWritePK.Location = new System.Drawing.Point(159, 61);
             this.btnVBISWritePK.Name = "btnVBISWritePK";
@@ -967,6 +972,7 @@
             // btnBISWriteAKM2
             // 
             this.btnBISWriteAKM2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBISWriteAKM2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBISWriteAKM2.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBISWriteAKM2.Location = new System.Drawing.Point(159, 61);
             this.btnBISWriteAKM2.Name = "btnBISWriteAKM2";
@@ -1083,6 +1089,7 @@
             // btnBISWriteAKM1
             // 
             this.btnBISWriteAKM1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBISWriteAKM1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBISWriteAKM1.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBISWriteAKM1.Location = new System.Drawing.Point(159, 61);
             this.btnBISWriteAKM1.Name = "btnBISWriteAKM1";
@@ -1199,6 +1206,7 @@
             // btnVBISWrite
             // 
             this.btnVBISWrite.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVBISWrite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVBISWrite.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVBISWrite.Location = new System.Drawing.Point(159, 61);
             this.btnVBISWrite.Name = "btnVBISWrite";

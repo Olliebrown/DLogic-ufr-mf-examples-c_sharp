@@ -6,89 +6,97 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Mifare;
-namespace Mifare
+using uFrAdvance;
+namespace uFrAdvance
 {
-    public partial class frmBlockInSectorReadWrite : Form
+    using DL_STATUS = System.UInt32;
+    public partial class frmBlockInSectorReadWrite : Form 
     {
+        private
+            Globals GL = new Globals();
         public frmBlockInSectorReadWrite()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
-        private UInt32 result;
-        const byte AUTH1A = 96,
-                   AUTH1B = 97,
-                   DL_OK = 0,
-                   RES_OK_LIGHT = 4,
-                   RES_OK_SOUND = 4,
-                   ERR_LIGHT = 2,
-                   ERR_SOUND = 2;
+        
+        //authenticate
+        const byte MIFARE_AUTHENT1A = 0x60,
+                   MIFARE_AUTHENT1B = 0x61;
+
+        const byte DL_OK            = 0x00;                   
+
+        //for error                    
+        const byte FRES_OK_LIGHT    = 0x04,
+                   FRES_OK_SOUND    = 0x00,
+                   FERR_LIGHT       = 0x02,
+                   FERR_SOUND       = 0x00;
+
+        // sectors and blocks
+        const byte MAX_BLOCK        = 0x0F;
+
         const string
                     CONVERT_ERROR = "You may enter only whole decimal number !",
                     APPROPRIATE_FORMAT = "You must enter the appropriate format !";
 
         private void frmBlockInSectorReadWrite_Load(object sender, EventArgs e)
         {
-            Globals GB = new Globals();
+            
             cboKeyIndex.SelectedItem = cboKeyIndex.Items[0];
-            GB.CreatePKKey(21, 31, 4, 350, "txtPKKey", 6, false, pnlAuth);
-            GB = null;
+            GL.CreatePKKey(21, 31, 4, 350, "txtPKKey", 6, false, pnlAuth);
+            
         }
 
         private void btnBISReadData_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+            
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            byte sector_address = 0;
-            byte block_address = 0;
-            byte auth_mode = 0;
-            byte key_index = 0;
-            byte[] read_data = new byte[16];
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn = true;
+              DL_STATUS iFResult;
+              byte bSectorAddress      = 0;
+              byte bKeyIndex           = 0;              
+              byte bBlockAddress       = 0;              
+              byte[] baReadData        = new byte[MAX_BLOCK];
+              byte bAuthMode           = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;                            
+            
                 if (txtBISRSectorAddress.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter SECTOR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the SECTOR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBISRSectorAddress.Focus();
                     return;
                 }
                 if (txtBISRBlockAddress.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBISRBlockAddress.Focus();
                     return;
                 }
-                sector_address = System.Convert.ToByte(txtBISRSectorAddress.Text);
-                block_address = System.Convert.ToByte(txtBISRBlockAddress.Text);
-                key_index = System.Convert.ToByte(cboKeyIndex.Text);
+
+                bSectorAddress  = System.Convert.ToByte(txtBISRSectorAddress.Text);
+                bBlockAddress   = System.Convert.ToByte(txtBISRBlockAddress.Text);
+                bKeyIndex       = System.Convert.ToByte(cboKeyIndex.Text);
+                
                 txtBISReadData.Text = "";
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
+                
                 unsafe
                 {
-                    fixed (byte* PData = read_data)
+                    fixed (byte* PData = baReadData)
                     {
-                        result = ufCoder1x.BlockInSectorRead(PData, sector_address, block_address, auth_mode, key_index);
+                        iFResult = uFCoder1x.BlockInSectorRead(PData, bSectorAddress, bBlockAddress, bAuthMode, bKeyIndex);                        
                     }
                 }
-                if (result == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);                   
-                    GL.ERRORS_CODE(result, stbFunctionError);                    
-                    if (chkBISRAscii.Checked)
-                    {
-                        for (byte br = 0; br < 16; ++br)
-                        {
-                            if ((char)read_data[br] < 32) read_data[br] = 127;
-                        }
-                    }
-                    txtBISReadData.Text =System.Text.Encoding.ASCII.GetString(read_data);
+                    txtBISReadData.Text =System.Text.Encoding.ASCII.GetString(baReadData);
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);                   
+                    GL.SetStatusBar(iFResult, stbFunctionError);                                                            
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);                    
-                    GL.ERRORS_CODE(result,stbFunctionError);                     
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);                    
+                    GL.SetStatusBar(iFResult, stbFunctionError);                     
                 }
 
             }
@@ -102,64 +110,58 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;               
             }          
 
         }
 
         private void btnBISReadDataAKM1_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+            
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            byte sector_address = 0;
-            byte block_address = 0;
-            byte auth_mode = 0;           
-            byte[] read_data = new byte[16];
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn = true;
+              DL_STATUS iFResult;
+              byte bSectorAddress      = 0;
+              byte bBlockAddress       = 0;              
+              byte[] baReadData        = new byte[MAX_BLOCK];
+              byte bAuthMode           = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B; 
+           
                 if (txtBISRSectorAddressAKM1.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter SECTOR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the SECTOR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBISRSectorAddressAKM1.Focus();
                     return;
                 }
                 if (txtBISRBlockAddressAKM1.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBISRBlockAddressAKM1.Focus();
                     return;
                 }
-                sector_address = System.Convert.ToByte(txtBISRSectorAddressAKM1.Text);
-                block_address = System.Convert.ToByte(txtBISRBlockAddressAKM1.Text);
-            //    txtBISReadDataAKM1.Text = "";
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
+                bSectorAddress  = System.Convert.ToByte(txtBISRSectorAddressAKM1.Text);
+                bBlockAddress   = System.Convert.ToByte(txtBISRBlockAddressAKM1.Text);
+                txtBISReadDataAKM1.Text = "";
+                
                 unsafe
                 {
-                    fixed (byte* PData = read_data)
+                    fixed (byte* PData = baReadData)
                     {
-                        result = ufCoder1x.BlockInSectorRead_AKM1(PData, sector_address, block_address, auth_mode);
+                        iFResult = uFCoder1x.BlockInSectorRead_AKM1(PData, bSectorAddress, bBlockAddress, bAuthMode);
                     }
                 }
-                if (result == DL_OK)
-                {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);                    
-                    GL.ERRORS_CODE(result, stbFunctionError);                   
-                    if (chkBISRAsciiAKM1.Checked)
-                    {
-                        for (byte br = 0; br < 16; ++br)
-                        {
-                            if ((char)read_data[br] < 32) read_data[br] = 127;
-                        }
-                    }
-                    txtBISReadDataAKM1.Text = System.Text.Encoding.ASCII.GetString(read_data);
+                if (iFResult == DL_OK)
+                {                                                          
+                    txtBISReadDataAKM1.Text = System.Text.Encoding.ASCII.GetString(baReadData);
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);                   
+                    GL.SetStatusBar(iFResult, stbFunctionError);                                                            
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);                    
+                    GL.SetStatusBar(iFResult, stbFunctionError);                     
                 }
 
             }
@@ -173,64 +175,59 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;               
             }       
 
         }
 
         private void btnBISReadDataAKM2_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+            
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            byte sector_address = 0;
-            byte block_address = 0;
-            byte auth_mode = 0;
-            byte[] read_data = new byte[16];
             try
             {
-                GL.FunctionStart = true;
+              GL.FunctionOn = true;
+              DL_STATUS iFResult;
+              byte bSectorAddress      = 0;
+              byte bBlockAddress       = 0;              
+              byte[] baReadData        = new byte[MAX_BLOCK];
+              byte bAuthMode           = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+           
                 if (txtBISRSectorAddressAKM2.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter SECTOR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the SECTOR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBISRSectorAddressAKM2.Focus();
                     return;
                 }
                 if (txtBISRBlockAddressAKM2.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBISRBlockAddressAKM2.Focus();
                     return;
                 }
-                sector_address = System.Convert.ToByte(txtBISRSectorAddressAKM2.Text);
-                block_address = System.Convert.ToByte(txtBISRBlockAddressAKM2.Text);
-            //    txtBISReadDataAKM2.Text = "";
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
+
+                bSectorAddress   = System.Convert.ToByte(txtBISRSectorAddressAKM2.Text);
+                bBlockAddress    = System.Convert.ToByte(txtBISRBlockAddressAKM2.Text);
+                txtBISReadDataAKM2.Text = "";
+                
                 unsafe
                 {
-                    fixed (byte* PData = read_data)
+                    fixed (byte* PData = baReadData)
                     {
-                        result = ufCoder1x.BlockInSectorRead_AKM2(PData, sector_address, block_address, auth_mode);
+                        iFResult = uFCoder1x.BlockInSectorRead_AKM2(PData, bSectorAddress, bBlockAddress, bAuthMode);
                     }
                 }
-                if (result == DL_OK)
-                {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);                    
-                    GL.ERRORS_CODE(result, stbFunctionError);                    
-                    if (chkBISRAsciiAKM2.Checked)
-                    {
-                        for (byte br = 0; br < 16; ++br)
-                        {
-                            if ((char)read_data[br] < 32) read_data[br] = 127;
-                        }
-                    }
-                    txtBISReadDataAKM2.Text = System.Text.Encoding.ASCII.GetString(read_data);
+                if (iFResult == DL_OK)
+                {                    
+                    txtBISReadDataAKM2.Text = System.Text.Encoding.ASCII.GetString(baReadData);
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
 
             }
@@ -244,74 +241,69 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;                   
             }    
 
         }
 
         private void btnBISReadDataPK_Click(object sender, EventArgs e)
-        {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+        {            
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            byte sector_address = 0;
-            byte block_address = 0;
-            byte auth_mode = 0;
-            byte[] read_data = new byte[16];
-            byte[] pk_key = new byte[6];
             try
             {
-                GL.FunctionStart = true;
+              GL.FunctionOn = true;
+              DL_STATUS iFResult;
+              byte bSectorAddress      = 0;                            
+              byte bBlockAddress       = 0;              
+              byte[] baReadData        = new byte[MAX_BLOCK];
+              byte[] baPKKey           = new byte[6];
+              byte bAuthMode           = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+                                  
                 if (txtBISRSectorAddressPK.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter SECTOR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the SECTOR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBISRSectorAddressPK.Focus();
                     return;
                 }
                 if (txtBISRBlockAddressPK.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBISRBlockAddressPK.Focus();
                     return;
                 }
-                sector_address = System.Convert.ToByte(txtBISRSectorAddressPK.Text);
-                block_address = System.Convert.ToByte(txtBISRBlockAddressPK.Text);
-               // txtBISReadDataPK.Text = "";
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
-                byte count = 0;
-                foreach (Control cont in pnlAuth.Controls)
+
+                bSectorAddress   = System.Convert.ToByte(txtBISRSectorAddressPK.Text);
+                bBlockAddress   = System.Convert.ToByte(txtBISRBlockAddressPK.Text);
+                txtBISReadDataPK.Text = "";
+               
+                byte bCount = 0;
+                foreach (Control cCont in pnlAuth.Controls)
                 {
-                    if (cont.Name == "txtPKKey")
+                    if (cCont.Name == "txtPKKey")
                     {
-                        pk_key[count] =System.Convert.ToByte(cont.Text);
-                        count++;
+                        baPKKey[bCount] =System.Convert.ToByte(cCont.Text);
+                        bCount++;
                     }
                 }
                 unsafe
                 {
-                    fixed (byte* PData = read_data,PPK_KEY=pk_key)
+                    fixed (byte* PData = baReadData,
+                                 PPKEY = baPKKey)
                     {
-                        result = ufCoder1x.BlockInSectorRead_PK(PData, sector_address, block_address, auth_mode,PPK_KEY);
+                        iFResult = uFCoder1x.BlockInSectorRead_PK(PData, bSectorAddress, bBlockAddress, bAuthMode,PPKEY);
                     }
                 }
-                if (result == DL_OK)
-                {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);                    
-                    GL.ERRORS_CODE(result, stbFunctionError);                   
-                    if (chkBISRAsciiPK.Checked)
-                    {
-                        for (byte br = 0; br < 16; ++br)
-                        {
-                            if ((char)read_data[br] < 32) read_data[br] = 127;
-                        }
-                    }
-                    txtBISReadDataPK.Text = System.Text.Encoding.ASCII.GetString(read_data);
+                if (iFResult == DL_OK)
+                {                    
+                    txtBISReadDataPK.Text = System.Text.Encoding.ASCII.GetString(baReadData);
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
 
             }
@@ -325,25 +317,26 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;             
             }      
 
         }
 
         private void btnBISWrite_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+           
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            byte[] write_data = new byte[16];
-            byte key_index = 0;
-            byte sector_address = 0;
-            byte block_address = 0;
-            byte auth_mode = 0;
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn            = true;
+                DL_STATUS iFResult;
+                byte bKeyIndex           = 0;
+                byte bSectorAddress      = 0;
+                byte bBlockAddress       = 0;
+                byte[] baWriteData       = new byte[MAX_BLOCK];                
+                byte bAuthMode           = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+
                 if (txtBISWWriteData.Text.Trim() == String.Empty)
                 {
                     MessageBox.Show("You must enter any data !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -352,38 +345,38 @@ namespace Mifare
                 }
                 if (txtBISWSectorAddress.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter SECTOR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the SECTOR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBISWSectorAddress.Focus();
                     return;
                 }
                 if (txtBISWBlockAddress.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBISWBlockAddress.Focus();
                     return;
                 }
-                key_index = System.Convert.ToByte(cboKeyIndex.Text);
-                sector_address = System.Convert.ToByte(txtBISWSectorAddress.Text);
-                block_address = System.Convert.ToByte(txtBISWBlockAddress.Text);
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
 
-                write_data = System.Text.Encoding.ASCII.GetBytes(txtBISWWriteData.Text);
+                bKeyIndex      = System.Convert.ToByte(cboKeyIndex.Text);
+                bSectorAddress = System.Convert.ToByte(txtBISWSectorAddress.Text);
+                bBlockAddress  = System.Convert.ToByte(txtBISWBlockAddress.Text);
+                                
+                baWriteData = System.Text.Encoding.ASCII.GetBytes(txtBISWWriteData.Text);
                 unsafe
                 {
-                    fixed (byte* PData = write_data)
+                    fixed (byte* PData = baWriteData)
                     {
-                        result = ufCoder1x.BlockInSectorWrite(PData, sector_address, block_address, auth_mode, key_index);
+                        iFResult = uFCoder1x.BlockInSectorWrite(PData, bSectorAddress, bBlockAddress, bAuthMode, bKeyIndex);
                     }
                 }
-                if (result == DL_OK)
-                {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                if (iFResult == DL_OK)
+                {                   
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
 
             }
@@ -397,24 +390,25 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;               
             }      
 
         }
 
         private void btnBISWriteAKM1_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+          
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            byte[] write_data = new byte[16];
-            byte sector_address = 0;
-            byte block_address = 0;
-            byte auth_mode = 0;
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn            = true;
+                DL_STATUS iFResult;                
+                byte bSectorAddress      = 0;
+                byte bBlockAddress       = 0;
+                byte[] baWriteData       = new byte[MAX_BLOCK];                
+                byte bAuthMode           = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+
                 if (txtBISWWriteDataAKM1.Text.Trim() == String.Empty)
                 {
                     MessageBox.Show("You must enter any data !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -423,37 +417,37 @@ namespace Mifare
                 }
                 if (txtBISWSectorAddressAKM1.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter SECTOR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the SECTOR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBISWSectorAddressAKM1.Focus();
                     return;
                 }
                 if (txtBISWBlockAddressAKM1.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBISWBlockAddressAKM1.Focus();
                     return;
                 }
-                sector_address = System.Convert.ToByte(txtBISWSectorAddressAKM1.Text);
-                block_address = System.Convert.ToByte(txtBISWBlockAddressAKM1.Text);
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
 
-                write_data = System.Text.Encoding.ASCII.GetBytes(txtBISWWriteDataAKM1.Text);
+                bSectorAddress  = System.Convert.ToByte(txtBISWSectorAddressAKM1.Text);
+                bBlockAddress  = System.Convert.ToByte(txtBISWBlockAddressAKM1.Text);
+                
+                baWriteData     = System.Text.Encoding.ASCII.GetBytes(txtBISWWriteDataAKM1.Text);
                 unsafe
                 {
-                    fixed (byte* PData = write_data)
+                    fixed (byte* PData = baWriteData)
                     {
-                        result = ufCoder1x.BlockInSectorWrite_AKM1(PData, sector_address, block_address, auth_mode);
+                        iFResult = uFCoder1x.BlockInSectorWrite_AKM1(PData, bSectorAddress, bBlockAddress, bAuthMode);
                     }
                 }
-                if (result == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);                    
-                    GL.ERRORS_CODE(result, stbFunctionError);                    
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
 
             }
@@ -467,24 +461,24 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;               
             }      
 
         }
 
         private void btnBISWriteAKM2_Click(object sender, EventArgs e)
-        {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+        {            
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            byte[] write_data = new byte[16];
-            byte sector_address = 0;
-            byte block_address = 0;
-            byte auth_mode = 0;
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn            = true;
+                DL_STATUS iFResult;
+                byte bSectorAddress      = 0;
+                byte bBlockAddress       = 0;
+                byte[] baWriteData       = new byte[MAX_BLOCK];
+                byte bAuthMode           = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+
                 if (txtBISWWriteDataAKM2.Text.Trim() == String.Empty)
                 {
                     MessageBox.Show("You must enter any data !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -493,37 +487,37 @@ namespace Mifare
                 }
                 if (txtBISWSectorAddressAKM2.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter SECTOR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the SECTOR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBISWSectorAddressAKM2.Focus();
                     return;
                 }
                 if (txtBISWBlockAddressAKM2.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBISWBlockAddressAKM2.Focus();
                     return;
                 }
-                sector_address = System.Convert.ToByte(txtBISWSectorAddressAKM2.Text);
-                block_address = System.Convert.ToByte(txtBISWBlockAddressAKM2.Text);
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
 
-                write_data = System.Text.Encoding.ASCII.GetBytes(txtBISWWriteDataAKM2.Text);
+                bSectorAddress = System.Convert.ToByte(txtBISWSectorAddressAKM2.Text);
+                bBlockAddress  = System.Convert.ToByte(txtBISWBlockAddressAKM2.Text);
+                
+                baWriteData    = System.Text.Encoding.ASCII.GetBytes(txtBISWWriteDataAKM2.Text);
                 unsafe
                 {
-                    fixed (byte* PData = write_data)
+                    fixed (byte* PData = baWriteData)
                     {
-                        result = ufCoder1x.BlockInSectorWrite_AKM2(PData, sector_address, block_address, auth_mode);
+                        iFResult = uFCoder1x.BlockInSectorWrite_AKM2(PData, bSectorAddress, bBlockAddress, bAuthMode);
                     }
                 }
-                if (result == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);                    
-                    GL.ERRORS_CODE(result, stbFunctionError);                    
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
 
             }
@@ -537,25 +531,26 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;           
             }      
 
         }
 
         private void btnBISWritePK_Click(object sender, EventArgs e)
         {
-            Globals GL = new Globals();
-            if (GL.FunctionStart || GL.ReaderStart) return;
+             
+            if (GL.FunctionOn || GL.LoopStatus) return;
 
-            byte[] write_data = new byte[16];
-            byte[] pk_key = new byte[6];
-            byte sector_address = 0;
-            byte block_address = 0;
-            byte auth_mode = 0;
             try
             {
-                GL.FunctionStart = true;
+                GL.FunctionOn            = true;
+                DL_STATUS iFResult;
+                byte bSectorAddress      = 0;
+                byte bBlockAddress       = 0;;
+                byte[] baWriteData       = new byte[MAX_BLOCK];
+                byte[] baPKKey           = new byte[6];
+                byte bAuthMode           = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
+
                 if (txtBISWWriteDataPK.Text.Trim() == String.Empty)
                 {
                     MessageBox.Show("You must enter any data !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -564,46 +559,46 @@ namespace Mifare
                 }
                 if (txtBISWSectorAddressPK.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter SECTOR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the SECTOR ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBISWSectorAddressPK.Focus();
                     return;
                 }
                 if (txtBISWBlockAddressPK.Text.Trim() == String.Empty)
                 {
-                    MessageBox.Show("You must enter BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must enter  the BLOCK ADDRESS !", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtBISWBlockAddressPK.Focus();
                     return;
                 }
-                sector_address = System.Convert.ToByte(txtBISWSectorAddressPK.Text);
-                block_address = System.Convert.ToByte(txtBISWBlockAddressPK.Text);
-                if (rbAUTH1A.Checked) auth_mode = AUTH1A; else auth_mode = AUTH1B;
+                bSectorAddress = System.Convert.ToByte(txtBISWSectorAddressPK.Text);
+                bBlockAddress  = System.Convert.ToByte(txtBISWBlockAddressPK.Text);               
+                baWriteData    = System.Text.Encoding.ASCII.GetBytes(txtBISWWriteDataPK.Text);
 
-                write_data = System.Text.Encoding.ASCII.GetBytes(txtBISWWriteDataPK.Text);
-                byte count = 0;
-                foreach (Control ctrl in pnlAuth.Controls)
+                byte bCount = 0;
+                foreach (Control cControl in pnlAuth.Controls)
                 {
-                    if (ctrl.Name == "txtPKKey")
+                    if (cControl.Name == "txtPKKey")
                     {
-                        pk_key[count] = System.Convert.ToByte(ctrl.Text);
-                        count++;
+                        baPKKey[bCount] = System.Convert.ToByte(cControl.Text);
+                        bCount++;
                     }
                 }
                 unsafe
                 {
-                    fixed (byte* PData = write_data,PK_KEY=pk_key)
+                    fixed (byte* PData = baWriteData,
+                                 PKEY  = baPKKey)
                     {
-                        result = ufCoder1x.BlockInSectorWrite_PK(PData, sector_address, block_address, auth_mode,PK_KEY);
+                        iFResult = uFCoder1x.BlockInSectorWrite_PK(PData, bSectorAddress, bBlockAddress, bAuthMode,PKEY);
                     }
                 }
-                if (result == DL_OK)
+                if (iFResult == DL_OK)
                 {
-                    ufCoder1x.ReaderUISignal(RES_OK_LIGHT, RES_OK_SOUND);                   
-                    GL.ERRORS_CODE(result, stbFunctionError);                    
+                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    ufCoder1x.ReaderUISignal(ERR_LIGHT, ERR_SOUND);
-                    GL.ERRORS_CODE(result, stbFunctionError);
+                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    GL.SetStatusBar(iFResult, stbFunctionError);
                 }
 
             }
@@ -617,17 +612,11 @@ namespace Mifare
             }
             finally
             {
-                GL.FunctionStart = false;
-                GL = null;
+                GL.FunctionOn=false;               
             }        
 
         }
-
-       
-
-      
-
-      
+                  
     }
 
 }
