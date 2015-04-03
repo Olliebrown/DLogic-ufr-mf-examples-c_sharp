@@ -1,0 +1,8 @@
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\x64\Debug\uFR Simple.exe.config
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\x64\Debug\uFR Simple.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\x64\Debug\uFR Simple.pdb
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\x64\Debug\uFRSimple.frmuFrSimple.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\x64\Debug\uFRSimple.Properties.Resources.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\x64\Debug\uFr Simple.csproj.GenerateResource.Cache
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\x64\Debug\uFR Simple.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\x64\Debug\uFR Simple.pdb
