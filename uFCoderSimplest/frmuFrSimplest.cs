@@ -176,7 +176,7 @@ const byte DL_MIFARE_ULTRALIGHT		      =	 0x01,
             LoopStart =true;           
             if (!boCONN)
             {
-                if ((iRResult = uFRCoder1x.ReaderOpen()) == DL_OK)
+                if ((iRResult = uFCoder.ReaderOpen()) == DL_OK)
                 {
                     pnlConnected.Text = "CONNECTED";
                     boCONN = true;
@@ -198,12 +198,12 @@ const byte DL_MIFARE_ULTRALIGHT		      =	 0x01,
                 {
                     
                     fixed (byte* pData = baCardUID) 
-                    if ((iRResult = uFRCoder1x.GetReaderType(&ulReaderType)) == DL_OK)
+                    if ((iRResult = uFCoder.GetReaderType(&ulReaderType)) == DL_OK)
                     {
-                        iCResult = uFRCoder1x.GetDlogicCardType(&bDLCardType);
+                        iCResult = uFCoder.GetDlogicCardType(&bDLCardType);
                         if (iCResult == DL_OK)
                         {
-                            iCResult = uFRCoder1x.GetCardIdEx(&bCardType,pData, &bUidSize);
+                            iCResult = uFCoder.GetCardIdEx(&bCardType,pData, &bUidSize);
                             if (iCResult == DL_OK)
                             {
                                    btnFormatCard.Enabled = bDLCardType > 0x0A;
@@ -230,7 +230,7 @@ const byte DL_MIFARE_ULTRALIGHT		      =	 0x01,
                     else
                     {                        
                         boCONN = false;
-                        uFRCoder1x.ReaderClose();
+                        uFCoder.ReaderClose();
                         txtCardType  .Clear();
                         txtUIDSize   .Clear();
                         txtCardUID   .Clear();                        
@@ -276,7 +276,7 @@ const byte DL_MIFARE_ULTRALIGHT		      =	 0x01,
                      unsafe
                      {
                        fixed(byte* pData=baFormatArray)
-                       iFResult=uFRCoder1x.BlockWrite(pData,shBlockCount,MIFARE_AUTHENT1A,KEY_INDEX);
+                       iFResult=uFCoder.BlockWrite(pData,shBlockCount,MIFARE_AUTHENT1A,KEY_INDEX);
                      }                                                                                              
                         shBISCount++;
                         shBlockCount++;
@@ -295,12 +295,12 @@ const byte DL_MIFARE_ULTRALIGHT		      =	 0x01,
                if (iFResult == DL_OK)
                {
                    SetStatusBar(iFResult, stbFunctionError);
-                   uFRCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                   uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                }
                else
                {
                    SetStatusBar(iFResult, stbFunctionError);
-                   uFRCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                   uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                }  
            }finally{
                SetFunctionStatus=false;
@@ -333,18 +333,18 @@ const byte DL_MIFARE_ULTRALIGHT		      =	 0x01,
                unsafe
                {
                    fixed (byte* PData = baReadData)
-                       iFResult = uFRCoder1x.LinearRead(PData, uiLinearAddress, uiDataLength, &uiBytesRet, MIFARE_AUTHENT1A, KEY_INDEX);
+                       iFResult = uFCoder.LinearRead(PData, uiLinearAddress, uiDataLength, &uiBytesRet, MIFARE_AUTHENT1A, KEY_INDEX);
                }
                if (iFResult == DL_OK)
                {
                    txtReadData.Text = System.Text.Encoding.ASCII.GetString(baReadData);
                    SetStatusBar(iFResult, stbFunctionError);
-                   uFRCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                   uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                }
                else
                {
                    SetStatusBar(iFResult, stbFunctionError);
-                   uFRCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                   uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                }
            }
            finally
@@ -375,17 +375,17 @@ const byte DL_MIFARE_ULTRALIGHT		      =	 0x01,
                     ushort usBytesRet        =0;
 
                     fixed(byte* PData = baWriteData)
-                         iFResult=uFRCoder1x.LinearWrite(PData,usLinearAddress,usDataLength,&usBytesRet,MIFARE_AUTHENT1A,KEY_INDEX);
+                         iFResult=uFCoder.LinearWrite(PData,usLinearAddress,usDataLength,&usBytesRet,MIFARE_AUTHENT1A,KEY_INDEX);
                 }
                     if (iFResult == DL_OK)
                     {                        
                         SetStatusBar(iFResult, stbFunctionError);
-                        uFRCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                        uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     }
                     else
                     {
                         SetStatusBar(iFResult, stbFunctionError);
-                        uFRCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                        uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     }                     
            }finally{
               SetFunctionStatus=false;

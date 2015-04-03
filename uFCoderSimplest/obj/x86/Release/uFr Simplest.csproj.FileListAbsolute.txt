@@ -16,3 +16,11 @@ G:\uFrSimplest2.0\C#\uFr Simplest\obj\x86\Release\uFr Simplest.csprojResolveAsse
 G:\uFrSimplest2.0\C#\uFr Simplest\obj\x86\Release\uFRSimplest.frmuFRSimplest.resources
 G:\uFrSimplest2.0\C#\uFr Simplest\obj\x86\Release\uFrSimplest.Properties.Resources.resources
 G:\uFrSimplest2.0\C#\uFr Simplest\obj\x86\Release\uFr Simplest.csproj.GenerateResource.Cache
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\bin\x86\Release\uFr Simplest.exe.config
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x86\Release\uFr Simplest.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x86\Release\uFr Simplest.pdb
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\bin\x86\Release\uFr Simplest.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\bin\x86\Release\uFr Simplest.pdb
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x86\Release\uFRSimplest.frmuFRSimplest.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x86\Release\uFrSimplest.Properties.Resources.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x86\Release\uFr Simplest.csproj.GenerateResource.Cache
