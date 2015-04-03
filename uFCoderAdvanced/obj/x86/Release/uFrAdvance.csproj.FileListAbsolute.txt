@@ -196,8 +196,8 @@ E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmViewAll.resources
 E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.frmLinearReadWrite.resources
 E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.Properties.Resources.resources
 E:\uFrVer2.1\C#\uFr Advance\obj\x86\Release\uFrAdvance.csproj.GenerateResource.Cache
-d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Release\uFr Advance.exe
-d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Release\uFr Advance.pdb
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\bin\x86\Release\uFr Advance.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\bin\x86\Release\uFr Advance.pdb
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Release\uFrAdvance.frmBlockReadWrite.resources
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Release\uFrAdvance.frmBlockInSectorReadWrite.resources
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Release\uFrAdvance.frmLinearFormatCard.resources
@@ -211,5 +211,5 @@ d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Releas
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Release\uFrAdvance.frmLinearReadWrite.resources
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Release\uFrAdvance.Properties.Resources.resources
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Release\uFrAdvance.csproj.GenerateResource.Cache
-d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\bin\x86\Release\uFr Advance.exe
-d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\bin\x86\Release\uFr Advance.pdb
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Release\uFr Advance.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Release\uFr Advance.pdb
