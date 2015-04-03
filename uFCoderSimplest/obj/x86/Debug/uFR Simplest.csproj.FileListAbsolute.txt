@@ -38,3 +38,14 @@ H:\uFrVer2.0\C#\uFr Simplest\obj\x86\Debug\uFrSimplest.Properties.Resources.reso
 H:\uFrVer2.0\C#\uFr Simplest\obj\x86\Debug\uFr Simplest.csproj.GenerateResource.Cache
 G:\uFrVer2.0\C#\uFr Simplest\obj\x86\Debug\uFr Simplest.exe
 G:\uFrVer2.0\C#\uFr Simplest\obj\x86\Debug\uFr Simplest.pdb
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\bin\x86\Debug\uFr Simplest.exe.config
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x86\Debug\uFr Simplest.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x86\Debug\uFr Simplest.pdb
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\bin\x86\Debug\uFr Simplest.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\bin\x86\Debug\uFr Simplest.pdb
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\bin\x86\Debug\uFr Simplest.exe.CodeAnalysisLog.xml
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\bin\x86\Debug\uFr Simplest.exe.lastcodeanalysissucceeded
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x86\Debug\uFr Simplest.csprojResolveAssemblyReference.cache
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x86\Debug\uFRSimplest.frmuFRSimplest.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x86\Debug\uFrSimplest.Properties.Resources.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x86\Debug\uFr Simplest.csproj.GenerateResource.Cache

@@ -24,3 +24,4 @@ d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\bin\x86\Releas
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x86\Release\uFRSimplest.frmuFRSimplest.resources
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x86\Release\uFrSimplest.Properties.Resources.resources
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x86\Release\uFr Simplest.csproj.GenerateResource.Cache
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x86\Release\uFr Simplest.csprojResolveAssemblyReference.cache

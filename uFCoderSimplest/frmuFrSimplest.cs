@@ -83,7 +83,7 @@ const byte DL_MIFARE_ULTRALIGHT		      =	 0x01,
              
   const byte           
              MAX_BLOCK          = 16,
-             FORMAT_SIGN        = 0xFF;
+             FORMAT_SIGN        = 0xFF; //use 0x00 for making card blank during format procedure
 
         private Boolean boCONN        = false,  
                         boThreadStart = false,
