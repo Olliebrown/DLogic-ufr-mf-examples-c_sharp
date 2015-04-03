@@ -97,7 +97,7 @@ namespace uFrAdvance
             
             if (!boCONN)
             {
-                iRResult = uFCoder1x.ReaderOpen();
+                iRResult = uFCoder.ReaderOpen();
                 if (iRResult == DL_OK)
                 {
                     boCONN       = true;
@@ -125,15 +125,15 @@ namespace uFrAdvance
                 {
                     fixed (byte *pCardUID = baCardUID)
                                         
-                    if ((iRResult = uFCoder1x.GetReaderType(&ulReaderType)) == DL_OK)
+                    if ((iRResult = uFCoder.GetReaderType(&ulReaderType)) == DL_OK)
                     {
                         txtReaderType.Text = "0x" + ulReaderType.ToString("X");
-                        if ((iRResult = uFCoder1x.GetReaderSerialNumber(&ulReaderSerial)) == DL_OK)
+                        if ((iRResult = uFCoder.GetReaderSerialNumber(&ulReaderSerial)) == DL_OK)
                         {
                             txtReaderSerial.Text = "0x" + ulReaderSerial.ToString("X");
                         }
 
-                        iCResult = uFCoder1x.GetDlogicCardType(&bDLCardType);
+                        iCResult = uFCoder.GetDlogicCardType(&bDLCardType);
 
                         if (iCResult == DL_OK)
                         {
@@ -142,7 +142,7 @@ namespace uFrAdvance
                                 MenuItemsEnabled(false);
                             }
                            
-                            uFCoder1x.GetCardIdEx(&bCardType, pCardUID, &bUidSize);
+                            uFCoder.GetCardIdEx(&bCardType, pCardUID, &bUidSize);
                             for (byte bBr = 0; bBr < bUidSize; bBr++)
                             {
                                 sBuffer += baCardUID[bBr].ToString("X");
@@ -166,7 +166,7 @@ namespace uFrAdvance
 
                         fixed (byte* PData = baUserData)
                         {
-                            iFResult = uFCoder1x.ReadUserData(PData);
+                            iFResult = uFCoder.ReadUserData(PData);
                         }
                         if (iFResult == DL_OK)
                             txtUserData.Text = System.Text.Encoding.ASCII.GetString(baUserData);
@@ -177,7 +177,7 @@ namespace uFrAdvance
                     else
                     {
                         boCONN = false;
-                        uFCoder1x.ReaderClose();
+                        uFCoder.ReaderClose();
                         txtReaderType  .Clear();
                         txtReaderSerial.Clear();
                         txtCardType    .Clear();
@@ -249,7 +249,7 @@ namespace uFrAdvance
            try
            {
                GL.FunctionOn=true;
-               uFCoder1x.ReaderUISignal(cboLightMode.SelectedIndex, cboSoundMode.SelectedIndex); 
+               uFCoder.ReaderUISignal(cboLightMode.SelectedIndex, cboSoundMode.SelectedIndex); 
            }finally{
                GL.FunctionOn = false;
             }
@@ -276,18 +276,18 @@ namespace uFrAdvance
                 {
                     fixed (byte* PData = baNewUserData)
                     {
-                        iFResult = uFCoder1x.WriteUserData(PData);
+                        iFResult = uFCoder.WriteUserData(PData);
                     }
                 }
                 if (iFResult == DL_OK)
                 {
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult,stbReader);
                     
                 }
                 else
                 {
-                    uFCoder1x.ReaderUISignal(FERR_SOUND, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_SOUND, FERR_SOUND);
                     GL.SetStatusBar(iFResult,stbReader);
                 }
             }finally{
@@ -305,16 +305,16 @@ namespace uFrAdvance
             {
                 GL.FunctionOn = true;
                 DL_STATUS iFResult;
-                iFResult = uFCoder1x.ReaderReset();
+                iFResult = uFCoder.ReaderReset();
                 if (iFResult == DL_OK)
                 {
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbReader);
 
                 }
                 else
                 {
-                    uFCoder1x.ReaderUISignal(FERR_SOUND, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_SOUND, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbReader);
                 }
            }
@@ -334,16 +334,16 @@ namespace uFrAdvance
             {
                 GL.FunctionOn = true;
                 DL_STATUS iFResult;
-                iFResult = uFCoder1x.ReaderSoftRestart();
+                iFResult = uFCoder.ReaderSoftRestart();
                 if (iFResult == DL_OK)
                 {
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbReader);
 
                 }
                 else
                 {
-                    uFCoder1x.ReaderUISignal(FERR_SOUND, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_SOUND, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbReader);
                 }
            }
@@ -413,18 +413,18 @@ namespace uFrAdvance
             {
                 fixed (byte* PData = baReaderKey)
                 {
-                    iFResult = uFCoder1x.ReaderKeyWrite(PData, bKeyIndex);
+                    iFResult = uFCoder.ReaderKeyWrite(PData, bKeyIndex);
                 }
             }
             if (iFResult == DL_OK)
             {
-                uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                 GL.SetStatusBar(iFResult, stbReader);
 
             }
             else
             {
-                uFCoder1x.ReaderUISignal(FERR_SOUND, FERR_SOUND);
+                uFCoder.ReaderUISignal(FERR_SOUND, FERR_SOUND);
                 GL.SetStatusBar(iFResult, stbReader);
             }
            }
@@ -539,8 +539,8 @@ namespace uFrAdvance
                  bRFirmwareMinor;                       
             unsafe
             {
-               uFCoder1x.GetReaderHardwareVersion(&bRHardwareMajor,&bRHardwareMinor);
-               uFCoder1x.GetReaderFirmwareVersion(&bRFirmwareMajor, &bRFirmwareMinor);
+               uFCoder.GetReaderHardwareVersion(&bRHardwareMajor,&bRHardwareMinor);
+               uFCoder.GetReaderFirmwareVersion(&bRFirmwareMajor, &bRFirmwareMinor);
 
                MessageBox.Show("Hardware version : " + bRHardwareMajor.ToString() + "." + bRHardwareMajor.ToString() + 
                                "\nFirmware  version : " + bRFirmwareMajor.ToString() + "." + bRFirmwareMinor.ToString(), 

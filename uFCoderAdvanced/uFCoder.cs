@@ -74,7 +74,7 @@ namespace uFrAdvance
     }
     
        
-    unsafe class  uFCoder1x
+    unsafe class  uFCoder
     {
 
         const string DLL_NAME = "uFCoder-x86.dll";

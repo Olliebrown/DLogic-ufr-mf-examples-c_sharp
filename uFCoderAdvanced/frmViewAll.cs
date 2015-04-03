@@ -65,7 +65,7 @@ namespace uFrAdvance
                         lvi.Text = i.ToString();
 
 
-                        iFResult = uFCoder1x.BlockRead(pPageData, (ushort)(i), bAuthMode,keyIndex);
+                        iFResult = uFCoder.BlockRead(pPageData, (ushort)(i), bAuthMode,keyIndex);
                         if (iFResult != DL_OK) break;
                         if (!rbHex.Checked)
                         {
@@ -85,12 +85,12 @@ namespace uFrAdvance
             pBar.Visible = false;
             if (iFResult == DL_OK)
             {
-                uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                 GL.SetStatusBar(iFResult, stbFunctionError);
             }
             else
             {
-                uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                 GL.SetStatusBar(iFResult, stbFunctionError);
             }     
         }
@@ -136,7 +136,7 @@ namespace uFrAdvance
                         unsafe
                         {
                             fixed (byte* PData = baBlockData)                                                         
-                                iFResult = uFCoder1x.BlockRead(PData, shBlockCount, bAuthMode, bKeyIndex);                            
+                                iFResult = uFCoder.BlockRead(PData, shBlockCount, bAuthMode, bKeyIndex);                            
                         }
                         
                             if (!rbHex.Checked)
@@ -179,12 +179,12 @@ namespace uFrAdvance
            
                 if (iFResult == DL_OK)
                 {
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult,stbFunctionError);
                 }
                 else
                 {
-                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }                  
      }

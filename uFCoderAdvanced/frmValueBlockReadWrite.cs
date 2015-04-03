@@ -74,19 +74,19 @@ namespace uFrAdvance
                 {
                         Int32* PData=stackalloc Int32[1];
                                PData=&iValueData;
-                        iFResult = uFCoder1x.ValueBlockRead(PData, &bValueAddress, uiBlockAddress, bAuthMode, bKeyIndex);
+                        iFResult = uFCoder.ValueBlockRead(PData, &bValueAddress, uiBlockAddress, bAuthMode, bKeyIndex);
                         
                 }
                 if (iFResult == DL_OK)
                 {
                     txtVBReadValue.Text =iValueData.ToString();
                     txtVBValueAddress.Text = System.Convert.ToString(bValueAddress);
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 } 
             }
@@ -133,19 +133,19 @@ namespace uFrAdvance
                 {
                     Int32* PData = stackalloc Int32[1];
                            PData = &iValueData;
-                    iFResult = uFCoder1x.ValueBlockRead_AKM1(PData, &bValueAddress, uiBlockAddress, bAuthMode);
+                    iFResult = uFCoder.ValueBlockRead_AKM1(PData, &bValueAddress, uiBlockAddress, bAuthMode);
 
                 }
                 if (iFResult == DL_OK)
                 {
                     txtVBReadValueAKM1.Text = iValueData.ToString();
                     txtVBRValueAddressAKM1.Text = System.Convert.ToString(bValueAddress);
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 } 
             }
@@ -190,19 +190,19 @@ namespace uFrAdvance
                 {
                     Int32* PData = stackalloc Int32[1];
                            PData = &iValueData;
-                    iFResult = uFCoder1x.ValueBlockRead_AKM2(PData, &bValueAddress, uiBlockAddress, bAuthMode);
+                    iFResult = uFCoder.ValueBlockRead_AKM2(PData, &bValueAddress, uiBlockAddress, bAuthMode);
 
                 }
                 if (iFResult == DL_OK)
                 {
                     txtVBReadValueAKM2.Text = iValueData.ToString();
                     txtVBRValueAddressAKM2.Text = System.Convert.ToString(bValueAddress);
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }  
             }
@@ -259,18 +259,18 @@ namespace uFrAdvance
                     Int32* PData = stackalloc Int32[1];
                            PData = &iValueData;
                     fixed(byte* PKEY_PK = baKeyPK)
-                    iFResult = uFCoder1x.ValueBlockRead_PK(PData, &bValueAddress, uiBlockAddress, bAuthMode,PKEY_PK);                                        
+                    iFResult = uFCoder.ValueBlockRead_PK(PData, &bValueAddress, uiBlockAddress, bAuthMode,PKEY_PK);                                        
                 }
                 if (iFResult == DL_OK)
                 {
                     txtVBReadValuePK.Text = iValueData.ToString();
                     txtVBRValueAddressPK.Text = System.Convert.ToString(bValueAddress);
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 } 
             }
@@ -331,16 +331,16 @@ namespace uFrAdvance
                 bValueAddress  = System.Convert.ToByte(txtVBWValueAddress.Text);
                 iValueData     = System.Convert.ToInt32(txtVBWriteValue.Text);
                                 
-                iFResult = uFCoder1x.ValueBlockWrite(iValueData, bValueAddress, uiBlockAddress, bAuthMode, bKeyIndex);
+                iFResult = uFCoder.ValueBlockWrite(iValueData, bValueAddress, uiBlockAddress, bAuthMode, bKeyIndex);
 
                 if (iFResult == DL_OK)
                 {                    
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 } 
             }
@@ -399,16 +399,16 @@ namespace uFrAdvance
                 bValueAddress  = System.Convert.ToByte(txtVBWValueAddressAKM1.Text);
                 iValueData     = System.Convert.ToInt32(txtVBWriteValueAKM1.Text);
                                 
-                iFResult = uFCoder1x.ValueBlockWrite_AKM1(iValueData, bValueAddress, uiBlockAddress, bAuthMode);
+                iFResult = uFCoder.ValueBlockWrite_AKM1(iValueData, bValueAddress, uiBlockAddress, bAuthMode);
 
                 if (iFResult == DL_OK)
                 {                    
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 } 
             }
@@ -466,16 +466,16 @@ namespace uFrAdvance
                 bValueAddress  = System.Convert.ToByte(txtVBWValueAddressAKM2.Text);
                 iValueData     = System.Convert.ToInt32(txtVBWriteValueAKM2.Text);
                                 
-                iFResult = uFCoder1x.ValueBlockWrite_AKM2(iValueData, bValueAddress, uiBlockAddress, bAuthMode);
+                iFResult = uFCoder.ValueBlockWrite_AKM2(iValueData, bValueAddress, uiBlockAddress, bAuthMode);
 
                 if (iFResult == DL_OK)
                 {                    
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
             }
@@ -547,17 +547,17 @@ namespace uFrAdvance
                 {
                     fixed (byte* PKEY_PK = baKeyPK)
                     {
-                        iFResult = uFCoder1x.ValueBlockWrite_PK(iValueData, bValueAddress, uiBlockAddress, bAuthMode, PKEY_PK);
+                        iFResult = uFCoder.ValueBlockWrite_PK(iValueData, bValueAddress, uiBlockAddress, bAuthMode, PKEY_PK);
                     }
                 }
                 if (iFResult == DL_OK)
                 {
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
             }

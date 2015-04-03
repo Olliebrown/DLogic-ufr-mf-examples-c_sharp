@@ -247,19 +247,19 @@ namespace uFrAdvance
                 {
                     fixed (byte* PKEY_A = baKeyA, 
                                  PKEY_B = baKeyB)
-                        iFResult = uFCoder1x.LinearFormatCard(PKEY_A, bBlockAccessBits, bSectorTrailerAccessBits, bTrailerByte9, PKEY_B,&bSectorsFormatted, 
+                        iFResult = uFCoder.LinearFormatCard(PKEY_A, bBlockAccessBits, bSectorTrailerAccessBits, bTrailerByte9, PKEY_B,&bSectorsFormatted, 
                                                               bAuthMode, bKeyIndex);
                 }
                 if (iFResult == DL_OK)
                 {
                     txtSectorsFormatted.Text = System.Convert.ToString(bSectorsFormatted);
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
                     txtSectorsFormatted.Text = System.Convert.ToString(bSectorsFormatted);
-                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 } 
             }
@@ -325,18 +325,18 @@ namespace uFrAdvance
                 {
                     fixed (byte* PKEY_A = baKeyA, 
                                  PKEY_B = baKeyB)
-                    iFResult = uFCoder1x.LinearFormatCard_AKM1(PKEY_A, bBlockAccessBits, bSectorTrailerAccessBits, bTrailerByte9, PKEY_B, &bSectorsFormatted, bAuthMode);
+                    iFResult = uFCoder.LinearFormatCard_AKM1(PKEY_A, bBlockAccessBits, bSectorTrailerAccessBits, bTrailerByte9, PKEY_B, &bSectorsFormatted, bAuthMode);
                 }
                 if (iFResult == DL_OK)
                 {
                     txtSectorsFormattedAKM1.Text = System.Convert.ToString(bSectorsFormatted);
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
                     txtSectorsFormattedAKM1.Text = System.Convert.ToString(bSectorsFormatted);
-                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 } 
             }
@@ -400,18 +400,18 @@ namespace uFrAdvance
                 {
                     fixed (byte* PKEY_A = baKeyA, 
                                  PKEY_B = baKeyB)
-                    iFResult = uFCoder1x.LinearFormatCard_AKM2(PKEY_A, bBlockAccessBits, bSectorTrailerAccessBits, bTrailerByte9, PKEY_B, &bSectorsFormatted, bAuthMode);
+                    iFResult = uFCoder.LinearFormatCard_AKM2(PKEY_A, bBlockAccessBits, bSectorTrailerAccessBits, bTrailerByte9, PKEY_B, &bSectorsFormatted, bAuthMode);
                 }
                 if (iFResult == DL_OK)
                 {
                     txtSectorsFormattedAKM2.Text = System.Convert.ToString(bSectorsFormatted);
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
                     txtSectorsFormattedAKM2.Text = System.Convert.ToString(bSectorsFormatted);
-                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 } 
             }
@@ -488,19 +488,19 @@ namespace uFrAdvance
                     fixed (byte* PKEY_A  = baKeyA, 
                                  PKEY_B  = baKeyB,
                                  PPKEY   = baPKKey)
-                    iFResult = uFCoder1x.LinearFormatCard_PK(PKEY_A, bBlockAccessBits, bSectorTrailerAccessBits, bTrailerByte9, PKEY_B, &bSectorsFormatted,
+                    iFResult = uFCoder.LinearFormatCard_PK(PKEY_A, bBlockAccessBits, bSectorTrailerAccessBits, bTrailerByte9, PKEY_B, &bSectorsFormatted,
                                                              bAuthMode,PPKEY);
                 }
                 if (iFResult == DL_OK)
                 {
                     txtSectorsFormattedPK.Text = System.Convert.ToString(bSectorsFormatted);
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
                     txtSectorsFormattedPK.Text = System.Convert.ToString(bSectorsFormatted);
-                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 } 
             }

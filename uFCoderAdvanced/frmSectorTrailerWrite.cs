@@ -277,17 +277,17 @@ namespace uFrAdvance
                 {
                     fixed (byte* PKEY_A = baKeyA, 
                                  PKEY_B = baKeyB)
-                    iFResult = uFCoder1x.SectorTrailerWrite(bAddressingMode, bBlockOrSector, PKEY_A, bBlockAccessBits0, bBlockAccessBits1, bBlockAccessBits2, 
+                    iFResult = uFCoder.SectorTrailerWrite(bAddressingMode, bBlockOrSector, PKEY_A, bBlockAccessBits0, bBlockAccessBits1, bBlockAccessBits2, 
                                                             bSectorTrailerAccessBits, bTrailerAccessBits9, PKEY_B, bAuthMode, bKeyIndex);
                 }
                 if (iFResult == DL_OK)
                 {                    
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {                    
-                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 } 
             }
@@ -380,17 +380,17 @@ namespace uFrAdvance
                 {
                     fixed (byte* PKEY_A = baKeyA,
                                  PKEY_B = baKeyB)
-                    iFResult = uFCoder1x.SectorTrailerWrite_AKM1(bAddressingMode, bBlockOrSector, PKEY_A, bBlockAccessBits0, bBlockAccessBits1, bBlockAccessBits2,
+                    iFResult = uFCoder.SectorTrailerWrite_AKM1(bAddressingMode, bBlockOrSector, PKEY_A, bBlockAccessBits0, bBlockAccessBits1, bBlockAccessBits2,
                                                                  bSectorTrailerAccessBits, bTrailerAccessBits9, PKEY_B, bAuthMode);
                 }
                 if (iFResult == DL_OK)
                 {
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 } 
             }
@@ -484,17 +484,17 @@ namespace uFrAdvance
                 {
                     fixed (byte* PKEY_A = baKeyA, 
                                  PKEY_B = baKeyB)
-                    iFResult = uFCoder1x.SectorTrailerWrite_AKM2(bAddressingMode, bBlockOrSector, PKEY_A, bBlockAccessBits0, bBlockAccessBits1, bBlockAccessBits2,
+                    iFResult = uFCoder.SectorTrailerWrite_AKM2(bAddressingMode, bBlockOrSector, PKEY_A, bBlockAccessBits0, bBlockAccessBits1, bBlockAccessBits2,
                                                                  bSectorTrailerAccessBits, bTrailerAccessBits9, PKEY_B, bAuthMode);
                 }
                 if (iFResult == DL_OK)
                 {
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 } 
             }
@@ -601,17 +601,17 @@ namespace uFrAdvance
                     fixed (byte* PKEY_A  = baKeyA, 
                                  PKEY_B  = baKeyB,
                                  PKEY_PK = baKeyPK)
-                    iFResult = uFCoder1x.SectorTrailerWrite_PK(bAddressingMode, bBlockOrSector, PKEY_A, bBlockAccessBits0, bBlockAccessBits1, bBlockAccessBits2,
+                    iFResult = uFCoder.SectorTrailerWrite_PK(bAddressingMode, bBlockOrSector, PKEY_A, bBlockAccessBits0, bBlockAccessBits1, bBlockAccessBits2,
                                                                bSectorTrailerAccessBits, bTrailerAccessBits9, PKEY_B, bAuthMode,PKEY_PK);
                 }
                 if (iFResult == DL_OK)
                 {
-                    uFCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {
-                    uFCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 } 
             }
