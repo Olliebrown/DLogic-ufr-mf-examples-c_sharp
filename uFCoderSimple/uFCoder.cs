@@ -70,9 +70,9 @@ namespace uFRSimple
     }
 
 
-    unsafe class uFrCoder1x
+    unsafe class uFCoder
     {
-        const string DLL_NAME = "uFCoder1x-x86.dll";
+        const string DLL_NAME = "uFCoder-x86.dll";
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "ReaderOpen")]
         public static extern DL_STATUS ReaderOpen();

@@ -210,7 +210,7 @@ namespace uFRSimple
             LoopStatus =true;                                                         
             if (!boCONN)
             {
-                if ((iRResult = uFrCoder1x.ReaderOpen()) == DL_OK)
+                if ((iRResult = uFCoder.ReaderOpen()) == DL_OK)
                 {
                     boCONN = true;
                     stbReader.Items[0].Text = "CONNECTED";
@@ -232,16 +232,16 @@ namespace uFRSimple
                 fixed (byte* pCardUID = baCardUID) 
                 if (boCONN)
                 {
-                    iRResult = uFrCoder1x.GetReaderType(&ulReaderType);
+                    iRResult = uFCoder.GetReaderType(&ulReaderType);
                     if ( iRResult == DL_OK)
                     {
                         txtReaderType.Text = "0x" + ulReaderType.ToString("X");
-                        iRResult = uFrCoder1x.GetReaderSerialNumber(&ulReaderSerial);
+                        iRResult = uFCoder.GetReaderSerialNumber(&ulReaderSerial);
                         if (iRResult == DL_OK)
                         {
                             txtReaderSerial.Text = "0x" + ulReaderSerial.ToString("X");  
                             
-                            iCResult = uFrCoder1x.GetDlogicCardType(&bDLCardType);
+                            iCResult = uFCoder.GetDlogicCardType(&bDLCardType);
                             
                             if (iCResult == DL_OK)
                             {
@@ -256,7 +256,7 @@ namespace uFRSimple
                                     btnFormatCard.Enabled = true;
                                 }
 
-                                uFrCoder1x.GetCardIdEx(&bCardType, pCardUID, &bUidSize);
+                                uFCoder.GetCardIdEx(&bCardType, pCardUID, &bUidSize);
                                 for (byte bBr = 0; bBr < bUidSize; bBr++)
                                 {
                                     sBuffer += baCardUID[bBr].ToString("X");
@@ -283,7 +283,7 @@ namespace uFRSimple
                         txtReaderSerial.Clear();
                         txtCardType    .Clear();                      
                         txtCardSerial  .Clear();
-                        uFrCoder1x.ReaderClose();
+                        uFCoder.ReaderClose();
                         boCONN = false;
                         SetStatusBar(iRResult, stbReader);
                     }
@@ -304,7 +304,7 @@ namespace uFRSimple
            try
            {
                FunctionOn =true ;
-                uFrCoder1x.ReaderUISignal(cboLightMode.SelectedIndex, cboSoundMode.SelectedIndex);
+                uFCoder.ReaderUISignal(cboLightMode.SelectedIndex, cboSoundMode.SelectedIndex);
            }
            finally
            {
@@ -363,21 +363,21 @@ namespace uFRSimple
                 unsafe
                 {                    
                     fixed (byte* PData = baReadData)
-                        iFResult = uFrCoder1x.LinearRead(PData, ushLinearAddress, ushDataLength, &ushBytesRet, bAuthMode, bKeyIndex);
+                        iFResult = uFCoder.LinearRead(PData, ushLinearAddress, ushDataLength, &ushBytesRet, bAuthMode, bKeyIndex);
                 }
                 if (iFResult == DL_OK)
                 {
                     txtReadData.Text  = System.Text.Encoding.ASCII.GetString(baReadData);
                     txtReadBytes.Text = ushBytesRet.ToString();                    
                     SetStatusBar(iFResult, stbFunction);
-                    uFrCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                 }
                 else
                 {                    
                     txtReadData.Text  = System.Text.Encoding.ASCII.GetString(baReadData);
                     txtReadBytes.Text = ushBytesRet.ToString();
                     SetStatusBar(iFResult, stbFunction);
-                    uFrCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);                    
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);                    
                 }
 
             }
@@ -432,20 +432,20 @@ namespace uFRSimple
                 unsafe
                 {
                     fixed (byte* PData = baWriteData)
-                        iFResult = uFrCoder1x.LinearWrite(PData, ushLinearAddress, ushDataLength, &ushBytesRet, bAuthMode, bKeyIndex);
+                        iFResult = uFCoder.LinearWrite(PData, ushLinearAddress, ushDataLength, &ushBytesRet, bAuthMode, bKeyIndex);
                 }
                 if (iFResult == DL_OK)
                 {
                     txtBytesWritten.Text = ushBytesRet.ToString();
                     SetStatusBar(iFResult, stbFunction);
-                    uFrCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     
                 }
                 else
                 {
                     txtBytesWritten.Text = ushBytesRet.ToString();
                     SetStatusBar(iFResult, stbFunction);
-                    uFrCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);                    
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);                    
                 }
 
             }
@@ -510,19 +510,19 @@ namespace uFRSimple
                 {
                     fixed (byte* PReaderKey = baReaderKey)
                     {
-                        iFResult = uFrCoder1x.ReaderKeyWrite(PReaderKey, bKeyIndex);
+                        iFResult = uFCoder.ReaderKeyWrite(PReaderKey, bKeyIndex);
 
                     }
                 }
                 if (iFResult == DL_OK)
                 {
-                    uFrCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     SetStatusBar(iFResult, stbFunction);
                     MessageBox.Show("Reader key is formatted successfully !", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    uFrCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     SetStatusBar(iFResult, stbFunction);
                     MessageBox.Show("Reader key is not formatted successfully !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -581,18 +581,18 @@ namespace uFRSimple
                 unsafe
                 {
                     fixed (byte* PKEY_A = baKeyA, PKEY_B = baKeyB)
-                        iFResult = uFrCoder1x.LinearFormatCard(PKEY_A, bBlockAccessBits, bSectorTrailersAccess_bits, bSectorTrailersByte9, PKEY_B, &bSectorsFormatted, bAuthMode, bKeyIndex);
+                        iFResult = uFCoder.LinearFormatCard(PKEY_A, bBlockAccessBits, bSectorTrailersAccess_bits, bSectorTrailersByte9, PKEY_B, &bSectorsFormatted, bAuthMode, bKeyIndex);
                 }
                 if (iFResult == DL_OK)
                 {
-                    uFrCoder1x.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     txtSectorFormatted.Text = bSectorsFormatted.ToString();
                     SetStatusBar(iFResult, stbFunction);
                     MessageBox.Show("Card keys are formatted successfully !", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    uFrCoder1x.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     txtSectorFormatted.Text = bSectorsFormatted.ToString();
                     SetStatusBar(iFResult, stbFunction);
                     MessageBox.Show("Card keys are not formatted successfully !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
