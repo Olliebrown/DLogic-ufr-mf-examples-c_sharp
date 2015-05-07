@@ -1,9 +1,0 @@
-C:\prj\sw_open\C#\NTAG_lock_bytes\NTAG_lock_bytes\bin\Release\NTAG_lock_bytes.exe.config
-C:\prj\sw_open\C#\NTAG_lock_bytes\NTAG_lock_bytes\obj\Release\NTAG_lock_bytes.csprojResolveAssemblyReference.cache
-C:\prj\sw_open\C#\NTAG_lock_bytes\NTAG_lock_bytes\obj\Release\NTAG_lock_bytes.frmMain.resources
-C:\prj\sw_open\C#\NTAG_lock_bytes\NTAG_lock_bytes\obj\Release\NTAG_lock_bytes.Properties.Resources.resources
-C:\prj\sw_open\C#\NTAG_lock_bytes\NTAG_lock_bytes\obj\Release\NTAG_lock_bytes.csproj.GenerateResource.Cache
-C:\prj\sw_open\C#\NTAG_lock_bytes\NTAG_lock_bytes\bin\Release\NTAG_lock_bytes.exe
-C:\prj\sw_open\C#\NTAG_lock_bytes\NTAG_lock_bytes\bin\Release\NTAG_lock_bytes.pdb
-C:\prj\sw_open\C#\NTAG_lock_bytes\NTAG_lock_bytes\obj\Release\NTAG_lock_bytes.exe
-C:\prj\sw_open\C#\NTAG_lock_bytes\NTAG_lock_bytes\obj\Release\NTAG_lock_bytes.pdb
