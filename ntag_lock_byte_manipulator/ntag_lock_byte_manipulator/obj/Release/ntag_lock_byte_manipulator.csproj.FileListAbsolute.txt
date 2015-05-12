@@ -1,8 +1,0 @@
-C:\prj\sw_open\C#\ntag_lock_byte_manipulator\ntag_lock_byte_manipulator\ntag_lock_byte_manipulator\obj\Release\NTAG_lock_bytes.frmMain.resources
-C:\prj\sw_open\C#\ntag_lock_byte_manipulator\ntag_lock_byte_manipulator\ntag_lock_byte_manipulator\obj\Release\ntag_lock_byte_manipulator.csproj.GenerateResource.Cache
-C:\prj\sw_open\C#\ntag_lock_byte_manipulator\ntag_lock_byte_manipulator\ntag_lock_byte_manipulator\bin\Release\ntag_lock_byte_manipulator.exe.config
-C:\prj\sw_open\C#\ntag_lock_byte_manipulator\ntag_lock_byte_manipulator\ntag_lock_byte_manipulator\bin\Release\ntag_lock_byte_manipulator.exe
-C:\prj\sw_open\C#\ntag_lock_byte_manipulator\ntag_lock_byte_manipulator\ntag_lock_byte_manipulator\bin\Release\ntag_lock_byte_manipulator.pdb
-C:\prj\sw_open\C#\ntag_lock_byte_manipulator\ntag_lock_byte_manipulator\ntag_lock_byte_manipulator\obj\Release\ntag_lock_byte_manipulator.Properties.Resources.resources
-C:\prj\sw_open\C#\ntag_lock_byte_manipulator\ntag_lock_byte_manipulator\ntag_lock_byte_manipulator\obj\Release\ntag_lock_byte_manipulator.exe
-C:\prj\sw_open\C#\ntag_lock_byte_manipulator\ntag_lock_byte_manipulator\ntag_lock_byte_manipulator\obj\Release\ntag_lock_byte_manipulator.pdb
