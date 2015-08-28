@@ -1,0 +1,9 @@
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\bin\x86\Debug\uFR_multiDLL_tester.exe.config
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\bin\x86\Debug\uFR_multiDLL_tester.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\bin\x86\Debug\uFR_multiDLL_tester.pdb
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\obj\x86\Debug\uFR_multiDLL_tester.csprojResolveAssemblyReference.cache
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\obj\x86\Debug\uFR_multiDLL_tester.frmMultiuFRTester.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\obj\x86\Debug\uFR_multiDLL_tester.Properties.Resources.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\obj\x86\Debug\uFR_multiDLL_tester.csproj.GenerateResource.Cache
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\obj\x86\Debug\uFR_multiDLL_tester.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\obj\x86\Debug\uFR_multiDLL_tester.pdb

@@ -1,0 +1,14 @@
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\Debug\uFR Simple.exe.config
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\Debug\uFR Simple.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\Debug\uFR Simple.pdb
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\Debug\mscorlib.dll
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\Debug\normidna.nlp
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\Debug\normnfc.nlp
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\Debug\normnfd.nlp
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\Debug\normnfkc.nlp
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\Debug\normnfkd.nlp
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\Debug\uFRSimple.frmuFrSimple.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\Debug\uFRSimple.Properties.Resources.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\Debug\uFr Simple.csproj.GenerateResource.Cache
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\Debug\uFR Simple.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\Debug\uFR Simple.pdb

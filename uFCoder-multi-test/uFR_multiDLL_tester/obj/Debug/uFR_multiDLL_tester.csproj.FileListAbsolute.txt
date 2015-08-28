@@ -7,3 +7,17 @@ D:\ws\Visual Studio 2013\Projects\uFR_multiDLL_tester\uFR_multiDLL_tester\obj\De
 D:\ws\Visual Studio 2013\Projects\uFR_multiDLL_tester\uFR_multiDLL_tester\obj\Debug\uFR_multiDLL_tester.exe
 D:\ws\Visual Studio 2013\Projects\uFR_multiDLL_tester\uFR_multiDLL_tester\obj\Debug\uFR_multiDLL_tester.pdb
 D:\ws\Visual Studio 2013\Projects\uFR_multiDLL_tester\uFR_multiDLL_tester\obj\Debug\uFR_multiDLL_tester.frmMultiuFRTester.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\bin\Debug\uFR_multiDLL_tester.exe.config
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\bin\Debug\uFR_multiDLL_tester.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\bin\Debug\uFR_multiDLL_tester.pdb
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\bin\Debug\mscorlib.dll
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\bin\Debug\normidna.nlp
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\bin\Debug\normnfc.nlp
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\bin\Debug\normnfd.nlp
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\bin\Debug\normnfkc.nlp
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\bin\Debug\normnfkd.nlp
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\obj\Debug\uFR_multiDLL_tester.frmMultiuFRTester.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\obj\Debug\uFR_multiDLL_tester.Properties.Resources.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\obj\Debug\uFR_multiDLL_tester.csproj.GenerateResource.Cache
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\obj\Debug\uFR_multiDLL_tester.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoder-multi-test\uFR_multiDLL_tester\obj\Debug\uFR_multiDLL_tester.pdb

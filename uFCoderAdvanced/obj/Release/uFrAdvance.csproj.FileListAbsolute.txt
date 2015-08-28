@@ -1,0 +1,18 @@
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\bin\Release\uFr Advance.exe.config
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\bin\Release\uFr Advance.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\bin\Release\uFr Advance.pdb
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.frmBlockReadWrite.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.frmBlockInSectorReadWrite.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.frmLinearFormatCard.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.frmuFrAdvance.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.frmSectorTrailerWrite.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.frmValueBlockIncrDecr.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.frmValueBlockInSectorIncremDecrem.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.frmValueBlockInSectorReadWrite.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.frmValueBlockReadWrite.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.frmViewAll.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.frmLinearReadWrite.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.Properties.Resources.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.csproj.GenerateResource.Cache
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFr Advance.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFr Advance.pdb

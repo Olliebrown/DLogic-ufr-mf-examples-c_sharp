@@ -213,3 +213,4 @@ d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Releas
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Release\uFrAdvance.csproj.GenerateResource.Cache
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Release\uFr Advance.exe
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Release\uFr Advance.pdb
+d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Release\uFrAdvance.csprojResolveAssemblyReference.cache
