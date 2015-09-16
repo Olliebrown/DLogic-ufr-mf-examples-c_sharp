@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace uFCoder
+namespace DL_uFCoder
 {
     using System.Runtime.InteropServices;
 
