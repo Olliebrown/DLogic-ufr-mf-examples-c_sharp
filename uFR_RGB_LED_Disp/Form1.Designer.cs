@@ -42,6 +42,11 @@
             this.lbDeviceSerialNr = new System.Windows.Forms.Label();
             this.tbDeviceType = new System.Windows.Forms.TextBox();
             this.lbDeviceType = new System.Windows.Forms.Label();
+            this.btnSetDisplayColor = new System.Windows.Forms.Button();
+            this.btnClearDisplay = new System.Windows.Forms.Button();
+            this.btnEffect2 = new System.Windows.Forms.Button();
+            this.btnEffect1 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,9 +56,9 @@
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel6,
             this.statusReader});
-            this.statusStrip.Location = new System.Drawing.Point(0, 436);
+            this.statusStrip.Location = new System.Drawing.Point(0, 260);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(700, 22);
+            this.statusStrip.Size = new System.Drawing.Size(484, 22);
             this.statusStrip.TabIndex = 48;
             this.statusStrip.Text = "statusStrip";
             // 
@@ -71,12 +76,14 @@
             // 
             this.statusReader.AutoSize = false;
             this.statusReader.Name = "statusReader";
-            this.statusReader.Size = new System.Drawing.Size(160, 17);
-            this.statusReader.Text = "statusReader";
+            this.statusReader.Size = new System.Drawing.Size(360, 17);
+            this.statusReader.Text = "Ok";
+            this.statusReader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(559, 41);
+            this.btnClose.Enabled = false;
+            this.btnClose.Location = new System.Drawing.Point(329, 41);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(129, 23);
             this.btnClose.TabIndex = 50;
@@ -86,7 +93,7 @@
             // 
             // btnOpen
             // 
-            this.btnOpen.Location = new System.Drawing.Point(559, 12);
+            this.btnOpen.Location = new System.Drawing.Point(329, 12);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(129, 23);
             this.btnOpen.TabIndex = 49;
@@ -96,11 +103,12 @@
             // 
             // btnCardIdEx
             // 
-            this.btnCardIdEx.Location = new System.Drawing.Point(559, 70);
+            this.btnCardIdEx.Enabled = false;
+            this.btnCardIdEx.Location = new System.Drawing.Point(329, 70);
             this.btnCardIdEx.Name = "btnCardIdEx";
             this.btnCardIdEx.Size = new System.Drawing.Size(129, 23);
             this.btnCardIdEx.TabIndex = 51;
-            this.btnCardIdEx.Tag = "100000000";
+            this.btnCardIdEx.Tag = "";
             this.btnCardIdEx.Text = "Get Card ID";
             this.btnCardIdEx.UseVisualStyleBackColor = true;
             this.btnCardIdEx.Click += new System.EventHandler(this.btnCardIdEx_Click);
@@ -180,11 +188,73 @@
             this.lbDeviceType.Text = "Device Type";
             this.lbDeviceType.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // btnSetDisplayColor
+            // 
+            this.btnSetDisplayColor.Enabled = false;
+            this.btnSetDisplayColor.Location = new System.Drawing.Point(17, 144);
+            this.btnSetDisplayColor.Name = "btnSetDisplayColor";
+            this.btnSetDisplayColor.Size = new System.Drawing.Size(129, 23);
+            this.btnSetDisplayColor.TabIndex = 60;
+            this.btnSetDisplayColor.Tag = "";
+            this.btnSetDisplayColor.Text = "Set Display Color";
+            this.btnSetDisplayColor.UseVisualStyleBackColor = true;
+            this.btnSetDisplayColor.Click += new System.EventHandler(this.btnSetDisplayColor_Click);
+            // 
+            // btnClearDisplay
+            // 
+            this.btnClearDisplay.Enabled = false;
+            this.btnClearDisplay.Location = new System.Drawing.Point(17, 173);
+            this.btnClearDisplay.Name = "btnClearDisplay";
+            this.btnClearDisplay.Size = new System.Drawing.Size(129, 23);
+            this.btnClearDisplay.TabIndex = 61;
+            this.btnClearDisplay.Tag = "";
+            this.btnClearDisplay.Text = "Clear Display";
+            this.btnClearDisplay.UseVisualStyleBackColor = true;
+            this.btnClearDisplay.Click += new System.EventHandler(this.btnClearDisplay_Click);
+            // 
+            // btnEffect2
+            // 
+            this.btnEffect2.Enabled = false;
+            this.btnEffect2.Location = new System.Drawing.Point(173, 173);
+            this.btnEffect2.Name = "btnEffect2";
+            this.btnEffect2.Size = new System.Drawing.Size(129, 23);
+            this.btnEffect2.TabIndex = 63;
+            this.btnEffect2.Tag = "";
+            this.btnEffect2.Text = "Display Effect 2";
+            this.btnEffect2.UseVisualStyleBackColor = true;
+            // 
+            // btnEffect1
+            // 
+            this.btnEffect1.Location = new System.Drawing.Point(173, 144);
+            this.btnEffect1.Name = "btnEffect1";
+            this.btnEffect1.Size = new System.Drawing.Size(129, 23);
+            this.btnEffect1.TabIndex = 62;
+            this.btnEffect1.Tag = "";
+            this.btnEffect1.Text = "Display Effect 1";
+            this.btnEffect1.UseVisualStyleBackColor = true;
+            this.btnEffect1.Click += new System.EventHandler(this.btnEffect1_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(329, 144);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(129, 23);
+            this.button1.TabIndex = 64;
+            this.button1.Tag = "";
+            this.button1.Text = "Stop Display Effect";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 458);
+            this.ClientSize = new System.Drawing.Size(484, 282);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnEffect2);
+            this.Controls.Add(this.btnEffect1);
+            this.Controls.Add(this.btnClearDisplay);
+            this.Controls.Add(this.btnSetDisplayColor);
             this.Controls.Add(this.tbCardType);
             this.Controls.Add(this.lbCardType);
             this.Controls.Add(this.tbCardId);
@@ -198,6 +268,7 @@
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.statusStrip);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "uFR RGB LED Display Demo v1.0";
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
@@ -222,6 +293,11 @@
         private System.Windows.Forms.Label lbDeviceSerialNr;
         private System.Windows.Forms.TextBox tbDeviceType;
         private System.Windows.Forms.Label lbDeviceType;
+        private System.Windows.Forms.Button btnSetDisplayColor;
+        private System.Windows.Forms.Button btnClearDisplay;
+        private System.Windows.Forms.Button btnEffect2;
+        private System.Windows.Forms.Button btnEffect1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

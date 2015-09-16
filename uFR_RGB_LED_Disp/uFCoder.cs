@@ -97,16 +97,6 @@ namespace DL_uFCoder
         UFR_READER_PORT_NOT_OPENED = 0x55,
         UFR_CANT_CLOSE_READER_PORT = 0x56,
 
-        UFR_FT_STATUS_ERROR_1 = 0xA0,
-        UFR_FT_STATUS_ERROR_2 = 0xA1,
-        UFR_FT_STATUS_ERROR_3 = 0xA2,
-        UFR_FT_STATUS_ERROR_4 = 0xA3,
-        UFR_FT_STATUS_ERROR_5 = 0xA4,
-        UFR_FT_STATUS_ERROR_6 = 0xA5,
-        UFR_FT_STATUS_ERROR_7 = 0xA6,
-        UFR_FT_STATUS_ERROR_8 = 0xA7,
-        UFR_FT_STATUS_ERROR_9 = 0xA8,
-
         //NDEF error codes
         UFR_WRONG_NDEF_CARD_FORMAT = 0x80,
         UFR_NDEF_MESSAGE_NOT_FOUND = 0x81,
@@ -176,6 +166,9 @@ namespace DL_uFCoder
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "GetReaderFirmwareVersion")]
         public static extern DL_STATUS GetReaderFirmwareVersion(byte* bVerMajor,
                                                                 byte* bVerMinor);
+
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "SetDisplayData")]
+        public static extern DL_STATUS SetDisplayData(byte* display_data, byte data_length);
 
         //--------------------------------------------------------------------------------------------------------------
 
