@@ -46,7 +46,7 @@
             this.btnClearDisplay = new System.Windows.Forms.Button();
             this.btnEffect2 = new System.Windows.Forms.Button();
             this.btnEffect1 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnStopEffect = new System.Windows.Forms.Button();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -222,9 +222,11 @@
             this.btnEffect2.Tag = "";
             this.btnEffect2.Text = "Display Effect 2";
             this.btnEffect2.UseVisualStyleBackColor = true;
+            this.btnEffect2.Click += new System.EventHandler(this.btnEffect2_Click);
             // 
             // btnEffect1
             // 
+            this.btnEffect1.Enabled = false;
             this.btnEffect1.Location = new System.Drawing.Point(173, 144);
             this.btnEffect1.Name = "btnEffect1";
             this.btnEffect1.Size = new System.Drawing.Size(129, 23);
@@ -234,23 +236,24 @@
             this.btnEffect1.UseVisualStyleBackColor = true;
             this.btnEffect1.Click += new System.EventHandler(this.btnEffect1_Click);
             // 
-            // button1
+            // btnStopEffect
             // 
-            this.button1.Location = new System.Drawing.Point(329, 144);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 23);
-            this.button1.TabIndex = 64;
-            this.button1.Tag = "";
-            this.button1.Text = "Stop Display Effect";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnStopEffect.Enabled = false;
+            this.btnStopEffect.Location = new System.Drawing.Point(329, 144);
+            this.btnStopEffect.Name = "btnStopEffect";
+            this.btnStopEffect.Size = new System.Drawing.Size(129, 23);
+            this.btnStopEffect.TabIndex = 64;
+            this.btnStopEffect.Tag = "";
+            this.btnStopEffect.Text = "Stop Display Effect";
+            this.btnStopEffect.UseVisualStyleBackColor = true;
+            this.btnStopEffect.Click += new System.EventHandler(this.btnStopEffect_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 282);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnStopEffect);
             this.Controls.Add(this.btnEffect2);
             this.Controls.Add(this.btnEffect1);
             this.Controls.Add(this.btnClearDisplay);
@@ -269,7 +272,8 @@
             this.Controls.Add(this.statusStrip);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "uFR RGB LED Display Demo v1.0";
+            this.Text = "uFR RGB LED Display Demo v2.0";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -297,7 +301,7 @@
         private System.Windows.Forms.Button btnClearDisplay;
         private System.Windows.Forms.Button btnEffect2;
         private System.Windows.Forms.Button btnEffect1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnStopEffect;
     }
 }
 

@@ -13,9 +13,11 @@ namespace uFR_RGB_LED_Disp
 {
     public partial class Form1 : Form
     {
+        private ThreadStopRequest effect_stop_request;
         private Thread oThread;
         private Effect oEffect;
         private DLOGIC_CARD_TYPE dlogic_card_type;
+        private static Mutex mut_uFR = new Mutex();
 
         public Form1()
         {
@@ -37,7 +39,10 @@ namespace uFR_RGB_LED_Disp
             tbDeviceType.Refresh();
             tbDeviceSerialNr.Refresh();
 
+            mut_uFR.WaitOne();
             status = uFCoder.ReaderOpen();
+            mut_uFR.ReleaseMutex();
+
             reader_connected = status == DL_STATUS.UFR_OK;
 
             unsafe
@@ -68,6 +73,9 @@ namespace uFR_RGB_LED_Disp
                 btnCardIdEx.Enabled = true;
                 btnSetDisplayColor.Enabled = true;
                 btnClearDisplay.Enabled = true;
+                btnEffect1.Enabled = true;
+                btnEffect2.Enabled = true;
+                btnOpen.Enabled = false;
             }
         }
 
@@ -75,7 +83,20 @@ namespace uFR_RGB_LED_Disp
         {
             DL_STATUS status;
 
+            if (btnStopEffect.Enabled)
+            {
+                effect_stop_request.stopRequest();
+                oThread.Join();
+                oThread = null;
+                oEffect = null;
+                effect_stop_request = null;
+            }
+
+            SetDisplayColor(0);
+
+            mut_uFR.WaitOne();
             status = uFCoder.ReaderClose();
+            mut_uFR.ReleaseMutex();
 
             if (status == DL_STATUS.UFR_OK)
             {
@@ -86,8 +107,11 @@ namespace uFR_RGB_LED_Disp
                 btnCardIdEx.Enabled = false;
                 btnSetDisplayColor.Enabled = false;
                 btnClearDisplay.Enabled = false;
+                btnEffect1.Enabled = false;
+                btnEffect2.Enabled = false;
+                btnStopEffect.Enabled = false;
+                btnOpen.Enabled = true;
             }
-
         }
 
         private void btnCardIdEx_Click(object sender, EventArgs e)
@@ -96,10 +120,13 @@ namespace uFR_RGB_LED_Disp
             byte card_type, id_len;
             byte[] card_id = new byte[10];
 
+            mut_uFR.WaitOne();
             unsafe
             {
                 status = uFCoder.GetDlogicCardType(&card_type);
             }
+            mut_uFR.ReleaseMutex();
+
             dlogic_card_type = (DLOGIC_CARD_TYPE)card_type;
 
             if (status != DL_STATUS.UFR_OK)
@@ -210,11 +237,14 @@ namespace uFR_RGB_LED_Disp
                     break;
             }
 
+            mut_uFR.WaitOne();
             unsafe
             {
                 fixed (byte* cid = card_id)
                     status = uFCoder.GetCardIdEx(&card_type, cid, &id_len);
             }
+            mut_uFR.ReleaseMutex();
+
             if (status != DL_STATUS.UFR_OK)
             {
                 statusReader.Text = "Card ID were read unsuccessfully ";
@@ -244,6 +274,8 @@ namespace uFR_RGB_LED_Disp
         {
             DL_STATUS status;
             byte[] display_data = new byte[DisplayConsts.DISPLAY_BUFFER_LEN];
+
+            // There is different arrangement of colors in RGB Display (GRB instead of RGB):
             byte green = (byte)((color >> 8) & 0xFF);
             byte red = (byte)((color >> 16) & 0xFF);
             byte blue = (byte)(color & 0xFF);
@@ -255,11 +287,13 @@ namespace uFR_RGB_LED_Disp
                 display_data[i + 2] = blue;
             }
 
+            mut_uFR.WaitOne();
             unsafe
             {
                 fixed (byte* unsafe_display_data = display_data)
                     status = uFCoder.SetDisplayData(unsafe_display_data, DisplayConsts.DISPLAY_BUFFER_LEN);
             }
+            mut_uFR.ReleaseMutex();
 
             if (status == DL_STATUS.UFR_OK)
             {
@@ -273,24 +307,93 @@ namespace uFR_RGB_LED_Disp
 
         private void btnEffect1_Click(object sender, EventArgs e)
         {
-            oEffect = new Effect1();
+            effect_stop_request = new ThreadStopRequest();
+            oEffect = new Effect1(mut_uFR, effect_stop_request);
             oThread = new Thread(new ThreadStart(oEffect.run));
             oThread.Start();
-            Thread.Sleep(1);
+
+            btnSetDisplayColor.Enabled = false;
+            btnClearDisplay.Enabled = false;
+            btnEffect1.Enabled = false;
+            btnEffect2.Enabled = false;
+            btnStopEffect.Enabled = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnEffect2_Click(object sender, EventArgs e)
         {
-            oThread.Abort();
+            effect_stop_request = new ThreadStopRequest();
+            oEffect = new Effect2(mut_uFR, effect_stop_request);
+            oThread = new Thread(new ThreadStart(oEffect.run));
+            oThread.Start();
+
+            btnSetDisplayColor.Enabled = false;
+            btnClearDisplay.Enabled = false;
+            btnEffect1.Enabled = false;
+            btnEffect2.Enabled = false;
+            btnStopEffect.Enabled = true;
+        }
+
+        private void btnStopEffect_Click(object sender, EventArgs e)
+        {
+            effect_stop_request.stopRequest();
+            oThread.Join();
+            oThread = null;
+            effect_stop_request = null;
+            oEffect = null;
+
+            btnSetDisplayColor.Enabled = true;
+            btnClearDisplay.Enabled = true;
+            btnEffect1.Enabled = true;
+            btnEffect2.Enabled = true;
+            btnStopEffect.Enabled = false;
+
+            SetDisplayColor(0);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (btnStopEffect.Enabled)
+            {
+                btnStopEffect_Click(sender, e);
+            }
+
+            if (btnClose.Enabled)
+            {
+                SetDisplayColor(0); 
+
+                mut_uFR.WaitOne();
+                uFCoder.ReaderClose();
+                mut_uFR.ReleaseMutex();
+            }
+        }
+
+    }
+
+    public class ThreadStopRequest
+    {
+        private bool stopNow = false;
+
+        public void stopRequest()
+        {
+            stopNow = true;
+        }
+
+        public bool shouldIStopNow()
+        {
+            return stopNow;
         }
     }
 
     public class Effect
     {
+        public ThreadStopRequest stop_request;
         public byte[] display_data;
+        public Mutex uFR_mutex;
 
-        public Effect()
+        public Effect(Mutex mut, ThreadStopRequest request)
         {
+            uFR_mutex = mut;
+            stop_request = request;
         }
 
         public virtual void run()
@@ -299,16 +402,15 @@ namespace uFR_RGB_LED_Disp
     }
 
     public class Effect1 : Effect
-    {        
-        byte green, red, blue;
-
-        public Effect1()
+    {
+        public Effect1(Mutex mut, ThreadStopRequest request)
+            : base(mut, request)
         {
-            int i, byte_cnt = 0; 
-            //display_data = new byte[DisplayConsts.DISPLAY_BUFFER_LEN];
-            display_data = Enumerable.Repeat((byte)0, DisplayConsts.DISPLAY_BUFFER_LEN).ToArray();
+            int i, byte_cnt = 0;
+            byte green, red, blue;
 
- 
+            display_data = new byte[DisplayConsts.DISPLAY_BUFFER_LEN];
+            //display_data = Enumerable.Repeat((byte)0, DisplayConsts.DISPLAY_BUFFER_LEN).ToArray();
 
             green = 2;
             red = 10;
@@ -328,15 +430,20 @@ namespace uFR_RGB_LED_Disp
 
         public override void run()
         {
+
             byte g, r, b;
 
-            while (true)
+            while (!stop_request.shouldIStopNow())
             {
+                //Thread.Sleep(40);
+
+                uFR_mutex.WaitOne();
                 unsafe
                 {
                     fixed (byte* unsafe_display_data = display_data)
                         uFCoder.SetDisplayData(unsafe_display_data, DisplayConsts.DISPLAY_BUFFER_LEN);
                 }
+                uFR_mutex.ReleaseMutex();
 
                 g = display_data[0];
                 r = display_data[1];
@@ -348,10 +455,67 @@ namespace uFR_RGB_LED_Disp
                 display_data[DisplayConsts.DISPLAY_BUFFER_LEN - 3] = g;
                 display_data[DisplayConsts.DISPLAY_BUFFER_LEN - 2] = r;
                 display_data[DisplayConsts.DISPLAY_BUFFER_LEN - 1] = b;
-
-                //Thread.Sleep(2);
             }
+        }
+    }
 
+    public class Effect2 : Effect
+    {
+        public Effect2(Mutex mut, ThreadStopRequest request)
+            : base(mut, request)
+        {
+
+            //display_data = new byte[DisplayConsts.DISPLAY_BUFFER_LEN];
+            display_data = Enumerable.Repeat((byte)0, DisplayConsts.DISPLAY_BUFFER_LEN).ToArray();
+
+            // red component setup:
+            display_data[1] = 40;
+            display_data[4] = 30;
+            display_data[7] = 20;
+            display_data[10] = 10;
+            display_data[13] = 4;
+
+            // blue component setup:
+            display_data[23] = 2;
+            display_data[26] = 10;
+            display_data[29] = 20;
+            display_data[32] = 30;
+            display_data[35] = 45;
+        }
+
+        public override void run()
+        {
+
+            byte temp;
+
+            while (!stop_request.shouldIStopNow())
+            {
+                Thread.Sleep(40);
+
+                uFR_mutex.WaitOne();
+                unsafe
+                {
+                    fixed (byte* unsafe_display_data = display_data)
+                        uFCoder.SetDisplayData(unsafe_display_data, DisplayConsts.DISPLAY_BUFFER_LEN);
+                }
+                uFR_mutex.ReleaseMutex();
+
+                // Only red component rotate clockwise:
+                temp = display_data[1];
+                for (int i = 1; i < DisplayConsts.DISPLAY_BUFFER_LEN - 3; i += 3)
+                {
+                    display_data[i] = display_data[i + 3];
+                }
+                display_data[DisplayConsts.DISPLAY_BUFFER_LEN - 2] = temp;
+
+                // Only blue component rotate counter-clockwise
+                temp = display_data[DisplayConsts.DISPLAY_BUFFER_LEN - 1];
+                for (int i = DisplayConsts.DISPLAY_BUFFER_LEN - 1; i > 2; i -= 3)
+                {
+                    display_data[i] = display_data[i - 3];
+                }
+                display_data[2] = temp;
+            }
         }
     }
 
@@ -360,5 +524,4 @@ namespace uFR_RGB_LED_Disp
         public const byte DISPLAY_LEDS = 16;
         public const byte DISPLAY_BUFFER_LEN = (DISPLAY_LEDS * 3);
     }
-
 }
