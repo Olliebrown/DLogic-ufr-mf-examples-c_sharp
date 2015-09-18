@@ -14,8 +14,11 @@ namespace uFR_RGB_LED_Disp
     public partial class Form1 : Form
     {
         private ThreadStopRequest effect_stop_request;
+        private ThreadStopRequest sound_effect_stop_request;
         private Thread oThread;
+        private Thread oSoundThread;
         private Effect oEffect;
+        private Effect oSoundEffect;
         private DLOGIC_CARD_TYPE dlogic_card_type;
         private static Mutex mut_uFR = new Mutex();
 
@@ -75,6 +78,9 @@ namespace uFR_RGB_LED_Disp
                 btnClearDisplay.Enabled = true;
                 btnEffect1.Enabled = true;
                 btnEffect2.Enabled = true;
+                btnSoundEffect1.Enabled = true;
+                btnSoundEffect2.Enabled = true;
+                btnStopSoundEffect.Enabled = true;
                 btnOpen.Enabled = false;
             }
         }
@@ -90,6 +96,15 @@ namespace uFR_RGB_LED_Disp
                 oThread = null;
                 oEffect = null;
                 effect_stop_request = null;
+            }
+
+            if (btnStopSoundEffect.Enabled)
+            {            
+                sound_effect_stop_request.stopRequest();
+                oSoundThread.Join();
+                oSoundThread = null;
+                sound_effect_stop_request = null;
+                oSoundEffect = null;
             }
 
             SetDisplayColor(0);
@@ -110,6 +125,9 @@ namespace uFR_RGB_LED_Disp
                 btnEffect1.Enabled = false;
                 btnEffect2.Enabled = false;
                 btnStopEffect.Enabled = false;
+                btnSoundEffect1.Enabled = false;
+                btnSoundEffect2.Enabled = false;
+                btnStopSoundEffect.Enabled = false;
                 btnOpen.Enabled = true;
             }
         }
@@ -350,11 +368,53 @@ namespace uFR_RGB_LED_Disp
             SetDisplayColor(0);
         }
 
+        private void btnSoundEffect1_Click(object sender, EventArgs e)
+        {
+            sound_effect_stop_request = new ThreadStopRequest();
+            oSoundEffect = new SoundEffect1(mut_uFR, sound_effect_stop_request);
+            oSoundThread = new Thread(new ThreadStart(oSoundEffect.run));
+            oSoundThread.Start();
+
+            btnSoundEffect1.Enabled = false;
+            btnSoundEffect2.Enabled = false;
+            btnStopSoundEffect.Enabled = true;
+        }
+
+        private void btnSoundEffect2_Click(object sender, EventArgs e)
+        {
+            sound_effect_stop_request = new ThreadStopRequest();
+            oSoundEffect = new SoundEffect2(mut_uFR, sound_effect_stop_request);
+            oSoundThread = new Thread(new ThreadStart(oSoundEffect.run));
+            oSoundThread.Start();
+
+            btnSoundEffect1.Enabled = false;
+            btnSoundEffect2.Enabled = false;
+            btnStopSoundEffect.Enabled = true;
+        }
+
+        private void btnStopSoundEffect_Click(object sender, EventArgs e)
+        {
+            sound_effect_stop_request.stopRequest();
+            oSoundThread.Join();
+            oSoundThread = null;
+            sound_effect_stop_request = null;
+            oSoundEffect = null;
+
+            btnSoundEffect1.Enabled = true;
+            btnSoundEffect2.Enabled = true;
+            btnStopSoundEffect.Enabled = false;
+        }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (btnStopEffect.Enabled)
             {
                 btnStopEffect_Click(sender, e);
+            }
+
+            if (btnStopSoundEffect.Enabled)
+            {
+                btnStopSoundEffect_Click(sender, e);
             }
 
             if (btnClose.Enabled)
@@ -387,7 +447,7 @@ namespace uFR_RGB_LED_Disp
     public class Effect
     {
         public ThreadStopRequest stop_request;
-        public byte[] display_data;
+        public byte[] data;
         public Mutex uFR_mutex;
 
         public Effect(Mutex mut, ThreadStopRequest request)
@@ -409,8 +469,8 @@ namespace uFR_RGB_LED_Disp
             int i, byte_cnt = 0;
             byte green, red, blue;
 
-            display_data = new byte[DisplayConsts.DISPLAY_BUFFER_LEN];
-            //display_data = Enumerable.Repeat((byte)0, DisplayConsts.DISPLAY_BUFFER_LEN).ToArray();
+            data = new byte[DisplayConsts.DISPLAY_BUFFER_LEN];
+            //data = Enumerable.Repeat((byte)0, DisplayConsts.DISPLAY_BUFFER_LEN).ToArray();
 
             green = 2;
             red = 10;
@@ -418,9 +478,9 @@ namespace uFR_RGB_LED_Disp
 
             for (i = 0; i < DisplayConsts.DISPLAY_LEDS; i++)
             {
-                display_data[byte_cnt++] = green;
-                display_data[byte_cnt++] = red;
-                display_data[byte_cnt++] = blue;
+                data[byte_cnt++] = green;
+                data[byte_cnt++] = red;
+                data[byte_cnt++] = blue;
 
                 red += 1;
                 green += 2;
@@ -440,21 +500,21 @@ namespace uFR_RGB_LED_Disp
                 uFR_mutex.WaitOne();
                 unsafe
                 {
-                    fixed (byte* unsafe_display_data = display_data)
+                    fixed (byte* unsafe_display_data = data)
                         uFCoder.SetDisplayData(unsafe_display_data, DisplayConsts.DISPLAY_BUFFER_LEN);
                 }
                 uFR_mutex.ReleaseMutex();
 
-                g = display_data[0];
-                r = display_data[1];
-                b = display_data[2];
+                g = data[0];
+                r = data[1];
+                b = data[2];
                 for (int i = 0; i < DisplayConsts.DISPLAY_BUFFER_LEN - 3; i++)
                 {
-                    display_data[i] = display_data[i + 3];
+                    data[i] = data[i + 3];
                 }
-                display_data[DisplayConsts.DISPLAY_BUFFER_LEN - 3] = g;
-                display_data[DisplayConsts.DISPLAY_BUFFER_LEN - 2] = r;
-                display_data[DisplayConsts.DISPLAY_BUFFER_LEN - 1] = b;
+                data[DisplayConsts.DISPLAY_BUFFER_LEN - 3] = g;
+                data[DisplayConsts.DISPLAY_BUFFER_LEN - 2] = r;
+                data[DisplayConsts.DISPLAY_BUFFER_LEN - 1] = b;
             }
         }
     }
@@ -465,22 +525,22 @@ namespace uFR_RGB_LED_Disp
             : base(mut, request)
         {
 
-            //display_data = new byte[DisplayConsts.DISPLAY_BUFFER_LEN];
-            display_data = Enumerable.Repeat((byte)0, DisplayConsts.DISPLAY_BUFFER_LEN).ToArray();
+            //data = new byte[DisplayConsts.DISPLAY_BUFFER_LEN];
+            data = Enumerable.Repeat((byte)0, DisplayConsts.DISPLAY_BUFFER_LEN).ToArray();
 
             // red component setup:
-            display_data[1] = 40;
-            display_data[4] = 30;
-            display_data[7] = 20;
-            display_data[10] = 10;
-            display_data[13] = 4;
+            data[1] = 40;
+            data[4] = 30;
+            data[7] = 20;
+            data[10] = 10;
+            data[13] = 4;
 
             // blue component setup:
-            display_data[23] = 2;
-            display_data[26] = 10;
-            display_data[29] = 20;
-            display_data[32] = 30;
-            display_data[35] = 45;
+            data[23] = 2;
+            data[26] = 10;
+            data[29] = 20;
+            data[32] = 30;
+            data[35] = 45;
         }
 
         public override void run()
@@ -495,27 +555,134 @@ namespace uFR_RGB_LED_Disp
                 uFR_mutex.WaitOne();
                 unsafe
                 {
-                    fixed (byte* unsafe_display_data = display_data)
+                    fixed (byte* unsafe_display_data = data)
                         uFCoder.SetDisplayData(unsafe_display_data, DisplayConsts.DISPLAY_BUFFER_LEN);
                 }
                 uFR_mutex.ReleaseMutex();
 
                 // Only red component rotate clockwise:
-                temp = display_data[1];
+                temp = data[1];
                 for (int i = 1; i < DisplayConsts.DISPLAY_BUFFER_LEN - 3; i += 3)
                 {
-                    display_data[i] = display_data[i + 3];
+                    data[i] = data[i + 3];
                 }
-                display_data[DisplayConsts.DISPLAY_BUFFER_LEN - 2] = temp;
+                data[DisplayConsts.DISPLAY_BUFFER_LEN - 2] = temp;
 
                 // Only blue component rotate counter-clockwise
-                temp = display_data[DisplayConsts.DISPLAY_BUFFER_LEN - 1];
+                temp = data[DisplayConsts.DISPLAY_BUFFER_LEN - 1];
                 for (int i = DisplayConsts.DISPLAY_BUFFER_LEN - 1; i > 2; i -= 3)
                 {
-                    display_data[i] = display_data[i - 3];
+                    data[i] = data[i - 3];
                 }
-                display_data[2] = temp;
+                data[2] = temp;
             }
+        }
+    }
+
+    public class SoundEffect1 : Effect
+    {
+        private bool toggle_effect;
+
+        public SoundEffect1(Mutex mut, ThreadStopRequest request)
+            : base(mut, request)
+        {
+            toggle_effect = false;
+        }
+
+        public override void run()
+        {
+            while (!stop_request.shouldIStopNow())
+            {
+                Thread.Sleep(50);
+
+                uFR_mutex.WaitOne();
+                if (toggle_effect)
+                {
+                    toggle_effect = false;
+                    uFCoder.SetSpeakerFrequency(800);
+                }
+                else
+                {
+                    toggle_effect = true;
+                    uFCoder.SetSpeakerFrequency(1600);
+                }
+                uFR_mutex.ReleaseMutex();
+
+            }
+
+            uFR_mutex.WaitOne();
+            uFCoder.SetSpeakerFrequency(0);
+            uFR_mutex.ReleaseMutex();
+        }
+    }
+
+    public class SoundEffect2 : Effect
+    {
+        private int effect_cnt;
+        private bool effect_direction;
+
+        public SoundEffect2(Mutex mut, ThreadStopRequest request)
+            : base(mut, request)
+        {
+            effect_cnt = 0;
+            effect_direction = true;
+        }
+
+        public override void run()
+        {
+            while (!stop_request.shouldIStopNow())
+            {
+                Thread.Sleep(50);
+
+                uFR_mutex.WaitOne();
+                switch (effect_cnt)
+                {
+                    case 0:
+                        uFCoder.SetSpeakerFrequency(800);
+                        break;
+                    case 1:
+                        uFCoder.SetSpeakerFrequency(1200);
+                        break;
+                    case 2:
+                        uFCoder.SetSpeakerFrequency(1600);
+                        break;
+                    case 3:
+                        uFCoder.SetSpeakerFrequency(2000);
+                        break;
+                    case 4:
+                        uFCoder.SetSpeakerFrequency(2500);
+                        break;
+                    case 5:
+                        uFCoder.SetSpeakerFrequency(3000);
+                        break;
+                    default:
+                        uFCoder.SetSpeakerFrequency(0);
+                        break;
+                }
+                uFR_mutex.ReleaseMutex();
+
+                if (effect_cnt == 5)
+                {
+                    effect_direction = false;
+                }
+                else if (effect_cnt == 0)
+                {
+                    effect_direction = true;
+                }
+
+                if (effect_direction)
+                {
+                    effect_cnt++;
+                }
+                else
+                {
+                    effect_cnt--;
+                }
+            }
+
+            uFR_mutex.WaitOne();
+            uFCoder.SetSpeakerFrequency(0);
+            uFR_mutex.ReleaseMutex();
         }
     }
 

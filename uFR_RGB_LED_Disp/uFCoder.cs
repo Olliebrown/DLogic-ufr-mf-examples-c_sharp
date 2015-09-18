@@ -170,6 +170,10 @@ namespace DL_uFCoder
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "SetDisplayData")]
         public static extern DL_STATUS SetDisplayData(byte* display_data, byte data_length);
 
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "SetSpeakerFrequency")]
+        public static extern DL_STATUS SetSpeakerFrequency(short fhz);
+        
+
         //--------------------------------------------------------------------------------------------------------------
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "GetCardIdEx")]
