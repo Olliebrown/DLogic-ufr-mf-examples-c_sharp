@@ -80,7 +80,8 @@ namespace uFR_RGB_LED_Disp
                 btnEffect2.Enabled = true;
                 btnSoundEffect1.Enabled = true;
                 btnSoundEffect2.Enabled = true;
-                btnStopSoundEffect.Enabled = true;
+                btnMusic.Enabled = true;
+                btnStopSoundEffect.Enabled = false;
                 btnOpen.Enabled = false;
             }
         }
@@ -128,6 +129,7 @@ namespace uFR_RGB_LED_Disp
                 btnSoundEffect1.Enabled = false;
                 btnSoundEffect2.Enabled = false;
                 btnStopSoundEffect.Enabled = false;
+                btnMusic.Enabled = false;
                 btnOpen.Enabled = true;
             }
         }
@@ -377,6 +379,7 @@ namespace uFR_RGB_LED_Disp
 
             btnSoundEffect1.Enabled = false;
             btnSoundEffect2.Enabled = false;
+            btnMusic.Enabled = false;
             btnStopSoundEffect.Enabled = true;
         }
 
@@ -389,6 +392,20 @@ namespace uFR_RGB_LED_Disp
 
             btnSoundEffect1.Enabled = false;
             btnSoundEffect2.Enabled = false;
+            btnMusic.Enabled = false;
+            btnStopSoundEffect.Enabled = true;
+        }
+
+        private void btnMusic_Click(object sender, EventArgs e)
+        {
+            sound_effect_stop_request = new ThreadStopRequest();
+            oSoundEffect = new Music(mut_uFR, sound_effect_stop_request);
+            oSoundThread = new Thread(new ThreadStart(oSoundEffect.run));
+            oSoundThread.Start();
+
+            btnSoundEffect1.Enabled = false;
+            btnSoundEffect2.Enabled = false;
+            btnMusic.Enabled = false;
             btnStopSoundEffect.Enabled = true;
         }
 
@@ -402,6 +419,7 @@ namespace uFR_RGB_LED_Disp
 
             btnSoundEffect1.Enabled = true;
             btnSoundEffect2.Enabled = true;
+            btnMusic.Enabled = true;
             btnStopSoundEffect.Enabled = false;
         }
 
@@ -686,9 +704,82 @@ namespace uFR_RGB_LED_Disp
         }
     }
 
+    public class Music : Effect
+    {
+        private int music_cnt;
+        public short[] music;
+
+        public Music(Mutex mut, ThreadStopRequest request)
+            : base(mut, request)
+        {
+            music_cnt = 0;
+
+            // tones duration goes to parent data:
+            data = new byte[]{200, 200, 200, 200, 0,
+                              200, 200, 200, 200, 0,
+                              200, 200, 200, 200,
+                              200, 200, 200, 200,
+                              125, 125, 125, 125, 150, 200, 25, 
+                              125, 125, 125, 125, 150, 200, 25, 
+                              200, 250, 200, 100, 
+                              200, 250, 200};
+
+            music = new short[]{SoundConsts.C2, SoundConsts.D2, SoundConsts.E2, SoundConsts.C2, 0,
+                                SoundConsts.C2, SoundConsts.D2, SoundConsts.E2, SoundConsts.C2, 0, 
+                                SoundConsts.E2, SoundConsts.F2, SoundConsts.G2, 0,
+                                SoundConsts.E2, SoundConsts.F2, SoundConsts.G2, 0,
+                                SoundConsts.G2, SoundConsts.A2, SoundConsts.G2, SoundConsts.F2, SoundConsts.E2, SoundConsts.C2, 0,
+                                SoundConsts.G2, SoundConsts.A2, SoundConsts.G2, SoundConsts.F2, SoundConsts.E2, SoundConsts.C2, 0,
+                                SoundConsts.C2, SoundConsts.G2, SoundConsts.C2, 0, 
+                                SoundConsts.C2, SoundConsts.G2, SoundConsts.C2};
+        }
+
+        public override void run()
+        {
+            while (!stop_request.shouldIStopNow())
+            {
+                uFR_mutex.WaitOne();
+                uFCoder.SetSpeakerFrequency(music[music_cnt]);
+                uFR_mutex.ReleaseMutex();
+
+                Thread.Sleep(data[music_cnt]);
+
+                if (++music_cnt > (music.Length - 1)) 
+                {
+                    music_cnt = 0;
+                    uFR_mutex.WaitOne();
+                    uFCoder.SetSpeakerFrequency(0);
+                    uFR_mutex.ReleaseMutex();
+                    Thread.Sleep(1000);
+                }
+            }
+
+            uFR_mutex.WaitOne();
+            uFCoder.SetSpeakerFrequency(0);
+            uFR_mutex.ReleaseMutex();
+        }
+    }
+
     public class DisplayConsts
     {
         public const byte DISPLAY_LEDS = 16;
         public const byte DISPLAY_BUFFER_LEN = (DISPLAY_LEDS * 3);
+    }
+
+    public class SoundConsts
+    {
+        public const short G1 = 392;
+        public const short C2 = 523;
+        public const short CIS2 = 554;
+        public const short D2 = 587;
+        public const short DIS2 = 622;
+        public const short E2 = 659;
+        public const short F2 = 698;
+        public const short FIS2 = 740;
+        public const short G2 = 784;
+        public const short GIS2 = 831;
+        public const short A2 = 880;
+        public const short AIS2 = 932;
+        public const short H2 = 988;
     }
 }

@@ -50,6 +50,7 @@
             this.btnStopSoundEffect = new System.Windows.Forms.Button();
             this.btnSoundEffect2 = new System.Windows.Forms.Button();
             this.btnSoundEffect1 = new System.Windows.Forms.Button();
+            this.btnMusic = new System.Windows.Forms.Button();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -254,7 +255,7 @@
             // btnStopSoundEffect
             // 
             this.btnStopSoundEffect.Enabled = false;
-            this.btnStopSoundEffect.Location = new System.Drawing.Point(329, 224);
+            this.btnStopSoundEffect.Location = new System.Drawing.Point(329, 253);
             this.btnStopSoundEffect.Name = "btnStopSoundEffect";
             this.btnStopSoundEffect.Size = new System.Drawing.Size(129, 23);
             this.btnStopSoundEffect.TabIndex = 67;
@@ -287,11 +288,24 @@
             this.btnSoundEffect1.UseVisualStyleBackColor = true;
             this.btnSoundEffect1.Click += new System.EventHandler(this.btnSoundEffect1_Click);
             // 
+            // btnMusic
+            // 
+            this.btnMusic.Enabled = false;
+            this.btnMusic.Location = new System.Drawing.Point(329, 224);
+            this.btnMusic.Name = "btnMusic";
+            this.btnMusic.Size = new System.Drawing.Size(129, 23);
+            this.btnMusic.TabIndex = 68;
+            this.btnMusic.Tag = "";
+            this.btnMusic.Text = "Play Music";
+            this.btnMusic.UseVisualStyleBackColor = true;
+            this.btnMusic.Click += new System.EventHandler(this.btnMusic_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 325);
+            this.Controls.Add(this.btnMusic);
             this.Controls.Add(this.btnStopSoundEffect);
             this.Controls.Add(this.btnSoundEffect2);
             this.Controls.Add(this.btnSoundEffect1);
@@ -314,7 +328,7 @@
             this.Controls.Add(this.statusStrip);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "uFR RGB LED Display Demo v3.0";
+            this.Text = "uFR RGB LED Display Demo v3.1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
@@ -347,6 +361,7 @@
         private System.Windows.Forms.Button btnStopSoundEffect;
         private System.Windows.Forms.Button btnSoundEffect2;
         private System.Windows.Forms.Button btnSoundEffect1;
+        private System.Windows.Forms.Button btnMusic;
     }
 }
 
