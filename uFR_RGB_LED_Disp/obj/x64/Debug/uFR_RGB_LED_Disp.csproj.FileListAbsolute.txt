@@ -1,8 +1,0 @@
-C:\prj\sw_open\ufr\C#\uFR_RGB_LED_Disp\bin\x64\Debug\uFR_RGB_LED_Disp.exe
-C:\prj\sw_open\ufr\C#\uFR_RGB_LED_Disp\bin\x64\Debug\uFR_RGB_LED_Disp.pdb
-C:\prj\sw_open\ufr\C#\uFR_RGB_LED_Disp\obj\x64\Debug\uFR_RGB_LED_Disp.Form1.resources
-C:\prj\sw_open\ufr\C#\uFR_RGB_LED_Disp\obj\x64\Debug\uFR_RGB_LED_Disp.Properties.Resources.resources
-C:\prj\sw_open\ufr\C#\uFR_RGB_LED_Disp\obj\x64\Debug\uFR_RGB_LED_Disp.csproj.GenerateResource.Cache
-C:\prj\sw_open\ufr\C#\uFR_RGB_LED_Disp\obj\x64\Debug\uFR_RGB_LED_Disp.exe
-C:\prj\sw_open\ufr\C#\uFR_RGB_LED_Disp\obj\x64\Debug\uFR_RGB_LED_Disp.pdb
-C:\prj\sw_open\ufr\C#\uFR_RGB_LED_Disp\obj\x64\Debug\uFR_RGB_LED_Disp.csprojResolveAssemblyReference.cache

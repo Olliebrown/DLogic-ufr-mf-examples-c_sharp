@@ -762,7 +762,7 @@ namespace uFR_RGB_LED_Disp
 
     public class DisplayConsts
     {
-        public const byte DISPLAY_LEDS = 16;
+        public const byte DISPLAY_LEDS = 24; //16
         public const byte DISPLAY_BUFFER_LEN = (DISPLAY_LEDS * 3);
     }
 
