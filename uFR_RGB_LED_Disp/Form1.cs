@@ -68,6 +68,13 @@ namespace uFR_RGB_LED_Disp
             }
             else
             {
+                Byte led_intensity;
+                status = uFCoder.GetDisplayIntensity(out led_intensity);
+                if (status == DL_STATUS.UFR_OK)
+                {
+                    numLedIntensity.Value = led_intensity;
+                }
+
                 statusReader.Text = "Reader connected";
 
                 tbDeviceType.Text = Convert.ToString((long)reader_type, 16).ToUpper();
@@ -83,6 +90,7 @@ namespace uFR_RGB_LED_Disp
                 btnMusic.Enabled = true;
                 btnStopSoundEffect.Enabled = false;
                 btnOpen.Enabled = false;
+                btnLedIntensity.Enabled = true;
             }
         }
 
@@ -131,6 +139,7 @@ namespace uFR_RGB_LED_Disp
                 btnStopSoundEffect.Enabled = false;
                 btnMusic.Enabled = false;
                 btnOpen.Enabled = true;
+                btnLedIntensity.Enabled = false;
             }
         }
 
@@ -443,6 +452,17 @@ namespace uFR_RGB_LED_Disp
                 uFCoder.ReaderClose();
                 mut_uFR.ReleaseMutex();
             }
+        }
+
+        private void btnLedIntensity_Click(object sender, EventArgs e)
+        {
+            DL_STATUS status;
+            Byte led_intensity;
+
+            led_intensity = (Byte)numLedIntensity.Value;
+            mut_uFR.WaitOne();
+            status = uFCoder.SetDisplayIntensity(led_intensity);
+            mut_uFR.ReleaseMutex();
         }
 
     }
@@ -762,7 +782,7 @@ namespace uFR_RGB_LED_Disp
 
     public class DisplayConsts
     {
-        public const byte DISPLAY_LEDS = 28; //24; //16
+        public const byte DISPLAY_LEDS = 24; //28; //24; //16
         public const byte DISPLAY_BUFFER_LEN = (DISPLAY_LEDS * 3);
     }
 

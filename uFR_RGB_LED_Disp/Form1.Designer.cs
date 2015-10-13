@@ -51,7 +51,11 @@
             this.btnSoundEffect2 = new System.Windows.Forms.Button();
             this.btnSoundEffect1 = new System.Windows.Forms.Button();
             this.btnMusic = new System.Windows.Forms.Button();
+            this.numLedIntensity = new System.Windows.Forms.NumericUpDown();
+            this.lbLedIntensity = new System.Windows.Forms.Label();
+            this.btnLedIntensity = new System.Windows.Forms.Button();
             this.statusStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numLedIntensity)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip
@@ -63,7 +67,7 @@
             this.statusStrip.Location = new System.Drawing.Point(0, 303);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(484, 22);
-            this.statusStrip.TabIndex = 48;
+            this.statusStrip.TabIndex = 23;
             this.statusStrip.Text = "statusStrip";
             // 
             // toolStripStatusLabel6
@@ -90,7 +94,7 @@
             this.btnClose.Location = new System.Drawing.Point(329, 41);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(129, 23);
-            this.btnClose.TabIndex = 50;
+            this.btnClose.TabIndex = 9;
             this.btnClose.Text = "Close Reader";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -100,7 +104,7 @@
             this.btnOpen.Location = new System.Drawing.Point(329, 12);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(129, 23);
-            this.btnOpen.TabIndex = 49;
+            this.btnOpen.TabIndex = 8;
             this.btnOpen.Text = "Open Reader";
             this.btnOpen.UseVisualStyleBackColor = true;
             this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
@@ -111,7 +115,7 @@
             this.btnCardIdEx.Location = new System.Drawing.Point(329, 70);
             this.btnCardIdEx.Name = "btnCardIdEx";
             this.btnCardIdEx.Size = new System.Drawing.Size(129, 23);
-            this.btnCardIdEx.TabIndex = 51;
+            this.btnCardIdEx.TabIndex = 10;
             this.btnCardIdEx.Tag = "";
             this.btnCardIdEx.Text = "Get Card ID";
             this.btnCardIdEx.UseVisualStyleBackColor = true;
@@ -122,7 +126,7 @@
             this.tbCardType.Location = new System.Drawing.Point(104, 64);
             this.tbCardType.Name = "tbCardType";
             this.tbCardType.Size = new System.Drawing.Size(196, 20);
-            this.tbCardType.TabIndex = 57;
+            this.tbCardType.TabIndex = 5;
             this.tbCardType.Tag = "100000000";
             // 
             // lbCardType
@@ -132,7 +136,7 @@
             this.lbCardType.MinimumSize = new System.Drawing.Size(84, 13);
             this.lbCardType.Name = "lbCardType";
             this.lbCardType.Size = new System.Drawing.Size(84, 13);
-            this.lbCardType.TabIndex = 56;
+            this.lbCardType.TabIndex = 4;
             this.lbCardType.Tag = "100000000";
             this.lbCardType.Text = "Card Type";
             this.lbCardType.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -142,7 +146,7 @@
             this.tbCardId.Location = new System.Drawing.Point(104, 90);
             this.tbCardId.Name = "tbCardId";
             this.tbCardId.Size = new System.Drawing.Size(196, 20);
-            this.tbCardId.TabIndex = 59;
+            this.tbCardId.TabIndex = 7;
             this.tbCardId.Tag = "100000000";
             // 
             // lbCardId
@@ -152,7 +156,7 @@
             this.lbCardId.MinimumSize = new System.Drawing.Size(84, 13);
             this.lbCardId.Name = "lbCardId";
             this.lbCardId.Size = new System.Drawing.Size(84, 13);
-            this.lbCardId.TabIndex = 58;
+            this.lbCardId.TabIndex = 6;
             this.lbCardId.Tag = "100000000";
             this.lbCardId.Text = "Card ID";
             this.lbCardId.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -162,7 +166,7 @@
             this.tbDeviceSerialNr.Location = new System.Drawing.Point(104, 38);
             this.tbDeviceSerialNr.Name = "tbDeviceSerialNr";
             this.tbDeviceSerialNr.Size = new System.Drawing.Size(196, 20);
-            this.tbDeviceSerialNr.TabIndex = 55;
+            this.tbDeviceSerialNr.TabIndex = 3;
             // 
             // lbDeviceSerialNr
             // 
@@ -170,7 +174,7 @@
             this.lbDeviceSerialNr.Location = new System.Drawing.Point(14, 41);
             this.lbDeviceSerialNr.Name = "lbDeviceSerialNr";
             this.lbDeviceSerialNr.Size = new System.Drawing.Size(84, 13);
-            this.lbDeviceSerialNr.TabIndex = 54;
+            this.lbDeviceSerialNr.TabIndex = 2;
             this.lbDeviceSerialNr.Text = "Device Serial Nr";
             this.lbDeviceSerialNr.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
@@ -179,7 +183,7 @@
             this.tbDeviceType.Location = new System.Drawing.Point(104, 12);
             this.tbDeviceType.Name = "tbDeviceType";
             this.tbDeviceType.Size = new System.Drawing.Size(196, 20);
-            this.tbDeviceType.TabIndex = 53;
+            this.tbDeviceType.TabIndex = 1;
             // 
             // lbDeviceType
             // 
@@ -188,7 +192,7 @@
             this.lbDeviceType.MinimumSize = new System.Drawing.Size(84, 13);
             this.lbDeviceType.Name = "lbDeviceType";
             this.lbDeviceType.Size = new System.Drawing.Size(84, 13);
-            this.lbDeviceType.TabIndex = 52;
+            this.lbDeviceType.TabIndex = 0;
             this.lbDeviceType.Text = "Device Type";
             this.lbDeviceType.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
@@ -198,7 +202,7 @@
             this.btnSetDisplayColor.Location = new System.Drawing.Point(17, 144);
             this.btnSetDisplayColor.Name = "btnSetDisplayColor";
             this.btnSetDisplayColor.Size = new System.Drawing.Size(129, 23);
-            this.btnSetDisplayColor.TabIndex = 60;
+            this.btnSetDisplayColor.TabIndex = 11;
             this.btnSetDisplayColor.Tag = "";
             this.btnSetDisplayColor.Text = "Set Display Color";
             this.btnSetDisplayColor.UseVisualStyleBackColor = true;
@@ -210,7 +214,7 @@
             this.btnClearDisplay.Location = new System.Drawing.Point(17, 173);
             this.btnClearDisplay.Name = "btnClearDisplay";
             this.btnClearDisplay.Size = new System.Drawing.Size(129, 23);
-            this.btnClearDisplay.TabIndex = 61;
+            this.btnClearDisplay.TabIndex = 12;
             this.btnClearDisplay.Tag = "";
             this.btnClearDisplay.Text = "Clear Display";
             this.btnClearDisplay.UseVisualStyleBackColor = true;
@@ -222,7 +226,7 @@
             this.btnEffect2.Location = new System.Drawing.Point(173, 173);
             this.btnEffect2.Name = "btnEffect2";
             this.btnEffect2.Size = new System.Drawing.Size(129, 23);
-            this.btnEffect2.TabIndex = 63;
+            this.btnEffect2.TabIndex = 14;
             this.btnEffect2.Tag = "";
             this.btnEffect2.Text = "Display Effect 2";
             this.btnEffect2.UseVisualStyleBackColor = true;
@@ -234,7 +238,7 @@
             this.btnEffect1.Location = new System.Drawing.Point(173, 144);
             this.btnEffect1.Name = "btnEffect1";
             this.btnEffect1.Size = new System.Drawing.Size(129, 23);
-            this.btnEffect1.TabIndex = 62;
+            this.btnEffect1.TabIndex = 13;
             this.btnEffect1.Tag = "";
             this.btnEffect1.Text = "Display Effect 1";
             this.btnEffect1.UseVisualStyleBackColor = true;
@@ -246,7 +250,7 @@
             this.btnStopEffect.Location = new System.Drawing.Point(329, 144);
             this.btnStopEffect.Name = "btnStopEffect";
             this.btnStopEffect.Size = new System.Drawing.Size(129, 23);
-            this.btnStopEffect.TabIndex = 64;
+            this.btnStopEffect.TabIndex = 15;
             this.btnStopEffect.Tag = "";
             this.btnStopEffect.Text = "Stop Display Effect";
             this.btnStopEffect.UseVisualStyleBackColor = true;
@@ -258,7 +262,7 @@
             this.btnStopSoundEffect.Location = new System.Drawing.Point(329, 253);
             this.btnStopSoundEffect.Name = "btnStopSoundEffect";
             this.btnStopSoundEffect.Size = new System.Drawing.Size(129, 23);
-            this.btnStopSoundEffect.TabIndex = 67;
+            this.btnStopSoundEffect.TabIndex = 22;
             this.btnStopSoundEffect.Tag = "";
             this.btnStopSoundEffect.Text = "Stop Sound Effect";
             this.btnStopSoundEffect.UseVisualStyleBackColor = true;
@@ -270,7 +274,7 @@
             this.btnSoundEffect2.Location = new System.Drawing.Point(173, 253);
             this.btnSoundEffect2.Name = "btnSoundEffect2";
             this.btnSoundEffect2.Size = new System.Drawing.Size(129, 23);
-            this.btnSoundEffect2.TabIndex = 66;
+            this.btnSoundEffect2.TabIndex = 20;
             this.btnSoundEffect2.Tag = "";
             this.btnSoundEffect2.Text = "Sound Effect 2";
             this.btnSoundEffect2.UseVisualStyleBackColor = true;
@@ -282,7 +286,7 @@
             this.btnSoundEffect1.Location = new System.Drawing.Point(173, 224);
             this.btnSoundEffect1.Name = "btnSoundEffect1";
             this.btnSoundEffect1.Size = new System.Drawing.Size(129, 23);
-            this.btnSoundEffect1.TabIndex = 65;
+            this.btnSoundEffect1.TabIndex = 19;
             this.btnSoundEffect1.Tag = "";
             this.btnSoundEffect1.Text = "Sound Effect 1";
             this.btnSoundEffect1.UseVisualStyleBackColor = true;
@@ -294,17 +298,62 @@
             this.btnMusic.Location = new System.Drawing.Point(329, 224);
             this.btnMusic.Name = "btnMusic";
             this.btnMusic.Size = new System.Drawing.Size(129, 23);
-            this.btnMusic.TabIndex = 68;
+            this.btnMusic.TabIndex = 21;
             this.btnMusic.Tag = "";
             this.btnMusic.Text = "Play Music";
             this.btnMusic.UseVisualStyleBackColor = true;
             this.btnMusic.Click += new System.EventHandler(this.btnMusic_Click);
+            // 
+            // numLedIntensity
+            // 
+            this.numLedIntensity.Location = new System.Drawing.Point(93, 224);
+            this.numLedIntensity.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numLedIntensity.Name = "numLedIntensity";
+            this.numLedIntensity.ReadOnly = true;
+            this.numLedIntensity.Size = new System.Drawing.Size(53, 20);
+            this.numLedIntensity.TabIndex = 17;
+            this.numLedIntensity.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // lbLedIntensity
+            // 
+            this.lbLedIntensity.AutoSize = true;
+            this.lbLedIntensity.Location = new System.Drawing.Point(3, 226);
+            this.lbLedIntensity.MinimumSize = new System.Drawing.Size(84, 13);
+            this.lbLedIntensity.Name = "lbLedIntensity";
+            this.lbLedIntensity.Size = new System.Drawing.Size(84, 13);
+            this.lbLedIntensity.TabIndex = 16;
+            this.lbLedIntensity.Tag = "100000000";
+            this.lbLedIntensity.Text = "LED Intensity:";
+            this.lbLedIntensity.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // btnLedIntensity
+            // 
+            this.btnLedIntensity.Enabled = false;
+            this.btnLedIntensity.Location = new System.Drawing.Point(17, 253);
+            this.btnLedIntensity.Name = "btnLedIntensity";
+            this.btnLedIntensity.Size = new System.Drawing.Size(129, 23);
+            this.btnLedIntensity.TabIndex = 18;
+            this.btnLedIntensity.Tag = "";
+            this.btnLedIntensity.Text = "Set LED Intensity";
+            this.btnLedIntensity.UseVisualStyleBackColor = true;
+            this.btnLedIntensity.Click += new System.EventHandler(this.btnLedIntensity_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 325);
+            this.Controls.Add(this.btnLedIntensity);
+            this.Controls.Add(this.lbLedIntensity);
+            this.Controls.Add(this.numLedIntensity);
             this.Controls.Add(this.btnMusic);
             this.Controls.Add(this.btnStopSoundEffect);
             this.Controls.Add(this.btnSoundEffect2);
@@ -328,10 +377,11 @@
             this.Controls.Add(this.statusStrip);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "uFR RGB LED Display Demo v3.3 (for 28 LEDs)";
+            this.Text = "uFR RGB LED Display Demo v3.4 (for 24 LEDs)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numLedIntensity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,6 +412,9 @@
         private System.Windows.Forms.Button btnSoundEffect2;
         private System.Windows.Forms.Button btnSoundEffect1;
         private System.Windows.Forms.Button btnMusic;
+        private System.Windows.Forms.NumericUpDown numLedIntensity;
+        private System.Windows.Forms.Label lbLedIntensity;
+        private System.Windows.Forms.Button btnLedIntensity;
     }
 }
 
