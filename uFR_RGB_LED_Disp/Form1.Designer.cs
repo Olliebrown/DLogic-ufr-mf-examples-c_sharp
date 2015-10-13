@@ -377,7 +377,7 @@
             this.Controls.Add(this.statusStrip);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "uFR RGB LED Display Demo v3.4 (for 24 LEDs)";
+            this.Text = "uFR RGB LED Display Demo v3.5 (for 28 LEDs)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
