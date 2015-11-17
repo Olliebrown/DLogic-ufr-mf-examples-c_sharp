@@ -100,6 +100,7 @@ namespace uFCoderMulti
         UFR_CANT_CLOSE_READER_PORT = 0x56,
 
         UFR_FT_STATUS_ERROR_1 = 0xA0,
+        UFR_FT_STATUS_ERROR_A1 = 0xA1,
         UFR_FT_STATUS_ERROR_2 = 0xA1,
         UFR_FT_STATUS_ERROR_3 = 0xA2,
         UFR_FT_STATUS_ERROR_4 = 0xA3,
@@ -108,6 +109,7 @@ namespace uFCoderMulti
         UFR_FT_STATUS_ERROR_7 = 0xA6,
         UFR_FT_STATUS_ERROR_8 = 0xA7,
         UFR_FT_STATUS_ERROR_9 = 0xA8,
+        UFR_FT_STATUS_ERROR_B4 = 0xB4,
 
         //NDEF error codes
         UFR_WRONG_NDEF_CARD_FORMAT = 0x80,
@@ -128,10 +130,15 @@ namespace uFCoderMulti
 
     public static unsafe class uFCoder
     {
-        //--------------------------------------------------------------------------------------------------
-        //const string DLL_NAME = "uFCoder-x86_64.dll";
-        const string DLL_NAME = "uFCoder-x86.dll";
-        //--------------------------------------------------------------------------------------------------
+        public const Int32 SERIAL_DESC_LEN = 8;
+
+        //--------------------------------------------------------------------------------------------------------------
+#if WIN64
+        const string DLL_NAME = "uFCoder-x86_64.dll"; // for x64 target
+#else
+        const string DLL_NAME = "uFCoder-x86.dll"; // for x86 target
+#endif
+        //--------------------------------------------------------------------------------------------------------------
 
         //---------------------------------------------------------------------
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "ReaderList_UpdateAndGetCount")]
@@ -139,6 +146,9 @@ namespace uFCoderMulti
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "ReaderList_GetSerialByIndex")]
         internal static extern DL_STATUS ReaderList_GetSerialByIndex(Int32 DeviceIndex, UInt32* lpulSerialNumber);
+
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "ReaderList_GetSerialDescriptionByIndex")]
+        internal static extern DL_STATUS ReaderList_GetSerialDescriptionByIndex(Int32 DeviceIndex, [In, Out] byte[] serial_desc); // SERIAL_DESC_LEN = 8
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "ReaderList_GetTypeByIndex")]
         internal static extern DL_STATUS ReaderList_GetTypeByIndex(Int32 DeviceIndex, UInt32* lpulReaderType);
@@ -161,6 +171,12 @@ namespace uFCoderMulti
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "ReaderCloseM")]
         internal static extern DL_STATUS ReaderClose(UFR_HANDLE hndUFR);
+
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "ReaderStillConnectedM")]
+        internal static extern DL_STATUS ReaderStillConnectedM(UFR_HANDLE hndUFR, out UInt32 connected);
+
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "GetReaderSerialDescriptionM")]
+        internal static extern DL_STATUS GetReaderSerialDescriptionM(UFR_HANDLE hndUFR, [In, Out] byte[] serial_desc); // SERIAL_DESC_LEN = 8
 
         //---------------------------------------------------------------------
 

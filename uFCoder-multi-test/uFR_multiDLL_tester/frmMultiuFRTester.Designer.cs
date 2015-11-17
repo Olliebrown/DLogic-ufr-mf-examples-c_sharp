@@ -166,6 +166,8 @@
             // cbPollReaders
             // 
             this.cbPollReaders.AutoSize = true;
+            this.cbPollReaders.Checked = true;
+            this.cbPollReaders.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbPollReaders.Location = new System.Drawing.Point(234, 23);
             this.cbPollReaders.Name = "cbPollReaders";
             this.cbPollReaders.Size = new System.Drawing.Size(136, 17);
@@ -383,6 +385,7 @@
             // 
             // timerPoll
             // 
+            this.timerPoll.Enabled = true;
             this.timerPoll.Tick += new System.EventHandler(this.timerPoll_Tick);
             // 
             // frmMultiuFRTester
@@ -396,7 +399,7 @@
             this.Controls.Add(this.gbRdWr);
             this.Controls.Add(this.gbAction);
             this.Name = "frmMultiuFRTester";
-            this.Text = "Tester uFCoder DLL - multi readers";
+            this.Text = "Tester uFCoder DLL - multi readers v2.0";
             this.gbAction.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);

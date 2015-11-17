@@ -359,6 +359,7 @@ namespace uFR_multiDLL_tester
                 return;
 
             bool detected = false;
+            UInt32 ret_val;
             DL_STATUS status;
             string asDate;
             string asFTDI;
@@ -376,7 +377,37 @@ namespace uFR_multiDLL_tester
                 status = ufr.GetCardIdEx(ref Sak, ref baUid);
 
                 if (status != DL_STATUS.UFR_OK)
-                    continue;
+                {
+                    if ((status <= DL_STATUS.UFR_FT_STATUS_ERROR_A1)
+                        || (status >= DL_STATUS.UFR_FT_STATUS_ERROR_B4))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        status = ufr.ReaderStillConnected(out ret_val);
+                        if (status == DL_STATUS.UFR_OK)
+                        {
+                            if (ret_val == 0)
+                            {
+                                readers_list.Remove(ufr);
+                                //__Remove_reader__ from gridReader:
+                                DataGridViewRow row = gridReader.Rows
+                                    .Cast<DataGridViewRow>()
+                                    .Where(m => m.Cells["Index"].Value.ToString().Equals(ufr.list_idx.ToString()))
+                                    .First();
+
+                                gridReader.Rows.Remove(row);
+                                gridReader.ClearSelection();
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                }
 
                 // CARD OK
                 asDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");

@@ -15,7 +15,7 @@ namespace uFR_multiDLL_tester
         public int list_idx;
         public bool opened = false;
         UFR_HANDLE hnd;
-        public UInt32 reader_sn = 0;
+        public string reader_sn = "";
         public UInt32 reader_type = 0;
         public string ftdi_sn = "";
         public string ftdi_description = "";
@@ -88,6 +88,23 @@ namespace uFR_multiDLL_tester
             return status;
         }
 
+        public DL_STATUS ReaderStillConnected(out UInt32 ret_val)
+        {
+            DL_STATUS status = DL_STATUS.UFR_OK;
+
+            status = uFCoder.ReaderStillConnectedM(hnd, out ret_val);
+
+            if (status == DL_STATUS.UFR_OK)
+            {
+                if (ret_val == 0)
+                {
+                    close();
+                }
+            }
+
+            return status;
+        }
+
         private void try_to_get_all_infos()
         {
             DL_STATUS status;
@@ -96,13 +113,13 @@ namespace uFR_multiDLL_tester
             {
                 char* tmp_ftdi_serial = null;
                 char* tmp_ftdi_desc = null;
-                UInt32 tmp_rd_sn;
+                byte[] tmp_rd_sn = Enumerable.Repeat((byte)0, uFCoder.SERIAL_DESC_LEN).ToArray();
                 UInt32 tmp_rd_type;
 
-                status = uFCoder.ReaderList_GetSerialByIndex(list_idx, &tmp_rd_sn);
+                status = uFCoder.ReaderList_GetSerialDescriptionByIndex(list_idx, tmp_rd_sn);
                 if (status != DL_STATUS.UFR_OK)
                 {
-                    //error_wr("ReaderList_GetSerialByIndex()", status);
+                    //error_wr("ReaderList_GetSerialDescriptionByIndex()", status);
                 }
 
                 status = uFCoder.ReaderList_GetTypeByIndex(list_idx, &tmp_rd_type);
@@ -123,7 +140,7 @@ namespace uFR_multiDLL_tester
                     //error_wr("ReaderList_GetFTDIDescriptionByIndex()", status);
                 }
 
-                reader_sn = tmp_rd_sn;
+                reader_sn = System.Text.Encoding.ASCII.GetString(tmp_rd_sn);
                 reader_type = tmp_rd_type;
 
                 ftdi_sn = Marshal.PtrToStringAnsi((IntPtr)tmp_ftdi_serial);
@@ -148,7 +165,7 @@ namespace uFR_multiDLL_tester
         {
             try_to_get_all_infos();
 
-            string[] info = { list_idx.ToString(), reader_sn.ToString(), reader_type.ToString(), ftdi_sn, ftdi_description, opened.ToString() };
+            string[] info = { list_idx.ToString(), reader_sn, reader_type.ToString(), ftdi_sn, ftdi_description, opened.ToString() };
 
             return info;
 
