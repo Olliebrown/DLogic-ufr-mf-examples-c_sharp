@@ -449,5 +449,9 @@ namespace uFR_multiDLL_tester
             data_rd();
         }
 
+        private void frmMultiuFRTester_Load(object sender, EventArgs e)
+        {
+            uFReader.EnableXRC(0);
+        }
     }
 }

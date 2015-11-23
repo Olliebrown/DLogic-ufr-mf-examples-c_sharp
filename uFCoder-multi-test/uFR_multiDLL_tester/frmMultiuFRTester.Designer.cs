@@ -399,7 +399,8 @@
             this.Controls.Add(this.gbRdWr);
             this.Controls.Add(this.gbAction);
             this.Name = "frmMultiuFRTester";
-            this.Text = "Tester uFCoder DLL - multi readers v2.0";
+            this.Text = "Tester uFCoder DLL - multi readers v2.1";
+            this.Load += new System.EventHandler(this.frmMultiuFRTester_Load);
             this.gbAction.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
