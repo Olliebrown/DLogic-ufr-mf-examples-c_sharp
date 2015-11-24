@@ -25,11 +25,6 @@ namespace uFR_multiDLL_tester
             // test.
         }
 
-        public static DL_STATUS EnableXRC(Int32 on)
-        {
-            return uFCoder.EnableXRC(on);
-        }
-
         public uFReader(int list_idx)
         {
             this.list_idx = list_idx;

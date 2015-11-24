@@ -140,10 +140,6 @@ namespace uFCoderMulti
 #endif
         //--------------------------------------------------------------------------------------------------------------
 
-        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "EnableXRC")]
-        public static extern DL_STATUS EnableXRC(Int32 on);
-
-        //---------------------------------------------------------------------
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "ReaderList_UpdateAndGetCount")]
         internal static extern DL_STATUS ReaderList_UpdateAndGetCount(Int32* NumberOfDevices);
 
