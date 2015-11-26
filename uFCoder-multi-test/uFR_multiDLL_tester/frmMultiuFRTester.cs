@@ -11,6 +11,7 @@ using uFCoderMulti; // DL_STATUS
 
 namespace uFR_multiDLL_tester
 {
+    using System.Diagnostics;
     using UFR_HANDLE = System.UIntPtr;
 
     public partial class frmMultiuFRTester : Form
@@ -29,6 +30,12 @@ namespace uFR_multiDLL_tester
 
             //eSector.SelectedIndex = 0;
             //eBlockSec.SelectedIndex = 0;
+
+            string s = "\nDLL version ";
+            s += uFCoder.GetDllVersionStr();
+            memoDebug.AppendText(s);
+
+            memoDebug.Update();
         }
 
         private void error_wr(string pre_text, DL_STATUS status)
@@ -123,16 +130,7 @@ namespace uFR_multiDLL_tester
         {
             int NumberOfDevices;
 
-            foreach (uFReader reader in readers_list)
-            {
-                if (reader.opened) // Will match once
-                {
-                    reader.close();
-
-                    msg = "Closed reader: " + reader.get_designator();
-                    prndbg(msg);
-                }
-            }
+            var watch = Stopwatch.StartNew();
 
             readers_list.Clear();
 
@@ -144,6 +142,10 @@ namespace uFR_multiDLL_tester
             prndbg(msg);
 
             NumberOfDevices = uFReader.get_reader_count();
+
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+            memoDebug.AppendText("ReaderList_UpdateAndGetCount() works " + elapsedMs + " ms");
 
             msg = "Device found: " + NumberOfDevices.ToString();
             prndbg(msg);
@@ -318,7 +320,7 @@ namespace uFR_multiDLL_tester
                 reader_open(ufr.list_idx);
             }
 
-            bOpenAll.Enabled = false;
+            //bOpenAll.Enabled = false;
             bCloseAll.Enabled = true;
         }
 

@@ -204,11 +204,16 @@ namespace uFCoderMulti
                                                   byte auth_mode,
                                                   byte* key);
 
-        ////---------------------------------------------------------------------
-        //[DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "AIS_GetDLLVersion")]
-        //internal static extern IntPtr GetDLLVersion();
-
-
+        //---------------------------------------------------------------------
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "GetDllVersionStr")]
+        //[return: MarshalAs(UnmanagedType.LPStr)]
+        //public static extern string GetDllVersionStr();
+        private static extern IntPtr _GetDllVersionStr();
+        public static string GetDllVersionStr()
+        {
+            IntPtr str_ret = _GetDllVersionStr();
+            return Marshal.PtrToStringAnsi(str_ret);
+        }
         //[DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "dbg_action2str")]
         //internal static extern IntPtr dbg_action2str(int card_action);
     }
