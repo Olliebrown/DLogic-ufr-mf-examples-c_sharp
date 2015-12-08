@@ -1,4 +1,4 @@
-﻿namespace uFR_RGB_LED_Disp
+﻿namespace ufr_auto_sleep_setup
 {
     partial class frmMain
     {
@@ -245,7 +245,7 @@
             this.Controls.Add(this.statusStrip);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "uFR Auto Sleep Setup v1.0";
+            this.Text = "uFR Auto Sleep Setup v1.1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();

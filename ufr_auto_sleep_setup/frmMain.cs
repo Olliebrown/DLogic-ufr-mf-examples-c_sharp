@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.Threading;
 using DL_uFCoder;
 
-namespace uFR_RGB_LED_Disp
+namespace ufr_auto_sleep_setup
 {
     public partial class frmMain : Form
     {
