@@ -376,7 +376,7 @@
             this.txtVBISReadDataPK.Location = new System.Drawing.Point(11, 101);
             this.txtVBISReadDataPK.Name = "txtVBISReadDataPK";
             this.txtVBISReadDataPK.ReadOnly = true;
-            this.txtVBISReadDataPK.Size = new System.Drawing.Size(140, 21);
+            this.txtVBISReadDataPK.Size = new System.Drawing.Size(136, 21);
             this.txtVBISReadDataPK.TabIndex = 6;
             this.txtVBISReadDataPK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -494,7 +494,7 @@
             this.txtVBISReadDataAKM2.Location = new System.Drawing.Point(9, 101);
             this.txtVBISReadDataAKM2.Name = "txtVBISReadDataAKM2";
             this.txtVBISReadDataAKM2.ReadOnly = true;
-            this.txtVBISReadDataAKM2.Size = new System.Drawing.Size(140, 21);
+            this.txtVBISReadDataAKM2.Size = new System.Drawing.Size(136, 21);
             this.txtVBISReadDataAKM2.TabIndex = 6;
             this.txtVBISReadDataAKM2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -612,7 +612,7 @@
             this.txtVBISReadDataAKM1.Location = new System.Drawing.Point(11, 98);
             this.txtVBISReadDataAKM1.Name = "txtVBISReadDataAKM1";
             this.txtVBISReadDataAKM1.ReadOnly = true;
-            this.txtVBISReadDataAKM1.Size = new System.Drawing.Size(140, 21);
+            this.txtVBISReadDataAKM1.Size = new System.Drawing.Size(136, 21);
             this.txtVBISReadDataAKM1.TabIndex = 6;
             this.txtVBISReadDataAKM1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -730,7 +730,7 @@
             this.txtVBISReadData.Location = new System.Drawing.Point(11, 98);
             this.txtVBISReadData.Name = "txtVBISReadData";
             this.txtVBISReadData.ReadOnly = true;
-            this.txtVBISReadData.Size = new System.Drawing.Size(140, 21);
+            this.txtVBISReadData.Size = new System.Drawing.Size(136, 21);
             this.txtVBISReadData.TabIndex = 6;
             this.txtVBISReadData.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -870,7 +870,7 @@
             this.lblBISWValueAddressPK.AutoSize = true;
             this.lblBISWValueAddressPK.Location = new System.Drawing.Point(12, 100);
             this.lblBISWValueAddressPK.Name = "lblBISWValueAddressPK";
-            this.lblBISWValueAddressPK.Size = new System.Drawing.Size(89, 13);
+            this.lblBISWValueAddressPK.Size = new System.Drawing.Size(88, 13);
             this.lblBISWValueAddressPK.TabIndex = 7;
             this.lblBISWValueAddressPK.Text = "Value Address";
             this.lblBISWValueAddressPK.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -987,7 +987,7 @@
             this.lblBISWValueAddressAKM2.AutoSize = true;
             this.lblBISWValueAddressAKM2.Location = new System.Drawing.Point(12, 100);
             this.lblBISWValueAddressAKM2.Name = "lblBISWValueAddressAKM2";
-            this.lblBISWValueAddressAKM2.Size = new System.Drawing.Size(89, 13);
+            this.lblBISWValueAddressAKM2.Size = new System.Drawing.Size(88, 13);
             this.lblBISWValueAddressAKM2.TabIndex = 7;
             this.lblBISWValueAddressAKM2.Text = "Value Address";
             this.lblBISWValueAddressAKM2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1104,7 +1104,7 @@
             this.lblBISWValueAddressAKM1.AutoSize = true;
             this.lblBISWValueAddressAKM1.Location = new System.Drawing.Point(12, 100);
             this.lblBISWValueAddressAKM1.Name = "lblBISWValueAddressAKM1";
-            this.lblBISWValueAddressAKM1.Size = new System.Drawing.Size(89, 13);
+            this.lblBISWValueAddressAKM1.Size = new System.Drawing.Size(88, 13);
             this.lblBISWValueAddressAKM1.TabIndex = 7;
             this.lblBISWValueAddressAKM1.Text = "Value Address";
             this.lblBISWValueAddressAKM1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1221,7 +1221,7 @@
             this.lblBISWValueAddress.AutoSize = true;
             this.lblBISWValueAddress.Location = new System.Drawing.Point(12, 100);
             this.lblBISWValueAddress.Name = "lblBISWValueAddress";
-            this.lblBISWValueAddress.Size = new System.Drawing.Size(89, 13);
+            this.lblBISWValueAddress.Size = new System.Drawing.Size(88, 13);
             this.lblBISWValueAddress.TabIndex = 7;
             this.lblBISWValueAddress.Text = "Value Address";
             this.lblBISWValueAddress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

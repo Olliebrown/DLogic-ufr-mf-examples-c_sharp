@@ -7,3 +7,12 @@ d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\Release\uF
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\Release\uFr Simplest.csproj.GenerateResource.Cache
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\Release\uFr Simplest.exe
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\Release\uFr Simplest.pdb
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\bin\Release\uFr Simplest.exe.config
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\Release\uFr Simplest.exe
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\Release\uFr Simplest.pdb
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\bin\Release\uFr Simplest.exe
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\bin\Release\uFr Simplest.pdb
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\Release\uFr Simplest.csprojResolveAssemblyReference.cache
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\Release\uFRSimplest.frmuFRSimplest.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\Release\uFrSimplest.Properties.Resources.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\Release\uFr Simplest.csproj.GenerateResource.Cache

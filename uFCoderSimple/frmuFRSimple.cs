@@ -190,8 +190,13 @@ namespace uFRSimple
                 boThreadStart  = value;
             }
         }
-       
- private void MainThread()
+
+        private void linkLabel_nfc_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(linkLabel_nfc.Text);
+        }
+
+        private void MainThread()
         {            
            
             ulong ulReaderType   = 0,

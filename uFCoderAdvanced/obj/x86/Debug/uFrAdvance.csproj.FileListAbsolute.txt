@@ -15,3 +15,21 @@ d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFrAdvance.csproj.GenerateResource.Cache
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFr Advance.exe
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFr Advance.pdb
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\bin\x86\Debug\uFr Advance.exe.config
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFr Advance.exe
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFr Advance.pdb
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\bin\x86\Debug\uFr Advance.exe
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\bin\x86\Debug\uFr Advance.pdb
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFrAdvance.frmBlockReadWrite.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFrAdvance.frmBlockInSectorReadWrite.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFrAdvance.frmLinearFormatCard.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFrAdvance.frmuFrAdvance.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFrAdvance.frmSectorTrailerWrite.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFrAdvance.frmValueBlockIncrDecr.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFrAdvance.frmValueBlockInSectorIncremDecrem.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFrAdvance.frmValueBlockInSectorReadWrite.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFrAdvance.frmValueBlockReadWrite.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFrAdvance.frmViewAll.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFrAdvance.frmLinearReadWrite.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFrAdvance.Properties.Resources.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x86\Debug\uFrAdvance.csproj.GenerateResource.Cache

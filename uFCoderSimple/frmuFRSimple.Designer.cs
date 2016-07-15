@@ -102,6 +102,7 @@
             this.lblWriteData = new System.Windows.Forms.Label();
             this.Timer = new System.Windows.Forms.Timer(this.components);
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.linkLabel_nfc = new System.Windows.Forms.LinkLabel();
             this.stbCardStatus.SuspendLayout();
             this.mnuMeniItem.SuspendLayout();
             this.pnlReader.SuspendLayout();
@@ -124,7 +125,7 @@
             this.pnlCard_status,
             this.pnlError_code,
             this.pnlError_explain});
-            this.stbCardStatus.Location = new System.Drawing.Point(0, 640);
+            this.stbCardStatus.Location = new System.Drawing.Point(0, 681);
             this.stbCardStatus.Name = "stbCardStatus";
             this.stbCardStatus.Size = new System.Drawing.Size(528, 22);
             this.stbCardStatus.SizingGrip = false;
@@ -173,6 +174,7 @@
             // pnlReader
             // 
             this.pnlReader.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlReader.Controls.Add(this.linkLabel_nfc);
             this.pnlReader.Controls.Add(this.txtCardSerial);
             this.pnlReader.Controls.Add(this.lblUID);
             this.pnlReader.Controls.Add(this.txtUIDSize);
@@ -193,14 +195,14 @@
             this.pnlReader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlReader.Location = new System.Drawing.Point(0, 24);
             this.pnlReader.Name = "pnlReader";
-            this.pnlReader.Size = new System.Drawing.Size(528, 189);
+            this.pnlReader.Size = new System.Drawing.Size(528, 215);
             this.pnlReader.TabIndex = 2;
             // 
             // txtCardSerial
             // 
             this.txtCardSerial.BackColor = System.Drawing.Color.White;
             this.txtCardSerial.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCardSerial.Location = new System.Drawing.Point(354, 47);
+            this.txtCardSerial.Location = new System.Drawing.Point(357, 68);
             this.txtCardSerial.Name = "txtCardSerial";
             this.txtCardSerial.ReadOnly = true;
             this.txtCardSerial.Size = new System.Drawing.Size(145, 21);
@@ -210,7 +212,7 @@
             // lblUID
             // 
             this.lblUID.AutoSize = true;
-            this.lblUID.Location = new System.Drawing.Point(278, 50);
+            this.lblUID.Location = new System.Drawing.Point(281, 71);
             this.lblUID.Name = "lblUID";
             this.lblUID.Size = new System.Drawing.Size(72, 13);
             this.lblUID.TabIndex = 18;
@@ -220,7 +222,7 @@
             // 
             this.txtUIDSize.BackColor = System.Drawing.Color.White;
             this.txtUIDSize.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUIDSize.Location = new System.Drawing.Point(461, 19);
+            this.txtUIDSize.Location = new System.Drawing.Point(464, 40);
             this.txtUIDSize.Name = "txtUIDSize";
             this.txtUIDSize.ReadOnly = true;
             this.txtUIDSize.Size = new System.Drawing.Size(38, 21);
@@ -231,7 +233,7 @@
             // lblUIDSize
             // 
             this.lblUIDSize.AutoSize = true;
-            this.lblUIDSize.Location = new System.Drawing.Point(398, 22);
+            this.lblUIDSize.Location = new System.Drawing.Point(401, 43);
             this.lblUIDSize.Name = "lblUIDSize";
             this.lblUIDSize.Size = new System.Drawing.Size(57, 13);
             this.lblUIDSize.TabIndex = 16;
@@ -244,7 +246,7 @@
             this.btnReaderUISignal.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SkyBlue;
             this.btnReaderUISignal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReaderUISignal.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReaderUISignal.Location = new System.Drawing.Point(332, 101);
+            this.btnReaderUISignal.Location = new System.Drawing.Point(335, 122);
             this.btnReaderUISignal.Name = "btnReaderUISignal";
             this.btnReaderUISignal.Size = new System.Drawing.Size(140, 48);
             this.btnReaderUISignal.TabIndex = 15;
@@ -262,7 +264,7 @@
             "LongRed",
             "Alternation",
             "Flash"});
-            this.cboLightMode.Location = new System.Drawing.Point(151, 101);
+            this.cboLightMode.Location = new System.Drawing.Point(154, 122);
             this.cboLightMode.Name = "cboLightMode";
             this.cboLightMode.Size = new System.Drawing.Size(116, 21);
             this.cboLightMode.TabIndex = 14;
@@ -270,7 +272,7 @@
             // lblSoundMode
             // 
             this.lblSoundMode.AutoSize = true;
-            this.lblSoundMode.Location = new System.Drawing.Point(58, 131);
+            this.lblSoundMode.Location = new System.Drawing.Point(61, 152);
             this.lblSoundMode.Name = "lblSoundMode";
             this.lblSoundMode.Size = new System.Drawing.Size(77, 13);
             this.lblSoundMode.TabIndex = 13;
@@ -287,7 +289,7 @@
             "Double Short",
             "Tripple Short",
             "Tripplet Melody"});
-            this.cboSoundMode.Location = new System.Drawing.Point(151, 128);
+            this.cboSoundMode.Location = new System.Drawing.Point(154, 149);
             this.cboSoundMode.Name = "cboSoundMode";
             this.cboSoundMode.Size = new System.Drawing.Size(116, 21);
             this.cboSoundMode.TabIndex = 12;
@@ -295,7 +297,7 @@
             // lblLightMode
             // 
             this.lblLightMode.AutoSize = true;
-            this.lblLightMode.Location = new System.Drawing.Point(58, 104);
+            this.lblLightMode.Location = new System.Drawing.Point(61, 125);
             this.lblLightMode.Name = "lblLightMode";
             this.lblLightMode.Size = new System.Drawing.Size(68, 13);
             this.lblLightMode.TabIndex = 11;
@@ -304,7 +306,7 @@
             // pnlSep
             // 
             this.pnlSep.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlSep.Location = new System.Drawing.Point(21, 76);
+            this.pnlSep.Location = new System.Drawing.Point(24, 97);
             this.pnlSep.Name = "pnlSep";
             this.pnlSep.Size = new System.Drawing.Size(478, 5);
             this.pnlSep.TabIndex = 10;
@@ -313,7 +315,7 @@
             // 
             this.txtCardType.BackColor = System.Drawing.Color.White;
             this.txtCardType.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCardType.Location = new System.Drawing.Point(354, 19);
+            this.txtCardType.Location = new System.Drawing.Point(357, 40);
             this.txtCardType.Name = "txtCardType";
             this.txtCardType.ReadOnly = true;
             this.txtCardType.Size = new System.Drawing.Size(38, 21);
@@ -323,9 +325,9 @@
             // lblCardType
             // 
             this.lblCardType.AutoSize = true;
-            this.lblCardType.Location = new System.Drawing.Point(278, 23);
+            this.lblCardType.Location = new System.Drawing.Point(281, 44);
             this.lblCardType.Name = "lblCardType";
-            this.lblCardType.Size = new System.Drawing.Size(67, 13);
+            this.lblCardType.Size = new System.Drawing.Size(66, 13);
             this.lblCardType.TabIndex = 6;
             this.lblCardType.Text = "Card Type";
             // 
@@ -333,7 +335,7 @@
             // 
             this.txtReaderSerial.BackColor = System.Drawing.Color.White;
             this.txtReaderSerial.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReaderSerial.Location = new System.Drawing.Point(116, 46);
+            this.txtReaderSerial.Location = new System.Drawing.Point(119, 67);
             this.txtReaderSerial.Name = "txtReaderSerial";
             this.txtReaderSerial.ReadOnly = true;
             this.txtReaderSerial.Size = new System.Drawing.Size(102, 21);
@@ -343,7 +345,7 @@
             // lblReaderSerial
             // 
             this.lblReaderSerial.AutoSize = true;
-            this.lblReaderSerial.Location = new System.Drawing.Point(18, 50);
+            this.lblReaderSerial.Location = new System.Drawing.Point(21, 71);
             this.lblReaderSerial.Name = "lblReaderSerial";
             this.lblReaderSerial.Size = new System.Drawing.Size(85, 13);
             this.lblReaderSerial.TabIndex = 4;
@@ -353,7 +355,7 @@
             // 
             this.txtReaderType.BackColor = System.Drawing.Color.White;
             this.txtReaderType.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReaderType.Location = new System.Drawing.Point(116, 19);
+            this.txtReaderType.Location = new System.Drawing.Point(119, 40);
             this.txtReaderType.Name = "txtReaderType";
             this.txtReaderType.ReadOnly = true;
             this.txtReaderType.Size = new System.Drawing.Size(102, 21);
@@ -363,9 +365,9 @@
             // lblReaderType
             // 
             this.lblReaderType.AutoSize = true;
-            this.lblReaderType.Location = new System.Drawing.Point(18, 23);
+            this.lblReaderType.Location = new System.Drawing.Point(21, 44);
             this.lblReaderType.Name = "lblReaderType";
-            this.lblReaderType.Size = new System.Drawing.Size(80, 13);
+            this.lblReaderType.Size = new System.Drawing.Size(79, 13);
             this.lblReaderType.TabIndex = 2;
             this.lblReaderType.Text = "Reader Type";
             // 
@@ -376,7 +378,7 @@
             this.pnlConnected,
             this.pnlReader_error_code,
             this.pnlReader_err_explain});
-            this.stbReader.Location = new System.Drawing.Point(0, 163);
+            this.stbReader.Location = new System.Drawing.Point(0, 189);
             this.stbReader.Name = "stbReader";
             this.stbReader.Size = new System.Drawing.Size(524, 22);
             this.stbReader.SizingGrip = false;
@@ -435,9 +437,9 @@
             this.pnlFormat.Controls.Add(this.pgKeys);
             this.pnlFormat.Controls.Add(this.pnlAuth);
             this.pnlFormat.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlFormat.Location = new System.Drawing.Point(0, 213);
+            this.pnlFormat.Location = new System.Drawing.Point(0, 239);
             this.pnlFormat.Name = "pnlFormat";
-            this.pnlFormat.Size = new System.Drawing.Size(528, 160);
+            this.pnlFormat.Size = new System.Drawing.Size(528, 174);
             this.pnlFormat.TabIndex = 3;
             // 
             // pgKeys
@@ -631,7 +633,7 @@
             this.pnlFunction,
             this.pnlFError_code,
             this.pnlFError_explain});
-            this.stbFunction.Location = new System.Drawing.Point(0, 618);
+            this.stbFunction.Location = new System.Drawing.Point(0, 659);
             this.stbFunction.Name = "stbFunction";
             this.stbFunction.Size = new System.Drawing.Size(528, 22);
             this.stbFunction.SizingGrip = false;
@@ -665,10 +667,10 @@
             this.pgLinearReadWrite.Controls.Add(this.tabLinearRead);
             this.pgLinearReadWrite.Controls.Add(this.tabLinearWrite);
             this.pgLinearReadWrite.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pgLinearReadWrite.Location = new System.Drawing.Point(0, 373);
+            this.pgLinearReadWrite.Location = new System.Drawing.Point(0, 413);
             this.pgLinearReadWrite.Name = "pgLinearReadWrite";
             this.pgLinearReadWrite.SelectedIndex = 0;
-            this.pgLinearReadWrite.Size = new System.Drawing.Size(528, 245);
+            this.pgLinearReadWrite.Size = new System.Drawing.Size(528, 246);
             this.pgLinearReadWrite.TabIndex = 6;
             // 
             // tabLinearRead
@@ -686,7 +688,7 @@
             this.tabLinearRead.Location = new System.Drawing.Point(4, 22);
             this.tabLinearRead.Name = "tabLinearRead";
             this.tabLinearRead.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLinearRead.Size = new System.Drawing.Size(520, 219);
+            this.tabLinearRead.Size = new System.Drawing.Size(520, 220);
             this.tabLinearRead.TabIndex = 0;
             this.tabLinearRead.Text = "Linear Read";
             this.tabLinearRead.UseVisualStyleBackColor = true;
@@ -801,7 +803,7 @@
             this.tabLinearWrite.Location = new System.Drawing.Point(4, 22);
             this.tabLinearWrite.Name = "tabLinearWrite";
             this.tabLinearWrite.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLinearWrite.Size = new System.Drawing.Size(520, 219);
+            this.tabLinearWrite.Size = new System.Drawing.Size(520, 216);
             this.tabLinearWrite.TabIndex = 1;
             this.tabLinearWrite.Text = "Linear Write";
             this.tabLinearWrite.UseVisualStyleBackColor = true;
@@ -906,11 +908,22 @@
             this.Timer.Interval = 500;
             this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
+            // linkLabel_nfc
+            // 
+            this.linkLabel_nfc.AutoSize = true;
+            this.linkLabel_nfc.Location = new System.Drawing.Point(21, 13);
+            this.linkLabel_nfc.Name = "linkLabel_nfc";
+            this.linkLabel_nfc.Size = new System.Drawing.Size(254, 13);
+            this.linkLabel_nfc.TabIndex = 20;
+            this.linkLabel_nfc.TabStop = true;
+            this.linkLabel_nfc.Text = "http://www.d-logic.net/nfc-rfid-reader-sdk/";
+            this.linkLabel_nfc.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_nfc_LinkClicked);
+            // 
             // frmuFrSimple
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 662);
+            this.ClientSize = new System.Drawing.Size(528, 703);
             this.Controls.Add(this.pgLinearReadWrite);
             this.Controls.Add(this.stbFunction);
             this.Controls.Add(this.pnlFormat);
@@ -1028,6 +1041,7 @@
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.TextBox txtCardSerial;
         private System.Windows.Forms.Label lblUID;
+        private System.Windows.Forms.LinkLabel linkLabel_nfc;
     }
 }
 

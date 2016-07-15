@@ -59,8 +59,13 @@ const byte DL_MIFARE_ULTRALIGHT		      =	 0x01,
 
    //authenticate
   const byte  MIFARE_AUTHENT1A  = 0x60,
-              MIFARE_AUTHENT1B  = 0x61;       
- 
+              MIFARE_AUTHENT1B  = 0x61;
+
+        private void linkLabel_nfc_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(linkLabel_nfc.Text);
+        }
+
   const byte  DL_OK             = 0,
               KEY_INDEX         = 0;
   

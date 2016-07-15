@@ -76,8 +76,8 @@ namespace uFRSimplest
     {
         
         const string DLL_NAME = "uFCoder-x86.dll";    // for x86 target  
-             
-      // const string DLL_NAME = "uFCoder-x86_64.dll";  // for X64 target
+
+        // const string DLL_NAME = "uFCoder-x86_64.dll";  // for X64 target
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "ReaderOpen")]
         public static extern DL_STATUS ReaderOpen();

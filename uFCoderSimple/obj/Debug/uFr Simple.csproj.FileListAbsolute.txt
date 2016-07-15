@@ -12,3 +12,11 @@ d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\Debug\uFRSim
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\Debug\uFr Simple.csproj.GenerateResource.Cache
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\Debug\uFR Simple.exe
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\Debug\uFR Simple.pdb
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\Debug\uFR Simple.exe.config
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\Debug\uFR Simple.exe
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\Debug\uFR Simple.pdb
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\Debug\uFR Simple.exe
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\Debug\uFR Simple.pdb
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\Debug\uFRSimple.frmuFrSimple.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\Debug\uFRSimple.Properties.Resources.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\Debug\uFr Simple.csproj.GenerateResource.Cache

@@ -466,6 +466,11 @@ namespace uFrAdvance
             ShowForm(ValueBlockReadWrite);
         }
 
+        private void llblNfcSdk_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(llblNfcSdk.Text);
+        }
+
         private void mnuValueBlockIncrDecrItems_Click(object sender, EventArgs e)
         {
             frmValueBlockIncrDecr ValueBlockIncrDecr = new frmValueBlockIncrDecr();

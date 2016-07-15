@@ -33,3 +33,11 @@ d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\x86\Release\
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\x86\Release\uFr Simple.csproj.GenerateResource.Cache
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\x86\Release\uFR Simple.exe
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\x86\Release\uFR Simple.pdb
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\x86\Release\uFR Simple.exe.config
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\x86\Release\uFR Simple.exe
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\x86\Release\uFR Simple.pdb
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\x86\Release\uFR Simple.exe
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\x86\Release\uFR Simple.pdb
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\x86\Release\uFRSimple.frmuFrSimple.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\x86\Release\uFRSimple.Properties.Resources.resources
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\x86\Release\uFr Simple.csproj.GenerateResource.Cache
