@@ -16,3 +16,12 @@ E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x64\Release
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x64\Release\uFRSimplest.frmuFRSimplest.resources
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x64\Release\uFrSimplest.Properties.Resources.resources
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimplest\obj\x64\Release\uFr Simplest.csproj.GenerateResource.Cache
+C:\Users\Vladan\Documents\C#\examples\uFCoderSimplest\bin\x64\Release\uFr Simplest.exe.config
+C:\Users\Vladan\Documents\C#\examples\uFCoderSimplest\obj\x64\Release\uFr Simplest.exe
+C:\Users\Vladan\Documents\C#\examples\uFCoderSimplest\obj\x64\Release\uFr Simplest.pdb
+C:\Users\Vladan\Documents\C#\examples\uFCoderSimplest\bin\x64\Release\uFr Simplest.exe
+C:\Users\Vladan\Documents\C#\examples\uFCoderSimplest\bin\x64\Release\uFr Simplest.pdb
+C:\Users\Vladan\Documents\C#\examples\uFCoderSimplest\obj\x64\Release\uFr Simplest.csprojResolveAssemblyReference.cache
+C:\Users\Vladan\Documents\C#\examples\uFCoderSimplest\obj\x64\Release\uFRSimplest.frmuFRSimplest.resources
+C:\Users\Vladan\Documents\C#\examples\uFCoderSimplest\obj\x64\Release\uFrSimplest.Properties.Resources.resources
+C:\Users\Vladan\Documents\C#\examples\uFCoderSimplest\obj\x64\Release\uFr Simplest.csproj.GenerateResource.Cache

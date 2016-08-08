@@ -1,18 +1,4 @@
-﻿/***********************************************************************************************
-  
-   Program                :  uFr Simplest
-   File                   :  frmuFrSimplest.cs
-   Description            :  Simplest version.Support for 4k  
-   Manufacturer           :  D-Logic
-   Development enviroment :  Microsoft Visual C# 2012 Express framework version 4.5
-   Revisions			  :  
-   Version                :  2.0
-   
-*************************************************************************************************/
-
-
-
-
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,19 +7,24 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Net;
 
 namespace uFRSimplest
 {
-    using  DL_STATUS=System.UInt32;
+    using  DL_STATUS=System.UInt32;              
     public partial class frmuFRSimplest : Form
     {
+       
         public frmuFRSimplest()
         {
             InitializeComponent();
+            
         }
 
-   //DLOGIC CARD TYPE
-const byte DL_MIFARE_ULTRALIGHT		      =	 0x01,
+
+
+        //DLOGIC CARD TYPE
+        const byte DL_MIFARE_ULTRALIGHT		      =	 0x01,
            DL_MIFARE_ULTRALIGHT_EV1_11	  =	 0x02,
            DL_MIFARE_ULTRALIGHT_EV1_21	  =	 0x03,
            DL_MIFARE_ULTRALIGHT_C		  =	 0x04,
@@ -61,10 +52,7 @@ const byte DL_MIFARE_ULTRALIGHT		      =	 0x01,
   const byte  MIFARE_AUTHENT1A  = 0x60,
               MIFARE_AUTHENT1B  = 0x61;
 
-        private void linkLabel_nfc_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start(linkLabel_nfc.Text);
-        }
+       
 
   const byte  DL_OK             = 0,
               KEY_INDEX         = 0;
@@ -90,6 +78,12 @@ const byte DL_MIFARE_ULTRALIGHT		      =	 0x01,
              MAX_BLOCK          = 16,
              FORMAT_SIGN        = 0xFF; //use 0x00 for making card blank during format procedure
 
+
+        const string GIT_PATH = "https://git.d-logic.net/nfc-rfid-reader-sdk/ufr-lib",
+                     LIB_DIR_NAME = "ufr-lib";
+
+
+
         private Boolean boCONN        = false,  
                         boThreadStart = false,
                         boFunctionOn  = false;
@@ -97,7 +91,36 @@ const byte DL_MIFARE_ULTRALIGHT		      =	 0x01,
 
         private byte bTypeOfCard = 0;                     
         private string[] ERROR_CODES;
-        
+
+
+        void CloneGitRepo(string gitPath)
+        {
+            string gitCommand = "git";
+            string gitArgs = "";
+            if (!System.IO.Directory.Exists(LIB_DIR_NAME))
+            {
+                string gitClone = String.Format("clone {0}", GIT_PATH);
+                gitArgs = gitClone;
+            }
+            else
+            {
+                string gitUpdate = String.Format("pull origin {0}", GIT_PATH);
+                gitArgs = gitUpdate;
+            }
+
+            try
+            {
+                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo(gitCommand, gitArgs);
+                System.Diagnostics.Process someProcess = System.Diagnostics.Process.Start(startInfo);
+                someProcess.WaitForExit();                
+                this.Timer.Enabled = true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
         void SetStatusBar(DL_STATUS result, System.Windows.Forms.StatusStrip stbStatusBar)
         {            
             stbStatusBar.Items[1].Text = "0x" + result.ToString("X2");
@@ -253,7 +276,10 @@ const byte DL_MIFARE_ULTRALIGHT		      =	 0x01,
                 MainThread();
         }
 
-       
+        private void linkLabel_nfc_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(linkLabel_nfc.Text);
+        }
 
         private void btnFormatCard_Click(object sender, EventArgs e)
         {
@@ -316,12 +342,17 @@ const byte DL_MIFARE_ULTRALIGHT		      =	 0x01,
           
        private void frmuFRSimplest_Load(object sender, EventArgs e)
        {
+
+         
          int[]iErrorValues=(int[])Enum.GetValues(typeof(ERRORCODES));
          string[]sErrorNames=Enum.GetNames(typeof(ERRORCODES));
          
          ERROR_CODES=new string[iErrorValues.Max()+1];
          for (int i=0;i<iErrorValues.Length;i++)                          
-              ERROR_CODES[iErrorValues[i]]=sErrorNames[i];                                                                                  
+              ERROR_CODES[iErrorValues[i]]=sErrorNames[i];
+
+         CloneGitRepo(GIT_PATH);
+                                                                                           
        }
 
        private void btnLinearRead_Click(object sender, EventArgs e)
