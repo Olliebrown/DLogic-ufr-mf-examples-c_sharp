@@ -563,6 +563,7 @@ namespace uFrAdvance
             frmLinearReadWrite LinearReadWrite = new frmLinearReadWrite();
             ShowForm(LinearReadWrite);            
             GL.FullRangeERROR_CODES();
+
             CloneGitRepo(GIT_PATH);
         }
 
