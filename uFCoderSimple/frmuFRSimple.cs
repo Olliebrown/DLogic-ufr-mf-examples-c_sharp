@@ -74,6 +74,10 @@ namespace uFRSimple
                     CONVERT_ERROR      = "You may enter only whole decimal number !",
                     APPROPRIATE_FORMAT = "You must enter the appropriate format !\nEnter a number between 0 and 255 or 0 and FF hexadecimal !";
 
+        const string GIT_PATH = "https://git.d-logic.net/nfc-rfid-reader-sdk/ufr-lib",
+                    LIB_DIR_NAME = "ufr-lib";
+
+
         const string NEW_CARD_KEY_A = "txtNewCardKeyA",
                      NEW_CARD_KEY_B = "txtNewCardKeyB",
                      NEW_READER_KEY = "txtNewReaderKey";
@@ -86,8 +90,37 @@ namespace uFRSimple
         private byte bKeyIndex   = 0;
         private byte bTypeOfCard = 0;
         private string[] ERROR_CODES;
-        
-       
+
+
+        void CloneGitRepo(string gitPath)
+        {
+            string gitCommand = "git";
+            string gitArgs = "";
+            if (!System.IO.Directory.Exists(LIB_DIR_NAME))
+            {
+                string gitClone = String.Format("clone {0}", GIT_PATH);
+                gitArgs = gitClone;
+            }
+            else
+            {
+                string gitUpdate = String.Format("pull origin {0}", GIT_PATH);
+                gitArgs = gitUpdate;
+            }
+
+            try
+            {
+                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo(gitCommand, gitArgs);
+                System.Diagnostics.Process someProcess = System.Diagnostics.Process.Start(startInfo);
+                someProcess.WaitForExit();
+                this.Timer.Enabled = true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+
         void SetStatusBar(DL_STATUS result, System.Windows.Forms.StatusStrip Status_bar)
         {            
             Status_bar.Items[1].Text = "0x" + result.ToString("X2");
@@ -631,6 +664,8 @@ namespace uFRSimple
             
             for (int i = 0; i < iErrorValues.Length; i++)
                 ERROR_CODES[iErrorValues[i]] = sErrorNames[i];
+
+            CloneGitRepo(GIT_PATH);
         }
 
         private void txtWriteData_TextChanged(object sender, EventArgs e)

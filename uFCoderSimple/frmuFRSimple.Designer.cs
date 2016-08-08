@@ -36,6 +36,7 @@
             this.mnuMeniItem = new System.Windows.Forms.MenuStrip();
             this.mniExitItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlReader = new System.Windows.Forms.Panel();
+            this.linkLabel_nfc = new System.Windows.Forms.LinkLabel();
             this.txtCardSerial = new System.Windows.Forms.TextBox();
             this.lblUID = new System.Windows.Forms.Label();
             this.txtUIDSize = new System.Windows.Forms.TextBox();
@@ -102,7 +103,6 @@
             this.lblWriteData = new System.Windows.Forms.Label();
             this.Timer = new System.Windows.Forms.Timer(this.components);
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.linkLabel_nfc = new System.Windows.Forms.LinkLabel();
             this.stbCardStatus.SuspendLayout();
             this.mnuMeniItem.SuspendLayout();
             this.pnlReader.SuspendLayout();
@@ -197,6 +197,17 @@
             this.pnlReader.Name = "pnlReader";
             this.pnlReader.Size = new System.Drawing.Size(528, 215);
             this.pnlReader.TabIndex = 2;
+            // 
+            // linkLabel_nfc
+            // 
+            this.linkLabel_nfc.AutoSize = true;
+            this.linkLabel_nfc.Location = new System.Drawing.Point(21, 13);
+            this.linkLabel_nfc.Name = "linkLabel_nfc";
+            this.linkLabel_nfc.Size = new System.Drawing.Size(254, 13);
+            this.linkLabel_nfc.TabIndex = 20;
+            this.linkLabel_nfc.TabStop = true;
+            this.linkLabel_nfc.Text = "http://www.d-logic.net/nfc-rfid-reader-sdk/";
+            this.linkLabel_nfc.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_nfc_LinkClicked);
             // 
             // txtCardSerial
             // 
@@ -803,7 +814,7 @@
             this.tabLinearWrite.Location = new System.Drawing.Point(4, 22);
             this.tabLinearWrite.Name = "tabLinearWrite";
             this.tabLinearWrite.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLinearWrite.Size = new System.Drawing.Size(520, 216);
+            this.tabLinearWrite.Size = new System.Drawing.Size(520, 220);
             this.tabLinearWrite.TabIndex = 1;
             this.tabLinearWrite.Text = "Linear Write";
             this.tabLinearWrite.UseVisualStyleBackColor = true;
@@ -904,20 +915,8 @@
             // 
             // Timer
             // 
-            this.Timer.Enabled = true;
             this.Timer.Interval = 500;
             this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
-            // 
-            // linkLabel_nfc
-            // 
-            this.linkLabel_nfc.AutoSize = true;
-            this.linkLabel_nfc.Location = new System.Drawing.Point(21, 13);
-            this.linkLabel_nfc.Name = "linkLabel_nfc";
-            this.linkLabel_nfc.Size = new System.Drawing.Size(254, 13);
-            this.linkLabel_nfc.TabIndex = 20;
-            this.linkLabel_nfc.TabStop = true;
-            this.linkLabel_nfc.Text = "http://www.d-logic.net/nfc-rfid-reader-sdk/";
-            this.linkLabel_nfc.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_nfc_LinkClicked);
             // 
             // frmuFrSimple
             // 
