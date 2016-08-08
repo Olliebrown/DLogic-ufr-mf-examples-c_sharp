@@ -49,7 +49,10 @@ namespace uFrAdvance
         const byte MIFARE_AUTHENT1A  = 0x60,
                    MIFARE_AUTHENT1B  = 0x61;
 
-      
+
+        const string GIT_PATH = "https://git.d-logic.net/nfc-rfid-reader-sdk/ufr-lib",
+                     LIB_DIR_NAME = "ufr-lib";
+
         private static Boolean boCONN = false;                        
         
         
@@ -74,7 +77,33 @@ namespace uFrAdvance
             mnuSectorTrailerWriteItems.Enabled        = isEnabled;
         }
 
-       
+        void CloneGitRepo(string gitPath)
+        {
+            string gitCommand = "git";
+            string gitArgs = "";
+            if (!System.IO.Directory.Exists(LIB_DIR_NAME))
+            {
+                string gitClone = String.Format("clone {0}", GIT_PATH);
+                gitArgs = gitClone;
+            }
+            else
+            {
+                string gitUpdate = String.Format("pull origin {0}", GIT_PATH);
+                gitArgs = gitUpdate;
+            }
+
+            try
+            {
+                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo(gitCommand, gitArgs);
+                System.Diagnostics.Process someProcess = System.Diagnostics.Process.Start(startInfo);
+                someProcess.WaitForExit();
+                this.Timer.Enabled = true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
 
         private void MainThread()
         {
@@ -533,7 +562,8 @@ namespace uFrAdvance
 
             frmLinearReadWrite LinearReadWrite = new frmLinearReadWrite();
             ShowForm(LinearReadWrite);            
-            GL.FullRangeERROR_CODES();            
+            GL.FullRangeERROR_CODES();
+            CloneGitRepo(GIT_PATH);
         }
 
         private void mnuHardwareFirmwareVersionItem_Click(object sender, EventArgs e)

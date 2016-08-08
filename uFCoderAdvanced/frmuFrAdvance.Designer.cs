@@ -55,6 +55,7 @@
             this.mnuExitItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuViewAllItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlReader = new System.Windows.Forms.Panel();
+            this.llblNfcSdk = new System.Windows.Forms.LinkLabel();
             this.txtCardSerial = new System.Windows.Forms.TextBox();
             this.lblUID = new System.Windows.Forms.Label();
             this.txtUIDSize = new System.Windows.Forms.TextBox();
@@ -91,7 +92,6 @@
             this.lblReaderType = new System.Windows.Forms.Label();
             this.pnlConteiner = new System.Windows.Forms.Panel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.llblNfcSdk = new System.Windows.Forms.LinkLabel();
             this.stbCard.SuspendLayout();
             this.mnuMeni.SuspendLayout();
             this.pnlReader.SuspendLayout();
@@ -145,7 +145,6 @@
             // 
             // Timer
             // 
-            this.Timer.Enabled = true;
             this.Timer.Interval = 500;
             this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
@@ -328,6 +327,17 @@
             this.pnlReader.Name = "pnlReader";
             this.pnlReader.Size = new System.Drawing.Size(545, 278);
             this.pnlReader.TabIndex = 4;
+            // 
+            // llblNfcSdk
+            // 
+            this.llblNfcSdk.AutoSize = true;
+            this.llblNfcSdk.Location = new System.Drawing.Point(18, 4);
+            this.llblNfcSdk.Name = "llblNfcSdk";
+            this.llblNfcSdk.Size = new System.Drawing.Size(254, 13);
+            this.llblNfcSdk.TabIndex = 22;
+            this.llblNfcSdk.TabStop = true;
+            this.llblNfcSdk.Text = "http://www.d-logic.net/nfc-rfid-reader-sdk/";
+            this.llblNfcSdk.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblNfcSdk_LinkClicked);
             // 
             // txtCardSerial
             // 
@@ -740,17 +750,6 @@
             this.pnlConteiner.Name = "pnlConteiner";
             this.pnlConteiner.Size = new System.Drawing.Size(545, 376);
             this.pnlConteiner.TabIndex = 5;
-            // 
-            // llblNfcSdk
-            // 
-            this.llblNfcSdk.AutoSize = true;
-            this.llblNfcSdk.Location = new System.Drawing.Point(18, 4);
-            this.llblNfcSdk.Name = "llblNfcSdk";
-            this.llblNfcSdk.Size = new System.Drawing.Size(254, 13);
-            this.llblNfcSdk.TabIndex = 22;
-            this.llblNfcSdk.TabStop = true;
-            this.llblNfcSdk.Text = "http://www.d-logic.net/nfc-rfid-reader-sdk/";
-            this.llblNfcSdk.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblNfcSdk_LinkClicked);
             // 
             // frmuFrAdvance
             // 

@@ -17,11 +17,8 @@ d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uF
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFr Advance.exe
 d:\d-logic\svn_repo\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFr Advance.pdb
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\bin\Release\uFr Advance.exe.config
-E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFr Advance.exe
-E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFr Advance.pdb
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\bin\Release\uFr Advance.exe
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\bin\Release\uFr Advance.pdb
-E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.csprojResolveAssemblyReference.cache
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.frmBlockReadWrite.resources
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.frmBlockInSectorReadWrite.resources
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.frmLinearFormatCard.resources
@@ -35,3 +32,5 @@ E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFr
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.frmLinearReadWrite.resources
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.Properties.Resources.resources
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFrAdvance.csproj.GenerateResource.Cache
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFr Advance.exe
+E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\Release\uFr Advance.pdb
