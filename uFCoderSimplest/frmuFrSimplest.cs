@@ -11,7 +11,9 @@ using System.Net;
 
 namespace uFRSimplest
 {
-    using  DL_STATUS=System.UInt32;              
+    using System.IO;
+    using System.Reflection;
+    using DL_STATUS = System.UInt32;
     public partial class frmuFRSimplest : Form
     {
        
@@ -350,8 +352,7 @@ namespace uFRSimplest
          ERROR_CODES=new string[iErrorValues.Max()+1];
          for (int i=0;i<iErrorValues.Length;i++)                          
               ERROR_CODES[iErrorValues[i]]=sErrorNames[i];
-
-         CloneGitRepo(GIT_PATH);
+            //CloneGitRepo(GIT_PATH);
                                                                                            
        }
 

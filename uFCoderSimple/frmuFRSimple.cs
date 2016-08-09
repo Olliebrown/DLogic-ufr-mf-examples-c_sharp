@@ -665,7 +665,7 @@ namespace uFRSimple
             for (int i = 0; i < iErrorValues.Length; i++)
                 ERROR_CODES[iErrorValues[i]] = sErrorNames[i];
 
-            CloneGitRepo(GIT_PATH);
+            //CloneGitRepo(GIT_PATH);
         }
 
         private void txtWriteData_TextChanged(object sender, EventArgs e)

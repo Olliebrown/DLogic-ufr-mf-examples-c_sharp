@@ -78,11 +78,11 @@ namespace uFrAdvance
     {
 
 #if WIN64
-        const string DLL_PATH = "\\ufr-lib\\windows\\x86_64\\";
+        const string DLL_PATH = "..\\..\\..\\ufr-lib\\windows\\x86_64\\";
         const string NAME_DLL = "uFCoder-x86_64.dll";
 
 #else
-        const string DLL_PATH = "\\ufr-lib\\windows\\x86\\";
+        const string DLL_PATH = "..\\..\\..\\ufr-lib\\windows\\x86\\";
         const string NAME_DLL = "uFCoder-x86.dll";
 #endif
         const string DLL_NAME = DLL_PATH + NAME_DLL;
