@@ -33,3 +33,23 @@ E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x64\Release
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x64\Release\uFrAdvance.frmLinearReadWrite.resources
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x64\Release\uFrAdvance.Properties.Resources.resources
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderAdvanced\obj\x64\Release\uFrAdvance.csproj.GenerateResource.Cache
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\bin\x64\Release\uFr Advance.exe.config
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\bin\x64\Release\uFr Advance.exe
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\bin\x64\Release\uFr Advance.pdb
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\obj\x64\Release\uFrAdvance.csprojAssemblyReference.cache
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\obj\x64\Release\uFrAdvance.frmBlockReadWrite.resources
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\obj\x64\Release\uFrAdvance.frmBlockInSectorReadWrite.resources
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\obj\x64\Release\uFrAdvance.frmLinearFormatCard.resources
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\obj\x64\Release\uFrAdvance.frmuFrAdvance.resources
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\obj\x64\Release\uFrAdvance.frmSectorTrailerWrite.resources
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\obj\x64\Release\uFrAdvance.frmValueBlockIncrDecr.resources
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\obj\x64\Release\uFrAdvance.frmValueBlockInSectorIncremDecrem.resources
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\obj\x64\Release\uFrAdvance.frmValueBlockInSectorReadWrite.resources
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\obj\x64\Release\uFrAdvance.frmValueBlockReadWrite.resources
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\obj\x64\Release\uFrAdvance.frmViewAll.resources
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\obj\x64\Release\uFrAdvance.frmLinearReadWrite.resources
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\obj\x64\Release\uFrAdvance.Properties.Resources.resources
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\obj\x64\Release\uFrAdvance.csproj.GenerateResource.cache
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\obj\x64\Release\uFrAdvance.csproj.CoreCompileInputs.cache
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\obj\x64\Release\uFr Advance.exe
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderAdvanced\obj\x64\Release\uFr Advance.pdb

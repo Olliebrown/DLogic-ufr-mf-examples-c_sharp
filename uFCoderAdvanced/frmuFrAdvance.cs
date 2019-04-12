@@ -124,7 +124,7 @@ namespace uFrAdvance
 
             GL.LoopStatus = true;
             
-            if (!boCONN)
+           /* if (!boCONN)
             {
                 iRResult = uFCoder.ReaderOpen();
                 if (iRResult == DL_OK)
@@ -145,7 +145,7 @@ namespace uFrAdvance
                     GL.SetStatusBar(iRResult, stbReader);
                 }
 
-            }
+            } */
             if (boCONN)
             {
                byte bCardType   = 0,
@@ -493,6 +493,101 @@ namespace uFrAdvance
         {
             frmValueBlockReadWrite ValueBlockReadWrite = new frmValueBlockReadWrite();
             ShowForm(ValueBlockReadWrite);
+        }
+
+        private void chkAdvanced_CheckedChanged(object sender, EventArgs e)
+        {
+            txtExReaderType.Enabled = !txtExReaderType.Enabled;
+            txtPortName.Enabled = !txtPortName.Enabled;
+            txtPortInterface.Enabled = !txtPortInterface.Enabled;
+            txtOpenArg.Enabled = !txtOpenArg.Enabled;
+
+            labelExReaderType.Enabled = !labelExReaderType.Enabled;
+            labelPortName.Enabled = !labelPortName.Enabled;
+            labelPortInterface.Enabled = !labelPortInterface.Enabled;
+            labelOpenArg.Enabled = !labelOpenArg.Enabled;
+        }
+
+        private void btnReaderOpen_Click(object sender, EventArgs e)
+        {
+            DL_STATUS status;
+
+
+            if (chkAdvanced.Checked == true){
+                boCONN = false;
+
+                string reader_type = txtExReaderType.Text;
+                string port_name = txtPortName.Text;
+                string port_interface = txtPortInterface.Text;
+                string arg = txtOpenArg.Text;
+
+                try
+                {
+                    UInt32 reader_type_int = Convert.ToUInt32(reader_type);
+                    UInt32 port_interface_int = (UInt32)port_interface[0];
+
+                    status = (UInt32)uFCoder.ReaderOpenEx(reader_type_int, port_name, port_interface_int, arg);
+                    if (status > 0)
+                    {
+                        pnlConn.Text = "NOT CONNECTED";
+                        txtReaderType.Clear();
+                        txtReaderSerial.Clear();
+                        txtCardType.Clear();
+                        txtCardSerial.Clear();
+                        txtUIDSize.Clear();
+                        txtCardSerial.Clear();
+                        GL.SetStatusBar(status, stbReader);
+                        boCONN = false;
+                        return;
+                    }
+                    else
+                    {
+
+                        //txtStatus.Text = "ReaderOpenEx was successful. ";
+
+                        pnlConn.Text = "CONNECTED";
+                        boCONN = true;
+                        GL.SetStatusBar(status, stbReader);
+
+                        uFCoder.ReaderUISignal(1, 1);
+
+                        Timer.Start();
+                    }
+                }
+                catch (Exception er)
+                {
+                    MessageBox.Show("Invalid Advanced options parameters, please check your input and try again!");
+                    MessageBox.Show(er.ToString());
+                }
+
+            } else {
+                boCONN = false;
+
+                status = uFCoder.ReaderOpen();
+                    if (status == DL_OK)
+                    {
+                        boCONN = true;
+                        pnlConn.Text = "CONNECTED";
+                        GL.SetStatusBar(status, stbReader);
+                        Timer.Start();
+                        uFCoder.ReaderUISignal(1, 1);
+                  
+                }
+                    else
+                    {
+                        pnlConn.Text = "NOT CONNECTED";
+                        txtReaderType.Clear();
+                        txtReaderSerial.Clear();
+                        txtCardType.Clear();
+                        txtCardSerial.Clear();
+                        txtUIDSize.Clear();
+                        txtCardSerial.Clear();
+                        GL.SetStatusBar(status, stbReader);
+                        boCONN = false;
+                }
+
+              
+            }
         }
 
         private void llblNfcSdk_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
