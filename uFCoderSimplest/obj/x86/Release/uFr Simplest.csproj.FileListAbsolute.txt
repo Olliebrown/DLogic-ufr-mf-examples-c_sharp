@@ -43,3 +43,13 @@ C:\Users\Vladan\Documents\C#\examples\uFCoderSimplest\obj\x86\Release\uFr Simple
 C:\Users\Vladan\Documents\C#\examples\uFCoderSimplest\obj\x86\Release\uFRSimplest.frmuFRSimplest.resources
 C:\Users\Vladan\Documents\C#\examples\uFCoderSimplest\obj\x86\Release\uFrSimplest.Properties.Resources.resources
 C:\Users\Vladan\Documents\C#\examples\uFCoderSimplest\obj\x86\Release\uFr Simplest.csproj.GenerateResource.Cache
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimplest\bin\x86\Release\uFr Simplest.exe.config
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimplest\bin\x86\Release\uFr Simplest.exe
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimplest\bin\x86\Release\uFr Simplest.pdb
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Release\uFr Simplest.csprojAssemblyReference.cache
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Release\uFRSimplest.frmuFRSimplest.resources
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Release\uFrSimplest.Properties.Resources.resources
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Release\uFr Simplest.csproj.GenerateResource.cache
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Release\uFr Simplest.csproj.CoreCompileInputs.cache
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Release\uFr Simplest.exe
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Release\uFr Simplest.pdb

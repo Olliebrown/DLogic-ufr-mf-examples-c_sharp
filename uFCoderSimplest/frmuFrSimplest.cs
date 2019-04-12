@@ -58,9 +58,96 @@ namespace uFRSimplest
 
   const byte  DL_OK             = 0,
               KEY_INDEX         = 0;
-  
-  //for result                    
-  const byte  FRES_OK_LIGHT     = 4,
+
+        private void btnReaderOpen_Click(object sender, EventArgs e)
+        {
+            if (checkAdvanced.Checked == true)
+            {
+                DL_STATUS status;
+
+
+                string reader_type = txtReaderType.Text;
+                string port_name = txtPortName.Text;
+                string port_interface = txtPortInterface.Text;
+                string arg = txtOpenArg.Text;
+
+                try
+                {
+                    UInt32 reader_type_int = Convert.ToUInt32(reader_type);
+                    UInt32 port_interface_int = (UInt32)port_interface[0];
+
+                    status = (UInt32)uFCoder.ReaderOpenEx(reader_type_int, port_name, port_interface_int, arg);
+                    if (status > 0)
+                    {
+                        pnlConnected.Text = "NOT CONNECTED";
+                        txtCardType.Clear();
+                        txtUIDSize.Clear();
+                        txtCardUID.Clear();
+                        SetStatusBar(status, stbConnected);
+                        return;
+                    }
+                    else
+                    {
+
+                        //txtStatus.Text = "ReaderOpenEx was successful. ";
+
+                        pnlConnected.Text = "CONNECTED";
+                        boCONN = true;
+                        SetStatusBar(status, stbConnected);
+
+                        uFCoder.ReaderUISignal(1, 1);
+
+                        Timer.Start();
+                    }
+                }
+                catch (Exception er)
+                {
+                    MessageBox.Show("Invalid Advanced options parameters, please check your input and try again!");
+                }
+            }
+            else {
+
+                DL_STATUS status;
+
+                status = uFCoder.ReaderOpen();
+
+                if (status == DL_OK)
+               
+                {
+                    pnlConnected.Text = "CONNECTED";
+                    boCONN = true;
+                    SetStatusBar(status, stbConnected);
+
+                    uFCoder.ReaderUISignal(1, 1);
+                    Timer.Start();
+                }
+                    else
+                    {
+                    pnlConnected.Text = "NOT CONNECTED";
+                    txtCardType.Clear();
+                    txtUIDSize.Clear();
+                    txtCardUID.Clear();
+                    SetStatusBar(status, stbConnected);
+                }
+            } 
+        }
+
+        private void checkAdvanced_CheckedChanged(object sender, EventArgs e)
+        {
+            txtReaderType.Enabled = !txtReaderType.Enabled;
+            txtPortName.Enabled = !txtPortName.Enabled;
+            txtPortInterface.Enabled = !txtPortInterface.Enabled;
+            txtOpenArg.Enabled = !txtOpenArg.Enabled;
+
+            labelReaderType.Enabled = !labelReaderType.Enabled;
+            labelPortName.Enabled = !labelPortName.Enabled;
+            labelPortInterface.Enabled = !labelPortInterface.Enabled;
+            labelOpenArg.Enabled = !labelOpenArg.Enabled;
+
+        }
+
+        //for result                    
+        const byte  FRES_OK_LIGHT     = 4,
               FRES_OK_SOUND     = 0,
               FERR_LIGHT        = 2,
               FERR_SOUND        = 0;

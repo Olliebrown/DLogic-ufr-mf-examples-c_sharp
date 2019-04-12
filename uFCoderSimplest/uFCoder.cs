@@ -88,6 +88,24 @@ namespace uFRSimplest
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "ReaderOpen")]
         public static extern DL_STATUS ReaderOpen();
 
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "ReaderOpenEx")]
+        private static extern DL_STATUS ReaderOpenEx(UInt32 reader_type, [In] byte[] port_name, UInt32 port_interface, [In] byte[] arg);
+        public static DL_STATUS ReaderOpenEx(UInt32 reader_type, string port_name, UInt32 port_interface, string arg)
+        {
+
+            byte[] port_name_p = Encoding.ASCII.GetBytes(port_name);
+            byte[] port_name_param = new byte[port_name_p.Length + 1];
+            Array.Copy(port_name_p, 0, port_name_param, 0, port_name_p.Length);
+            port_name_param[port_name_p.Length] = 0;
+
+            byte[] arg_p = Encoding.ASCII.GetBytes(arg);
+            byte[] arg_param = new byte[arg_p.Length + 1];
+            Array.Copy(arg_p, 0, arg_param, 0, arg_p.Length);
+            arg_param[arg_p.Length] = 0;
+
+            return ReaderOpenEx(reader_type, port_name_param, port_interface, arg_param);
+        }
+
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "ReaderClose")]
         public static extern DL_STATUS ReaderClose();
 
@@ -132,5 +150,16 @@ namespace uFRSimplest
                                                   short shBlockAddress,
                                                   byte bAuthMode,
                                                   byte bKeyIndex);
+
+
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "UFR_Status2String")]
+        private static extern IntPtr UFR_Status2String(DL_STATUS status);
+        public static string status2str(DL_STATUS status)
+        {
+            IntPtr str_ret = UFR_Status2String(status);
+            return Marshal.PtrToStringAnsi(str_ret);
+        }
+
+
     }
 }
