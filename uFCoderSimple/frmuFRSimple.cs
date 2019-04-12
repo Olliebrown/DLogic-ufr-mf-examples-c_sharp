@@ -224,6 +224,14 @@ namespace uFRSimple
             }
         }
 
+        public static byte[] StringToByteArray(string hex)
+        {
+            return Enumerable.Range(0, hex.Length)
+             .Where(x => x % 2 == 0)
+             .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
+             .ToArray();
+        }
+
         private void checkAdvanced_CheckedChanged(object sender, EventArgs e)
         {
             txtExReaderType.Enabled = !txtExReaderType.Enabled;
@@ -546,7 +554,7 @@ namespace uFRSimple
                 byte bAuthMode          = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
                 ushort ushBytesRet;                
                 byte[] baWriteData      = new byte[ushDataLength];
-                baWriteData = System.Text.Encoding.ASCII.GetBytes(txtWriteData.Text);
+                baWriteData = StringToByteArray(txtWriteData.Text);
                 DL_STATUS iFResult;
 
                 unsafe

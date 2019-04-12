@@ -135,7 +135,7 @@ namespace uFRSimplest
                                                    byte key_index);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "LinearWrite")]
-        public static extern DL_STATUS LinearWrite(byte* aucData,
+        public static extern DL_STATUS LinearWrite([In] byte[] aucDat,
                                                    ushort linear_address,
                                                    ushort data_len,
                                                    ushort* bytes_written,

@@ -411,8 +411,17 @@ namespace uFRSimplest
            }   
         }
 
-          
-       private void frmuFRSimplest_Load(object sender, EventArgs e)
+        public static byte[] StringToByteArray(string hex)
+        {
+            return Enumerable.Range(0, hex.Length)
+             .Where(x => x % 2 == 0)
+             .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
+             .ToArray();
+        }
+
+
+
+        private void frmuFRSimplest_Load(object sender, EventArgs e)
        {
 
          
@@ -474,15 +483,15 @@ namespace uFRSimplest
                 txtWriteData.Focus();
                 return;
                 }
-             baWriteData=System.Text.Encoding.ASCII.GetBytes(txtWriteData.Text);             
+                baWriteData = StringToByteArray(txtWriteData.Text);
              unsafe
                 {
                     ushort usLinearAddress   =0;
                     ushort usDataLength      =(ushort)baWriteData.Length;
                     ushort usBytesRet        =0;
 
-                    fixed(byte* PData = baWriteData)
-                         iFResult=uFCoder.LinearWrite(PData,usLinearAddress,usDataLength,&usBytesRet,MIFARE_AUTHENT1A,KEY_INDEX);
+                   
+                         iFResult=uFCoder.LinearWrite(baWriteData, usLinearAddress,usDataLength,&usBytesRet,MIFARE_AUTHENT1A,KEY_INDEX);
                 }
                     if (iFResult == DL_OK)
                     {                        
