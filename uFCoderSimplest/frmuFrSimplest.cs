@@ -291,24 +291,7 @@ namespace uFRSimplest
                       iCResult;
 
             LoopStart =true;           
-            if (!boCONN)
-            {
-                if ((iRResult = uFCoder.ReaderOpen()) == DL_OK)
-                {
-                    pnlConnected.Text = "CONNECTED";
-                    boCONN = true;
-                    SetStatusBar(iRResult, stbConnected);
-                }
-                else
-                {
-                    pnlConnected.Text = "NOT CONNECTED";
-                    txtCardType  .Clear();
-                    txtUIDSize   .Clear();
-                    txtCardUID   .Clear();                    
-                    SetStatusBar(iRResult, stbConnected);
-                }
-            }
-
+           
             if (boCONN)
             {
                 unsafe
@@ -456,13 +439,13 @@ namespace uFRSimplest
                byte[] baReadData = new byte[uiDataLength];
                unsafe
                {
-                   fixed (byte* PData = baReadData)
-                       iFResult = uFCoder.LinearRead(PData, uiLinearAddress, uiDataLength, &uiBytesRet, MIFARE_AUTHENT1A, KEY_INDEX);
+                   
+                       iFResult = uFCoder.LinearRead(baReadData, uiLinearAddress, uiDataLength, &uiBytesRet, MIFARE_AUTHENT1A, KEY_INDEX);
                }
                if (iFResult == DL_OK)
                {
-                   txtReadData.Text = System.Text.Encoding.ASCII.GetString(baReadData);
-                   SetStatusBar(iFResult, stbFunctionError);
+                    txtReadData.Text = BitConverter.ToString(baReadData).Replace("-", ":");
+                    SetStatusBar(iFResult, stbFunctionError);
                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                }
                else

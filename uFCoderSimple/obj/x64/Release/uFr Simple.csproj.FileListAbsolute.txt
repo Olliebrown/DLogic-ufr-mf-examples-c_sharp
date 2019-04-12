@@ -14,3 +14,13 @@ E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\bin\x64\Release\u
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\x64\Release\uFRSimple.frmuFrSimple.resources
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\x64\Release\uFRSimple.Properties.Resources.resources
 E:\RADNIFOLDER\SVN\sw_open\ufr\c#\examples\trunk\uFCoderSimple\obj\x64\Release\uFr Simple.csproj.GenerateResource.Cache
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimple\bin\x64\Release\uFR Simple.exe.config
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimple\bin\x64\Release\uFR Simple.exe
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimple\bin\x64\Release\uFR Simple.pdb
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimple\obj\x64\Release\uFr Simple.csprojAssemblyReference.cache
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimple\obj\x64\Release\uFRSimple.frmuFrSimple.resources
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimple\obj\x64\Release\uFRSimple.Properties.Resources.resources
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimple\obj\x64\Release\uFr Simple.csproj.GenerateResource.cache
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimple\obj\x64\Release\uFr Simple.csproj.CoreCompileInputs.cache
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimple\obj\x64\Release\uFR Simple.exe
+C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimple\obj\x64\Release\uFR Simple.pdb

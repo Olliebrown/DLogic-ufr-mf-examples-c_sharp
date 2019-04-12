@@ -127,7 +127,7 @@ namespace uFRSimplest
                                                       int sound_mode);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "LinearRead")]
-        public static extern DL_STATUS LinearRead(byte* aucData,
+        public static extern DL_STATUS LinearRead([Out] byte[] data,
                                                    int linear_address,
                                                    int data_len,
                                                    int* bytes_written,

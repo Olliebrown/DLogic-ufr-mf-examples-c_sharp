@@ -224,6 +224,90 @@ namespace uFRSimple
             }
         }
 
+        private void checkAdvanced_CheckedChanged(object sender, EventArgs e)
+        {
+            txtExReaderType.Enabled = !txtExReaderType.Enabled;
+            txtPortName.Enabled = !txtPortName.Enabled;
+            txtPortInterface.Enabled = !txtPortInterface.Enabled;
+            txtOpenArg.Enabled = !txtOpenArg.Enabled;
+
+            labelExReaderType.Enabled = !labelExReaderType.Enabled;
+            labelPortName.Enabled = !labelPortName.Enabled;
+            labelPortInterface.Enabled = !labelPortInterface.Enabled;
+            labelOpenArg.Enabled = !labelOpenArg.Enabled;
+
+        }
+
+        private void btnReaderOpen_Click(object sender, EventArgs e)
+        {
+            if (checkAdvanced.Checked == true)
+            {
+                DL_STATUS status;
+
+
+                string reader_type = txtExReaderType.Text;
+                string port_name = txtPortName.Text;
+                string port_interface = txtPortInterface.Text;
+                string arg = txtOpenArg.Text;
+
+                try
+                {
+                    UInt32 reader_type_int = Convert.ToUInt32(reader_type);
+                    UInt32 port_interface_int = (UInt32)port_interface[0];
+
+                    status = (UInt32)uFCoder.ReaderOpenEx(reader_type_int, port_name, port_interface_int, arg);
+                    if (status == DL_OK)
+                    {
+                        boCONN = true;
+                        stbReader.Items[0].Text = "CONNECTED";
+                        SetStatusBar(status, stbReader);
+                        uFCoder.ReaderUISignal(1, 1);
+                        Timer.Start();
+                    }
+                    else
+                    {
+                        txtReaderType.Clear();
+                        txtReaderSerial.Clear();
+                        txtCardType.Clear();
+                        txtCardSerial.Clear();
+                        txtCardSerial.Clear();
+                        stbReader.Items[0].Text = "NOT CONNECTED";
+                        SetStatusBar(status, stbReader);
+                    }
+                }
+                catch (Exception er)
+                {
+                    MessageBox.Show("Invalid Advanced options parameters, please check your input and try again!");
+                }
+            }
+            else
+            {
+
+                DL_STATUS status;
+
+                status = uFCoder.ReaderOpen();
+
+                if (status == DL_OK)
+                {
+                    boCONN = true;
+                    stbReader.Items[0].Text = "CONNECTED";
+                    SetStatusBar(status, stbReader);
+                    uFCoder.ReaderUISignal(1, 1);
+                    Timer.Start();
+                }
+                else
+                {
+                    txtReaderType.Clear();
+                    txtReaderSerial.Clear();
+                    txtCardType.Clear();
+                    txtCardSerial.Clear();
+                    txtCardSerial.Clear();
+                    stbReader.Items[0].Text = "NOT CONNECTED";
+                    SetStatusBar(status, stbReader);
+                }
+            }
+        }
+
         private void linkLabel_nfc_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(linkLabel_nfc.Text);
@@ -400,20 +484,18 @@ namespace uFRSimple
                
                 unsafe
                 {                    
-                    fixed (byte* PData = baReadData)
-                        iFResult = uFCoder.LinearRead(PData, ushLinearAddress, ushDataLength, &ushBytesRet, bAuthMode, bKeyIndex);
+                  
+                        iFResult = uFCoder.LinearRead(baReadData, ushLinearAddress, ushDataLength, &ushBytesRet, bAuthMode, bKeyIndex);
                 }
                 if (iFResult == DL_OK)
                 {
-                    txtReadData.Text  = System.Text.Encoding.ASCII.GetString(baReadData);
+                    txtReadData.Text = BitConverter.ToString(baReadData).Replace("-", ":");
                     txtReadBytes.Text = ushBytesRet.ToString();                    
                     SetStatusBar(iFResult, stbFunction);
                     uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                 }
                 else
-                {                    
-                    txtReadData.Text  = System.Text.Encoding.ASCII.GetString(baReadData);
-                    txtReadBytes.Text = ushBytesRet.ToString();
+                {
                     SetStatusBar(iFResult, stbFunction);
                     uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);                    
                 }
