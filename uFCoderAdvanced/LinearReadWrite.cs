@@ -91,14 +91,14 @@ namespace uFrAdvance
                 }
                 if (iFResult == DL_OK)
                 {                                                       
-                    txtLinearRead.Text = System.Text.ASCIIEncoding.ASCII.GetString(baReadData);
+                    txtLinearRead.Text = BitConverter.ToString(baReadData).Replace("-", ":");
                     txtReadBytes.Text  = usBytesRet.ToString();
                     uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {                    
-                    txtLinearRead.Text = System.Text.ASCIIEncoding.ASCII.GetString(baReadData);
+                    txtLinearRead.Text = BitConverter.ToString(baReadData).Replace("-", ":");
                     txtReadBytes.Text  = usBytesRet.ToString();
                     uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
@@ -161,14 +161,14 @@ namespace uFrAdvance
                 }
                 if (iFResult == DL_OK)
                 {                                                       
-                    txtLinearReadAKM1.Text = System.Text.ASCIIEncoding.ASCII.GetString(baReadData);
+                    txtLinearReadAKM1.Text = BitConverter.ToString(baReadData).Replace("-", ":");
                     txtReadBytesAKM1.Text  = usBytesRet.ToString();
                     uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {                    
-                    txtLinearReadAKM1.Text = System.Text.ASCIIEncoding.ASCII.GetString(baReadData);
+                    txtLinearReadAKM1.Text = BitConverter.ToString(baReadData).Replace("-", ":");
                     txtReadBytesAKM1.Text  = usBytesRet.ToString();
                     uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
@@ -231,14 +231,14 @@ namespace uFrAdvance
                 }
                 if (iFResult == DL_OK)
                 {                                                       
-                    txtLinearReadAKM2.Text = System.Text.ASCIIEncoding.ASCII.GetString(baReadData);
+                    txtLinearReadAKM2.Text = BitConverter.ToString(baReadData).Replace("-", ":");
                     txtReadBytesAKM2.Text  = usBytesRet.ToString();
                      uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {                    
-                    txtLinearReadAKM2.Text = System.Text.ASCIIEncoding.ASCII.GetString(baReadData);
+                    txtLinearReadAKM2.Text = BitConverter.ToString(baReadData).Replace("-", ":");
                     txtReadBytesAKM2.Text  = usBytesRet.ToString();
                     uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
@@ -313,14 +313,14 @@ namespace uFrAdvance
                 }
                 if (iFResult == DL_OK)
                 {                                                       
-                    txtLinearReadPK.Text = System.Text.ASCIIEncoding.ASCII.GetString(baReadData);
+                    txtLinearReadPK.Text = BitConverter.ToString(baReadData).Replace("-", ":");
                     txtReadBytesPK.Text  = usBytesRet.ToString();
                     uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
                 else
                 {                    
-                    txtLinearReadPK.Text = System.Text.ASCIIEncoding.ASCII.GetString(baReadData);
+                    txtLinearReadPK.Text = BitConverter.ToString(baReadData).Replace("-", ":");
                     txtReadBytesPK.Text  = usBytesRet.ToString();
                     uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
@@ -340,6 +340,14 @@ namespace uFrAdvance
                 GL.FunctionOn=false;
                  
             }        
+        }
+
+        public static byte[] StringToByteArray(string hex)
+        {
+            return Enumerable.Range(0, hex.Length)
+             .Where(x => x % 2 == 0)
+             .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
+             .ToArray();
         }
 
         private void btnLinearWrite_Click(object sender, EventArgs e)
@@ -378,7 +386,7 @@ namespace uFrAdvance
                 byte bAuthMode = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
                 ushort usBytesRet = 0;
                 byte bKeyIndex = Convert.ToByte(cboKeyIndex.Text);
-                baWriteData     =  System.Text.Encoding.ASCII.GetBytes(txtLinearWrite.Text);
+                baWriteData     = StringToByteArray(txtLinearWrite.Text);
                                                                                                                                                                                                     
                 unsafe
                 {
@@ -411,7 +419,7 @@ namespace uFrAdvance
                  
             }      
         }
-
+        
         private void btnLinearWriteAKM1_Click(object sender, EventArgs e)
         {
              
@@ -447,7 +455,7 @@ namespace uFrAdvance
                 byte[] baWriteData = new byte[usDataLength];
                 byte bAuthMode = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
                 ushort usBytesRet = 0;                              
-                baWriteData     =  System.Text.Encoding.ASCII.GetBytes(txtLinearWriteAKM1.Text);
+                baWriteData     = StringToByteArray(txtLinearWriteAKM1.Text);
               
 
                 unsafe
@@ -523,7 +531,7 @@ namespace uFrAdvance
                 byte[] baWriteData = new byte[usDataLength];
                 byte bAuthMode = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
                 ushort usBytesRet = 0;
-                baWriteData     =  System.Text.Encoding.ASCII.GetBytes(txtLinearWriteAKM2.Text);
+                baWriteData     = StringToByteArray(txtLinearWriteAKM2.Text);
                 
 
                 unsafe
@@ -610,7 +618,7 @@ namespace uFrAdvance
                 byte[] baWriteData = new byte[usDataLength];
                 byte bAuthMode = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
                 ushort usBytesRet = 0;
-                baWriteData = System.Text.Encoding.ASCII.GetBytes(txtLinearWritePK.Text);
+                baWriteData = StringToByteArray(txtLinearWritePK.Text);
                 unsafe
                 {
                     fixed (byte* PData = baWriteData, PKEY_PK = baKeyPK)

@@ -61,7 +61,7 @@ namespace uFRSimplest
 
         private void btnReaderOpen_Click(object sender, EventArgs e)
         {
-            if (checkAdvanced.Checked == true)
+             if (checkAdvanced.Checked == true)
             {
                 DL_STATUS status;
 
@@ -350,7 +350,7 @@ namespace uFRSimplest
 
         private void linkLabel_nfc_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start(linkLabel_nfc.Text);
+            System.Diagnostics.Process.Start(llblNfcRfid.Text);
         }
 
         private void btnFormatCard_Click(object sender, EventArgs e)

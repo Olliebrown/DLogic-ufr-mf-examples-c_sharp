@@ -36,7 +36,6 @@
             this.mnuMeniItem = new System.Windows.Forms.MenuStrip();
             this.mniExitItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlReader = new System.Windows.Forms.Panel();
-            this.linkLabel_nfc = new System.Windows.Forms.LinkLabel();
             this.txtCardSerial = new System.Windows.Forms.TextBox();
             this.lblUID = new System.Windows.Forms.Label();
             this.txtUIDSize = new System.Windows.Forms.TextBox();
@@ -57,6 +56,7 @@
             this.pnlConnected = new System.Windows.Forms.ToolStripStatusLabel();
             this.pnlReader_error_code = new System.Windows.Forms.ToolStripStatusLabel();
             this.pnlReader_err_explain = new System.Windows.Forms.ToolStripStatusLabel();
+            this.linkLabel_nfc = new System.Windows.Forms.LinkLabel();
             this.lblKeyIndex = new System.Windows.Forms.Label();
             this.txtReaderKeyIndex = new System.Windows.Forms.TextBox();
             this.pnlFormat = new System.Windows.Forms.Panel();
@@ -108,11 +108,11 @@
             this.txtOpenArg = new System.Windows.Forms.TextBox();
             this.txtPortInterface = new System.Windows.Forms.TextBox();
             this.txtPortName = new System.Windows.Forms.TextBox();
-            this.txtExReaderType = new System.Windows.Forms.TextBox();
+            this.txtReaderTypeEx = new System.Windows.Forms.TextBox();
             this.labelOpenArg = new System.Windows.Forms.Label();
             this.labelPortInterface = new System.Windows.Forms.Label();
             this.labelPortName = new System.Windows.Forms.Label();
-            this.labelExReaderType = new System.Windows.Forms.Label();
+            this.labelReaderTypeEx = new System.Windows.Forms.Label();
             this.checkAdvanced = new System.Windows.Forms.CheckBox();
             this.btnReaderOpen = new System.Windows.Forms.Button();
             this.stbCardStatus.SuspendLayout();
@@ -139,9 +139,9 @@
             this.pnlCard_status,
             this.pnlError_code,
             this.pnlError_explain});
-            this.stbCardStatus.Location = new System.Drawing.Point(0, 839);
+            this.stbCardStatus.Location = new System.Drawing.Point(0, 758);
             this.stbCardStatus.Name = "stbCardStatus";
-            this.stbCardStatus.Size = new System.Drawing.Size(528, 22);
+            this.stbCardStatus.Size = new System.Drawing.Size(577, 22);
             this.stbCardStatus.SizingGrip = false;
             this.stbCardStatus.TabIndex = 0;
             // 
@@ -164,7 +164,7 @@
             // pnlError_explain
             // 
             this.pnlError_explain.Name = "pnlError_explain";
-            this.pnlError_explain.Size = new System.Drawing.Size(343, 17);
+            this.pnlError_explain.Size = new System.Drawing.Size(392, 17);
             this.pnlError_explain.Spring = true;
             this.pnlError_explain.Text = " ";
             // 
@@ -174,7 +174,7 @@
             this.mniExitItem});
             this.mnuMeniItem.Location = new System.Drawing.Point(0, 0);
             this.mnuMeniItem.Name = "mnuMeniItem";
-            this.mnuMeniItem.Size = new System.Drawing.Size(528, 24);
+            this.mnuMeniItem.Size = new System.Drawing.Size(577, 24);
             this.mnuMeniItem.TabIndex = 1;
             this.mnuMeniItem.Text = "menuStrip1";
             // 
@@ -188,7 +188,6 @@
             // pnlReader
             // 
             this.pnlReader.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlReader.Controls.Add(this.linkLabel_nfc);
             this.pnlReader.Controls.Add(this.txtCardSerial);
             this.pnlReader.Controls.Add(this.lblUID);
             this.pnlReader.Controls.Add(this.txtUIDSize);
@@ -206,27 +205,16 @@
             this.pnlReader.Controls.Add(this.txtReaderType);
             this.pnlReader.Controls.Add(this.lblReaderType);
             this.pnlReader.Controls.Add(this.stbReader);
-            this.pnlReader.Location = new System.Drawing.Point(4, 183);
+            this.pnlReader.Location = new System.Drawing.Point(6, 143);
             this.pnlReader.Name = "pnlReader";
-            this.pnlReader.Size = new System.Drawing.Size(528, 215);
+            this.pnlReader.Size = new System.Drawing.Size(528, 181);
             this.pnlReader.TabIndex = 2;
-            // 
-            // linkLabel_nfc
-            // 
-            this.linkLabel_nfc.AutoSize = true;
-            this.linkLabel_nfc.Location = new System.Drawing.Point(21, 13);
-            this.linkLabel_nfc.Name = "linkLabel_nfc";
-            this.linkLabel_nfc.Size = new System.Drawing.Size(254, 13);
-            this.linkLabel_nfc.TabIndex = 20;
-            this.linkLabel_nfc.TabStop = true;
-            this.linkLabel_nfc.Text = "http://www.d-logic.net/nfc-rfid-reader-sdk/";
-            this.linkLabel_nfc.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_nfc_LinkClicked);
             // 
             // txtCardSerial
             // 
             this.txtCardSerial.BackColor = System.Drawing.Color.White;
             this.txtCardSerial.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCardSerial.Location = new System.Drawing.Point(357, 68);
+            this.txtCardSerial.Location = new System.Drawing.Point(357, 38);
             this.txtCardSerial.Name = "txtCardSerial";
             this.txtCardSerial.ReadOnly = true;
             this.txtCardSerial.Size = new System.Drawing.Size(145, 21);
@@ -236,7 +224,7 @@
             // lblUID
             // 
             this.lblUID.AutoSize = true;
-            this.lblUID.Location = new System.Drawing.Point(281, 71);
+            this.lblUID.Location = new System.Drawing.Point(281, 41);
             this.lblUID.Name = "lblUID";
             this.lblUID.Size = new System.Drawing.Size(72, 13);
             this.lblUID.TabIndex = 18;
@@ -246,7 +234,7 @@
             // 
             this.txtUIDSize.BackColor = System.Drawing.Color.White;
             this.txtUIDSize.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUIDSize.Location = new System.Drawing.Point(464, 40);
+            this.txtUIDSize.Location = new System.Drawing.Point(464, 10);
             this.txtUIDSize.Name = "txtUIDSize";
             this.txtUIDSize.ReadOnly = true;
             this.txtUIDSize.Size = new System.Drawing.Size(38, 21);
@@ -257,7 +245,7 @@
             // lblUIDSize
             // 
             this.lblUIDSize.AutoSize = true;
-            this.lblUIDSize.Location = new System.Drawing.Point(401, 43);
+            this.lblUIDSize.Location = new System.Drawing.Point(401, 13);
             this.lblUIDSize.Name = "lblUIDSize";
             this.lblUIDSize.Size = new System.Drawing.Size(57, 13);
             this.lblUIDSize.TabIndex = 16;
@@ -270,7 +258,7 @@
             this.btnReaderUISignal.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SkyBlue;
             this.btnReaderUISignal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReaderUISignal.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReaderUISignal.Location = new System.Drawing.Point(335, 122);
+            this.btnReaderUISignal.Location = new System.Drawing.Point(335, 92);
             this.btnReaderUISignal.Name = "btnReaderUISignal";
             this.btnReaderUISignal.Size = new System.Drawing.Size(140, 48);
             this.btnReaderUISignal.TabIndex = 15;
@@ -288,7 +276,7 @@
             "LongRed",
             "Alternation",
             "Flash"});
-            this.cboLightMode.Location = new System.Drawing.Point(154, 122);
+            this.cboLightMode.Location = new System.Drawing.Point(154, 92);
             this.cboLightMode.Name = "cboLightMode";
             this.cboLightMode.Size = new System.Drawing.Size(116, 21);
             this.cboLightMode.TabIndex = 14;
@@ -296,7 +284,7 @@
             // lblSoundMode
             // 
             this.lblSoundMode.AutoSize = true;
-            this.lblSoundMode.Location = new System.Drawing.Point(61, 152);
+            this.lblSoundMode.Location = new System.Drawing.Point(61, 122);
             this.lblSoundMode.Name = "lblSoundMode";
             this.lblSoundMode.Size = new System.Drawing.Size(77, 13);
             this.lblSoundMode.TabIndex = 13;
@@ -313,7 +301,7 @@
             "Double Short",
             "Tripple Short",
             "Tripplet Melody"});
-            this.cboSoundMode.Location = new System.Drawing.Point(154, 149);
+            this.cboSoundMode.Location = new System.Drawing.Point(154, 119);
             this.cboSoundMode.Name = "cboSoundMode";
             this.cboSoundMode.Size = new System.Drawing.Size(116, 21);
             this.cboSoundMode.TabIndex = 12;
@@ -321,7 +309,7 @@
             // lblLightMode
             // 
             this.lblLightMode.AutoSize = true;
-            this.lblLightMode.Location = new System.Drawing.Point(61, 125);
+            this.lblLightMode.Location = new System.Drawing.Point(61, 95);
             this.lblLightMode.Name = "lblLightMode";
             this.lblLightMode.Size = new System.Drawing.Size(68, 13);
             this.lblLightMode.TabIndex = 11;
@@ -330,7 +318,7 @@
             // pnlSep
             // 
             this.pnlSep.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlSep.Location = new System.Drawing.Point(24, 97);
+            this.pnlSep.Location = new System.Drawing.Point(24, 67);
             this.pnlSep.Name = "pnlSep";
             this.pnlSep.Size = new System.Drawing.Size(478, 5);
             this.pnlSep.TabIndex = 10;
@@ -339,7 +327,7 @@
             // 
             this.txtCardType.BackColor = System.Drawing.Color.White;
             this.txtCardType.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCardType.Location = new System.Drawing.Point(357, 40);
+            this.txtCardType.Location = new System.Drawing.Point(357, 10);
             this.txtCardType.Name = "txtCardType";
             this.txtCardType.ReadOnly = true;
             this.txtCardType.Size = new System.Drawing.Size(38, 21);
@@ -349,7 +337,7 @@
             // lblCardType
             // 
             this.lblCardType.AutoSize = true;
-            this.lblCardType.Location = new System.Drawing.Point(281, 44);
+            this.lblCardType.Location = new System.Drawing.Point(281, 14);
             this.lblCardType.Name = "lblCardType";
             this.lblCardType.Size = new System.Drawing.Size(66, 13);
             this.lblCardType.TabIndex = 6;
@@ -359,7 +347,7 @@
             // 
             this.txtReaderSerial.BackColor = System.Drawing.Color.White;
             this.txtReaderSerial.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReaderSerial.Location = new System.Drawing.Point(119, 67);
+            this.txtReaderSerial.Location = new System.Drawing.Point(119, 37);
             this.txtReaderSerial.Name = "txtReaderSerial";
             this.txtReaderSerial.ReadOnly = true;
             this.txtReaderSerial.Size = new System.Drawing.Size(102, 21);
@@ -369,7 +357,7 @@
             // lblReaderSerial
             // 
             this.lblReaderSerial.AutoSize = true;
-            this.lblReaderSerial.Location = new System.Drawing.Point(21, 71);
+            this.lblReaderSerial.Location = new System.Drawing.Point(21, 41);
             this.lblReaderSerial.Name = "lblReaderSerial";
             this.lblReaderSerial.Size = new System.Drawing.Size(85, 13);
             this.lblReaderSerial.TabIndex = 4;
@@ -379,7 +367,7 @@
             // 
             this.txtReaderType.BackColor = System.Drawing.Color.White;
             this.txtReaderType.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReaderType.Location = new System.Drawing.Point(119, 40);
+            this.txtReaderType.Location = new System.Drawing.Point(119, 10);
             this.txtReaderType.Name = "txtReaderType";
             this.txtReaderType.ReadOnly = true;
             this.txtReaderType.Size = new System.Drawing.Size(102, 21);
@@ -389,7 +377,7 @@
             // lblReaderType
             // 
             this.lblReaderType.AutoSize = true;
-            this.lblReaderType.Location = new System.Drawing.Point(21, 44);
+            this.lblReaderType.Location = new System.Drawing.Point(21, 14);
             this.lblReaderType.Name = "lblReaderType";
             this.lblReaderType.Size = new System.Drawing.Size(79, 13);
             this.lblReaderType.TabIndex = 2;
@@ -402,7 +390,7 @@
             this.pnlConnected,
             this.pnlReader_error_code,
             this.pnlReader_err_explain});
-            this.stbReader.Location = new System.Drawing.Point(0, 189);
+            this.stbReader.Location = new System.Drawing.Point(0, 155);
             this.stbReader.Name = "stbReader";
             this.stbReader.Size = new System.Drawing.Size(524, 22);
             this.stbReader.SizingGrip = false;
@@ -432,6 +420,17 @@
             this.pnlReader_err_explain.Spring = true;
             this.pnlReader_err_explain.Text = " ";
             // 
+            // linkLabel_nfc
+            // 
+            this.linkLabel_nfc.AutoSize = true;
+            this.linkLabel_nfc.Location = new System.Drawing.Point(306, 32);
+            this.linkLabel_nfc.Name = "linkLabel_nfc";
+            this.linkLabel_nfc.Size = new System.Drawing.Size(254, 13);
+            this.linkLabel_nfc.TabIndex = 20;
+            this.linkLabel_nfc.TabStop = true;
+            this.linkLabel_nfc.Text = "http://www.d-logic.net/nfc-rfid-reader-sdk/";
+            this.linkLabel_nfc.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_nfc_LinkClicked);
+            // 
             // lblKeyIndex
             // 
             this.lblKeyIndex.AutoSize = true;
@@ -460,7 +459,7 @@
             this.pnlFormat.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlFormat.Controls.Add(this.pgKeys);
             this.pnlFormat.Controls.Add(this.pnlAuth);
-            this.pnlFormat.Location = new System.Drawing.Point(2, 401);
+            this.pnlFormat.Location = new System.Drawing.Point(6, 325);
             this.pnlFormat.Name = "pnlFormat";
             this.pnlFormat.Size = new System.Drawing.Size(528, 174);
             this.pnlFormat.TabIndex = 3;
@@ -656,9 +655,9 @@
             this.pnlFunction,
             this.pnlFError_code,
             this.pnlFError_explain});
-            this.stbFunction.Location = new System.Drawing.Point(0, 817);
+            this.stbFunction.Location = new System.Drawing.Point(0, 736);
             this.stbFunction.Name = "stbFunction";
-            this.stbFunction.Size = new System.Drawing.Size(528, 22);
+            this.stbFunction.Size = new System.Drawing.Size(577, 22);
             this.stbFunction.SizingGrip = false;
             this.stbFunction.TabIndex = 5;
             // 
@@ -681,7 +680,7 @@
             // pnlFError_explain
             // 
             this.pnlFError_explain.Name = "pnlFError_explain";
-            this.pnlFError_explain.Size = new System.Drawing.Size(343, 17);
+            this.pnlFError_explain.Size = new System.Drawing.Size(392, 17);
             this.pnlFError_explain.Spring = true;
             this.pnlFError_explain.Text = " ";
             // 
@@ -689,7 +688,7 @@
             // 
             this.pgLinearReadWrite.Controls.Add(this.tabLinearRead);
             this.pgLinearReadWrite.Controls.Add(this.tabLinearWrite);
-            this.pgLinearReadWrite.Location = new System.Drawing.Point(2, 576);
+            this.pgLinearReadWrite.Location = new System.Drawing.Point(4, 501);
             this.pgLinearReadWrite.Name = "pgLinearReadWrite";
             this.pgLinearReadWrite.SelectedIndex = 0;
             this.pgLinearReadWrite.Size = new System.Drawing.Size(528, 232);
@@ -931,13 +930,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.linkLabel_nfc);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.checkAdvanced);
             this.groupBox1.Controls.Add(this.btnReaderOpen);
             this.groupBox1.Location = new System.Drawing.Point(4, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(487, 148);
-            this.groupBox1.TabIndex = 35;
+            this.groupBox1.Size = new System.Drawing.Size(567, 110);
+            this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Reader Open";
             // 
@@ -946,14 +946,14 @@
             this.groupBox2.Controls.Add(this.txtOpenArg);
             this.groupBox2.Controls.Add(this.txtPortInterface);
             this.groupBox2.Controls.Add(this.txtPortName);
-            this.groupBox2.Controls.Add(this.txtExReaderType);
+            this.groupBox2.Controls.Add(this.txtReaderTypeEx);
             this.groupBox2.Controls.Add(this.labelOpenArg);
             this.groupBox2.Controls.Add(this.labelPortInterface);
             this.groupBox2.Controls.Add(this.labelPortName);
-            this.groupBox2.Controls.Add(this.labelExReaderType);
-            this.groupBox2.Location = new System.Drawing.Point(214, 10);
+            this.groupBox2.Controls.Add(this.labelReaderTypeEx);
+            this.groupBox2.Location = new System.Drawing.Point(6, 63);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(255, 132);
+            this.groupBox2.Size = new System.Drawing.Size(569, 47);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Advanced options";
@@ -961,15 +961,15 @@
             // txtOpenArg
             // 
             this.txtOpenArg.Enabled = false;
-            this.txtOpenArg.Location = new System.Drawing.Point(93, 101);
+            this.txtOpenArg.Location = new System.Drawing.Point(486, 15);
             this.txtOpenArg.Name = "txtOpenArg";
-            this.txtOpenArg.Size = new System.Drawing.Size(151, 21);
+            this.txtOpenArg.Size = new System.Drawing.Size(68, 21);
             this.txtOpenArg.TabIndex = 7;
             // 
             // txtPortInterface
             // 
             this.txtPortInterface.Enabled = false;
-            this.txtPortInterface.Location = new System.Drawing.Point(93, 73);
+            this.txtPortInterface.Location = new System.Drawing.Point(399, 15);
             this.txtPortInterface.Name = "txtPortInterface";
             this.txtPortInterface.Size = new System.Drawing.Size(43, 21);
             this.txtPortInterface.TabIndex = 6;
@@ -977,24 +977,24 @@
             // txtPortName
             // 
             this.txtPortName.Enabled = false;
-            this.txtPortName.Location = new System.Drawing.Point(93, 45);
+            this.txtPortName.Location = new System.Drawing.Point(196, 15);
             this.txtPortName.Name = "txtPortName";
-            this.txtPortName.Size = new System.Drawing.Size(151, 21);
+            this.txtPortName.Size = new System.Drawing.Size(102, 21);
             this.txtPortName.TabIndex = 5;
             // 
-            // txtExReaderType
+            // txtReaderTypeEx
             // 
-            this.txtExReaderType.Enabled = false;
-            this.txtExReaderType.Location = new System.Drawing.Point(93, 15);
-            this.txtExReaderType.Name = "txtExReaderType";
-            this.txtExReaderType.Size = new System.Drawing.Size(43, 21);
-            this.txtExReaderType.TabIndex = 4;
+            this.txtReaderTypeEx.Enabled = false;
+            this.txtReaderTypeEx.Location = new System.Drawing.Point(92, 15);
+            this.txtReaderTypeEx.Name = "txtReaderTypeEx";
+            this.txtReaderTypeEx.Size = new System.Drawing.Size(24, 21);
+            this.txtReaderTypeEx.TabIndex = 4;
             // 
             // labelOpenArg
             // 
             this.labelOpenArg.AutoSize = true;
             this.labelOpenArg.Enabled = false;
-            this.labelOpenArg.Location = new System.Drawing.Point(6, 104);
+            this.labelOpenArg.Location = new System.Drawing.Point(448, 18);
             this.labelOpenArg.Name = "labelOpenArg";
             this.labelOpenArg.Size = new System.Drawing.Size(32, 13);
             this.labelOpenArg.TabIndex = 3;
@@ -1004,7 +1004,7 @@
             // 
             this.labelPortInterface.AutoSize = true;
             this.labelPortInterface.Enabled = false;
-            this.labelPortInterface.Location = new System.Drawing.Point(6, 76);
+            this.labelPortInterface.Location = new System.Drawing.Point(304, 18);
             this.labelPortInterface.Name = "labelPortInterface";
             this.labelPortInterface.Size = new System.Drawing.Size(89, 13);
             this.labelPortInterface.TabIndex = 2;
@@ -1014,26 +1014,26 @@
             // 
             this.labelPortName.AutoSize = true;
             this.labelPortName.Enabled = false;
-            this.labelPortName.Location = new System.Drawing.Point(6, 48);
+            this.labelPortName.Location = new System.Drawing.Point(119, 18);
             this.labelPortName.Name = "labelPortName";
             this.labelPortName.Size = new System.Drawing.Size(71, 13);
             this.labelPortName.TabIndex = 1;
             this.labelPortName.Text = "Port name:";
             // 
-            // labelExReaderType
+            // labelReaderTypeEx
             // 
-            this.labelExReaderType.AutoSize = true;
-            this.labelExReaderType.Enabled = false;
-            this.labelExReaderType.Location = new System.Drawing.Point(6, 18);
-            this.labelExReaderType.Name = "labelExReaderType";
-            this.labelExReaderType.Size = new System.Drawing.Size(82, 13);
-            this.labelExReaderType.TabIndex = 0;
-            this.labelExReaderType.Text = "Reader type:";
+            this.labelReaderTypeEx.AutoSize = true;
+            this.labelReaderTypeEx.Enabled = false;
+            this.labelReaderTypeEx.Location = new System.Drawing.Point(5, 18);
+            this.labelReaderTypeEx.Name = "labelReaderTypeEx";
+            this.labelReaderTypeEx.Size = new System.Drawing.Size(82, 13);
+            this.labelReaderTypeEx.TabIndex = 0;
+            this.labelReaderTypeEx.Text = "Reader type:";
             // 
             // checkAdvanced
             // 
             this.checkAdvanced.AutoSize = true;
-            this.checkAdvanced.Location = new System.Drawing.Point(6, 85);
+            this.checkAdvanced.Location = new System.Drawing.Point(117, 31);
             this.checkAdvanced.Name = "checkAdvanced";
             this.checkAdvanced.Size = new System.Drawing.Size(152, 17);
             this.checkAdvanced.TabIndex = 1;
@@ -1045,7 +1045,7 @@
             // 
             this.btnReaderOpen.Location = new System.Drawing.Point(6, 20);
             this.btnReaderOpen.Name = "btnReaderOpen";
-            this.btnReaderOpen.Size = new System.Drawing.Size(105, 55);
+            this.btnReaderOpen.Size = new System.Drawing.Size(105, 37);
             this.btnReaderOpen.TabIndex = 0;
             this.btnReaderOpen.Text = "Reader Open";
             this.btnReaderOpen.UseVisualStyleBackColor = true;
@@ -1055,7 +1055,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 861);
+            this.ClientSize = new System.Drawing.Size(577, 780);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pgLinearReadWrite);
             this.Controls.Add(this.stbFunction);
@@ -1184,11 +1184,11 @@
         private System.Windows.Forms.TextBox txtOpenArg;
         private System.Windows.Forms.TextBox txtPortInterface;
         private System.Windows.Forms.TextBox txtPortName;
-        private System.Windows.Forms.TextBox txtExReaderType;
+        private System.Windows.Forms.TextBox txtReaderTypeEx;
         private System.Windows.Forms.Label labelOpenArg;
         private System.Windows.Forms.Label labelPortInterface;
         private System.Windows.Forms.Label labelPortName;
-        private System.Windows.Forms.Label labelExReaderType;
+        private System.Windows.Forms.Label labelReaderTypeEx;
         private System.Windows.Forms.CheckBox checkAdvanced;
         private System.Windows.Forms.Button btnReaderOpen;
     }

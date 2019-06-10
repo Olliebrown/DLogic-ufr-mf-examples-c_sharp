@@ -72,3 +72,15 @@ C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Debug\
 C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Debug\uFr Simplest.csproj.CoreCompileInputs.cache
 C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Debug\uFr Simplest.exe
 C:\Users\Projekat\Desktop\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Debug\uFr Simplest.pdb
+C:\Users\Projekat\Desktop\ex_add\ufr-mf-examples-c_sharp\uFCoderSimplest\bin\x86\Debug\uFr Simplest.exe.config
+C:\Users\Projekat\Desktop\ex_add\ufr-mf-examples-c_sharp\uFCoderSimplest\bin\x86\Debug\uFr Simplest.exe
+C:\Users\Projekat\Desktop\ex_add\ufr-mf-examples-c_sharp\uFCoderSimplest\bin\x86\Debug\uFr Simplest.pdb
+C:\Users\Projekat\Desktop\ex_add\ufr-mf-examples-c_sharp\uFCoderSimplest\bin\x86\Debug\uFr Simplest.exe.CodeAnalysisLog.xml
+C:\Users\Projekat\Desktop\ex_add\ufr-mf-examples-c_sharp\uFCoderSimplest\bin\x86\Debug\uFr Simplest.exe.lastcodeanalysissucceeded
+C:\Users\Projekat\Desktop\ex_add\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Debug\uFr Simplest.csprojAssemblyReference.cache
+C:\Users\Projekat\Desktop\ex_add\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Debug\uFRSimplest.frmuFRSimplest.resources
+C:\Users\Projekat\Desktop\ex_add\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Debug\uFrSimplest.Properties.Resources.resources
+C:\Users\Projekat\Desktop\ex_add\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Debug\uFr Simplest.csproj.GenerateResource.cache
+C:\Users\Projekat\Desktop\ex_add\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Debug\uFr Simplest.csproj.CoreCompileInputs.cache
+C:\Users\Projekat\Desktop\ex_add\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Debug\uFr Simplest.exe
+C:\Users\Projekat\Desktop\ex_add\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x86\Debug\uFr Simplest.pdb

@@ -495,14 +495,16 @@ namespace uFrAdvance
             ShowForm(ValueBlockReadWrite);
         }
 
+        
+
         private void chkAdvanced_CheckedChanged(object sender, EventArgs e)
         {
-            txtExReaderType.Enabled = !txtExReaderType.Enabled;
+            txtReaderTypeEx.Enabled = !txtReaderTypeEx.Enabled;
             txtPortName.Enabled = !txtPortName.Enabled;
             txtPortInterface.Enabled = !txtPortInterface.Enabled;
             txtOpenArg.Enabled = !txtOpenArg.Enabled;
 
-            labelExReaderType.Enabled = !labelExReaderType.Enabled;
+            labelReaderTypeEx.Enabled = !labelReaderTypeEx.Enabled;
             labelPortName.Enabled = !labelPortName.Enabled;
             labelPortInterface.Enabled = !labelPortInterface.Enabled;
             labelOpenArg.Enabled = !labelOpenArg.Enabled;
@@ -513,10 +515,10 @@ namespace uFrAdvance
             DL_STATUS status;
 
 
-            if (chkAdvanced.Checked == true){
+            if (checkAdvanced.Checked == true){
                 boCONN = false;
 
-                string reader_type = txtExReaderType.Text;
+                string reader_type = txtReaderTypeEx.Text;
                 string port_name = txtPortName.Text;
                 string port_interface = txtPortInterface.Text;
                 string arg = txtOpenArg.Text;
