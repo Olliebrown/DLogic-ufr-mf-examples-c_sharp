@@ -443,11 +443,9 @@
             // txtReaderKeyIndex
             // 
             this.txtReaderKeyIndex.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtReaderKeyIndex.Enabled = false;
             this.txtReaderKeyIndex.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReaderKeyIndex.Location = new System.Drawing.Point(230, 51);
             this.txtReaderKeyIndex.Name = "txtReaderKeyIndex";
-            this.txtReaderKeyIndex.ReadOnly = true;
             this.txtReaderKeyIndex.Size = new System.Drawing.Size(35, 27);
             this.txtReaderKeyIndex.TabIndex = 16;
             this.txtReaderKeyIndex.Text = "0";
