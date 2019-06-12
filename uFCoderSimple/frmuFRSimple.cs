@@ -286,6 +286,7 @@ namespace uFRSimple
                 catch (Exception er)
                 {
                     MessageBox.Show("Invalid Advanced options parameters, please check your input and try again!");
+                    return;
                 }
             }
             else

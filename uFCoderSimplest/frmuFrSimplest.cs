@@ -88,9 +88,6 @@ namespace uFRSimplest
                     }
                     else
                     {
-
-                        //txtStatus.Text = "ReaderOpenEx was successful. ";
-
                         pnlConnected.Text = "CONNECTED";
                         boCONN = true;
                         SetStatusBar(status, stbConnected);
@@ -103,6 +100,7 @@ namespace uFRSimplest
                 catch (Exception er)
                 {
                     MessageBox.Show("Invalid Advanced options parameters, please check your input and try again!");
+                    return;                       
                 }
             }
             else {
@@ -418,13 +416,9 @@ namespace uFRSimplest
              .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
              .ToArray();
         }
-
-
-
+        
         private void frmuFRSimplest_Load(object sender, EventArgs e)
-       {
-
-         
+       { 
          int[]iErrorValues=(int[])Enum.GetValues(typeof(ERRORCODES));
          string[]sErrorNames=Enum.GetNames(typeof(ERRORCODES));
          

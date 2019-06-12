@@ -544,9 +544,6 @@ namespace uFrAdvance
                     }
                     else
                     {
-
-                        //txtStatus.Text = "ReaderOpenEx was successful. ";
-
                         pnlConn.Text = "CONNECTED";
                         boCONN = true;
                         GL.SetStatusBar(status, stbReader);
@@ -559,7 +556,7 @@ namespace uFrAdvance
                 catch (Exception er)
                 {
                     MessageBox.Show("Invalid Advanced options parameters, please check your input and try again!");
-                    MessageBox.Show(er.ToString());
+                    return;
                 }
 
             } else {
