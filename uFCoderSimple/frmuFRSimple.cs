@@ -257,13 +257,30 @@ namespace uFRSimple
                 string port_name = txtPortName.Text;
                 string port_interface = txtPortInterface.Text;
                 string arg = txtOpenArg.Text;
+                UInt32 reader_type_int = 0, port_interface_int = 0;
 
                 try
                 {
-                    UInt32 reader_type_int = Convert.ToUInt32(reader_type);
-                    UInt32 port_interface_int = (UInt32)port_interface[0];
+                    reader_type_int = Convert.ToUInt32(reader_type);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Invalid Advanced options parameter: Reader type");
+                    txtReaderTypeEx.Focus();
+                    return;
+                }
+                try
+                {
+                    port_interface_int = (UInt32)port_interface[0];
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Invalid Advanced options parameter: Port interface");
+                    txtPortInterface.Focus();
+                    return;
+                }
 
-                    status = (UInt32)uFCoder.ReaderOpenEx(reader_type_int, port_name, port_interface_int, arg);
+                status = (UInt32)uFCoder.ReaderOpenEx(reader_type_int, port_name, port_interface_int, arg);
                     if (status == DL_OK)
                     {
                         boCONN = true;
@@ -282,12 +299,6 @@ namespace uFRSimple
                         stbReader.Items[0].Text = "NOT CONNECTED";
                         SetStatusBar(status, stbReader);
                     }
-                }
-                catch (Exception er)
-                {
-                    MessageBox.Show("Invalid Advanced options parameters, please check your input and try again!");
-                    return;
-                }
             }
             else
             {

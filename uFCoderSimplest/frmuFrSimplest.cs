@@ -70,15 +70,24 @@ namespace uFRSimplest
                 string port_name = txtPortName.Text;
                 string port_interface = txtPortInterface.Text;
                 string arg = txtOpenArg.Text;
+                UInt32 reader_type_int = 0, port_interface_int = 0;
 
-                try
-                {
-                    UInt32 reader_type_int = Convert.ToUInt32(reader_type);
-                    UInt32 port_interface_int = (UInt32)port_interface[0];
-
-                    status = (UInt32)uFCoder.ReaderOpenEx(reader_type_int, port_name, port_interface_int, arg);
-                    if (status > 0)
-                    {
+                try { 
+                    reader_type_int = Convert.ToUInt32(reader_type);
+                } catch (Exception ex) {
+                    MessageBox.Show("Invalid Advanced options parameter: Reader type");
+                    txtReaderType.Focus();
+                    return;
+                }
+                try { 
+                     port_interface_int = (UInt32)port_interface[0];
+                } catch (Exception ex) {
+                    MessageBox.Show("Invalid Advanced options parameter: Port interface");
+                    txtPortInterface.Focus();
+                    return;
+                }
+                status = (UInt32)uFCoder.ReaderOpenEx(reader_type_int, port_name, port_interface_int, arg);
+                    if (status > 0) {
                         pnlConnected.Text = "NOT CONNECTED";
                         txtCardType.Clear();
                         txtUIDSize.Clear();
@@ -86,8 +95,7 @@ namespace uFRSimplest
                         SetStatusBar(status, stbConnected);
                         return;
                     }
-                    else
-                    {
+                    else {
                         pnlConnected.Text = "CONNECTED";
                         boCONN = true;
                         SetStatusBar(status, stbConnected);
@@ -96,12 +104,7 @@ namespace uFRSimplest
 
                         Timer.Start();
                     }
-                }
-                catch (Exception er)
-                {
-                    MessageBox.Show("Invalid Advanced options parameters, please check your input and try again!");
-                    return;                       
-                }
+                
             }
             else {
 

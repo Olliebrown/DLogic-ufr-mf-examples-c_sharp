@@ -34,3 +34,13 @@ C:\Users\Projekat\Desktop\ex_add\ufr-mf-examples-c_sharp\uFCoderSimple\obj\x64\R
 C:\Users\Projekat\Desktop\ex_add\ufr-mf-examples-c_sharp\uFCoderSimple\bin\x64\Release\uFR Simple.exe.config
 C:\Users\Projekat\Desktop\ex_add\ufr-mf-examples-c_sharp\uFCoderSimple\bin\x64\Release\uFR Simple.exe
 C:\Users\Projekat\Desktop\ex_add\ufr-mf-examples-c_sharp\uFCoderSimple\bin\x64\Release\uFR Simple.pdb
+C:\Users\Projekat\Desktop\ex_add\fixed v2.0\ufr-mf-examples-c_sharp\uFCoderSimple\bin\x64\Release\uFR Simple.exe.config
+C:\Users\Projekat\Desktop\ex_add\fixed v2.0\ufr-mf-examples-c_sharp\uFCoderSimple\bin\x64\Release\uFR Simple.exe
+C:\Users\Projekat\Desktop\ex_add\fixed v2.0\ufr-mf-examples-c_sharp\uFCoderSimple\bin\x64\Release\uFR Simple.pdb
+C:\Users\Projekat\Desktop\ex_add\fixed v2.0\ufr-mf-examples-c_sharp\uFCoderSimple\obj\x64\Release\uFr Simple.csprojAssemblyReference.cache
+C:\Users\Projekat\Desktop\ex_add\fixed v2.0\ufr-mf-examples-c_sharp\uFCoderSimple\obj\x64\Release\uFRSimple.frmuFrSimple.resources
+C:\Users\Projekat\Desktop\ex_add\fixed v2.0\ufr-mf-examples-c_sharp\uFCoderSimple\obj\x64\Release\uFRSimple.Properties.Resources.resources
+C:\Users\Projekat\Desktop\ex_add\fixed v2.0\ufr-mf-examples-c_sharp\uFCoderSimple\obj\x64\Release\uFr Simple.csproj.GenerateResource.cache
+C:\Users\Projekat\Desktop\ex_add\fixed v2.0\ufr-mf-examples-c_sharp\uFCoderSimple\obj\x64\Release\uFr Simple.csproj.CoreCompileInputs.cache
+C:\Users\Projekat\Desktop\ex_add\fixed v2.0\ufr-mf-examples-c_sharp\uFCoderSimple\obj\x64\Release\uFR Simple.exe
+C:\Users\Projekat\Desktop\ex_add\fixed v2.0\ufr-mf-examples-c_sharp\uFCoderSimple\obj\x64\Release\uFR Simple.pdb
