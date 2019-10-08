@@ -55,3 +55,13 @@ C:\Users\Projekat\Desktop\ex_add\fixed v2.0\ufr-mf-examples-c_sharp\uFCoderSimpl
 C:\Users\Projekat\Desktop\ex_add\fixed v2.0\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x64\Release\uFr Simplest.csproj.CoreCompileInputs.cache
 C:\Users\Projekat\Desktop\ex_add\fixed v2.0\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x64\Release\uFr Simplest.exe
 C:\Users\Projekat\Desktop\ex_add\fixed v2.0\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x64\Release\uFr Simplest.pdb
+C:\Users\Projekat\Desktop\ZA FIXAT\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x64\Release\uFr Simplest.csprojAssemblyReference.cache
+C:\Users\Projekat\Desktop\ZA FIXAT\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x64\Release\uFRSimplest.frmuFRSimplest.resources
+C:\Users\Projekat\Desktop\ZA FIXAT\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x64\Release\uFrSimplest.Properties.Resources.resources
+C:\Users\Projekat\Desktop\ZA FIXAT\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x64\Release\uFr Simplest.csproj.GenerateResource.cache
+C:\Users\Projekat\Desktop\ZA FIXAT\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x64\Release\uFr Simplest.csproj.CoreCompileInputs.cache
+C:\Users\Projekat\Desktop\ZA FIXAT\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x64\Release\uFr Simplest.exe
+C:\Users\Projekat\Desktop\ZA FIXAT\ufr-mf-examples-c_sharp\uFCoderSimplest\obj\x64\Release\uFr Simplest.pdb
+C:\Users\Projekat\Desktop\ZA FIXAT\ufr-mf-examples-c_sharp\uFCoderSimplest\bin\x64\Release\uFr Simplest.exe.config
+C:\Users\Projekat\Desktop\ZA FIXAT\ufr-mf-examples-c_sharp\uFCoderSimplest\bin\x64\Release\uFr Simplest.exe
+C:\Users\Projekat\Desktop\ZA FIXAT\ufr-mf-examples-c_sharp\uFCoderSimplest\bin\x64\Release\uFr Simplest.pdb

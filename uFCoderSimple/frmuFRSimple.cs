@@ -473,9 +473,6 @@ namespace uFRSimple
                 }
             }
         }
-
-
-
         private void btnLinearRead_Click(object sender, EventArgs e)
         {
             if (FunctionOn || LoopStatus) return;
@@ -509,7 +506,15 @@ namespace uFRSimple
                 }
                 if (iFResult == DL_OK)
                 {
-                    txtReadData.Text = BitConverter.ToString(baReadData).Replace("-", ":");
+                    if (rbLinearRWHex.Checked)
+                    {
+                        txtReadData.Text = BitConverter.ToString(baReadData).Replace("-", ":");
+                    } else
+                    {
+                        txtReadData.Text = System.Text.Encoding.Default.GetString(baReadData);
+                        txtReadData.Text = Regex.Replace(txtReadData.Text, @"\p{C}+", String.Empty);
+                    }
+                    
                     txtReadBytes.Text = ushBytesRet.ToString();                    
                     SetStatusBar(iFResult, stbFunction);
                     uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
@@ -566,7 +571,15 @@ namespace uFRSimple
                 byte bAuthMode          = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
                 ushort ushBytesRet;                
                 byte[] baWriteData      = new byte[ushDataLength];
-                baWriteData = StringToByteArray(txtWriteData.Text);
+
+                if (rbLinearRWHex.Checked)
+                {
+                    baWriteData = StringToByteArray(txtWriteData.Text);
+                } else
+                {
+                    baWriteData = Encoding.ASCII.GetBytes(txtWriteData.Text);
+                }
+                
                 DL_STATUS iFResult;
 
                 unsafe
@@ -690,7 +703,7 @@ namespace uFRSimple
                
                byte bBlockAccessBits           = 0,
                     bSectorTrailersAccess_bits = 1,
-                    bSectorTrailersByte9       = 45,
+                    bSectorTrailersByte9       = 105,
                     bCounter                   = 0,
                     bSectorsFormatted          = 0;
                byte bAuthMode = rbAUTH1A.Checked ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
@@ -723,12 +736,31 @@ namespace uFRSimple
                     fixed (byte* PKEY_A = baKeyA, PKEY_B = baKeyB)
                         iFResult = uFCoder.LinearFormatCard(PKEY_A, bBlockAccessBits, bSectorTrailersAccess_bits, bSectorTrailersByte9, PKEY_B, &bSectorsFormatted, bAuthMode, bKeyIndex);
                 }
+
                 if (iFResult == DL_OK)
                 {
-                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
-                    txtSectorFormatted.Text = bSectorsFormatted.ToString();
-                    SetStatusBar(iFResult, stbFunction);
-                    MessageBox.Show("Card keys are formatted successfully !", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    ushort linearSize = 0;
+                    int rawLen = 0;
+                    ushort retBytes = 0;
+                    unsafe
+                    {
+                        iFResult = uFCoder.GetCardSize(&linearSize, &rawLen);
+                    }
+
+                    byte[] zeroData = new byte[linearSize];
+                    unsafe
+                    {
+                        fixed (byte* data = zeroData)
+                            iFResult = uFCoder.LinearWrite(data, 0, linearSize, &retBytes, bAuthMode, bKeyIndex);
+                    }
+                    if (iFResult == DL_OK)
+                    {
+                        uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                        txtSectorFormatted.Text = bSectorsFormatted.ToString();
+                        SetStatusBar(iFResult, stbFunction);
+                        MessageBox.Show("Card keys are formatted successfully !", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
@@ -772,7 +804,16 @@ namespace uFRSimple
 
         private void txtWriteData_TextChanged(object sender, EventArgs e)
         {
-            txtWriteDataLength.Text=txtWriteData.Text.Length.ToString();
+            if (rbLinearRWASCII.Checked)
+            {
+                txtWriteDataLength.Text = txtWriteData.Text.Length.ToString();
+            } else
+            {
+                int len = 0;
+                len = txtWriteData.Text.Length / 2;
+                txtWriteDataLength.Text = len.ToString();
+            }
+            
         }
 
 

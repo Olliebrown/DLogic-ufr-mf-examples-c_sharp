@@ -154,6 +154,14 @@
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.chkBiSRHex = new System.Windows.Forms.CheckBox();
+            this.chkBiSRAKM1Hex = new System.Windows.Forms.CheckBox();
+            this.chkBiSRPKHex = new System.Windows.Forms.CheckBox();
+            this.chkBiSRAKM2Hex = new System.Windows.Forms.CheckBox();
+            this.chkBiSWAKM1Hex = new System.Windows.Forms.CheckBox();
+            this.chkBiSWHex = new System.Windows.Forms.CheckBox();
+            this.chkBiSWAKM2Hex = new System.Windows.Forms.CheckBox();
+            this.chkBiSWPKHex = new System.Windows.Forms.CheckBox();
             this.pnlAuth.SuspendLayout();
             this.stbFunctionError.SuspendLayout();
             this.pgBlockInSectorReadWrite.SuspendLayout();
@@ -299,7 +307,7 @@
             this.pnlFunct_error,
             this.pnlErr_code,
             this.pnlErr_expl});
-            this.stbFunctionError.Location = new System.Drawing.Point(0, 348);
+            this.stbFunctionError.Location = new System.Drawing.Point(0, 358);
             this.stbFunctionError.Name = "stbFunctionError";
             this.stbFunctionError.Padding = new System.Windows.Forms.Padding(1, 0, 22, 0);
             this.stbFunctionError.Size = new System.Drawing.Size(541, 22);
@@ -326,11 +334,10 @@
             // 
             this.pgBlockInSectorReadWrite.Controls.Add(this.tabBlockInSectorRead);
             this.pgBlockInSectorReadWrite.Controls.Add(this.tabBlockInSectorWrite);
-            this.pgBlockInSectorReadWrite.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pgBlockInSectorReadWrite.Location = new System.Drawing.Point(0, 57);
             this.pgBlockInSectorReadWrite.Name = "pgBlockInSectorReadWrite";
             this.pgBlockInSectorReadWrite.SelectedIndex = 0;
-            this.pgBlockInSectorReadWrite.Size = new System.Drawing.Size(541, 291);
+            this.pgBlockInSectorReadWrite.Size = new System.Drawing.Size(541, 302);
             this.pgBlockInSectorReadWrite.TabIndex = 8;
             // 
             // tabBlockInSectorRead
@@ -343,7 +350,7 @@
             this.tabBlockInSectorRead.Location = new System.Drawing.Point(4, 22);
             this.tabBlockInSectorRead.Name = "tabBlockInSectorRead";
             this.tabBlockInSectorRead.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBlockInSectorRead.Size = new System.Drawing.Size(533, 265);
+            this.tabBlockInSectorRead.Size = new System.Drawing.Size(533, 276);
             this.tabBlockInSectorRead.TabIndex = 0;
             this.tabBlockInSectorRead.Text = "BlockInSector Read";
             this.tabBlockInSectorRead.UseVisualStyleBackColor = true;
@@ -351,6 +358,7 @@
             // pnlBISReadPK
             // 
             this.pnlBISReadPK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBISReadPK.Controls.Add(this.chkBiSRPKHex);
             this.pnlBISReadPK.Controls.Add(this.txtBISReadDataPK);
             this.pnlBISReadPK.Controls.Add(this.lblBISRReadDataPK);
             this.pnlBISReadPK.Controls.Add(this.btnBISReadDataPK);
@@ -450,6 +458,7 @@
             // pnlBISReadAKM1
             // 
             this.pnlBISReadAKM1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBISReadAKM1.Controls.Add(this.chkBiSRAKM1Hex);
             this.pnlBISReadAKM1.Controls.Add(this.txtBISReadDataAKM1);
             this.pnlBISReadAKM1.Controls.Add(this.lblBISRReadDataAKM1);
             this.pnlBISReadAKM1.Controls.Add(this.btnBISReadDataAKM1);
@@ -549,6 +558,7 @@
             // pnlBISReadAKM2
             // 
             this.pnlBISReadAKM2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBISReadAKM2.Controls.Add(this.chkBiSRAKM2Hex);
             this.pnlBISReadAKM2.Controls.Add(this.txtBISReadDataAKM2);
             this.pnlBISReadAKM2.Controls.Add(this.lblBISRReadDataAKM2);
             this.pnlBISReadAKM2.Controls.Add(this.btnBISReadDataAKM2);
@@ -648,6 +658,7 @@
             // pnlBISRead
             // 
             this.pnlBISRead.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBISRead.Controls.Add(this.chkBiSRHex);
             this.pnlBISRead.Controls.Add(this.txtBISReadData);
             this.pnlBISRead.Controls.Add(this.lblBISRReadData);
             this.pnlBISRead.Controls.Add(this.btnBISReadData);
@@ -754,7 +765,7 @@
             this.tabBlockInSectorWrite.Location = new System.Drawing.Point(4, 22);
             this.tabBlockInSectorWrite.Name = "tabBlockInSectorWrite";
             this.tabBlockInSectorWrite.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBlockInSectorWrite.Size = new System.Drawing.Size(533, 265);
+            this.tabBlockInSectorWrite.Size = new System.Drawing.Size(533, 276);
             this.tabBlockInSectorWrite.TabIndex = 1;
             this.tabBlockInSectorWrite.Text = "BlockInSector Write";
             this.tabBlockInSectorWrite.UseVisualStyleBackColor = true;
@@ -762,6 +773,7 @@
             // pnlBISWritePK
             // 
             this.pnlBISWritePK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBISWritePK.Controls.Add(this.chkBiSWPKHex);
             this.pnlBISWritePK.Controls.Add(this.txtBISWWriteDataPK);
             this.pnlBISWritePK.Controls.Add(this.blBISWWriteDataPK);
             this.pnlBISWritePK.Controls.Add(this.btnBISWritePK);
@@ -770,9 +782,9 @@
             this.pnlBISWritePK.Controls.Add(this.txtBISWSectorAddressPK);
             this.pnlBISWritePK.Controls.Add(this.lblBISWSectorAddressPK);
             this.pnlBISWritePK.Controls.Add(this.label23);
-            this.pnlBISWritePK.Location = new System.Drawing.Point(276, 131);
+            this.pnlBISWritePK.Location = new System.Drawing.Point(276, 141);
             this.pnlBISWritePK.Name = "pnlBISWritePK";
-            this.pnlBISWritePK.Size = new System.Drawing.Size(246, 125);
+            this.pnlBISWritePK.Size = new System.Drawing.Size(246, 135);
             this.pnlBISWritePK.TabIndex = 7;
             // 
             // txtBISWWriteDataPK
@@ -797,7 +809,7 @@
             this.btnBISWritePK.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBISWritePK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBISWritePK.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBISWritePK.Location = new System.Drawing.Point(172, 65);
+            this.btnBISWritePK.Location = new System.Drawing.Point(171, 64);
             this.btnBISWritePK.Name = "btnBISWritePK";
             this.btnBISWritePK.Size = new System.Drawing.Size(59, 48);
             this.btnBISWritePK.TabIndex = 4;
@@ -808,7 +820,7 @@
             // txtBISWBlockAddressPK
             // 
             this.txtBISWBlockAddressPK.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBISWBlockAddressPK.Location = new System.Drawing.Point(120, 90);
+            this.txtBISWBlockAddressPK.Location = new System.Drawing.Point(121, 89);
             this.txtBISWBlockAddressPK.MaxLength = 1;
             this.txtBISWBlockAddressPK.Name = "txtBISWBlockAddressPK";
             this.txtBISWBlockAddressPK.Size = new System.Drawing.Size(42, 24);
@@ -818,7 +830,7 @@
             // lblBISWBlockAddressPK
             // 
             this.lblBISWBlockAddressPK.AutoSize = true;
-            this.lblBISWBlockAddressPK.Location = new System.Drawing.Point(15, 90);
+            this.lblBISWBlockAddressPK.Location = new System.Drawing.Point(23, 94);
             this.lblBISWBlockAddressPK.Name = "lblBISWBlockAddressPK";
             this.lblBISWBlockAddressPK.Size = new System.Drawing.Size(92, 13);
             this.lblBISWBlockAddressPK.TabIndex = 3;
@@ -827,7 +839,7 @@
             // txtBISWSectorAddressPK
             // 
             this.txtBISWSectorAddressPK.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBISWSectorAddressPK.Location = new System.Drawing.Point(120, 65);
+            this.txtBISWSectorAddressPK.Location = new System.Drawing.Point(121, 62);
             this.txtBISWSectorAddressPK.MaxLength = 2;
             this.txtBISWSectorAddressPK.Name = "txtBISWSectorAddressPK";
             this.txtBISWSectorAddressPK.Size = new System.Drawing.Size(42, 24);
@@ -837,7 +849,7 @@
             // lblBISWSectorAddressPK
             // 
             this.lblBISWSectorAddressPK.AutoSize = true;
-            this.lblBISWSectorAddressPK.Location = new System.Drawing.Point(15, 67);
+            this.lblBISWSectorAddressPK.Location = new System.Drawing.Point(21, 67);
             this.lblBISWSectorAddressPK.Name = "lblBISWSectorAddressPK";
             this.lblBISWSectorAddressPK.Size = new System.Drawing.Size(94, 13);
             this.lblBISWSectorAddressPK.TabIndex = 1;
@@ -859,6 +871,7 @@
             // pnlBISWriteAKM1
             // 
             this.pnlBISWriteAKM1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBISWriteAKM1.Controls.Add(this.chkBiSWAKM1Hex);
             this.pnlBISWriteAKM1.Controls.Add(this.txtBISWWriteDataAKM1);
             this.pnlBISWriteAKM1.Controls.Add(this.blBISWWriteDataAKM1);
             this.pnlBISWriteAKM1.Controls.Add(this.btnBISWriteAKM1);
@@ -869,7 +882,7 @@
             this.pnlBISWriteAKM1.Controls.Add(this.label27);
             this.pnlBISWriteAKM1.Location = new System.Drawing.Point(276, 4);
             this.pnlBISWriteAKM1.Name = "pnlBISWriteAKM1";
-            this.pnlBISWriteAKM1.Size = new System.Drawing.Size(246, 125);
+            this.pnlBISWriteAKM1.Size = new System.Drawing.Size(246, 135);
             this.pnlBISWriteAKM1.TabIndex = 6;
             // 
             // txtBISWWriteDataAKM1
@@ -894,7 +907,7 @@
             this.btnBISWriteAKM1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBISWriteAKM1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBISWriteAKM1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBISWriteAKM1.Location = new System.Drawing.Point(172, 68);
+            this.btnBISWriteAKM1.Location = new System.Drawing.Point(171, 64);
             this.btnBISWriteAKM1.Name = "btnBISWriteAKM1";
             this.btnBISWriteAKM1.Size = new System.Drawing.Size(59, 48);
             this.btnBISWriteAKM1.TabIndex = 4;
@@ -905,7 +918,7 @@
             // txtBISWBlockAddressAKM1
             // 
             this.txtBISWBlockAddressAKM1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBISWBlockAddressAKM1.Location = new System.Drawing.Point(120, 93);
+            this.txtBISWBlockAddressAKM1.Location = new System.Drawing.Point(121, 89);
             this.txtBISWBlockAddressAKM1.MaxLength = 1;
             this.txtBISWBlockAddressAKM1.Name = "txtBISWBlockAddressAKM1";
             this.txtBISWBlockAddressAKM1.Size = new System.Drawing.Size(42, 24);
@@ -915,7 +928,7 @@
             // lblBISWBlockAddressAKM1
             // 
             this.lblBISWBlockAddressAKM1.AutoSize = true;
-            this.lblBISWBlockAddressAKM1.Location = new System.Drawing.Point(15, 93);
+            this.lblBISWBlockAddressAKM1.Location = new System.Drawing.Point(23, 94);
             this.lblBISWBlockAddressAKM1.Name = "lblBISWBlockAddressAKM1";
             this.lblBISWBlockAddressAKM1.Size = new System.Drawing.Size(92, 13);
             this.lblBISWBlockAddressAKM1.TabIndex = 3;
@@ -924,7 +937,7 @@
             // txtBISWSectorAddressAKM1
             // 
             this.txtBISWSectorAddressAKM1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBISWSectorAddressAKM1.Location = new System.Drawing.Point(120, 68);
+            this.txtBISWSectorAddressAKM1.Location = new System.Drawing.Point(121, 62);
             this.txtBISWSectorAddressAKM1.MaxLength = 2;
             this.txtBISWSectorAddressAKM1.Name = "txtBISWSectorAddressAKM1";
             this.txtBISWSectorAddressAKM1.Size = new System.Drawing.Size(42, 24);
@@ -934,7 +947,7 @@
             // lblBISWSectorAddressAKM1
             // 
             this.lblBISWSectorAddressAKM1.AutoSize = true;
-            this.lblBISWSectorAddressAKM1.Location = new System.Drawing.Point(15, 70);
+            this.lblBISWSectorAddressAKM1.Location = new System.Drawing.Point(21, 67);
             this.lblBISWSectorAddressAKM1.Name = "lblBISWSectorAddressAKM1";
             this.lblBISWSectorAddressAKM1.Size = new System.Drawing.Size(94, 13);
             this.lblBISWSectorAddressAKM1.TabIndex = 1;
@@ -956,6 +969,7 @@
             // pnlBISWriteAKM2
             // 
             this.pnlBISWriteAKM2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBISWriteAKM2.Controls.Add(this.chkBiSWAKM2Hex);
             this.pnlBISWriteAKM2.Controls.Add(this.txtBISWWriteDataAKM2);
             this.pnlBISWriteAKM2.Controls.Add(this.blBISWWriteDataAKM2);
             this.pnlBISWriteAKM2.Controls.Add(this.btnBISWriteAKM2);
@@ -964,9 +978,9 @@
             this.pnlBISWriteAKM2.Controls.Add(this.txtBISWSectorAddressAKM2);
             this.pnlBISWriteAKM2.Controls.Add(this.lblBISWSectorAddressAKM2);
             this.pnlBISWriteAKM2.Controls.Add(this.label31);
-            this.pnlBISWriteAKM2.Location = new System.Drawing.Point(7, 131);
+            this.pnlBISWriteAKM2.Location = new System.Drawing.Point(7, 141);
             this.pnlBISWriteAKM2.Name = "pnlBISWriteAKM2";
-            this.pnlBISWriteAKM2.Size = new System.Drawing.Size(246, 125);
+            this.pnlBISWriteAKM2.Size = new System.Drawing.Size(246, 135);
             this.pnlBISWriteAKM2.TabIndex = 5;
             // 
             // txtBISWWriteDataAKM2
@@ -991,7 +1005,7 @@
             this.btnBISWriteAKM2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBISWriteAKM2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBISWriteAKM2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBISWriteAKM2.Location = new System.Drawing.Point(173, 65);
+            this.btnBISWriteAKM2.Location = new System.Drawing.Point(171, 64);
             this.btnBISWriteAKM2.Name = "btnBISWriteAKM2";
             this.btnBISWriteAKM2.Size = new System.Drawing.Size(59, 49);
             this.btnBISWriteAKM2.TabIndex = 4;
@@ -1002,7 +1016,7 @@
             // txtBISWBlockAddressAKM2
             // 
             this.txtBISWBlockAddressAKM2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBISWBlockAddressAKM2.Location = new System.Drawing.Point(121, 90);
+            this.txtBISWBlockAddressAKM2.Location = new System.Drawing.Point(121, 89);
             this.txtBISWBlockAddressAKM2.MaxLength = 1;
             this.txtBISWBlockAddressAKM2.Name = "txtBISWBlockAddressAKM2";
             this.txtBISWBlockAddressAKM2.Size = new System.Drawing.Size(42, 24);
@@ -1012,7 +1026,7 @@
             // lblBISWBlockAddressAKM2
             // 
             this.lblBISWBlockAddressAKM2.AutoSize = true;
-            this.lblBISWBlockAddressAKM2.Location = new System.Drawing.Point(16, 90);
+            this.lblBISWBlockAddressAKM2.Location = new System.Drawing.Point(23, 94);
             this.lblBISWBlockAddressAKM2.Name = "lblBISWBlockAddressAKM2";
             this.lblBISWBlockAddressAKM2.Size = new System.Drawing.Size(92, 13);
             this.lblBISWBlockAddressAKM2.TabIndex = 3;
@@ -1021,7 +1035,7 @@
             // txtBISWSectorAddressAKM2
             // 
             this.txtBISWSectorAddressAKM2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBISWSectorAddressAKM2.Location = new System.Drawing.Point(121, 65);
+            this.txtBISWSectorAddressAKM2.Location = new System.Drawing.Point(121, 62);
             this.txtBISWSectorAddressAKM2.MaxLength = 2;
             this.txtBISWSectorAddressAKM2.Name = "txtBISWSectorAddressAKM2";
             this.txtBISWSectorAddressAKM2.Size = new System.Drawing.Size(42, 24);
@@ -1031,7 +1045,7 @@
             // lblBISWSectorAddressAKM2
             // 
             this.lblBISWSectorAddressAKM2.AutoSize = true;
-            this.lblBISWSectorAddressAKM2.Location = new System.Drawing.Point(16, 67);
+            this.lblBISWSectorAddressAKM2.Location = new System.Drawing.Point(21, 67);
             this.lblBISWSectorAddressAKM2.Name = "lblBISWSectorAddressAKM2";
             this.lblBISWSectorAddressAKM2.Size = new System.Drawing.Size(94, 13);
             this.lblBISWSectorAddressAKM2.TabIndex = 1;
@@ -1053,6 +1067,7 @@
             // pnlBISWrite
             // 
             this.pnlBISWrite.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBISWrite.Controls.Add(this.chkBiSWHex);
             this.pnlBISWrite.Controls.Add(this.txtBISWWriteData);
             this.pnlBISWrite.Controls.Add(this.lblBISWWriteData);
             this.pnlBISWrite.Controls.Add(this.btnBISWrite);
@@ -1063,7 +1078,7 @@
             this.pnlBISWrite.Controls.Add(this.label35);
             this.pnlBISWrite.Location = new System.Drawing.Point(7, 4);
             this.pnlBISWrite.Name = "pnlBISWrite";
-            this.pnlBISWrite.Size = new System.Drawing.Size(246, 125);
+            this.pnlBISWrite.Size = new System.Drawing.Size(246, 135);
             this.pnlBISWrite.TabIndex = 4;
             // 
             // txtBISWWriteData
@@ -1088,7 +1103,7 @@
             this.btnBISWrite.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBISWrite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBISWrite.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBISWrite.Location = new System.Drawing.Point(173, 68);
+            this.btnBISWrite.Location = new System.Drawing.Point(171, 64);
             this.btnBISWrite.Name = "btnBISWrite";
             this.btnBISWrite.Size = new System.Drawing.Size(59, 48);
             this.btnBISWrite.TabIndex = 4;
@@ -1099,7 +1114,7 @@
             // txtBISWBlockAddress
             // 
             this.txtBISWBlockAddress.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBISWBlockAddress.Location = new System.Drawing.Point(121, 93);
+            this.txtBISWBlockAddress.Location = new System.Drawing.Point(121, 89);
             this.txtBISWBlockAddress.MaxLength = 1;
             this.txtBISWBlockAddress.Name = "txtBISWBlockAddress";
             this.txtBISWBlockAddress.Size = new System.Drawing.Size(42, 24);
@@ -1109,7 +1124,7 @@
             // lblBISWBlockAddress
             // 
             this.lblBISWBlockAddress.AutoSize = true;
-            this.lblBISWBlockAddress.Location = new System.Drawing.Point(16, 93);
+            this.lblBISWBlockAddress.Location = new System.Drawing.Point(23, 94);
             this.lblBISWBlockAddress.Name = "lblBISWBlockAddress";
             this.lblBISWBlockAddress.Size = new System.Drawing.Size(92, 13);
             this.lblBISWBlockAddress.TabIndex = 3;
@@ -1118,7 +1133,7 @@
             // txtBISWSectorAddress
             // 
             this.txtBISWSectorAddress.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBISWSectorAddress.Location = new System.Drawing.Point(121, 68);
+            this.txtBISWSectorAddress.Location = new System.Drawing.Point(121, 62);
             this.txtBISWSectorAddress.MaxLength = 2;
             this.txtBISWSectorAddress.Name = "txtBISWSectorAddress";
             this.txtBISWSectorAddress.Size = new System.Drawing.Size(42, 24);
@@ -1128,7 +1143,7 @@
             // lblBISWSectorAddress
             // 
             this.lblBISWSectorAddress.AutoSize = true;
-            this.lblBISWSectorAddress.Location = new System.Drawing.Point(16, 70);
+            this.lblBISWSectorAddress.Location = new System.Drawing.Point(21, 67);
             this.lblBISWSectorAddress.Name = "lblBISWSectorAddress";
             this.lblBISWSectorAddress.Size = new System.Drawing.Size(94, 13);
             this.lblBISWSectorAddress.TabIndex = 1;
@@ -1579,11 +1594,91 @@
             this.label19.Text = "BlockInSector Read";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // chkBiSRHex
+            // 
+            this.chkBiSRHex.AutoSize = true;
+            this.chkBiSRHex.Location = new System.Drawing.Point(172, 79);
+            this.chkBiSRHex.Name = "chkBiSRHex";
+            this.chkBiSRHex.Size = new System.Drawing.Size(48, 17);
+            this.chkBiSRHex.TabIndex = 8;
+            this.chkBiSRHex.Text = "Hex";
+            this.chkBiSRHex.UseVisualStyleBackColor = true;
+            // 
+            // chkBiSRAKM1Hex
+            // 
+            this.chkBiSRAKM1Hex.AutoSize = true;
+            this.chkBiSRAKM1Hex.Location = new System.Drawing.Point(172, 79);
+            this.chkBiSRAKM1Hex.Name = "chkBiSRAKM1Hex";
+            this.chkBiSRAKM1Hex.Size = new System.Drawing.Size(48, 17);
+            this.chkBiSRAKM1Hex.TabIndex = 9;
+            this.chkBiSRAKM1Hex.Text = "Hex";
+            this.chkBiSRAKM1Hex.UseVisualStyleBackColor = true;
+            // 
+            // chkBiSRPKHex
+            // 
+            this.chkBiSRPKHex.AutoSize = true;
+            this.chkBiSRPKHex.Location = new System.Drawing.Point(172, 79);
+            this.chkBiSRPKHex.Name = "chkBiSRPKHex";
+            this.chkBiSRPKHex.Size = new System.Drawing.Size(48, 17);
+            this.chkBiSRPKHex.TabIndex = 10;
+            this.chkBiSRPKHex.Text = "Hex";
+            this.chkBiSRPKHex.UseVisualStyleBackColor = true;
+            // 
+            // chkBiSRAKM2Hex
+            // 
+            this.chkBiSRAKM2Hex.AutoSize = true;
+            this.chkBiSRAKM2Hex.Location = new System.Drawing.Point(172, 79);
+            this.chkBiSRAKM2Hex.Name = "chkBiSRAKM2Hex";
+            this.chkBiSRAKM2Hex.Size = new System.Drawing.Size(48, 17);
+            this.chkBiSRAKM2Hex.TabIndex = 10;
+            this.chkBiSRAKM2Hex.Text = "Hex";
+            this.chkBiSRAKM2Hex.UseVisualStyleBackColor = true;
+            // 
+            // chkBiSWAKM1Hex
+            // 
+            this.chkBiSWAKM1Hex.AutoSize = true;
+            this.chkBiSWAKM1Hex.Location = new System.Drawing.Point(171, 113);
+            this.chkBiSWAKM1Hex.Name = "chkBiSWAKM1Hex";
+            this.chkBiSWAKM1Hex.Size = new System.Drawing.Size(48, 17);
+            this.chkBiSWAKM1Hex.TabIndex = 9;
+            this.chkBiSWAKM1Hex.Text = "Hex";
+            this.chkBiSWAKM1Hex.UseVisualStyleBackColor = true;
+            // 
+            // chkBiSWHex
+            // 
+            this.chkBiSWHex.AutoSize = true;
+            this.chkBiSWHex.Location = new System.Drawing.Point(171, 113);
+            this.chkBiSWHex.Name = "chkBiSWHex";
+            this.chkBiSWHex.Size = new System.Drawing.Size(48, 17);
+            this.chkBiSWHex.TabIndex = 10;
+            this.chkBiSWHex.Text = "Hex";
+            this.chkBiSWHex.UseVisualStyleBackColor = true;
+            // 
+            // chkBiSWAKM2Hex
+            // 
+            this.chkBiSWAKM2Hex.AutoSize = true;
+            this.chkBiSWAKM2Hex.Location = new System.Drawing.Point(171, 113);
+            this.chkBiSWAKM2Hex.Name = "chkBiSWAKM2Hex";
+            this.chkBiSWAKM2Hex.Size = new System.Drawing.Size(48, 17);
+            this.chkBiSWAKM2Hex.TabIndex = 10;
+            this.chkBiSWAKM2Hex.Text = "Hex";
+            this.chkBiSWAKM2Hex.UseVisualStyleBackColor = true;
+            // 
+            // chkBiSWPKHex
+            // 
+            this.chkBiSWPKHex.AutoSize = true;
+            this.chkBiSWPKHex.Location = new System.Drawing.Point(171, 113);
+            this.chkBiSWPKHex.Name = "chkBiSWPKHex";
+            this.chkBiSWPKHex.Size = new System.Drawing.Size(48, 17);
+            this.chkBiSWPKHex.TabIndex = 10;
+            this.chkBiSWPKHex.Text = "Hex";
+            this.chkBiSWPKHex.UseVisualStyleBackColor = true;
+            // 
             // frmBlockInSectorReadWrite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(541, 370);
+            this.ClientSize = new System.Drawing.Size(541, 380);
             this.Controls.Add(this.pgBlockInSectorReadWrite);
             this.Controls.Add(this.pnlAuth);
             this.Controls.Add(this.lblHeader);
@@ -1757,5 +1852,13 @@
         private System.Windows.Forms.Label blBISWWriteDataAKM1;
         private System.Windows.Forms.TextBox txtBISWWriteDataAKM2;
         private System.Windows.Forms.Label blBISWWriteDataAKM2;
+        private System.Windows.Forms.CheckBox chkBiSRPKHex;
+        private System.Windows.Forms.CheckBox chkBiSRAKM1Hex;
+        private System.Windows.Forms.CheckBox chkBiSRAKM2Hex;
+        private System.Windows.Forms.CheckBox chkBiSRHex;
+        private System.Windows.Forms.CheckBox chkBiSWPKHex;
+        private System.Windows.Forms.CheckBox chkBiSWAKM1Hex;
+        private System.Windows.Forms.CheckBox chkBiSWAKM2Hex;
+        private System.Windows.Forms.CheckBox chkBiSWHex;
     }
 }

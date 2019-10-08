@@ -160,6 +160,17 @@ namespace uFRSimplest
             return Marshal.PtrToStringAnsi(str_ret);
         }
 
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "LinearFormatCard")]
+        public static extern DL_STATUS LinearFormatCard(byte* new_key_A,
+                                                        byte blocks_access_bits,
+                                                        byte sector_trailers_access_bits,
+                                                        byte sector_trailers_byte9,
+                                                        byte* new_key_B,
+                                                        byte* sectors_formatted,
+                                                        byte auth_mode,
+                                                        byte key_index);
 
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "GetCardSize")]
+        public static extern DL_STATUS GetCardSize(ushort* linearSize, int* rawSize);
     }
 }

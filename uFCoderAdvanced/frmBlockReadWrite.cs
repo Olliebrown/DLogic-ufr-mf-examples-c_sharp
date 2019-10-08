@@ -103,7 +103,7 @@ namespace uFrAdvance
                         }
                         else
                         {
-                            txtBlockRead.Text = System.Text.ASCIIEncoding.ASCII.GetString(baBlockData);
+                            txtBlockRead.Text = Encoding.ASCII.GetString(baBlockData);
                         }
                                                   
                         uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
@@ -625,8 +625,6 @@ namespace uFrAdvance
             }     
         }
 
-             
-        
         private byte[] HexConvert(String sTextBoxValue,byte bMaxBytes)
         {                                             
             byte bCounter     = 0,
@@ -637,7 +635,7 @@ namespace uFrAdvance
             
             try
             {
-                while (bCounter < bMaxBytes)
+                while (bCounter < bMaxBytes*2)
                 {
                     bBlockData[bBr] = Convert.ToByte(sTextBoxValue.Substring(bCounter, 2), 16);
                     bBr++;
@@ -666,10 +664,6 @@ namespace uFrAdvance
                 }            
             return sString;
         }
-
-
-
-       
                                
       }
  

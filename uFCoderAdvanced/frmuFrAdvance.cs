@@ -644,7 +644,7 @@ namespace uFrAdvance
 
         private void frmuFrAdvance_Load(object sender, EventArgs e)
         {
-            
+
             cboLightMode.SelectedItem = cboLightMode.Items[0];
             cboSoundMode.SelectedItem = cboSoundMode.Items[0];
             cboKeyIndex.SelectedItem  = cboKeyIndex.Items[0];            
@@ -668,6 +668,8 @@ namespace uFrAdvance
             ShowForm(LinearReadWrite);            
             GL.FullRangeERROR_CODES();
             //CloneGitRepo(GIT_PATH);
+
+           
         }
 
         private void mnuHardwareFirmwareVersionItem_Click(object sender, EventArgs e)

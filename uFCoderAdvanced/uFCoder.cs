@@ -606,6 +606,7 @@ namespace uFrAdvance
                                                          byte* new_key_B,
                                                          byte* sectors_formatted,
                                                          byte auth_mode);
+
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "LinearFormatCard_PK")]
         public static extern DL_STATUS LinearFormatCard_PK(byte* new_key_A,
                                                          byte blocks_access_bits,
@@ -616,5 +617,11 @@ namespace uFrAdvance
                                                          byte auth_mode,                                        
                                                          byte* pk_key);
 
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "GetCardSize")]
+        public static extern DL_STATUS GetCardSize(ushort* linearSize, int* rawSize);
+
     }
+
+
+
 }

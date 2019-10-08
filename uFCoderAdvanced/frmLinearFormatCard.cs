@@ -252,9 +252,28 @@ namespace uFrAdvance
                 }
                 if (iFResult == DL_OK)
                 {
-                    txtSectorsFormatted.Text = System.Convert.ToString(bSectorsFormatted);
-                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
-                    GL.SetStatusBar(iFResult, stbFunctionError);
+                    ushort linearSize = 0;
+                    int rawLen = 0;
+                    ushort retBytes = 0;
+                    unsafe
+                    {
+                        iFResult = uFCoder.GetCardSize(&linearSize, &rawLen);
+                    }
+
+                    byte[] zeroData = new byte[linearSize];
+                    unsafe
+                    {   fixed (byte* data = zeroData)
+                            iFResult = uFCoder.LinearWrite(data, 0, linearSize, &retBytes, bAuthMode, bKeyIndex);
+
+                    }
+
+                    if (iFResult == DL_OK)
+                    {
+                        txtSectorsFormatted.Text = System.Convert.ToString(bSectorsFormatted);
+                        uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                        GL.SetStatusBar(iFResult, stbFunctionError);
+                    }
+                    
                 }
                 else
                 {
@@ -329,9 +348,28 @@ namespace uFrAdvance
                 }
                 if (iFResult == DL_OK)
                 {
-                    txtSectorsFormattedAKM1.Text = System.Convert.ToString(bSectorsFormatted);
-                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
-                    GL.SetStatusBar(iFResult, stbFunctionError);
+                    ushort linearSize = 0;
+                    int rawLen = 0;
+                    ushort retBytes = 0;
+                    unsafe
+                    {
+                        iFResult = uFCoder.GetCardSize(&linearSize, &rawLen);
+                    }
+
+                    byte[] zeroData = new byte[linearSize];
+                    unsafe
+                    {
+                        fixed (byte* data = zeroData)
+                            iFResult = uFCoder.LinearWrite_AKM1(data, 0, linearSize, &retBytes, bAuthMode);
+
+                    }
+                    if (iFResult == DL_OK)
+                    {
+                        txtSectorsFormattedAKM1.Text = System.Convert.ToString(bSectorsFormatted);
+                        uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                        GL.SetStatusBar(iFResult, stbFunctionError);
+                    }
+                    
                 }
                 else
                 {
@@ -404,9 +442,27 @@ namespace uFrAdvance
                 }
                 if (iFResult == DL_OK)
                 {
-                    txtSectorsFormattedAKM2.Text = System.Convert.ToString(bSectorsFormatted);
-                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
-                    GL.SetStatusBar(iFResult, stbFunctionError);
+                    ushort linearSize = 0;
+                    int rawLen = 0;
+                    ushort retBytes = 0;
+                    unsafe
+                    {
+                        iFResult = uFCoder.GetCardSize(&linearSize, &rawLen);
+                    }
+
+                    byte[] zeroData = new byte[linearSize];
+                    unsafe
+                    {
+                        fixed (byte* data = zeroData)
+                            iFResult = uFCoder.LinearWrite_AKM1(data, 0, linearSize, &retBytes, bAuthMode);
+
+                    }
+                    if (iFResult == DL_OK)
+                    {
+                        txtSectorsFormattedAKM2.Text = System.Convert.ToString(bSectorsFormatted);
+                        uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                        GL.SetStatusBar(iFResult, stbFunctionError);
+                    }
                 }
                 else
                 {
@@ -493,9 +549,30 @@ namespace uFrAdvance
                 }
                 if (iFResult == DL_OK)
                 {
-                    txtSectorsFormattedPK.Text = System.Convert.ToString(bSectorsFormatted);
-                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
-                    GL.SetStatusBar(iFResult, stbFunctionError);
+                    ushort linearSize = 0;
+                    int rawLen = 0;
+                    ushort retBytes = 0;
+                    unsafe
+                    {
+                        iFResult = uFCoder.GetCardSize(&linearSize, &rawLen);
+                    }
+
+                    byte[] zeroData = new byte[linearSize];
+                    unsafe
+                    {
+                        fixed (byte* data = zeroData,
+                                PPKEY = baPKKey)
+                            iFResult = uFCoder.LinearWrite_PK(data, 0, linearSize, &retBytes, bAuthMode, PPKEY);
+
+                    }
+
+                    if (iFResult == DL_OK)
+                    {
+                        txtSectorsFormattedPK.Text = System.Convert.ToString(bSectorsFormatted);
+                        uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+                        GL.SetStatusBar(iFResult, stbFunctionError);            
+                    }
+                    
                 }
                 else
                 {

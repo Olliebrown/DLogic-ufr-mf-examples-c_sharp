@@ -115,6 +115,9 @@
             this.labelReaderTypeEx = new System.Windows.Forms.Label();
             this.checkAdvanced = new System.Windows.Forms.CheckBox();
             this.btnReaderOpen = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.rbLinearRWHex = new System.Windows.Forms.RadioButton();
+            this.rbLinearRWASCII = new System.Windows.Forms.RadioButton();
             this.stbCardStatus.SuspendLayout();
             this.mnuMeniItem.SuspendLayout();
             this.pnlReader.SuspendLayout();
@@ -130,6 +133,7 @@
             this.tabLinearWrite.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // stbCardStatus
@@ -139,7 +143,7 @@
             this.pnlCard_status,
             this.pnlError_code,
             this.pnlError_explain});
-            this.stbCardStatus.Location = new System.Drawing.Point(0, 758);
+            this.stbCardStatus.Location = new System.Drawing.Point(0, 819);
             this.stbCardStatus.Name = "stbCardStatus";
             this.stbCardStatus.Size = new System.Drawing.Size(577, 22);
             this.stbCardStatus.SizingGrip = false;
@@ -181,7 +185,7 @@
             // mniExitItem
             // 
             this.mniExitItem.Name = "mniExitItem";
-            this.mniExitItem.Size = new System.Drawing.Size(37, 20);
+            this.mniExitItem.Size = new System.Drawing.Size(38, 20);
             this.mniExitItem.Text = "Exit";
             this.mniExitItem.Click += new System.EventHandler(this.mniExitItem_Click);
             // 
@@ -653,7 +657,7 @@
             this.pnlFunction,
             this.pnlFError_code,
             this.pnlFError_explain});
-            this.stbFunction.Location = new System.Drawing.Point(0, 736);
+            this.stbFunction.Location = new System.Drawing.Point(0, 797);
             this.stbFunction.Name = "stbFunction";
             this.stbFunction.Size = new System.Drawing.Size(577, 22);
             this.stbFunction.SizingGrip = false;
@@ -686,7 +690,7 @@
             // 
             this.pgLinearReadWrite.Controls.Add(this.tabLinearRead);
             this.pgLinearReadWrite.Controls.Add(this.tabLinearWrite);
-            this.pgLinearReadWrite.Location = new System.Drawing.Point(4, 501);
+            this.pgLinearReadWrite.Location = new System.Drawing.Point(4, 560);
             this.pgLinearReadWrite.Name = "pgLinearReadWrite";
             this.pgLinearReadWrite.SelectedIndex = 0;
             this.pgLinearReadWrite.Size = new System.Drawing.Size(528, 232);
@@ -1049,11 +1053,46 @@
             this.btnReaderOpen.UseVisualStyleBackColor = true;
             this.btnReaderOpen.Click += new System.EventHandler(this.btnReaderOpen_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.rbLinearRWHex);
+            this.groupBox3.Controls.Add(this.rbLinearRWASCII);
+            this.groupBox3.Location = new System.Drawing.Point(8, 505);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(201, 54);
+            this.groupBox3.TabIndex = 39;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Linear read/write data format:";
+            // 
+            // rbLinearRWHex
+            // 
+            this.rbLinearRWHex.AutoSize = true;
+            this.rbLinearRWHex.Location = new System.Drawing.Point(121, 21);
+            this.rbLinearRWHex.Name = "rbLinearRWHex";
+            this.rbLinearRWHex.Size = new System.Drawing.Size(47, 17);
+            this.rbLinearRWHex.TabIndex = 1;
+            this.rbLinearRWHex.Text = "Hex";
+            this.rbLinearRWHex.UseVisualStyleBackColor = true;
+            // 
+            // rbLinearRWASCII
+            // 
+            this.rbLinearRWASCII.AutoSize = true;
+            this.rbLinearRWASCII.Checked = true;
+            this.rbLinearRWASCII.Location = new System.Drawing.Point(26, 21);
+            this.rbLinearRWASCII.Name = "rbLinearRWASCII";
+            this.rbLinearRWASCII.Size = new System.Drawing.Size(60, 17);
+            this.rbLinearRWASCII.TabIndex = 0;
+            this.rbLinearRWASCII.TabStop = true;
+            this.rbLinearRWASCII.Text = "ASCII";
+            this.rbLinearRWASCII.UseVisualStyleBackColor = true;
+            // 
             // frmuFrSimple
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 780);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(577, 841);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pgLinearReadWrite);
             this.Controls.Add(this.stbFunction);
@@ -1062,7 +1101,6 @@
             this.Controls.Add(this.stbCardStatus);
             this.Controls.Add(this.mnuMeniItem);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.mnuMeniItem;
             this.MaximizeBox = false;
             this.Name = "frmuFrSimple";
@@ -1096,6 +1134,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1189,6 +1229,9 @@
         private System.Windows.Forms.Label labelReaderTypeEx;
         private System.Windows.Forms.CheckBox checkAdvanced;
         private System.Windows.Forms.Button btnReaderOpen;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RadioButton rbLinearRWHex;
+        private System.Windows.Forms.RadioButton rbLinearRWASCII;
     }
 }
 

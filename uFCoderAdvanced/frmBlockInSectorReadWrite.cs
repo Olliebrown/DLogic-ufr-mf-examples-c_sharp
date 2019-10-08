@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using uFrAdvance;
 namespace uFrAdvance
@@ -44,6 +45,58 @@ namespace uFrAdvance
             cboKeyIndex.SelectedItem = cboKeyIndex.Items[0];
             GL.CreatePKKey(21, 31, 4, 350, "txtPKKey", 6, false, pnlAuth);
             
+        }
+
+        private String ConvertToHex(byte[] baBlockRead)
+        {
+            StringBuilder sb = new StringBuilder();
+            UTF8Encoding enc = new UTF8Encoding();
+            string sString = null, sBuffer = null;
+
+            foreach (byte bCount in baBlockRead)
+            {
+                sBuffer = bCount.ToString("X2");
+                sb.Append(sBuffer.PadLeft(2, "0"[0]));
+                sString = sb.ToString();
+            }
+            return sString;
+        }
+
+        private byte[] HexConvert(String sTextBoxValue, byte bMaxBytes)
+        {
+            byte bCounter = 0,
+                 bBr = 0;
+            byte[] bBlockData = new byte[bMaxBytes];
+
+            sTextBoxValue = Regex.Replace(sTextBoxValue, @"\s", "");
+
+            try
+            {
+                while (bCounter < bMaxBytes*2)
+                {
+                    bBlockData[bBr] = Convert.ToByte(sTextBoxValue.Substring(bCounter, 2), 16);
+                    bBr++;
+                    bCounter += 2;
+                }
+            }
+            catch (System.IndexOutOfRangeException ex)
+            {
+
+            }
+            return bBlockData;
+        }
+
+        private byte MaxByteBlock(byte bCardType)
+        {
+            byte bMaxByte = 0;
+
+            if (bCardType == (byte)uFrAdvance.Globals.DLCARDTYPE.DL_NTAG_203 ||
+                bCardType == (byte)uFrAdvance.Globals.DLCARDTYPE.DL_MIFARE_ULTRALIGHT ||
+                bCardType == (byte)uFrAdvance.Globals.DLCARDTYPE.DL_MIFARE_ULTRALIGHT_C)
+                bMaxByte = 4;
+            else
+                bMaxByte = 16;
+            return bMaxByte;
         }
 
         private void btnBISReadData_Click(object sender, EventArgs e)
@@ -89,7 +142,15 @@ namespace uFrAdvance
                 }
                 if (iFResult == DL_OK)
                 {
-                    txtBISReadData.Text =System.Text.Encoding.ASCII.GetString(baReadData);
+                    if (chkBiSRHex.Checked)
+                    {
+                        txtBISReadData.Text = ConvertToHex(baReadData);
+                    }
+                    else
+                    {
+                        txtBISReadData.Text = Encoding.ASCII.GetString(baReadData);
+                    }
+                   
                     uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);                   
                     GL.SetStatusBar(iFResult, stbFunctionError);                                                            
                 }
@@ -153,8 +214,16 @@ namespace uFrAdvance
                     }
                 }
                 if (iFResult == DL_OK)
-                {                                                          
-                    txtBISReadDataAKM1.Text = System.Text.Encoding.ASCII.GetString(baReadData);
+                {
+                    if (chkBiSRAKM1Hex.Checked)
+                    {
+                        txtBISReadDataAKM1.Text = ConvertToHex(baReadData);
+                    }
+                    else
+                    {
+                        txtBISReadDataAKM1.Text = Encoding.ASCII.GetString(baReadData);
+                    }
+                   
                     uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);                   
                     GL.SetStatusBar(iFResult, stbFunctionError);                                                            
                 }
@@ -219,8 +288,16 @@ namespace uFrAdvance
                     }
                 }
                 if (iFResult == DL_OK)
-                {                    
-                    txtBISReadDataAKM2.Text = System.Text.Encoding.ASCII.GetString(baReadData);
+                {
+                    if (chkBiSRAKM2Hex.Checked)
+                    {
+                        txtBISReadDataAKM2.Text = ConvertToHex(baReadData);
+                    }
+                    else
+                    {
+                        txtBISReadDataAKM2.Text = Encoding.ASCII.GetString(baReadData);
+                    }
+                    
                     uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
@@ -295,8 +372,16 @@ namespace uFrAdvance
                     }
                 }
                 if (iFResult == DL_OK)
-                {                    
-                    txtBISReadDataPK.Text = System.Text.Encoding.ASCII.GetString(baReadData);
+                {
+                    if (chkBiSRPKHex.Checked)
+                    {
+                        txtBISReadDataPK.Text = ConvertToHex(baReadData);
+                    }
+                    else
+                    {
+                        txtBISReadDataPK.Text = Encoding.ASCII.GetString(baReadData);
+                    }
+                    
                     uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
                 }
@@ -360,7 +445,23 @@ namespace uFrAdvance
                 bSectorAddress = System.Convert.ToByte(txtBISWSectorAddress.Text);
                 bBlockAddress  = System.Convert.ToByte(txtBISWBlockAddress.Text);
                                 
-                baWriteData = System.Text.Encoding.ASCII.GetBytes(txtBISWWriteData.Text);
+                byte bMaxByteBlock = MaxByteBlock(GL.TypeOfCard);
+
+                if (chkBiSWHex.Checked)
+                {
+                    if ((txtBISWWriteData.TextLength / 2) < bMaxByteBlock || (txtBISWWriteData.TextLength / 2) > bMaxByteBlock)
+                    {
+                        MessageBox.Show("You must enter " + bMaxByteBlock.ToString() + " bytes !", "Error...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    baWriteData = HexConvert(txtBISWWriteData.Text.Trim(), bMaxByteBlock);
+                }
+                else
+                {
+                    baWriteData = System.Text.Encoding.ASCII.GetBytes(txtBISWWriteData.Text);
+                }
+
                 unsafe
                 {
                     fixed (byte* PData = baWriteData)
@@ -431,7 +532,22 @@ namespace uFrAdvance
                 bSectorAddress  = System.Convert.ToByte(txtBISWSectorAddressAKM1.Text);
                 bBlockAddress  = System.Convert.ToByte(txtBISWBlockAddressAKM1.Text);
                 
-                baWriteData     = System.Text.Encoding.ASCII.GetBytes(txtBISWWriteDataAKM1.Text);
+                byte bMaxByteBlock = MaxByteBlock(GL.TypeOfCard);
+
+                if (chkBiSWAKM1Hex.Checked)
+                {
+                    if ((txtBISWWriteDataAKM1.TextLength / 2) < bMaxByteBlock || (txtBISWWriteDataAKM1.TextLength / 2) > bMaxByteBlock)
+                    {
+                        MessageBox.Show("You must enter " + bMaxByteBlock.ToString() + " bytes !", "Error...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    baWriteData = HexConvert(txtBISWWriteDataAKM1.Text.Trim(), bMaxByteBlock);
+                }
+                else
+                {
+                    baWriteData = System.Text.Encoding.ASCII.GetBytes(txtBISWWriteDataAKM1.Text);
+                }
                 unsafe
                 {
                     fixed (byte* PData = baWriteData)
@@ -501,7 +617,22 @@ namespace uFrAdvance
                 bSectorAddress = System.Convert.ToByte(txtBISWSectorAddressAKM2.Text);
                 bBlockAddress  = System.Convert.ToByte(txtBISWBlockAddressAKM2.Text);
                 
-                baWriteData    = System.Text.Encoding.ASCII.GetBytes(txtBISWWriteDataAKM2.Text);
+                byte bMaxByteBlock = MaxByteBlock(GL.TypeOfCard);
+
+                if (chkBiSWAKM2Hex.Checked)
+                {
+                    if ((txtBISWWriteDataAKM2.TextLength / 2) < bMaxByteBlock || (txtBISWWriteDataAKM2.TextLength / 2) > bMaxByteBlock)
+                    {
+                        MessageBox.Show("You must enter " + bMaxByteBlock.ToString() + " bytes !", "Error...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    baWriteData = HexConvert(txtBISWWriteDataAKM2.Text.Trim(), bMaxByteBlock);
+                }
+                else
+                {
+                    baWriteData = System.Text.Encoding.ASCII.GetBytes(txtBISWWriteDataAKM2.Text);
+                }
                 unsafe
                 {
                     fixed (byte* PData = baWriteData)
@@ -571,7 +702,23 @@ namespace uFrAdvance
                 }
                 bSectorAddress = System.Convert.ToByte(txtBISWSectorAddressPK.Text);
                 bBlockAddress  = System.Convert.ToByte(txtBISWBlockAddressPK.Text);               
-                baWriteData    = System.Text.Encoding.ASCII.GetBytes(txtBISWWriteDataPK.Text);
+                
+                byte bMaxByteBlock = MaxByteBlock(GL.TypeOfCard);
+
+                if (chkBiSWPKHex.Checked)
+                {
+                    if ((txtBISWWriteDataPK.TextLength / 2) < bMaxByteBlock || (txtBISWWriteDataPK.TextLength / 2) > bMaxByteBlock)
+                    {
+                        MessageBox.Show("You must enter " + bMaxByteBlock.ToString() + " bytes !", "Error...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    baWriteData = HexConvert(txtBISWWriteDataPK.Text.Trim(), bMaxByteBlock);
+                }
+                else
+                {
+                    baWriteData = System.Text.Encoding.ASCII.GetBytes(txtBISWWriteDataPK.Text);
+                }
 
                 byte bCount = 0;
                 foreach (Control cControl in pnlAuth.Controls)

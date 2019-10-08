@@ -159,5 +159,8 @@ namespace uFRSimple
         public static extern DL_STATUS ReaderKeyWrite(byte* aucKey,
                                                       byte ucKeyIndex);
 
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "GetCardSize")]
+        public static extern DL_STATUS GetCardSize(ushort* linearSize, int* rawSize);
+
     }
 }

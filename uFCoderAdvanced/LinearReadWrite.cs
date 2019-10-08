@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using uFrAdvance;
 
@@ -90,8 +91,14 @@ namespace uFrAdvance
                     }
                 }
                 if (iFResult == DL_OK)
-                {                                                       
-                    txtLinearRead.Text = BitConverter.ToString(baReadData).Replace("-", ":");
+                {              
+                    if (rbLinearRWHex.Checked) { 
+                        txtLinearRead.Text = BitConverter.ToString(baReadData).Replace("-", ":");
+                    } else
+                    {
+                        txtLinearRead.Text = System.Text.Encoding.Default.GetString(baReadData);
+                        txtLinearRead.Text = Regex.Replace(txtLinearRead.Text, @"\p{C}+", String.Empty);
+                    }
                     txtReadBytes.Text  = usBytesRet.ToString();
                     uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                     GL.SetStatusBar(iFResult, stbFunctionError);
@@ -386,8 +393,13 @@ namespace uFrAdvance
                 byte bAuthMode = (rbAUTH1A.Checked) ? MIFARE_AUTHENT1A : MIFARE_AUTHENT1B;
                 ushort usBytesRet = 0;
                 byte bKeyIndex = Convert.ToByte(cboKeyIndex.Text);
-                baWriteData     = StringToByteArray(txtLinearWrite.Text);
-                                                                                                                                                                                                    
+
+                if (rbLinearRWHex.Checked) { 
+                    baWriteData     = StringToByteArray(txtLinearWrite.Text);
+                } else
+                {
+                    baWriteData = System.Text.Encoding.ASCII.GetBytes(txtLinearWrite.Text);
+                }
                 unsafe
                 {
                     fixed (byte* PData =baWriteData)
@@ -659,22 +671,52 @@ namespace uFrAdvance
 
         private void txtLinearWrite_TextChanged(object sender, EventArgs e)
         {
-            txtDataLengthWrite.Text = txtLinearWrite.TextLength.ToString();
+            if (rbLinearRWASCII.Checked) { 
+                txtDataLengthWrite.Text = txtLinearWrite.TextLength.ToString();
+            } else
+            {
+                int len = txtLinearWrite.TextLength / 2;
+                txtDataLengthWrite.Text = len.ToString();
+            }
         }
 
         private void txtLinearWriteAKM1_TextChanged(object sender, EventArgs e)
         {
-            txtDataLengthWriteAKM1.Text = txtLinearWriteAKM1.TextLength.ToString();
+            if (rbLinearRWASCII.Checked)
+            {
+                txtDataLengthWrite.Text = txtDataLengthWriteAKM1.TextLength.ToString();
+            }
+            else
+            {
+                int len = txtDataLengthWriteAKM1.TextLength / 2;
+                txtDataLengthWrite.Text = len.ToString();
+            }
         }
 
         private void txtLinearWriteAKM2_TextChanged(object sender, EventArgs e)
         {
-            txtDataLengthWriteAKM2.Text = txtLinearWriteAKM2.TextLength.ToString();
+            if (rbLinearRWASCII.Checked)
+            {
+                txtDataLengthWrite.Text = txtDataLengthWriteAKM2.TextLength.ToString();
+            }
+            else
+            {
+                int len = txtDataLengthWriteAKM2.TextLength / 2;
+                txtDataLengthWrite.Text = len.ToString();
+            }
         }
 
         private void txtLinearWritePK_TextChanged(object sender, EventArgs e)
         {
-            txtDataLengthWritePK.Text = txtLinearWritePK.TextLength.ToString();
+            if (rbLinearRWASCII.Checked)
+            {
+                txtDataLengthWrite.Text = txtDataLengthWritePK.TextLength.ToString();
+            }
+            else
+            {
+                int len = txtDataLengthWritePK.TextLength / 2;
+                txtDataLengthWrite.Text = len.ToString();
+            }
         }
 
         

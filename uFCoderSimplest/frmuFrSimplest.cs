@@ -13,6 +13,7 @@ namespace uFRSimplest
 {
     using System.IO;
     using System.Reflection;
+    using System.Text.RegularExpressions;
     using DL_STATUS = System.UInt32;
     public partial class frmuFRSimplest : Form
     {
@@ -146,6 +147,11 @@ namespace uFRSimplest
             labelOpenArg.Enabled = !labelOpenArg.Enabled;
 
         }
+
+        const string
+                    CONVERT_ERROR = "You may enter only whole decimal number !",
+                    APPROPRIATE_FORMAT = "You must enter the appropriate format !\nEnter a number between 0 and 255 or 0 and FF hexadecimal !";
+
 
         //for result                    
         const byte  FRES_OK_LIGHT     = 4,
@@ -357,59 +363,79 @@ namespace uFRSimplest
         private void btnFormatCard_Click(object sender, EventArgs e)
         {
            if (SetFunctionStatus  || LoopStart ) return;
-           try
-           {
-               SetFunctionStatus =true;               
-               DL_STATUS iFResult   = 0;
-               byte[]baFormatArray  = Enumerable.Repeat(FORMAT_SIGN, MAX_BLOCK).ToArray(); //fill array for format card
-               short shBISCount     = 0;
-               short shBlockCount   = 0;
-               byte  bSectorCounter = 0;
-               byte  bBISCounter    = 3;
-               int   iMaxBlock      = MaxBlocks(bTypeOfCard);
-               
-               pBar.Maximum=iMaxBlock;
-               pBar.Visible=true;
-                
-               
-               while(shBlockCount<iMaxBlock)
-               {
-                 shBISCount=0;
-                  while (shBISCount<bBISCounter)
-                   {
-                     unsafe
-                     {
-                       fixed(byte* pData=baFormatArray)
-                       iFResult=uFCoder.BlockWrite(pData,shBlockCount,MIFARE_AUTHENT1A,KEY_INDEX);
-                     }                                                                                              
-                        shBISCount++;
-                        shBlockCount++;
-                   }
-                   shBlockCount++;
-                   pBar.Value=shBlockCount;
+            try
+            {
+                SetFunctionStatus = true;
 
-                   if (bSectorCounter >= 31 && shBlockCount % 16 == 0)
-                   {
-                       bSectorCounter++;
-                       bBISCounter = 15;
-                   }
-                   else
-                       bSectorCounter++;
-               }
-               if (iFResult == DL_OK)
-               {
-                   SetStatusBar(iFResult, stbFunctionError);
-                   uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
-               }
-               else
-               {
-                   SetStatusBar(iFResult, stbFunctionError);
-                   uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
-               }  
-           }finally{
-               SetFunctionStatus=false;
-               pBar.Visible=false;
-           }   
+                byte bBlockAccessBits = 0,
+                     bSectorTrailersAccess_bits = 1,
+                     bSectorTrailersByte9 = 105,
+                     bCounter = 0,
+                     bSectorsFormatted = 0;
+                byte bAuthMode = 0x60;
+                byte[] baKeyA = new byte[6];
+                byte[] baKeyB = new byte[6];
+
+                for (int i = 0; i < 6; i++)
+                {
+                    baKeyA[i] = 0xFF;
+                    baKeyB[i] = 0xFF;
+                }
+
+                DL_STATUS iFResult;
+
+
+                unsafe
+                {
+                    fixed (byte* PKEY_A = baKeyA, PKEY_B = baKeyB)
+                        iFResult = uFCoder.LinearFormatCard(PKEY_A, bBlockAccessBits, bSectorTrailersAccess_bits, bSectorTrailersByte9, PKEY_B, &bSectorsFormatted, bAuthMode, 0);
+                }
+
+                if (iFResult == DL_OK)
+                {
+
+                    ushort linearSize = 0;
+                    int rawLen = 0;
+                    ushort retBytes = 0;
+                    unsafe
+                    {
+                        iFResult = uFCoder.GetCardSize(&linearSize, &rawLen);
+                    }
+
+                    byte[] zeroData = new byte[linearSize];
+                    unsafe
+                    {
+                        iFResult = uFCoder.LinearWrite(zeroData, 0, linearSize, &retBytes, 0x60, 0);
+                    }
+
+                    if (iFResult == DL_OK)
+                    {
+                        uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
+
+                        SetStatusBar(iFResult, stbFunctionError);
+                        MessageBox.Show("Card keys are formatted successfully !", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    uFCoder.ReaderUISignal(FERR_LIGHT, FERR_SOUND);
+                    
+                    SetStatusBar(iFResult, stbFunctionError);
+                    MessageBox.Show("Card keys are not formatted successfully !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (FormatException FE)
+            {
+                MessageBox.Show(APPROPRIATE_FORMAT, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (ArgumentOutOfRangeException AURE)
+            {
+                MessageBox.Show(APPROPRIATE_FORMAT, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                SetFunctionStatus = false;
+            }
         }
 
         public static byte[] StringToByteArray(string hex)
@@ -450,7 +476,8 @@ namespace uFRSimplest
                }
                if (iFResult == DL_OK)
                {
-                    txtReadData.Text = BitConverter.ToString(baReadData).Replace("-", ":");
+                    txtReadData.Text = System.Text.Encoding.Default.GetString(baReadData);
+                    txtReadData.Text = Regex.Replace(txtReadData.Text, @"\p{C}+", String.Empty);
                     SetStatusBar(iFResult, stbFunctionError);
                    uFCoder.ReaderUISignal(FRES_OK_LIGHT, FRES_OK_SOUND);
                }
@@ -480,8 +507,8 @@ namespace uFRSimplest
                 txtWriteData.Focus();
                 return;
                 }
-                baWriteData = StringToByteArray(txtWriteData.Text);
-             unsafe
+                baWriteData = Encoding.ASCII.GetBytes(txtWriteData.Text);
+                unsafe
                 {
                     ushort usLinearAddress   =0;
                     ushort usDataLength      =(ushort)baWriteData.Length;

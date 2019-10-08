@@ -140,6 +140,9 @@
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbLinearRWASCII = new System.Windows.Forms.RadioButton();
+            this.rbLinearRWHex = new System.Windows.Forms.RadioButton();
             this.stbFunctionError.SuspendLayout();
             this.pnlAuth.SuspendLayout();
             this.pgLinearReadWrite.SuspendLayout();
@@ -155,6 +158,7 @@
             this.tabLinearWriteAKM1.SuspendLayout();
             this.tabLinearWriteAKM2.SuspendLayout();
             this.tabLinearWritePK.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblHeader
@@ -177,7 +181,7 @@
             this.pnlFunct_error,
             this.pnlErr_code,
             this.pnlErr_expl});
-            this.stbFunctionError.Location = new System.Drawing.Point(0, 342);
+            this.stbFunctionError.Location = new System.Drawing.Point(0, 400);
             this.stbFunctionError.Name = "stbFunctionError";
             this.stbFunctionError.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
             this.stbFunctionError.Size = new System.Drawing.Size(541, 22);
@@ -314,8 +318,7 @@
             this.pgLinearReadWrite.Controls.Add(this.tabLinearWrite);
             this.pgLinearReadWrite.Controls.Add(this.tabPage1);
             this.pgLinearReadWrite.Controls.Add(this.tabLinearWritePK);
-            this.pgLinearReadWrite.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pgLinearReadWrite.Location = new System.Drawing.Point(0, 57);
+            this.pgLinearReadWrite.Location = new System.Drawing.Point(0, 112);
             this.pgLinearReadWrite.Name = "pgLinearReadWrite";
             this.pgLinearReadWrite.SelectedIndex = 0;
             this.pgLinearReadWrite.Size = new System.Drawing.Size(541, 285);
@@ -1446,12 +1449,46 @@
             this.label12.TabIndex = 8;
             this.label12.Text = "Read Data";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rbLinearRWHex);
+            this.groupBox1.Controls.Add(this.rbLinearRWASCII);
+            this.groupBox1.Location = new System.Drawing.Point(4, 57);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(201, 54);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Linear read/write data format:";
+            // 
+            // rbLinearRWASCII
+            // 
+            this.rbLinearRWASCII.AutoSize = true;
+            this.rbLinearRWASCII.Checked = true;
+            this.rbLinearRWASCII.Location = new System.Drawing.Point(26, 21);
+            this.rbLinearRWASCII.Name = "rbLinearRWASCII";
+            this.rbLinearRWASCII.Size = new System.Drawing.Size(60, 17);
+            this.rbLinearRWASCII.TabIndex = 0;
+            this.rbLinearRWASCII.TabStop = true;
+            this.rbLinearRWASCII.Text = "ASCII";
+            this.rbLinearRWASCII.UseVisualStyleBackColor = true;
+            // 
+            // rbLinearRWHex
+            // 
+            this.rbLinearRWHex.AutoSize = true;
+            this.rbLinearRWHex.Location = new System.Drawing.Point(121, 21);
+            this.rbLinearRWHex.Name = "rbLinearRWHex";
+            this.rbLinearRWHex.Size = new System.Drawing.Size(47, 17);
+            this.rbLinearRWHex.TabIndex = 1;
+            this.rbLinearRWHex.Text = "Hex";
+            this.rbLinearRWHex.UseVisualStyleBackColor = true;
+            // 
             // frmLinearReadWrite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(541, 364);
+            this.ClientSize = new System.Drawing.Size(541, 422);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pgLinearReadWrite);
             this.Controls.Add(this.pnlAuth);
             this.Controls.Add(this.stbFunctionError);
@@ -1488,6 +1525,8 @@
             this.tabLinearWriteAKM2.PerformLayout();
             this.tabLinearWritePK.ResumeLayout(false);
             this.tabLinearWritePK.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1607,5 +1646,8 @@
         private System.Windows.Forms.Label lblBytesWrittenAKM2;
         private System.Windows.Forms.TextBox txtBytesWrittenPK;
         private System.Windows.Forms.Label lblBytesWrittenPK;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rbLinearRWHex;
+        private System.Windows.Forms.RadioButton rbLinearRWASCII;
     }
 }
