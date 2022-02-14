@@ -1,9 +1,0 @@
-[submodule "uFCoderSimplest/ufr-lib"]
-	path = uFCoderSimplest/ufr-lib
-	url = https://git.d-logic.net/nfc-rfid-reader-sdk/ufr-lib.git
-[submodule "uFCoderSimple/ufr-lib"]
-	path = uFCoderSimple/ufr-lib
-	url = https://git.d-logic.net/nfc-rfid-reader-sdk/ufr-lib.git
-[submodule "uFCoderAdvanced/ufr-lib"]
-	path = uFCoderAdvanced/ufr-lib
-	url = https://git.d-logic.net/nfc-rfid-reader-sdk/ufr-lib.git
